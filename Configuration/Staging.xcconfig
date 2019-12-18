@@ -1,0 +1,13 @@
+//
+//  Staging.xcconfig
+//  UDEX
+//
+//  Created by Abai Abakirov on 12/18/19.
+//  Copyright © 2019 MakeUseOf. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Base.xcconfig"
+#include "Target Support Files/Pods-UDEX/Pods-UDEX.staging.xcconfig"
