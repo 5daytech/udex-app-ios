@@ -68,6 +68,7 @@
 		B5DAE25523A8E80D00D6FBFA = {
 			isa = PBXGroup;
 			children = (
+				B5DAE28D23A9EAA100D6FBFA /* Source */,
 				B5DAE28623A9E80000D6FBFA /* Configuration */,
 				B5DAE26023A8E80D00D6FBFA /* UDEX */,
 				B5DAE25F23A8E80D00D6FBFA /* Products */,
@@ -115,6 +116,13 @@
 				B5DAE28A23A9E85400D6FBFA /* Staging.xcconfig */,
 			);
 			path = Configuration;
+			sourceTree = "<group>";
+		};
+		B5DAE28D23A9EAA100D6FBFA /* Source */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,6 +365,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = UDEX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -378,6 +387,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = UDEX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -459,6 +469,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = UDEX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
