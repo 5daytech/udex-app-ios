@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ETHERESCAN_KEY</key>
+	<string>$(ETHERESCAN_KEY)</string>
+	<key>INFURA_PROJECT_SECRET</key>
+	<string>$(INFURA_PROJECT_SECRET)</string>
+	<key>INFURA_PROJECT_ID</key>
+	<string>$(INFURA_PROJECT_ID)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

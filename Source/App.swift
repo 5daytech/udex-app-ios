@@ -42,7 +42,8 @@ class App {
     let hdWallet = HDWallet(seed: seed, coinType: 1, xPrivKey: 0, xPubKey: 0)
     let privateKey = try! hdWallet.privateKey(account: 0, index: 0, chain: .external).raw
     
-    zrxkit = ZrxKit.getInstance(relayers: relayers, privateKey: privateKey, infuraKey: "")
+    let infuraProjectSecret: String = try! Configuration.value(for: "INFURA_PROJECT_SECRET")
+    zrxkit = ZrxKit.getInstance(relayers: relayers, privateKey: privateKey, infuraKey: infuraProjectSecret)
     
     zrxExchange = zrxkit.getExchangeInstance()
     

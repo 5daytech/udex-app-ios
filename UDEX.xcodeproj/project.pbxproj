@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBE823AB352F00CD18CC /* Configuration.swift */; };
 		B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */; };
 		B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */; };
 		B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26523A8E80D00D6FBFA /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 		2F6AFD33B191BB7BDC3EE8C4 /* Pods-UDEX.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDEX.staging.xcconfig"; path = "Target Support Files/Pods-UDEX/Pods-UDEX.staging.xcconfig"; sourceTree = "<group>"; };
 		3D6D039E652FE3A2A5644744 /* Pods-UDEX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDEX.debug.xcconfig"; path = "Target Support Files/Pods-UDEX/Pods-UDEX.debug.xcconfig"; sourceTree = "<group>"; };
 		537227B9A6004F03DBB290EE /* Pods-UDEX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDEX.release.xcconfig"; path = "Target Support Files/Pods-UDEX/Pods-UDEX.release.xcconfig"; sourceTree = "<group>"; };
+		B533EBE823AB352F00CD18CC /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		B5DAE25E23A8E80D00D6FBFA /* UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,14 @@
 				180BCE6212B91ED70CDA8EFC /* Pods_UDEX.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B533EBE723AB33EE00CD18CC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B533EBE823AB352F00CD18CC /* Configuration.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		B5DAE25523A8E80D00D6FBFA = {
@@ -131,6 +141,7 @@
 		B5DAE28D23A9EAA100D6FBFA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B533EBE723AB33EE00CD18CC /* Core */,
 				B5DAE29723AA0D1D00D6FBFA /* TestData */,
 				B5DAE29223AA0BC000D6FBFA /* Presentation */,
 				B5DAE29D23AA1A5200D6FBFA /* App.swift */,
@@ -298,6 +309,7 @@
 				B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */,
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,
 				B5DAE29623AA0C3300D6FBFA /* Order.swift in Sources */,
+				B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */,
 				B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */,
 				B5DAE29C23AA0DB700D6FBFA /* OrderRow.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
