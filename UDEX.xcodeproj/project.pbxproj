@@ -13,6 +13,11 @@
 		B5DAE26823A8E81000D6FBFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5DAE26723A8E81000D6FBFA /* Assets.xcassets */; };
 		B5DAE26B23A8E81000D6FBFA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5DAE26A23A8E81000D6FBFA /* Preview Assets.xcassets */; };
 		B5DAE26E23A8E81000D6FBFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5DAE26C23A8E81000D6FBFA /* LaunchScreen.storyboard */; };
+		B5DAE29123AA0AA500D6FBFA /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29023AA0AA500D6FBFA /* OrdersList.swift */; };
+		B5DAE29623AA0C3300D6FBFA /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29523AA0C3300D6FBFA /* Order.swift */; };
+		B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29823AA0D2900D6FBFA /* TestData.swift */; };
+		B5DAE29C23AA0DB700D6FBFA /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29B23AA0DB700D6FBFA /* OrderRow.swift */; };
+		B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29D23AA1A5200D6FBFA /* App.swift */; };
 		D5D67649481B180DA125F5B6 /* Pods_UDEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCE6212B91ED70CDA8EFC /* Pods_UDEX.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +38,11 @@
 		B5DAE28823A9E83700D6FBFA /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		B5DAE28923A9E84600D6FBFA /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		B5DAE28A23A9E85400D6FBFA /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		B5DAE29023AA0AA500D6FBFA /* OrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersList.swift; sourceTree = "<group>"; };
+		B5DAE29523AA0C3300D6FBFA /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		B5DAE29823AA0D2900D6FBFA /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		B5DAE29B23AA0DB700D6FBFA /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
+		B5DAE29D23AA1A5200D6FBFA /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,8 +131,53 @@
 		B5DAE28D23A9EAA100D6FBFA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B5DAE29723AA0D1D00D6FBFA /* TestData */,
+				B5DAE29223AA0BC000D6FBFA /* Presentation */,
+				B5DAE29D23AA1A5200D6FBFA /* App.swift */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		B5DAE29223AA0BC000D6FBFA /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE29323AA0BD800D6FBFA /* Orders */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		B5DAE29323AA0BD800D6FBFA /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE29A23AA0DAA00D6FBFA /* View */,
+				B5DAE29423AA0BE700D6FBFA /* Model */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
+		B5DAE29423AA0BE700D6FBFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE29523AA0C3300D6FBFA /* Order.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B5DAE29723AA0D1D00D6FBFA /* TestData */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE29823AA0D2900D6FBFA /* TestData.swift */,
+			);
+			path = TestData;
+			sourceTree = "<group>";
+		};
+		B5DAE29A23AA0DAA00D6FBFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5DAE29023AA0AA500D6FBFA /* OrdersList.swift */,
+				B5DAE29B23AA0DB700D6FBFA /* OrderRow.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +191,7 @@
 				B5DAE25A23A8E80D00D6FBFA /* Sources */,
 				B5DAE25B23A8E80D00D6FBFA /* Frameworks */,
 				B5DAE25C23A8E80D00D6FBFA /* Resources */,
+				E1A8AFCFB1BA764221641415 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -215,6 +271,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E1A8AFCFB1BA764221641415 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UDEX/Pods-UDEX-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-UDEX/Pods-UDEX-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-UDEX/Pods-UDEX-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -224,6 +297,11 @@
 			files = (
 				B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */,
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,
+				B5DAE29623AA0C3300D6FBFA /* Order.swift in Sources */,
+				B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */,
+				B5DAE29C23AA0DB700D6FBFA /* OrderRow.swift in Sources */,
+				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
+				B5DAE29123AA0AA500D6FBFA /* OrdersList.swift in Sources */,
 				B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
