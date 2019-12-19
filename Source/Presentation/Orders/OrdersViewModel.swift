@@ -13,12 +13,18 @@ import BigInt
 
 class OrdersViewModel: ObservableObject {
   private let disposeBag = DisposeBag()
-  @Published private(set) var orders: [Order] = []
+  @Published var sellOrders: [Order] = []
+  @Published var buyOrders: [Order] = []
   
   let relayerManager: IRelayerManager
   
+  private let numberFormatter: NumberFormatter
+  
   init(relayerManager: IRelayerManager) {
     self.relayerManager = relayerManager
+    
+    numberFormatter = NumberFormatter()
+    numberFormatter.maximumFractionDigits = 4
   }
   
   func loadOrders() {
@@ -27,11 +33,20 @@ class OrdersViewModel: ObservableObject {
     relayerManager.getOrderbook(relayerId: 0, base: base, qoute: quote)
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { (response) in
-        self.orders = response.asks.records.map { orderRecord -> Order in
-            return Order(maker: orderRecord.order.makerAssetAmount, taker: orderRecord.order.takerAssetAmount)
-          }
+        self.sellOrders = response.asks.records.map { self.convert(signedOrder: $0.order) }
+        self.buyOrders = response.bids.records.map { self.convert(signedOrder: $0.order) }
       }, onError: { (error) in
         Logger.e("OnError", error: error)
       }).disposed(by: disposeBag)
+  }
+  
+  private func convert(signedOrder: SignedOrder) -> Order {
+    let maker = Double(signedOrder.makerAssetAmount)! * pow(Double(10), Double(-18))
+    let taker = Double(signedOrder.takerAssetAmount)! * pow(Double(10), Double(-18))
+    
+    return Order(
+      maker: numberFormatter.string(from: NSNumber(value: maker))!,
+      taker: numberFormatter.string(from: NSNumber(value: taker))!
+    )
   }
 }

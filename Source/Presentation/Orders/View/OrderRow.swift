@@ -13,9 +13,11 @@ struct OrderRow: View {
   
   var body: some View {
     HStack(alignment: .top, spacing: 10) {
-      Text(order.makerAmount)
+      Text(order.makerAmount).font(.system(size: 10))
       Spacer()
-      Text(order.takerAmount)
+      Text("for").font(.system(size: 10))
+      Spacer()
+      Text(order.takerAmount).font(.system(size: 10))
     }
   }
 }
@@ -23,5 +25,6 @@ struct OrderRow: View {
 struct OrderRow_Previews: PreviewProvider {
     static var previews: some View {
       OrderRow(order: TestData.orders()[0])
+        .previewLayout(.fixed(width: 300, height: 50))
     }
 }
