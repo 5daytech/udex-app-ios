@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBE823AB352F00CD18CC /* Configuration.swift */; };
+		B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */; };
+		B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBED23AB3BFE00CD18CC /* Logger.swift */; };
+		B533EBF123AB3FBF00CD18CC /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBF023AB3FBF00CD18CC /* Coin.swift */; };
+		B533EBF323AB404F00CD18CC /* CoinType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBF223AB404F00CD18CC /* CoinType.swift */; };
 		B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */; };
 		B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */; };
 		B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26523A8E80D00D6FBFA /* ContentView.swift */; };
@@ -28,6 +32,10 @@
 		3D6D039E652FE3A2A5644744 /* Pods-UDEX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDEX.debug.xcconfig"; path = "Target Support Files/Pods-UDEX/Pods-UDEX.debug.xcconfig"; sourceTree = "<group>"; };
 		537227B9A6004F03DBB290EE /* Pods-UDEX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDEX.release.xcconfig"; path = "Target Support Files/Pods-UDEX/Pods-UDEX.release.xcconfig"; sourceTree = "<group>"; };
 		B533EBE823AB352F00CD18CC /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrdersViewModel.swift; path = Source/Presentation/Orders/OrdersViewModel.swift; sourceTree = SOURCE_ROOT; };
+		B533EBED23AB3BFE00CD18CC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		B533EBF023AB3FBF00CD18CC /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		B533EBF223AB404F00CD18CC /* CoinType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinType.swift; sourceTree = "<group>"; };
 		B5DAE25E23A8E80D00D6FBFA /* UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,9 +88,27 @@
 		B533EBE723AB33EE00CD18CC /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B533EBEF23AB3F9E00CD18CC /* Model */,
 				B533EBE823AB352F00CD18CC /* Configuration.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		B533EBEC23AB3BF100CD18CC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B533EBED23AB3BFE00CD18CC /* Logger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		B533EBEF23AB3F9E00CD18CC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B533EBF023AB3FBF00CD18CC /* Coin.swift */,
+				B533EBF223AB404F00CD18CC /* CoinType.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B5DAE25523A8E80D00D6FBFA = {
@@ -141,6 +167,7 @@
 		B5DAE28D23A9EAA100D6FBFA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B533EBEC23AB3BF100CD18CC /* Utils */,
 				B533EBE723AB33EE00CD18CC /* Core */,
 				B5DAE29723AA0D1D00D6FBFA /* TestData */,
 				B5DAE29223AA0BC000D6FBFA /* Presentation */,
@@ -160,6 +187,7 @@
 		B5DAE29323AA0BD800D6FBFA /* Orders */ = {
 			isa = PBXGroup;
 			children = (
+				B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */,
 				B5DAE29A23AA0DAA00D6FBFA /* View */,
 				B5DAE29423AA0BE700D6FBFA /* Model */,
 			);
@@ -307,14 +335,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */,
+				B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */,
+				B533EBF323AB404F00CD18CC /* CoinType.swift in Sources */,
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,
 				B5DAE29623AA0C3300D6FBFA /* Order.swift in Sources */,
 				B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */,
 				B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */,
+				B533EBF123AB3FBF00CD18CC /* Coin.swift in Sources */,
 				B5DAE29C23AA0DB700D6FBFA /* OrderRow.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
 				B5DAE29123AA0AA500D6FBFA /* OrdersList.swift in Sources */,
 				B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */,
+				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

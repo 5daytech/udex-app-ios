@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct Order: Identifiable {
-  var id: String = UUID().uuidString
+  var id = UUID().uuidString
   
-  let makerAmount: Decimal
-  let takerAmount: Decimal
+  let makerAmount: String
+  let takerAmount: String
   
-  init(maker: Decimal, taker: Decimal) {
+  init(maker: String, taker: String) {
     makerAmount = maker
     takerAmount = taker
   }

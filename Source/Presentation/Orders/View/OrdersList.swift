@@ -9,15 +9,13 @@
 import SwiftUI
 
 struct OrdersList: View {
-  let orders: [Order]
+  @ObservedObject var viewModel: OrdersViewModel
   
   var body: some View {
-    Text("dasdas")
-  }
-}
-
-struct OrdersList_Previews: PreviewProvider {
-  static var previews: some View {
-    OrdersList(orders: TestData.orders())
+    List(viewModel.orders) { order in
+      OrderRow(order: order)
+    }.onAppear {
+      self.viewModel.loadOrders()
+    }
   }
 }

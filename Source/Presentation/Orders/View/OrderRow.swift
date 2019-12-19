@@ -13,9 +13,9 @@ struct OrderRow: View {
   
   var body: some View {
     HStack(alignment: .top, spacing: 10) {
-      Text("Maker")
+      Text(order.makerAmount)
       Spacer()
-      Text("Taker")
+      Text(order.takerAmount)
     }
   }
 }
