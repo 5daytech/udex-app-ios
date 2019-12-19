@@ -4,7 +4,7 @@
 
 ## Environment
 .env
-Configuration/
+Configuration/Release.xcconfig
 certificates/
 
 .rbenv-gemsets
