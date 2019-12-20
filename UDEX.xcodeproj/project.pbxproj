@@ -180,19 +180,19 @@
 				B533EBEC23AB3BF100CD18CC /* Utils */,
 				B533EBE723AB33EE00CD18CC /* Core */,
 				B5DAE29723AA0D1D00D6FBFA /* TestData */,
-				B5DAE29223AA0BC000D6FBFA /* Presentation */,
+				B5DAE29223AA0BC000D6FBFA /* Modules */,
 				B5DAE29D23AA1A5200D6FBFA /* App.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
 		};
-		B5DAE29223AA0BC000D6FBFA /* Presentation */ = {
+		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
 				B533EBF423AB6E2E00CD18CC /* Main */,
 				B5DAE29323AA0BD800D6FBFA /* Orders */,
 			);
-			path = Presentation;
+			path = Modules;
 			sourceTree = "<group>";
 		};
 		B5DAE29323AA0BD800D6FBFA /* Orders */ = {
