@@ -1,16 +1,15 @@
-//
-//  MainView.swift
-//  UDEX
-//
-//  Created by Abai Abakirov on 12/19/19.
-//  Copyright © 2019 MakeUseOf. All rights reserved.
-//
-
 import SwiftUI
 
 struct MainView: View {
     var body: some View {
       TabView {
+        NavigationView {
+          BalanceView()
+          .navigationBarTitle(Text("Balance"))
+        }
+        .tabItem({
+          Text("Balance")
+        })
         NavigationView {
           OrdersList(viewModel: OrdersViewModel(relayerManager: App.instance.zrxkit.relayerManager))
           .navigationBarTitle(Text("Order book"))
