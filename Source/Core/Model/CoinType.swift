@@ -10,6 +10,6 @@ import Foundation
 import BigInt
 
 enum CoinType {
-  case Ethereum
-  case Erc20(address: String, decimal: Int, fee: BigUInt = BigUInt.zero)
+  case ethereum
+  case erc20(address: String, fee: Decimal = 0, gasLimit: Int? = nil, minimumRequiredBalance: Decimal = 0, minimumSpendableAmount: Decimal? = nil)
 }

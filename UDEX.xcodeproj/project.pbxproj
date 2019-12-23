@@ -27,6 +27,12 @@
 		B59AE90B23B0A4EB00DF03C1 /* ISendEthereumAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE90A23B0A4EB00DF03C1 /* ISendEthereumAdapter.swift */; };
 		B59AE90D23B0A53200DF03C1 /* ITransactionsAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE90C23B0A53200DF03C1 /* ITransactionsAdapter.swift */; };
 		B59AE90F23B0A58000DF03C1 /* TransactionLockInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE90E23B0A58000DF03C1 /* TransactionLockInfo.swift */; };
+		B59AE91123B0A6CF00DF03C1 /* Erc20Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE91023B0A6CF00DF03C1 /* Erc20Adapter.swift */; };
+		B59AE91423B0A76D00DF03C1 /* IAdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE91323B0A76D00DF03C1 /* IAdapterFactory.swift */; };
+		B59AE91623B0A78600DF03C1 /* AdapterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE91523B0A78600DF03C1 /* AdapterFactory.swift */; };
+		B59AE91823B0A87200DF03C1 /* IAppConfigProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE91723B0A87200DF03C1 /* IAppConfigProvider.swift */; };
+		B59AE91A23B0A8A700DF03C1 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE91923B0A8A700DF03C1 /* Currency.swift */; };
+		B59AE91D23B0A8FF00DF03C1 /* EthereumKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE91C23B0A8FF00DF03C1 /* EthereumKitManager.swift */; };
 		B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */; };
 		B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */; };
 		B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26523A8E80D00D6FBFA /* ContentView.swift */; };
@@ -66,6 +72,12 @@
 		B59AE90A23B0A4EB00DF03C1 /* ISendEthereumAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISendEthereumAdapter.swift; sourceTree = "<group>"; };
 		B59AE90C23B0A53200DF03C1 /* ITransactionsAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITransactionsAdapter.swift; sourceTree = "<group>"; };
 		B59AE90E23B0A58000DF03C1 /* TransactionLockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionLockInfo.swift; sourceTree = "<group>"; };
+		B59AE91023B0A6CF00DF03C1 /* Erc20Adapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Erc20Adapter.swift; sourceTree = "<group>"; };
+		B59AE91323B0A76D00DF03C1 /* IAdapterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapterFactory.swift; sourceTree = "<group>"; };
+		B59AE91523B0A78600DF03C1 /* AdapterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterFactory.swift; sourceTree = "<group>"; };
+		B59AE91723B0A87200DF03C1 /* IAppConfigProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAppConfigProvider.swift; sourceTree = "<group>"; };
+		B59AE91923B0A8A700DF03C1 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		B59AE91C23B0A8FF00DF03C1 /* EthereumKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKitManager.swift; sourceTree = "<group>"; };
 		B5DAE25E23A8E80D00D6FBFA /* UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,9 +130,13 @@
 		B533EBE723AB33EE00CD18CC /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B59AE91B23B0A8F100DF03C1 /* Managers */,
+				B59AE91223B0A74C00DF03C1 /* Factories */,
 				B59AE8F823B08AA600DF03C1 /* Adapters */,
 				B533EBEF23AB3F9E00CD18CC /* Model */,
+				B5DAE29D23AA1A5200D6FBFA /* App.swift */,
 				B533EBE823AB352F00CD18CC /* Configuration.swift */,
+				B59AE91723B0A87200DF03C1 /* IAppConfigProvider.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -143,6 +159,7 @@
 				B59AE90423B0A43F00DF03C1 /* TransactionRecord.swift */,
 				B59AE90823B0A4B700DF03C1 /* AdapterState.swift */,
 				B59AE90E23B0A58000DF03C1 /* TransactionLockInfo.swift */,
+				B59AE91923B0A8A700DF03C1 /* Currency.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,8 +199,26 @@
 				B59AE90623B0A47500DF03C1 /* IBalanceAdapter.swift */,
 				B59AE90A23B0A4EB00DF03C1 /* ISendEthereumAdapter.swift */,
 				B59AE90C23B0A53200DF03C1 /* ITransactionsAdapter.swift */,
+				B59AE91023B0A6CF00DF03C1 /* Erc20Adapter.swift */,
 			);
 			path = Adapters;
+			sourceTree = "<group>";
+		};
+		B59AE91223B0A74C00DF03C1 /* Factories */ = {
+			isa = PBXGroup;
+			children = (
+				B59AE91323B0A76D00DF03C1 /* IAdapterFactory.swift */,
+				B59AE91523B0A78600DF03C1 /* AdapterFactory.swift */,
+			);
+			path = Factories;
+			sourceTree = "<group>";
+		};
+		B59AE91B23B0A8F100DF03C1 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B59AE91C23B0A8FF00DF03C1 /* EthereumKitManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		B5DAE25523A8E80D00D6FBFA = {
@@ -246,7 +281,6 @@
 				B533EBE723AB33EE00CD18CC /* Core */,
 				B5DAE29723AA0D1D00D6FBFA /* TestData */,
 				B5DAE29223AA0BC000D6FBFA /* Modules */,
-				B5DAE29D23AA1A5200D6FBFA /* App.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -412,13 +446,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				B59AE90523B0A43F00DF03C1 /* TransactionRecord.swift in Sources */,
+				B59AE91D23B0A8FF00DF03C1 /* EthereumKitManager.swift in Sources */,
+				B59AE91623B0A78600DF03C1 /* AdapterFactory.swift in Sources */,
 				B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */,
 				B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */,
 				B533EBF623AB6E3E00CD18CC /* MainView.swift in Sources */,
 				B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */,
+				B59AE91A23B0A8A700DF03C1 /* Currency.swift in Sources */,
 				B533EBF323AB404F00CD18CC /* CoinType.swift in Sources */,
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,
 				B59AE90F23B0A58000DF03C1 /* TransactionLockInfo.swift in Sources */,
+				B59AE91423B0A76D00DF03C1 /* IAdapterFactory.swift in Sources */,
+				B59AE91123B0A6CF00DF03C1 /* Erc20Adapter.swift in Sources */,
 				B5DAE29623AA0C3300D6FBFA /* Order.swift in Sources */,
 				B59AE90D23B0A53200DF03C1 /* ITransactionsAdapter.swift in Sources */,
 				B59AE90723B0A47500DF03C1 /* IBalanceAdapter.swift in Sources */,
@@ -438,6 +477,7 @@
 				B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */,
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
+				B59AE91823B0A87200DF03C1 /* IAppConfigProvider.swift in Sources */,
 				B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

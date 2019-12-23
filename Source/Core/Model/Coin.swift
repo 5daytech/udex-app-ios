@@ -11,5 +11,6 @@ import Foundation
 struct Coin {
   let title: String
   let code: String
-  let coinType: CoinType
+  let decimal: Int
+  let type: CoinType
 }

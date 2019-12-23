@@ -1,11 +1,3 @@
-//
-//  App.swift
-//  UDEX
-//
-//  Created by Abai Abakirov on 12/18/19.
-//  Copyright © 2019 MakeUseOf. All rights reserved.
-//
-
 import RxSwift
 import zrxkit
 import HSHDWalletKit
@@ -22,62 +14,63 @@ class App {
     Coin(
       title: "Ethereum",
       code: "ETH",
-      coinType: .Ethereum
+      decimal: 18,
+      type: .ethereum
     ),
     Coin(
       title: "Wrapped ETH",
       code: "WETH",
-      coinType: .Erc20(
-        address: "0xc778417e063141139fce010982780140aa0cd5ab",
-        decimal: 18
+      decimal: 18,
+      type: .erc20(
+        address: "0xc778417e063141139fce010982780140aa0cd5ab"
       )
     ),
     Coin(
       title: "0x",
       code: "ZRX",
-      coinType: .Erc20(
-        address: "0xff67881f8d12f372d91baae9752eb3631ff0ed00",
-        decimal: 18
+      decimal: 18,
+      type: .erc20(
+        address: "0xff67881f8d12f372d91baae9752eb3631ff0ed00"
       )
     ),
     Coin(
       title: "Wrapped Bitcoin",
       code: "WBTC",
-      coinType: .Erc20(
-        address: "0x96639968b1da3438dbb618465bcb2bf7b25ee6ad",
-        decimal: 18
+      decimal: 18,
+      type: .erc20(
+        address: "0x96639968b1da3438dbb618465bcb2bf7b25ee6ad"
       )
     ),
     Coin(
       title: "Dai",
       code: "DAI",
-      coinType: .Erc20(
-        address: "0xd914796ec26edd3f9651393f9751e0f3c00dd027",
-        decimal: 18
+      decimal: 18,
+      type: .erc20(
+        address: "0xd914796ec26edd3f9651393f9751e0f3c00dd027"
       )
     ), // It's CHO
     Coin(
       title: "ChainLink",
       code: "LINK",
-      coinType: .Erc20(
-        address: "0x30845a385581ce1dc51d651ff74689d7f4415146",
-        decimal: 18
+      decimal: 18,
+      type: .erc20(
+        address: "0x30845a385581ce1dc51d651ff74689d7f4415146"
       )
     ), // It's TMKV2
     Coin(
       title: "Tether USD",
       code: "USDT",
-      coinType: .Erc20(
-        address: "0x6D00364318D008C3AEA08c097c25F5639AB5D2e6",
-        decimal: 3
+      decimal: 3,
+      type: .erc20(
+        address: "0x6D00364318D008C3AEA08c097c25F5639AB5D2e6"
       )
     ), // It's PPA
     Coin(
       title: "Huobi",
       code: "HT",
-      coinType: .Erc20(
-        address: "0x52E64BB7aEE0E5bdd3a1995E3b070e012277c0fd",
-        decimal: 2
+      decimal: 2,
+      type: .erc20(
+        address: "0x52E64BB7aEE0E5bdd3a1995E3b070e012277c0fd"
       )
     ) // It's TMK
   ]
@@ -131,8 +124,8 @@ class App {
   static private func addressFromSymbol(symbol: String) -> String {
     let coin = coins.filter { $0.code == symbol }.first
     if let coin = coin {
-      switch coin.coinType {
-      case .Erc20(let address, _, _):
+      switch coin.type {
+      case .erc20(let address, _, _, _, _):
         return address
       default:
         return ""
