@@ -1,4 +1,5 @@
 import Foundation
+import zrxkit
 
 class AppConfigProvider: IAppConfigProvider {  
   let ipfsId = "QmXTJZBMMRmBbPun6HFt3tmb3tfYF2usLPxFoacL7G5uMX"
@@ -35,6 +36,43 @@ class AppConfigProvider: IAppConfigProvider {
   
   var etherscanKey: String {
     try! Configuration.value(for: "ETHERESCAN_KEY")
+  }
+  
+  private func getExchangePair(from: String, to: String) -> Pair<AssetItem, AssetItem> {
+    return Pair<AssetItem, AssetItem>(
+      first: ZrxKit.assetItemForAddress(address: addressFromSymbol(symbol: from)),
+      second: ZrxKit.assetItemForAddress(address: addressFromSymbol(symbol: to))
+    )
+  }
+  
+  private func addressFromSymbol(symbol: String) -> String {
+    let coin = coins.filter { $0.code == symbol }.first
+    if let coin = coin {
+      switch coin.type {
+      case .erc20(let address, _, _, _, _):
+        return address
+      default:
+        return ""
+      }
+    }
+    return ""
+  }
+  
+  var exchangePairs: [Pair<AssetItem, AssetItem>] {
+    [
+      getExchangePair(from: "ZRX",  to: "WETH"),
+      getExchangePair(from: "WBTC", to: "WETH"),
+      getExchangePair(from: "DAI",  to: "WETH"),
+      getExchangePair(from: "USDT", to: "WETH"),
+      getExchangePair(from: "HT",   to: "WETH"),
+      getExchangePair(from: "LINK", to: "WETH"),
+      getExchangePair(from: "ZRX",  to: "WBTC"),
+      getExchangePair(from: "DAI",  to: "WBTC"),
+      getExchangePair(from: "USDT", to: "WBTC"),
+      getExchangePair(from: "HT",   to: "WBTC"),
+      getExchangePair(from: "LINK", to: "WBTC"),
+      getExchangePair(from: "LINK", to: "USDT")
+    ]
   }
   
   let currencies: [Currency] = [
