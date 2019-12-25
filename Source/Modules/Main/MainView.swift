@@ -4,7 +4,7 @@ struct MainView: View {
     var body: some View {
       TabView {
         NavigationView {
-          BalanceView()
+          BalanceView(viewModel: BalanceViewModel(adapterManager: App.instance.adapterManager, coins: App.instance.appConfigProvider.coins))
           .navigationBarTitle(Text("Balance"))
         }
         .tabItem({

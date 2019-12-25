@@ -9,15 +9,11 @@ protocol IAppConfigProvider {
 
     var reachabilityHost: String { get }
     var testMode: Bool { get }
-    var officeMode: Bool { get }
     var infuraCredentials: (id: String, secret: String?) { get }
-    var btcCoreRpcUrl: String { get }
     var etherscanKey: String { get }
     var currencies: [Currency] { get }
 
-    func defaultWords(count: Int) -> [String]
-    var defaultEosCredentials: (String, String) { get }
-    var disablePinLock: Bool { get }
+    func defaultWords() -> [String]
 
     var featuredCoins: [Coin] { get }
     var coins: [Coin] { get }

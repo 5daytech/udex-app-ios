@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct BalanceRow: View {
-  
+  var balance: Balance
   var expanded: Bool
   
     var body: some View {
@@ -12,7 +12,7 @@ struct BalanceRow: View {
             HStack {
               Text("wETH")
               Spacer()
-              Text("0.00") +
+              Text(balance.balance) +
               Text("WETH")
             }
             HStack {
@@ -69,9 +69,9 @@ struct BalanceRow: View {
     }
 }
 
-struct BalanceRow_Previews: PreviewProvider {
-    static var previews: some View {
-      BalanceRow(expanded: true)
-      .previewLayout(.fixed(width: 300, height: 100))
-    }
-}
+//struct BalanceRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//      BalanceRow(balance: <#Balance#>, expanded: true)
+//      .previewLayout(.fixed(width: 300, height: 100))
+//    }
+//}
