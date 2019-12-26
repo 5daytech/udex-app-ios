@@ -7,8 +7,11 @@ class OrdersViewModel: ObservableObject {
   private let disposeBag = DisposeBag()
   @Published var sellOrders: [OrderViewItem] = []
   @Published var buyOrders: [OrderViewItem] = []
-  @Published var currentPair: ExchangePairViewItem
-  @Published var availablePairs: [ExchangePairViewItem] = []
+  @Published var availablePairs: [ExchangePairViewItem]
+  
+  var isExpanded: Bool {
+    availablePairs.count != 1
+  }
   
   let relayerManager: IRelayerManager
   let relayerAdapter: IRelayerAdapter
@@ -23,20 +26,26 @@ class OrdersViewModel: ObservableObject {
     self.relayerManager = relayerManager
     self.relayerAdapter = relayerAdapter
     
-    self.currentPair = ExchangePairViewItem(
+    availablePairs = [ExchangePairViewItem(
       baseCoin: relayerAdapter.exchangePairs[0].baseCoinCode,
       basePrice: 100.0,
       quoteCoin: relayerAdapter.exchangePairs[0].quoteCoinCode,
       quotePrice: 100.0
-    )
+    )]
     
     numberFormatter = NumberFormatter()
     numberFormatter.maximumFractionDigits = 4
+    
+    loadOrders(pair: availablePairs[0])
   }
   
-  func loadOrders() {
-    let base = relayerAdapter.exchangePairs[0].baseAsset.assetData
-    let quote = relayerAdapter.exchangePairs[0].quoteAsset.assetData
+  func loadOrders(pair: ExchangePairViewItem) {
+    let exchangePairOrNull = relayerAdapter.exchangePairs.filter { $0.baseCoinCode == pair.baseCoin && $0.quoteCoinCode == pair.quoteCoin }.first
+    
+    guard let exchangePair = exchangePairOrNull else { fatalError() }
+    
+    let base = exchangePair.baseAsset.assetData
+    let quote = exchangePair.quoteAsset.assetData
     relayerManager.getOrderbook(relayerId: 0, base: base, qoute: quote)
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { (response) in
@@ -57,7 +66,26 @@ class OrdersViewModel: ObservableObject {
       isBuy: isBuy)
   }
   
-  private func refreshPairs() {
+  func onChoosePair(pair: ExchangePairViewItem) {
+    if availablePairs.count == 1 {
+      availablePairs.append(
+        contentsOf: relayerAdapter.exchangePairs
+          .filter { exchangePair -> Bool in
+            !(exchangePair.baseCoinCode == availablePairs[0].baseCoin && exchangePair.quoteCoinCode == availablePairs[0].quoteCoin)
+          }
+          .map {
+            ExchangePairViewItem(
+              baseCoin: $0.baseCoinCode,
+              basePrice: 100.0,
+              quoteCoin: $0.quoteCoinCode,
+              quotePrice: 100.0
+            )
+          }
+      )
+    } else {
+      availablePairs = [pair]
+    }
     
+    loadOrders(pair: pair)
   }
 }

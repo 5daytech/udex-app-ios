@@ -5,23 +5,34 @@ struct OrdersList: View {
   
   var body: some View {
     VStack {
-      HStack {
-        Text("Current Pair")
-        Spacer()
-        Text(viewModel.currentPair.baseCoin)
-        Spacer()
-        Text(viewModel.currentPair.quoteCoin)
-      }
-      HStack(alignment: .center, spacing: 0) {
-        List(viewModel.buyOrders) { order in
-          OrderRow(order: order)
+      ZStack(alignment: .top) {
+        HStack(alignment: .center, spacing: 0) {
+          List(viewModel.buyOrders) { order in
+            OrderRow(order: order)
+          }
+          List(viewModel.sellOrders) { order in
+            OrderRow(order: order)
+          }
         }
-        List(viewModel.sellOrders) { order in
-          OrderRow(order: order)
+        .offset(x: 0, y: 50)
+        
+        HStack(alignment: .top) {
+          Text("Current Pair")
+            .offset(x: 0, y: 12)
+          Spacer()
+          List(viewModel.availablePairs) { pair in
+            Button(action: {
+              self.viewModel.onChoosePair(pair: pair)
+            }) {
+              HStack {
+                Text(pair.baseCoin)
+                Spacer()
+                Text(pair.quoteCoin)
+              }
+            }
+          }
+          .frame(height: viewModel.isExpanded ? 400 : 40)
         }
-      }
-      .onAppear {
-        self.viewModel.loadOrders()
       }
     }
   }
