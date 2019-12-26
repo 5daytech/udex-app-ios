@@ -13,47 +13,31 @@ class OrdersViewModel: ObservableObject {
     availablePairs.count != 1
   }
   
-  let relayerManager: IRelayerManager
   let relayerAdapter: IRelayerAdapter
-  
-  var relayer: Relayer {
-    relayerManager.availableRelayers[0]
-  }
   
   private let numberFormatter: NumberFormatter
   
-  init(relayerManager: IRelayerManager, relayerAdapter: IRelayerAdapter) {
-    self.relayerManager = relayerManager
+  init(relayerAdapter: IRelayerAdapter) {
+    
     self.relayerAdapter = relayerAdapter
     
     availablePairs = [ExchangePairViewItem(
-      baseCoin: relayerAdapter.exchangePairs[0].baseCoinCode,
+      baseCoin: relayerAdapter.currentPair.baseCoinCode,
       basePrice: 100.0,
-      quoteCoin: relayerAdapter.exchangePairs[0].quoteCoinCode,
+      quoteCoin: relayerAdapter.currentPair.quoteCoinCode,
       quotePrice: 100.0
     )]
     
     numberFormatter = NumberFormatter()
     numberFormatter.maximumFractionDigits = 4
     
-    loadOrders(pair: availablePairs[0])
-  }
-  
-  func loadOrders(pair: ExchangePairViewItem) {
-    let exchangePairOrNull = relayerAdapter.exchangePairs.filter { $0.baseCoinCode == pair.baseCoin && $0.quoteCoinCode == pair.quoteCoin }.first
+    relayerAdapter.buyOrdersSubject.subscribe(onNext: { signedOrders in
+      self.buyOrders = signedOrders.map { self.convert(signedOrder: $0, isBuy: true) }
+    }).disposed(by: disposeBag)
     
-    guard let exchangePair = exchangePairOrNull else { fatalError() }
-    
-    let base = exchangePair.baseAsset.assetData
-    let quote = exchangePair.quoteAsset.assetData
-    relayerManager.getOrderbook(relayerId: 0, base: base, qoute: quote)
-      .observeOn(MainScheduler.instance)
-      .subscribe(onNext: { (response) in
-        self.sellOrders = response.asks.records.map { self.convert(signedOrder: $0.order, isBuy: false) }
-        self.buyOrders = response.bids.records.map { self.convert(signedOrder: $0.order, isBuy: true) }
-      }, onError: { (error) in
-        Logger.e("OnError", error: error)
-      }).disposed(by: disposeBag)
+    relayerAdapter.sellOrdersSubject.subscribe(onNext: { signedOrders in
+      self.sellOrders = signedOrders.map { self.convert(signedOrder: $0, isBuy: false) }
+    }).disposed(by: disposeBag)
   }
   
   private func convert(signedOrder: SignedOrder, isBuy: Bool) -> OrderViewItem {
@@ -85,7 +69,6 @@ class OrdersViewModel: ObservableObject {
     } else {
       availablePairs = [pair]
     }
-    
-    loadOrders(pair: pair)
+    relayerAdapter.setSelected(baseCode: pair.baseCoin, quoteCode: pair.quoteCoin)
   }
 }
