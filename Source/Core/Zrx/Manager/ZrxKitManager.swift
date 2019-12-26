@@ -2,7 +2,7 @@ import zrxkit
 import HSHDWalletKit
 import BigInt
 
-class ZrxKitManager {
+class ZrxKitManager: IZrxKitManager {
   
   let zrxkit: ZrxKit
   let zrxExchange: IZrxExchange

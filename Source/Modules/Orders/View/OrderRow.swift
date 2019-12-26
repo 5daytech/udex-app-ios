@@ -1,15 +1,7 @@
-//
-//  OrderView.swift
-//  UDEX
-//
-//  Created by Abai Abakirov on 12/18/19.
-//  Copyright © 2019 MakeUseOf. All rights reserved.
-//
-
 import SwiftUI
 
 struct OrderRow: View {
-  let order: Order
+  let order: OrderViewItem
   
   var body: some View {
     HStack(alignment: .top, spacing: 10) {

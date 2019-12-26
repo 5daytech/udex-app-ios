@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct BalanceRow: View {
-  var balance: Balance
+  var balance: BalanceViewItem
   var expanded: Bool
   
     var body: some View {

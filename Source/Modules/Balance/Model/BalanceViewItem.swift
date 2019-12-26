@@ -1,6 +1,6 @@
 import Foundation
 
-struct Balance: Identifiable {
+struct BalanceViewItem: Identifiable {
   var id = UUID().uuidString
   let title: String
   let balance: String

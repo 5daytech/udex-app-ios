@@ -6,7 +6,7 @@ class BalanceViewModel: ObservableObject {
   
   let adapterManager: IAdapterManager
   
-  @Published var balances: [Balance] = []
+  @Published var balances: [BalanceViewItem] = []
   
   let coins: [Coin]
   let numberFormatter: NumberFormatter
@@ -20,7 +20,7 @@ class BalanceViewModel: ObservableObject {
     subscribeToAdapters()
   }
   
-  func expand(for balance: Balance) {
+  func expand(for balance: BalanceViewItem) {
     
   }
   
@@ -44,7 +44,7 @@ class BalanceViewModel: ObservableObject {
     for coin in coins {
       let balance = adapterManager.balanceAdapter(for: coin)?.balance ?? 0
       let converted = numberFormatter.string(from: balance as NSDecimalNumber)!
-      let row = Balance(title: coin.title, balance: converted, code: coin.code, expanded: false)
+      let row = BalanceViewItem(title: coin.title, balance: converted, code: coin.code, expanded: false)
       balances.append(row)
     }
   }

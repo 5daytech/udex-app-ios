@@ -1,11 +1,3 @@
-//
-//  OrdersList.swift
-//  UDEX
-//
-//  Created by Abai Abakirov on 12/18/19.
-//  Copyright © 2019 MakeUseOf. All rights reserved.
-//
-
 import SwiftUI
 
 struct OrdersList: View {
@@ -16,9 +8,9 @@ struct OrdersList: View {
       HStack {
         Text("Current Pair")
         Spacer()
-        Text(viewModel.currentPair.first.address)
+        Text(viewModel.currentPair.baseCoin)
         Spacer()
-        Text(viewModel.currentPair.second.address)
+        Text(viewModel.currentPair.quoteCoin)
       }
       HStack(alignment: .center, spacing: 0) {
         List(viewModel.buyOrders) { order in

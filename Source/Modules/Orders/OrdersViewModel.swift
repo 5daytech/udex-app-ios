@@ -1,11 +1,3 @@
-//
-//  OrdersViewModel.swift
-//  UDEX
-//
-//  Created by Abai Abakirov on 12/19/19.
-//  Copyright © 2019 MakeUseOf. All rights reserved.
-//
-
 import Foundation
 import zrxkit
 import RxSwift
@@ -13,26 +5,38 @@ import BigInt
 
 class OrdersViewModel: ObservableObject {
   private let disposeBag = DisposeBag()
-  @Published var sellOrders: [Order] = []
-  @Published var buyOrders: [Order] = []
+  @Published var sellOrders: [OrderViewItem] = []
+  @Published var buyOrders: [OrderViewItem] = []
+  @Published var currentPair: ExchangePairViewItem
+  @Published var availablePairs: [ExchangePairViewItem] = []
   
   let relayerManager: IRelayerManager
+  let relayerAdapter: IRelayerAdapter
   
-  @Published var currentPair: Pair<AssetItem, AssetItem>
+  var relayer: Relayer {
+    relayerManager.availableRelayers[0]
+  }
   
   private let numberFormatter: NumberFormatter
   
-  init(relayerManager: IRelayerManager) {
+  init(relayerManager: IRelayerManager, relayerAdapter: IRelayerAdapter) {
     self.relayerManager = relayerManager
-    self.currentPair = relayerManager.availableRelayers[0].availablePairs[0]
+    self.relayerAdapter = relayerAdapter
+    
+    self.currentPair = ExchangePairViewItem(
+      baseCoin: relayerAdapter.exchangePairs[0].baseCoinCode,
+      basePrice: 100.0,
+      quoteCoin: relayerAdapter.exchangePairs[0].quoteCoinCode,
+      quotePrice: 100.0
+    )
     
     numberFormatter = NumberFormatter()
     numberFormatter.maximumFractionDigits = 4
   }
   
   func loadOrders() {
-    let base = currentPair.first.assetData
-    let quote = currentPair.second.assetData
+    let base = relayerAdapter.exchangePairs[0].baseAsset.assetData
+    let quote = relayerAdapter.exchangePairs[0].quoteAsset.assetData
     relayerManager.getOrderbook(relayerId: 0, base: base, qoute: quote)
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { (response) in
@@ -43,13 +47,17 @@ class OrdersViewModel: ObservableObject {
       }).disposed(by: disposeBag)
   }
   
-  private func convert(signedOrder: SignedOrder, isBuy: Bool) -> Order {
+  private func convert(signedOrder: SignedOrder, isBuy: Bool) -> OrderViewItem {
     let maker = Double(signedOrder.makerAssetAmount)! * pow(Double(10), Double(-18))
     let taker = Double(signedOrder.takerAssetAmount)! * pow(Double(10), Double(-18))
     
-    return Order(
+    return OrderViewItem(
       makerAmount: numberFormatter.string(from: NSNumber(value: maker))!,
       takerAmount: numberFormatter.string(from: NSNumber(value: taker))!,
       isBuy: isBuy)
+  }
+  
+  private func refreshPairs() {
+    
   }
 }

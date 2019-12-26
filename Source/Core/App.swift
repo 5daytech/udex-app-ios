@@ -8,8 +8,8 @@ class App {
   let appConfigProvider: IAppConfigProvider
   let adapterManager: IAdapterManager
   
-  let disposeBag = DisposeBag()
-  let zrxKitManager: ZrxKitManager
+  let zrxKitManager: IZrxKitManager
+  let relayerAdapterManager: IRelayerAdapterManager
   
   private init() {
     appConfigProvider = AppConfigProvider()
@@ -23,5 +23,9 @@ class App {
     adapterManager = AdapterManager(adapterFactory: adapterFactory, ethereumKitManager: ethereumKitManager, coins: appConfigProvider.coins, words: words)
     
     zrxKitManager = ZrxKitManager(appConfigProvider: appConfigProvider)
+    
+    let coinManager = CoinManager(appConfigProvider: appConfigProvider)
+    
+    relayerAdapterManager = RelayerAdapterManager(zrxkit: zrxKitManager.zrxkit, coinManager: coinManager)
   }
 }
