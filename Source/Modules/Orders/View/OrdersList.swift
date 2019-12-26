@@ -12,16 +12,25 @@ struct OrdersList: View {
   @ObservedObject var viewModel: OrdersViewModel
   
   var body: some View {
-    HStack(alignment: .center, spacing: 0) {
-      List(viewModel.sellOrders) { order in
-        OrderRow(order: order)
+    VStack {
+      HStack {
+        Text("Current Pair")
+        Spacer()
+        Text(viewModel.currentPair.first.address)
+        Spacer()
+        Text(viewModel.currentPair.second.address)
       }
-      List(viewModel.buyOrders) { order in
-        OrderRow(order: order)
+      HStack(alignment: .center, spacing: 0) {
+        List(viewModel.buyOrders) { order in
+          OrderRow(order: order)
+        }
+        List(viewModel.sellOrders) { order in
+          OrderRow(order: order)
+        }
       }
-    }
-    .onAppear {
-      self.viewModel.loadOrders()
+      .onAppear {
+        self.viewModel.loadOrders()
+      }
     }
   }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B50C2F1723B2191500CE7FBF /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C2F1623B2191500CE7FBF /* Balance.swift */; };
+		B50C2F1923B3818E00CE7FBF /* ZrxKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C2F1823B3818E00CE7FBF /* ZrxKitManager.swift */; };
 		B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBE823AB352F00CD18CC /* Configuration.swift */; };
 		B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */; };
 		B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBED23AB3BFE00CD18CC /* Logger.swift */; };
@@ -57,6 +58,7 @@
 		3D6D039E652FE3A2A5644744 /* Pods-UDEX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDEX.debug.xcconfig"; path = "Target Support Files/Pods-UDEX/Pods-UDEX.debug.xcconfig"; sourceTree = "<group>"; };
 		537227B9A6004F03DBB290EE /* Pods-UDEX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UDEX.release.xcconfig"; path = "Target Support Files/Pods-UDEX/Pods-UDEX.release.xcconfig"; sourceTree = "<group>"; };
 		B50C2F1623B2191500CE7FBF /* Balance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		B50C2F1823B3818E00CE7FBF /* ZrxKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZrxKitManager.swift; sourceTree = "<group>"; };
 		B533EBE823AB352F00CD18CC /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrdersViewModel.swift; path = Source/Modules/Orders/OrdersViewModel.swift; sourceTree = SOURCE_ROOT; };
 		B533EBED23AB3BFE00CD18CC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				B59AE91C23B0A8FF00DF03C1 /* EthereumKitManager.swift */,
 				B59AE92123B0BCAE00DF03C1 /* IAdapterManager.swift */,
 				B59AE92323B0BD2100DF03C1 /* AdapterManager.swift */,
+				B50C2F1823B3818E00CE7FBF /* ZrxKitManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				B59AE90923B0A4B700DF03C1 /* AdapterState.swift in Sources */,
 				B5DAE29123AA0AA500D6FBFA /* OrdersList.swift in Sources */,
 				B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */,
+				B50C2F1923B3818E00CE7FBF /* ZrxKitManager.swift in Sources */,
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
 				B59AE92223B0BCAE00DF03C1 /* IAdapterManager.swift in Sources */,

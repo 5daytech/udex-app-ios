@@ -13,11 +13,11 @@ struct OrderRow: View {
   
   var body: some View {
     HStack(alignment: .top, spacing: 10) {
-      Text(order.makerAmount).font(.system(size: 10))
+      Text(order.isBuy ? order.takerAmount : order.makerAmount).font(.system(size: 10))
       Spacer()
       Text("for").font(.system(size: 10))
       Spacer()
-      Text(order.takerAmount).font(.system(size: 10))
+      Text(order.isBuy ? order.makerAmount : order.takerAmount).font(.system(size: 10))
     }
   }
 }

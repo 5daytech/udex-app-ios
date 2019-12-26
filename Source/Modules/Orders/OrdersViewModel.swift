@@ -18,35 +18,38 @@ class OrdersViewModel: ObservableObject {
   
   let relayerManager: IRelayerManager
   
+  @Published var currentPair: Pair<AssetItem, AssetItem>
+  
   private let numberFormatter: NumberFormatter
   
   init(relayerManager: IRelayerManager) {
     self.relayerManager = relayerManager
+    self.currentPair = relayerManager.availableRelayers[0].availablePairs[0]
     
     numberFormatter = NumberFormatter()
     numberFormatter.maximumFractionDigits = 4
   }
   
   func loadOrders() {
-    let base = relayerManager.availableRelayers[0].availablePairs[0].first.assetData
-    let quote = relayerManager.availableRelayers[0].availablePairs[0].second.assetData
+    let base = currentPair.first.assetData
+    let quote = currentPair.second.assetData
     relayerManager.getOrderbook(relayerId: 0, base: base, qoute: quote)
       .observeOn(MainScheduler.instance)
       .subscribe(onNext: { (response) in
-        self.sellOrders = response.asks.records.map { self.convert(signedOrder: $0.order) }
-        self.buyOrders = response.bids.records.map { self.convert(signedOrder: $0.order) }
+        self.sellOrders = response.asks.records.map { self.convert(signedOrder: $0.order, isBuy: false) }
+        self.buyOrders = response.bids.records.map { self.convert(signedOrder: $0.order, isBuy: true) }
       }, onError: { (error) in
         Logger.e("OnError", error: error)
       }).disposed(by: disposeBag)
   }
   
-  private func convert(signedOrder: SignedOrder) -> Order {
+  private func convert(signedOrder: SignedOrder, isBuy: Bool) -> Order {
     let maker = Double(signedOrder.makerAssetAmount)! * pow(Double(10), Double(-18))
     let taker = Double(signedOrder.takerAssetAmount)! * pow(Double(10), Double(-18))
     
     return Order(
-      maker: numberFormatter.string(from: NSNumber(value: maker))!,
-      taker: numberFormatter.string(from: NSNumber(value: taker))!
-    )
+      makerAmount: numberFormatter.string(from: NSNumber(value: maker))!,
+      takerAmount: numberFormatter.string(from: NSNumber(value: taker))!,
+      isBuy: isBuy)
   }
 }

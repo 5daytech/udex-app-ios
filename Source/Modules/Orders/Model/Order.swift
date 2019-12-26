@@ -13,9 +13,5 @@ struct Order: Identifiable {
   
   let makerAmount: String
   let takerAmount: String
-  
-  init(maker: String, taker: String) {
-    makerAmount = maker
-    takerAmount = taker
-  }
+  let isBuy: Bool
 }

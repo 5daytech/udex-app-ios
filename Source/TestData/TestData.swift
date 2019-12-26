@@ -10,11 +10,11 @@ import Foundation
 
 struct TestData {
   static func orders() -> [Order] {
-    let order1 = Order(maker: "10.0", taker: "20.0")
-    let order2 = Order(maker: "123.0", taker: "20.0")
-    let order3 = Order(maker: "423.0", taker: "890.0")
-    let order4 = Order(maker: "40.0", taker: "20.0")
-    let order5 = Order(maker: "10.0", taker: "90.0")
+    let order1 = Order(makerAmount: "10.0", takerAmount: "20.0", isBuy: false)
+    let order2 = Order(makerAmount: "10.0", takerAmount: "20.0", isBuy: false)
+    let order3 = Order(makerAmount: "10.0", takerAmount: "20.0", isBuy: false)
+    let order4 = Order(makerAmount: "10.0", takerAmount: "20.0", isBuy: false)
+    let order5 = Order(makerAmount: "10.0", takerAmount: "20.0", isBuy: false)
     return [order1, order2, order3, order4, order5]
   }
 }

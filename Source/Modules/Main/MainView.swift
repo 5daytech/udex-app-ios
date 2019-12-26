@@ -11,7 +11,7 @@ struct MainView: View {
           Text("Balance")
         })
         NavigationView {
-          OrdersList(viewModel: OrdersViewModel(relayerManager: App.instance.zrxkit.relayerManager))
+          OrdersList(viewModel: OrdersViewModel(relayerManager: App.instance.zrxKitManager.zrxkit.relayerManager))
           .navigationBarTitle(Text("Order book"))
         }
         .tabItem({

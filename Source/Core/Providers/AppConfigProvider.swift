@@ -15,6 +15,10 @@ class AppConfigProvider: IAppConfigProvider {
   
   let reachabilityHost = "ipfs.horizontalsystems.xyz"
   
+  var zrxNetwork: ZrxKit.NetworkType {
+    testMode ? ZrxKit.NetworkType.Ropsten : ZrxKit.NetworkType.MainNet
+  }
+  
   var testMode: Bool {
     try! Configuration.value(for: "TEST_MODE") == "true"
   }
@@ -28,7 +32,7 @@ class AppConfigProvider: IAppConfigProvider {
     }
   }
   
-  var infuraCredentials: (id: String, secret: String?) {
+  var infuraCredentials: (id: String, secret: String) {
     let id: String = try! Configuration.value(for: "INFURA_PROJECT_ID")
     let secret: String = try! Configuration.value(for: "INFURA_PROJECT_SECRET")
     return (id: id, secret: secret)
@@ -157,4 +161,20 @@ class AppConfigProvider: IAppConfigProvider {
       )
     ) // It's TMK
   ]
+  
+  var relayers: [Relayer] {
+     [
+      Relayer(
+        id: 0,
+        name: "Ropsten Friday Tech",
+        availablePairs: exchangePairs,
+        feeRecipients: ["0xA5004C8b2D64AD08A80d33Ad000820d63aa2cCC9".lowercased()],
+        exchangeAddress: zrxNetwork.exchangeAddress,
+        config: RelayerConfig(
+          baseUrl: "https://relayer.ropsten.fridayte.ch",
+          suffix: "",
+          version: "v2")
+      )
+    ]
+  }
 }

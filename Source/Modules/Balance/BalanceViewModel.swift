@@ -9,10 +9,14 @@ class BalanceViewModel: ObservableObject {
   @Published var balances: [Balance] = []
   
   let coins: [Coin]
+  let numberFormatter: NumberFormatter
   
   init(adapterManager: IAdapterManager, coins: [Coin]) {
     self.adapterManager = adapterManager
     self.coins = coins
+    
+    numberFormatter = NumberFormatter()
+    numberFormatter.maximumFractionDigits = 4
     subscribeToAdapters()
   }
   
@@ -38,12 +42,9 @@ class BalanceViewModel: ObservableObject {
   private func updateBalances() {
     balances = []
     for coin in coins {
-      let row: Balance
-      if let balance = adapterManager.balanceAdapter(for: coin)?.balance {
-        row = Balance(balance: "\(balance)", expanded: false)
-      } else {
-        row = Balance(balance: "NAN", expanded: false)
-      }
+      let balance = adapterManager.balanceAdapter(for: coin)?.balance ?? 0
+      let converted = numberFormatter.string(from: balance as NSDecimalNumber)!
+      let row = Balance(title: coin.title, balance: converted, code: coin.code, expanded: false)
       balances.append(row)
     }
   }

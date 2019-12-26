@@ -10,15 +10,15 @@ struct BalanceRow: View {
           Image("ethereum")
           VStack {
             HStack {
-              Text("wETH")
+              Text(balance.title)
               Spacer()
-              Text(balance.balance) +
-              Text("WETH")
+              Text(balance.balance)
+              Text(balance.code)
             }
             HStack {
-              Text("$168.17 per wETH")
+              Text("$168.17 per \(balance.code)").font(.system(size: 10))
               Spacer()
-              Text("$66.86")
+              Text("$66.86").font(.system(size: 10))
             }
           }
         }

@@ -11,13 +11,15 @@ protocol IAppConfigProvider {
   
   var reachabilityHost: String { get }
   var testMode: Bool { get }
-  var infuraCredentials: (id: String, secret: String?) { get }
+  var infuraCredentials: (id: String, secret: String) { get }
   var etherscanKey: String { get }
   var currencies: [Currency] { get }
+  
+  var zrxNetwork: ZrxKit.NetworkType { get }
   
   func defaultWords() -> [String]
   
   var featuredCoins: [Coin] { get }
   var coins: [Coin] { get }
-  var exchangePairs: [Pair<AssetItem, AssetItem>] { get }
+  var relayers: [Relayer] { get }
 }
