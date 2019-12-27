@@ -26,6 +26,13 @@ struct MainView: View {
         .tabItem({
           Text("Order book")
         })
+        NavigationView {
+          ExchangeView(viewModel: ExchangeViewModel())
+          .navigationBarTitle(Text("Exchange"))
+        }
+        .tabItem {
+          Text("Exchange")
+        }
       }
     }
 }

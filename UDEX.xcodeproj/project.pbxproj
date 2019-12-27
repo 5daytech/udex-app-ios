@@ -18,6 +18,12 @@
 		B50C2F2B23B4777900CE7FBF /* ICoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C2F2A23B4777900CE7FBF /* ICoinManager.swift */; };
 		B50C2F2D23B47C4000CE7FBF /* IRelayerAdapterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C2F2C23B47C4000CE7FBF /* IRelayerAdapterManager.swift */; };
 		B50C2F2F23B47C6100CE7FBF /* RelayerAdapterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C2F2E23B47C6100CE7FBF /* RelayerAdapterManager.swift */; };
+		B50C2F3523B4BB7500CE7FBF /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C2F3423B4BB7500CE7FBF /* ExchangeView.swift */; };
+		B50C2F3723B4BE3400CE7FBF /* ExchangeCoinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C2F3623B4BE3400CE7FBF /* ExchangeCoinView.swift */; };
+		B50C2F3A23B4C56000CE7FBF /* ExchangeCoinViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C2F3923B4C56000CE7FBF /* ExchangeCoinViewItem.swift */; };
+		B52C4A1323B5B7BD004C1AAE /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */; };
+		B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */; };
+		B52C4A1A23B5FAB2004C1AAE /* ExchangeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1923B5FAB2004C1AAE /* ExchangeInputView.swift */; };
 		B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBE823AB352F00CD18CC /* Configuration.swift */; };
 		B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */; };
 		B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBED23AB3BFE00CD18CC /* Logger.swift */; };
@@ -77,6 +83,12 @@
 		B50C2F2A23B4777900CE7FBF /* ICoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICoinManager.swift; sourceTree = "<group>"; };
 		B50C2F2C23B47C4000CE7FBF /* IRelayerAdapterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRelayerAdapterManager.swift; sourceTree = "<group>"; };
 		B50C2F2E23B47C6100CE7FBF /* RelayerAdapterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayerAdapterManager.swift; sourceTree = "<group>"; };
+		B50C2F3423B4BB7500CE7FBF /* ExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeView.swift; sourceTree = "<group>"; };
+		B50C2F3623B4BE3400CE7FBF /* ExchangeCoinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCoinView.swift; sourceTree = "<group>"; };
+		B50C2F3923B4C56000CE7FBF /* ExchangeCoinViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeCoinViewItem.swift; sourceTree = "<group>"; };
+		B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
+		B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewItem.swift; sourceTree = "<group>"; };
+		B52C4A1923B5FAB2004C1AAE /* ExchangeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeInputView.swift; sourceTree = "<group>"; };
 		B533EBE823AB352F00CD18CC /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrdersViewModel.swift; path = Source/Modules/Orders/OrdersViewModel.swift; sourceTree = SOURCE_ROOT; };
 		B533EBED23AB3BFE00CD18CC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -199,6 +211,35 @@
 				B50C2F2E23B47C6100CE7FBF /* RelayerAdapterManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		B50C2F3023B4BB3800CE7FBF /* Exchange */ = {
+			isa = PBXGroup;
+			children = (
+				B50C2F3823B4C53D00CE7FBF /* Model */,
+				B50C2F3123B4BB4E00CE7FBF /* View */,
+				B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */,
+			);
+			path = Exchange;
+			sourceTree = "<group>";
+		};
+		B50C2F3123B4BB4E00CE7FBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B50C2F3423B4BB7500CE7FBF /* ExchangeView.swift */,
+				B50C2F3623B4BE3400CE7FBF /* ExchangeCoinView.swift */,
+				B52C4A1923B5FAB2004C1AAE /* ExchangeInputView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B50C2F3823B4C53D00CE7FBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B50C2F3923B4C56000CE7FBF /* ExchangeCoinViewItem.swift */,
+				B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B533EBE723AB33EE00CD18CC /* Core */ = {
@@ -377,6 +418,7 @@
 		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B50C2F3023B4BB3800CE7FBF /* Exchange */,
 				B533EBF823AC8D9200CD18CC /* Balance */,
 				B533EBF423AB6E2E00CD18CC /* Main */,
 				B5DAE29323AA0BD800D6FBFA /* Orders */,
@@ -545,6 +587,7 @@
 				B59AE92023B0AD5200DF03C1 /* AppConfigProvider.swift in Sources */,
 				B50C2F2D23B47C4000CE7FBF /* IRelayerAdapterManager.swift in Sources */,
 				B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */,
+				B50C2F3723B4BE3400CE7FBF /* ExchangeCoinView.swift in Sources */,
 				B59AE91A23B0A8A700DF03C1 /* Currency.swift in Sources */,
 				B533EBF323AB404F00CD18CC /* CoinType.swift in Sources */,
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,
@@ -571,16 +614,21 @@
 				B533EBF123AB3FBF00CD18CC /* Coin.swift in Sources */,
 				B59AE90123B0A35D00DF03C1 /* ConnectionError.swift in Sources */,
 				B5DAE29C23AA0DB700D6FBFA /* OrderRow.swift in Sources */,
+				B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */,
+				B50C2F3523B4BB7500CE7FBF /* ExchangeView.swift in Sources */,
 				B50C2F2423B4771100CE7FBF /* BaseRelayerAdapter.swift in Sources */,
 				B533EBFF23ACC3A400CD18CC /* BalanceViewModel.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
 				B59AE90923B0A4B700DF03C1 /* AdapterState.swift in Sources */,
 				B5DAE29123AA0AA500D6FBFA /* OrdersList.swift in Sources */,
+				B52C4A1A23B5FAB2004C1AAE /* ExchangeInputView.swift in Sources */,
 				B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */,
 				B50C2F1923B3818E00CE7FBF /* ZrxKitManager.swift in Sources */,
+				B50C2F3A23B4C56000CE7FBF /* ExchangeCoinViewItem.swift in Sources */,
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
 				B59AE92223B0BCAE00DF03C1 /* IAdapterManager.swift in Sources */,
+				B52C4A1323B5B7BD004C1AAE /* ExchangeViewModel.swift in Sources */,
 				B59AE91823B0A87200DF03C1 /* IAppConfigProvider.swift in Sources */,
 				B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */,
 			);
