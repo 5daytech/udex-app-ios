@@ -12,7 +12,7 @@ class ExchangeViewModel: ObservableObject {
   @Published var isBaseEditing = false
   @Published var isQuoteEditing = false
   
-  var inputType: ExchangeInputType = .BASE
+  var inputType: ExchangeInputType? = nil
   
   init() {
     item = ExchangeViewItem(
@@ -42,6 +42,9 @@ class ExchangeViewModel: ObservableObject {
   }
   
   func inputNumber(input: String) {
+    
+    guard let inputType = inputType else { return }
+    
     var inputText = inputType == .BASE ? baseInputText : quoteInputText
     switch input {
     case "d":
