@@ -24,6 +24,11 @@
 		B52C4A1323B5B7BD004C1AAE /* ExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */; };
 		B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */; };
 		B52C4A1A23B5FAB2004C1AAE /* ExchangeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1923B5FAB2004C1AAE /* ExchangeInputView.swift */; };
+		B52C4A1E23B9BA74004C1AAE /* ExchangePairsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1D23B9BA74004C1AAE /* ExchangePairsInfo.swift */; };
+		B52C4A2023C32168004C1AAE /* IExchangeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1F23C32168004C1AAE /* IExchangeViewState.swift */; };
+		B52C4A2223C321D1004C1AAE /* MarketOrderViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2123C321D1004C1AAE /* MarketOrderViewState.swift */; };
+		B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2323C32246004C1AAE /* LimitOrderViewState.swift */; };
+		B52C4A2723C323E2004C1AAE /* MarketExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */; };
 		B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBE823AB352F00CD18CC /* Configuration.swift */; };
 		B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */; };
 		B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBED23AB3BFE00CD18CC /* Logger.swift */; };
@@ -89,6 +94,11 @@
 		B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewModel.swift; sourceTree = "<group>"; };
 		B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewItem.swift; sourceTree = "<group>"; };
 		B52C4A1923B5FAB2004C1AAE /* ExchangeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeInputView.swift; sourceTree = "<group>"; };
+		B52C4A1D23B9BA74004C1AAE /* ExchangePairsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangePairsInfo.swift; sourceTree = "<group>"; };
+		B52C4A1F23C32168004C1AAE /* IExchangeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangeViewState.swift; sourceTree = "<group>"; };
+		B52C4A2123C321D1004C1AAE /* MarketOrderViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketOrderViewState.swift; sourceTree = "<group>"; };
+		B52C4A2323C32246004C1AAE /* LimitOrderViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitOrderViewState.swift; sourceTree = "<group>"; };
+		B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketExchangeViewModel.swift; sourceTree = "<group>"; };
 		B533EBE823AB352F00CD18CC /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrdersViewModel.swift; path = Source/Modules/Orders/OrdersViewModel.swift; sourceTree = SOURCE_ROOT; };
 		B533EBED23AB3BFE00CD18CC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -216,9 +226,9 @@
 		B50C2F3023B4BB3800CE7FBF /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
+				B52C4A2523C32274004C1AAE /* ViewModel */,
 				B50C2F3823B4C53D00CE7FBF /* Model */,
 				B50C2F3123B4BB4E00CE7FBF /* View */,
-				B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -238,8 +248,21 @@
 			children = (
 				B50C2F3923B4C56000CE7FBF /* ExchangeCoinViewItem.swift */,
 				B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */,
+				B52C4A1D23B9BA74004C1AAE /* ExchangePairsInfo.swift */,
+				B52C4A1F23C32168004C1AAE /* IExchangeViewState.swift */,
+				B52C4A2123C321D1004C1AAE /* MarketOrderViewState.swift */,
+				B52C4A2323C32246004C1AAE /* LimitOrderViewState.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B52C4A2523C32274004C1AAE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */,
+				B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		B533EBE723AB33EE00CD18CC /* Core */ = {
@@ -601,8 +624,10 @@
 				B59AE90723B0A47500DF03C1 /* IBalanceAdapter.swift in Sources */,
 				B50C2F2123B475F700CE7FBF /* ExchangePair.swift in Sources */,
 				B50C2F2F23B47C6100CE7FBF /* RelayerAdapterManager.swift in Sources */,
+				B52C4A1E23B9BA74004C1AAE /* ExchangePairsInfo.swift in Sources */,
 				B533EBFB23AC8E2700CD18CC /* BalanceView.swift in Sources */,
 				B59AE92423B0BD2100DF03C1 /* AdapterManager.swift in Sources */,
+				B52C4A2023C32168004C1AAE /* IExchangeViewState.swift in Sources */,
 				B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */,
 				B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */,
 				B59AE90323B0A40F00DF03C1 /* EthereumAdapter.swift in Sources */,
@@ -616,6 +641,8 @@
 				B5DAE29C23AA0DB700D6FBFA /* OrderRow.swift in Sources */,
 				B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */,
 				B50C2F3523B4BB7500CE7FBF /* ExchangeView.swift in Sources */,
+				B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */,
+				B52C4A2223C321D1004C1AAE /* MarketOrderViewState.swift in Sources */,
 				B50C2F2423B4771100CE7FBF /* BaseRelayerAdapter.swift in Sources */,
 				B533EBFF23ACC3A400CD18CC /* BalanceViewModel.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
@@ -628,6 +655,7 @@
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
 				B59AE92223B0BCAE00DF03C1 /* IAdapterManager.swift in Sources */,
+				B52C4A2723C323E2004C1AAE /* MarketExchangeViewModel.swift in Sources */,
 				B52C4A1323B5B7BD004C1AAE /* ExchangeViewModel.swift in Sources */,
 				B59AE91823B0A87200DF03C1 /* IAppConfigProvider.swift in Sources */,
 				B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */,

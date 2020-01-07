@@ -1,12 +1,8 @@
 import SwiftUI
 
 struct ExchangeView: View {
-  
-  @ObservedObject var viewModel: ExchangeViewModel
-  
-  @State var testText = ""
+  @ObservedObject var viewModel: MarketExchangeViewModel
   @State var isPipeShowing = false
-  @State var dim = false
   
   var coinViewSpacer: CGFloat = 60
   
@@ -25,7 +21,7 @@ struct ExchangeView: View {
         HStack {
           ExchangeInputView(text: viewModel.baseInputText, onTap: onBaseInputTap, isPipeShowing: viewModel.isBaseEditing)
           Spacer()
-          ExchangeCoinView(item: viewModel.item.base)
+          ExchangeCoinView(item: viewModel.sendCoins.first)
           Spacer()
           .frame(minWidth: coinViewSpacer, maxWidth: coinViewSpacer)
         }
@@ -33,7 +29,7 @@ struct ExchangeView: View {
         HStack {
           ExchangeInputView(text: viewModel.quoteInputText, onTap: onQuoteInputTap, isPipeShowing: viewModel.isQuoteEditing)
           Spacer()
-          ExchangeCoinView(item: viewModel.item.quote)
+          ExchangeCoinView(item: viewModel.receiveCoins.first)
           Spacer()
           .frame(minWidth: coinViewSpacer, maxWidth: coinViewSpacer)
         }
@@ -139,6 +135,6 @@ struct ExchangeView: View {
 
 struct ExchangeView_Previews: PreviewProvider {
   static var previews: some View {
-    ExchangeView(viewModel: ExchangeViewModel())
+    ExchangeView(viewModel: MarketExchangeViewModel())
   }
 }

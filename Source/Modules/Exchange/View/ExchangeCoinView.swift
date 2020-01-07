@@ -2,15 +2,15 @@ import SwiftUI
 
 struct ExchangeCoinView: View {
   
-  var item: ExchangeCoinViewItem
+  var item: ExchangeCoinViewItem?
   
   var body: some View {
     HStack {
       Image("ethereum")
       VStack {
-        Text(item.code)
+        Text(item?.code ?? "None")
         Text("Balance")
-        Text("\(item.balance)")
+        Text(item?.balanceStr ?? "0.00")
       }
     }
   }

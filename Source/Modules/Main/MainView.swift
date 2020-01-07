@@ -10,7 +10,7 @@ struct MainView: View {
             coins: App.instance.appConfigProvider.coins
           )
         )
-          .navigationBarTitle(Text("Balance"))
+        .navigationBarTitle(Text("Balance"))
       }
       .tabItem({
         Text("Balance")
@@ -21,7 +21,7 @@ struct MainView: View {
         )
       )
       NavigationView {
-        ExchangeView(viewModel: ExchangeViewModel())
+        ExchangeView(viewModel: MarketExchangeViewModel())
           .navigationBarTitle(Text("Exchange"))
       }
       .tabItem {

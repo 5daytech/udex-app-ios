@@ -7,7 +7,7 @@ class App {
   
   let appConfigProvider: IAppConfigProvider
   let adapterManager: IAdapterManager
-  
+  let coinManager: ICoinManager
   let zrxKitManager: IZrxKitManager
   let relayerAdapterManager: IRelayerAdapterManager
   
@@ -24,7 +24,7 @@ class App {
     
     zrxKitManager = ZrxKitManager(appConfigProvider: appConfigProvider)
     
-    let coinManager = CoinManager(appConfigProvider: appConfigProvider)
+    coinManager = CoinManager(appConfigProvider: appConfigProvider)
     
     relayerAdapterManager = RelayerAdapterManager(zrxkit: zrxKitManager.zrxkit, coinManager: coinManager)
   }
