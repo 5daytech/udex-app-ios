@@ -7,6 +7,10 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
     case BASE, QUOTE
   }
   
+  enum ExchangeListShowType {
+    case SEND, RECEIVE, NONE
+  }
+  
   let disposeBag = DisposeBag()
   
   let relayer = App.instance.relayerAdapterManager.mainRelayer
@@ -19,6 +23,18 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
   
   @Published var sendCoinsPair: ExchangePairsInfo? = nil
   @Published var receiveCoinsPair: ExchangePairsInfo? = nil
+  
+  var filteredSendCoinsPair: ExchangePairsInfo? {
+    guard let pair = sendCoinsPair else { return nil }
+    let coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
+    return ExchangePairsInfo(coins: coins, selectedCoin: pair.selectedCoin)
+  }
+  
+  var filteredReceiveCoinsPair: ExchangePairsInfo? {
+    guard let pair = receiveCoinsPair else { return nil }
+    let coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
+    return ExchangePairsInfo(coins: coins, selectedCoin: pair.selectedCoin)
+  }
   
   var inputType: ExchangeInputType? = nil
   
@@ -33,6 +49,8 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
   
   let adapterManager = App.instance.adapterManager
   
+  @Published var listState: ExchangeListShowType = .NONE
+  
   init() {
     marketCodes = relayer.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) }
     
@@ -45,6 +63,8 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
     refreshPairs(state: nil)
     
     initState(sendItem: sendCoins.first, receiveItem: receiveCoins.first)
+    
+    refreshPairs(state: state)
     
     adapterManager.adaptersReadyObservable.subscribe(onNext: {
       Logger.d("refresh")
@@ -101,18 +121,19 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
   func refreshPairs(state: T?, refreshSendCoins: Bool = true) {
     if refreshSendCoins {
       sendCoins = getAvailableSendCoins()
-      sendCoinsPair = ExchangePairsInfo(coins: sendCoins, selectedCoin: self.state?.sendCoin)
     }
+    
+    sendCoinsPair = ExchangePairsInfo(coins: sendCoins, selectedCoin: self.state?.sendCoin)
     
     if !sendCoins.isEmpty {
       let sendCoin = state?.sendCoin?.code ?? sendCoins.first!.code
       receiveCoins = getAvailableReceiveCoins(baseCoinCode: sendCoin)
-      receiveCoinsPair = ExchangePairsInfo(coins: receiveCoins, selectedCoin: self.state?.receiveCoin)
+      receiveCoinsPair = ExchangePairsInfo(coins: receiveCoins, selectedCoin: receiveCoins.first)
       
       let currentReceiveIndex = receiveCoins.firstIndex { $0.code == state?.receiveCoin?.code }
       if (currentReceiveIndex == 0 || self.state?.receiveCoin == nil) {
         self.state?.receiveCoin = receiveCoins.first
-        receiveCoinsPair = ExchangePairsInfo(coins: receiveCoins, selectedCoin: state?.receiveCoin)
+        receiveCoinsPair = ExchangePairsInfo(coins: receiveCoins, selectedCoin: receiveCoins.first)
       }
     }
   }
@@ -135,5 +156,36 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
       } != nil
     }
     .map { getExchangeItem(coin: $0) }
+  }
+  
+  func openSendCoinList() {
+    listState = listState == .SEND ? .NONE : .SEND
+  }
+  
+  func openReceiveCoinList() {
+    listState = listState == .RECEIVE ? .NONE : .RECEIVE
+  }
+  
+  func selectSendCoin(coin: ExchangeCoinViewItem) {
+    listState = .NONE
+    
+    if (coin.code == state?.receiveCoin?.code) {
+      state?.sendCoin = coin
+      state?.receiveCoin = nil
+      refreshPairs(state: state, refreshSendCoins: false)
+    } else if (state?.sendCoin?.code != coin.code) {
+      state?.sendCoin = coin
+      refreshPairs(state: state, refreshSendCoins: false)
+      // updateReceiveAmount()
+    }
+  }
+  
+  func selectReceiveCoin(coin: ExchangeCoinViewItem) {
+    listState = .NONE
+    if (state?.receiveCoin?.code != coin.code) {
+      state?.receiveCoin = coin
+      receiveCoinsPair?.selectedCoin = coin
+      // updateReceiveAmount()
+    }
   }
 }

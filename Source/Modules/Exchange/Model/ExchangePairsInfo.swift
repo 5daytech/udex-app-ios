@@ -1,4 +1,4 @@
 struct ExchangePairsInfo {
   let coins: [ExchangeCoinViewItem]
-  let selectedCoin: ExchangeCoinViewItem?
+  var selectedCoin: ExchangeCoinViewItem?
 }
