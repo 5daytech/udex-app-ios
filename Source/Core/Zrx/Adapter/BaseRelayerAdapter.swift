@@ -6,6 +6,7 @@ class BaseRelayerAdapter: IRelayerAdapter {
   let disposeBag = DisposeBag()
   private let relayerId: Int
   private let relayerManager: IRelayerManager
+  private let relayer: Relayer
   
   private var selectedPair: ExchangePair
   
@@ -13,13 +14,16 @@ class BaseRelayerAdapter: IRelayerAdapter {
     selectedPair
   }
   
+  let exchangeInteractor: IExchangeInteractor
   var exchangePairs: [ExchangePair] = []
   var buyOrdersSubject = BehaviorSubject<[SignedOrder]>(value: [])
   var sellOrdersSubject = BehaviorSubject<[SignedOrder]>(value: [])
   
-  init(zrxkit: ZrxKit, coinManager: ICoinManager, refreshInterval: Int, relayerId: Int) {
+  init(zrxkit: ZrxKit, coinManager: ICoinManager, exchangeInteractor: IExchangeInteractor, refreshInterval: Int, relayerId: Int) {
+    self.exchangeInteractor = exchangeInteractor
     self.relayerId = relayerId
     self.relayerManager = zrxkit.relayerManager
+    self.relayer = relayerManager.availableRelayers[relayerId]
     let pair = relayerManager.availableRelayers[relayerId].availablePairs[0]
     self.selectedPair = ExchangePair(
       baseCoinCode: coinManager.getErcCoinForAddress(address: pair.first.address)!.code,
@@ -82,5 +86,9 @@ class BaseRelayerAdapter: IRelayerAdapter {
       relayerId: relayerId,
       pair: selectedPair
     )
+  }
+  
+  func createOrder(createData: CreateOrderData) -> Observable<SignedOrder> {
+    exchangeInteractor.createOrder(feeRecipient: relayer.feeRecipients.first!, createData: createData)
   }
 }

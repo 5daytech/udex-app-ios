@@ -56,7 +56,7 @@ PODS:
 DEPENDENCIES:
   - Erc20Kit.swift (= 0.8)
   - EthereumKit.swift (= 0.8)
-  - zrxkit
+  - zrxkit (from `~/WORK/DAO/zrxkit`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -75,7 +75,10 @@ SPEC REPOS:
     - secp256k1.swift
     - Secp256k1Kit.swift
     - Web3
-    - zrxkit
+
+EXTERNAL SOURCES:
+  zrxkit:
+    :path: "~/WORK/DAO/zrxkit"
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
@@ -95,6 +98,6 @@ SPEC CHECKSUMS:
   Web3: a4eb0d0cdedbef3f0e4c97ea83a4232a1b1f952b
   zrxkit: 1d48839df38bd038303e184870e1561882bd9e49
 
-PODFILE CHECKSUM: 584def8a6f02a96b4089fa5e234eef072608ed62
+PODFILE CHECKSUM: 06f274ded8ff8d36ae1be9dea6d809cb2a92756c
 
 COCOAPODS: 1.7.5

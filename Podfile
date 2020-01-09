@@ -6,7 +6,7 @@ target 'UDEX' do
   use_frameworks!
 
   # Pods for UDEX
-  pod 'zrxkit'
+  pod 'zrxkit', :path => '~/WORK/DAO/zrxkit'
   pod 'EthereumKit.swift', '0.8'
   pod 'Erc20Kit.swift', '0.8'
 end

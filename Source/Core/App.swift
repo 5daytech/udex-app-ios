@@ -26,6 +26,10 @@ class App {
     
     coinManager = CoinManager(appConfigProvider: appConfigProvider)
     
-    relayerAdapterManager = RelayerAdapterManager(zrxkit: zrxKitManager.zrxkit, coinManager: coinManager)
+    relayerAdapterManager = RelayerAdapterManager(
+      zrxkit: zrxKitManager.zrxkit,
+      ethereumKit: ethereumKitManager.ethereumKit!,
+      coinManager: coinManager
+    )
   }
 }

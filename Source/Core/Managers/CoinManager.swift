@@ -19,4 +19,16 @@ class CoinManager: ICoinManager {
     }
     .first
   }
+  
+  func getCoin(code: String) -> Coin {
+    let coinOrNull = coins.first { (coin) -> Bool in
+      coin.code == code
+    }
+    
+    if coinOrNull != nil {
+      return coinOrNull!
+    } else {
+      fatalError() // Throw exception
+    }
+  }
 }

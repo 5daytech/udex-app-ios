@@ -12,6 +12,15 @@ import BigInt
 enum CoinType {
   case ethereum
   case erc20(address: String, fee: Decimal = 0, gasLimit: Int? = nil, minimumRequiredBalance: Decimal = 0, minimumSpendableAmount: Decimal? = nil)
+  
+  var address: String {
+    switch self {
+    case .erc20(let address, _, _, _, _):
+      return address
+    default:
+      return ""
+    }
+  }
 }
 
 extension CoinType: Equatable {

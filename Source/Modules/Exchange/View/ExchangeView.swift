@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExchangeView: View {
-  @ObservedObject var viewModel: MarketExchangeViewModel
+  @ObservedObject var viewModel: LimitExchangeViewModel
   @State var isPipeShowing = false
   
   var coinViewSpacer: CGFloat = 60
@@ -17,6 +17,22 @@ struct ExchangeView: View {
   var body: some View {
     ZStack(alignment: .trailing) {
       VStack {
+        // Market/Limit buttons
+        HStack {
+          Spacer()
+          Button(action: {
+            // change to market
+          }) {
+            Text("Market")
+          }
+          
+          Button(action: {
+            // change to market
+          }) {
+            Text("Limit")
+          }
+          Spacer()
+        }
         // Input fields
         VStack {
           HStack {
@@ -131,6 +147,7 @@ struct ExchangeView: View {
           ))
           Button(action: {
             // onExchange pressed
+            self.viewModel.placeOrder()
           }) {
             Text("EXCHANGE")
           }
@@ -159,11 +176,5 @@ struct ExchangeView: View {
         .padding(.top, 170)
       }
     }
-  }
-}
-
-struct ExchangeView_Previews: PreviewProvider {
-  static var previews: some View {
-    ExchangeView(viewModel: MarketExchangeViewModel())
   }
 }

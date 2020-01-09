@@ -51,6 +51,29 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
   
   @Published var listState: ExchangeListShowType = .NONE
   
+  var orderSide: EOrderSide {
+    let market = marketCodes[currentMarketPosition]
+    
+    if market.first == state?.sendCoin?.code {
+      return EOrderSide.BUY
+    } else {
+      return EOrderSide.SELL
+    }
+  }
+  
+  var currentMarketPosition: Int {
+    let sendCoin = state?.sendCoin?.code ?? ""
+    let receiveCoin = state?.receiveCoin?.code ?? ""
+    
+    print("etalon pair - \(sendCoin) : \(receiveCoin)")
+    
+    return marketCodes.firstIndex { (pair) -> Bool in
+      print("\(pair.first) : \(pair.second)")
+      return (pair.first == sendCoin && pair.second == receiveCoin) ||
+        (pair.first == receiveCoin && pair.second == sendCoin)
+    } ?? -1
+  }
+  
   init() {
     marketCodes = relayer.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) }
     
@@ -113,9 +136,11 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
     switch inputType {
     case .BASE:
       baseInputText = inputText
+      state?.sendAmount = Decimal(string: baseInputText ?? "") ?? 0
     case .QUOTE:
       quoteInputText = inputText
     }
+    updateReceiveAmount()
   }
   
   func refreshPairs(state: T?, refreshSendCoins: Bool = true) {
@@ -131,7 +156,7 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
       receiveCoinsPair = ExchangePairsInfo(coins: receiveCoins, selectedCoin: receiveCoins.first)
       
       let currentReceiveIndex = receiveCoins.firstIndex { $0.code == state?.receiveCoin?.code }
-      if (currentReceiveIndex == 0 || self.state?.receiveCoin == nil) {
+      if (currentReceiveIndex == nil || self.state?.receiveCoin == nil) {
         self.state?.receiveCoin = receiveCoins.first
         receiveCoinsPair = ExchangePairsInfo(coins: receiveCoins, selectedCoin: receiveCoins.first)
       }
@@ -176,7 +201,7 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
     } else if (state?.sendCoin?.code != coin.code) {
       state?.sendCoin = coin
       refreshPairs(state: state, refreshSendCoins: false)
-      // updateReceiveAmount()
+      updateReceiveAmount()
     }
   }
   
@@ -185,7 +210,11 @@ class ExchangeViewModel<T: IExchangeViewState>: ObservableObject {
     if (state?.receiveCoin?.code != coin.code) {
       state?.receiveCoin = coin
       receiveCoinsPair?.selectedCoin = coin
-      // updateReceiveAmount()
+      updateReceiveAmount()
     }
+  }
+  
+  func updateReceiveAmount() {
+    
   }
 }

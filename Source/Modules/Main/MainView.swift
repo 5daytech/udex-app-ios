@@ -20,10 +20,8 @@ struct MainView: View {
           relayerAdapter: App.instance.relayerAdapterManager.mainRelayer
         )
       )
-      NavigationView {
-        ExchangeView(viewModel: MarketExchangeViewModel())
-          .navigationBarTitle(Text("Exchange"))
-      }
+      
+      ExchangeView(viewModel: LimitExchangeViewModel())
       .tabItem {
         Text("Exchange")
       }

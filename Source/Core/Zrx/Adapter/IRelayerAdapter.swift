@@ -8,4 +8,5 @@ protocol IRelayerAdapter {
   var sellOrdersSubject: BehaviorSubject<[SignedOrder]> { get }
   
   func setSelected(baseCode: String, quoteCode: String)
+  func createOrder(createData: CreateOrderData) -> Observable<SignedOrder>
 }
