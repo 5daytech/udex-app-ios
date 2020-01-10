@@ -2,18 +2,13 @@ import Foundation
 import BigInt
 import RxSwift
 
-class LimitExchangeViewModel: ExchangeViewModel<LimitOrderViewState> {
-  
-  var priceInfo: Decimal {
-    return Decimal(string: quoteInputText ?? "") ?? 0
-  }
-  
+class LimitExchangeViewModel: ExchangeViewModel {  
   override func initState(sendItem: ExchangeCoinViewItem?, receiveItem: ExchangeCoinViewItem?) {
-    state = LimitOrderViewState(sendAmount: 0, sendCoin: sendItem, receiveCoin: receiveItem)
+//    state = LimitOrderViewState(sendAmount: 0, sendCoin: sendItem, receiveCoin: receiveItem)
   }
   
   func placeOrder() {
-    guard let state = state else { return }
+//    guard let state = state else { return }
     
     if state.sendAmount > 0 && priceInfo > 0 {
       let orderData = CreateOrderData(
@@ -35,7 +30,7 @@ class LimitExchangeViewModel: ExchangeViewModel<LimitOrderViewState> {
   }
   
   override func updateReceiveAmount() {
-    guard let state = state else { return }
+//    guard let state = state else { return }
     let receiveAmount = state.sendAmount * priceInfo
     print(receiveAmount)
   }

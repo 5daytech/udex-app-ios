@@ -1,6 +1,6 @@
 import Foundation
 
-struct MarketOrderViewState: IExchangeViewState {
+struct MarketOrderViewState {
   var sendAmount: Decimal
   var sendCoin: ExchangeCoinViewItem?
   var receiveCoin: ExchangeCoinViewItem?

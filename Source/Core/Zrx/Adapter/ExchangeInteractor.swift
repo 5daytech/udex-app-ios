@@ -3,6 +3,7 @@ import zrxkit
 import RxSwift
 import BigInt
 import EthereumKit
+import Web3
 
 class ExchangeInteractor: IExchangeInteractor {
   let coinManager: ICoinManager
@@ -46,6 +47,25 @@ class ExchangeInteractor: IExchangeInteractor {
     }
   }
   
+  func fill(orders: [SignedOrder], fillData: FillOrderData) -> Observable<EthereumData> {
+    let baseCoin = coinManager.getCoin(code: fillData.coinPair.first)
+    let quoteCoin = coinManager.getCoin(code: fillData.coinPair.second)
+    let amount = fillData.amount * pow(10, fillData.side == .BUY ? quoteCoin.decimal : baseCoin.decimal)
+    let amountRoundedStr = String("\(amount)".split(separator: ".").first!)
+    let calcAmount = BigUInt(amountRoundedStr, radix: 10)!
+    return allowanceChecker.checkAndUnlockPairForFill(pair: Pair<String, String>(first: baseCoin.type.address, second: quoteCoin.type.address), side: fillData.side).flatMap { (_) -> Observable<EthereumData> in
+      return self.exchangeWrapper.marketBuyOrders(orders: orders, fillAmount: calcAmount, onReceipt: { (transaction) in
+        print(transaction)
+      }) { (fillEventResponse) in
+        print(fillEventResponse)
+      }
+    }
+  }
+  
+  func ordersInfo(orders: [SignedOrder]) -> Observable<[OrderInfo]> {
+    exchangeWrapper.ordersInfo(orders: orders)
+  }
+  
   private func postOrderToRelayer(
     feeRecipient: String,
     makeAsset: String,
@@ -58,9 +78,6 @@ class ExchangeInteractor: IExchangeInteractor {
     
     let makerAsset = side == .BUY ? takeAsset : makeAsset
     let takerAsset = side == .BUY ? makeAsset : takeAsset
-    
-    print("\(makeAmount)")
-    print("\(takeAmount)")
     
     let order = Order(
       exchangeAddress: exchangeWrapper.contractAddress,

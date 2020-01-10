@@ -1,0 +1,11 @@
+framework module zrxkit {
+  umbrella header "zrxkit.h"
+
+  export *
+  module * { export * }
+}
+
+module zrxkit.Swift {
+    header "zrxkit-Swift.h"
+    requires objc
+}

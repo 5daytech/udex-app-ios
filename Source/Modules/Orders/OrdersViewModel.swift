@@ -41,12 +41,12 @@ class OrdersViewModel: ObservableObject {
   }
   
   private func convert(signedOrder: SignedOrder, isBuy: Bool) -> OrderViewItem {
-    let maker = Double(signedOrder.makerAssetAmount)! * pow(Double(10), Double(-18))
-    let taker = Double(signedOrder.takerAssetAmount)! * pow(Double(10), Double(-18))
+    let maker = signedOrder.makerAssetAmount.normalizeToDecimal(decimal: -18)
+    let taker = signedOrder.takerAssetAmount.normalizeToDecimal(decimal: -18)
     
     return OrderViewItem(
-      makerAmount: numberFormatter.string(from: NSNumber(value: maker))!,
-      takerAmount: numberFormatter.string(from: NSNumber(value: taker))!,
+      makerAmount: numberFormatter.string(from: NSNumber(value: (maker as NSDecimalNumber).doubleValue))!,
+      takerAmount: numberFormatter.string(from: NSNumber(value: (taker as NSDecimalNumber).doubleValue))!,
       isBuy: isBuy)
   }
   
@@ -68,7 +68,7 @@ class OrdersViewModel: ObservableObject {
       )
     } else {
       availablePairs = [pair]
-    }
+    }    
     relayerAdapter.setSelected(baseCode: pair.baseCoin, quoteCode: pair.quoteCoin)
   }
 }

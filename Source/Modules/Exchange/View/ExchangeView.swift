@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ExchangeView: View {
-  @ObservedObject var viewModel: LimitExchangeViewModel
+  @ObservedObject var viewModel: ExchangeViewModel
   @State var isPipeShowing = false
   
   var coinViewSpacer: CGFloat = 60
@@ -15,22 +15,24 @@ struct ExchangeView: View {
   }
   
   var body: some View {
-    ZStack(alignment: .trailing) {
+    ZStack(alignment: Alignment.trailing) {
       VStack {
         // Market/Limit buttons
         HStack {
           Spacer()
           Button(action: {
-            // change to market
+            self.viewModel.isMarketOrder = true
           }) {
             Text("Market")
           }
+          .foregroundColor(viewModel.isMarketOrder ? .blue : .gray)
           
           Button(action: {
-            // change to market
+            self.viewModel.isMarketOrder = false
           }) {
             Text("Limit")
           }
+          .foregroundColor(viewModel.isMarketOrder ? .gray : .blue)
           Spacer()
         }
         // Input fields
@@ -147,7 +149,7 @@ struct ExchangeView: View {
           ))
           Button(action: {
             // onExchange pressed
-            self.viewModel.placeOrder()
+            self.viewModel.exchangePressed()
           }) {
             Text("EXCHANGE")
           }

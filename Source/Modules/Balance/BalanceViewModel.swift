@@ -31,6 +31,7 @@ class BalanceViewModel: ObservableObject {
       }
       
       adapter.balanceUpdatedObservable
+        .observeOn(MainScheduler.instance)
         .subscribe(onNext: { [weak self] in
           self?.updateBalances()
         })

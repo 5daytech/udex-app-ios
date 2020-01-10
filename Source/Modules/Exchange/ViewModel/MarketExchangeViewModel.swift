@@ -8,15 +8,15 @@
 
 import Foundation
 
-class MarketExchangeViewModel: ExchangeViewModel<MarketOrderViewState> {
+class MarketExchangeViewModel: ExchangeViewModel {
   
   override func initState(sendItem: ExchangeCoinViewItem?, receiveItem: ExchangeCoinViewItem?) {
-    state = MarketOrderViewState(
-      sendAmount: 0,
-      sendCoin: sendItem,
-      receiveCoin: receiveItem,
-      receiveAmount: 0
-    )
+//    state = MarketOrderViewState(
+//      sendAmount: 0,
+//      sendCoin: sendItem,
+//      receiveCoin: receiveItem,
+//      receiveAmount: 0
+//    )
   }
   
 }

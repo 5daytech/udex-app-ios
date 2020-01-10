@@ -25,7 +25,7 @@
 		B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */; };
 		B52C4A1A23B5FAB2004C1AAE /* ExchangeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1923B5FAB2004C1AAE /* ExchangeInputView.swift */; };
 		B52C4A1E23B9BA74004C1AAE /* ExchangePairsInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1D23B9BA74004C1AAE /* ExchangePairsInfo.swift */; };
-		B52C4A2023C32168004C1AAE /* IExchangeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1F23C32168004C1AAE /* IExchangeViewState.swift */; };
+		B52C4A2023C32168004C1AAE /* ExchangeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1F23C32168004C1AAE /* ExchangeViewState.swift */; };
 		B52C4A2223C321D1004C1AAE /* MarketOrderViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2123C321D1004C1AAE /* MarketOrderViewState.swift */; };
 		B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2323C32246004C1AAE /* LimitOrderViewState.swift */; };
 		B52C4A2723C323E2004C1AAE /* MarketExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */; };
@@ -46,6 +46,13 @@
 		B53A7CF123C5C5E90098A237 /* ExchangeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CF023C5C5E90098A237 /* ExchangeInteractor.swift */; };
 		B53A7CF323C5C8F10098A237 /* AllowanceChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CF223C5C8F10098A237 /* AllowanceChecker.swift */; };
 		B53A7CF523C5C9000098A237 /* IAllowanceChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CF423C5C9000098A237 /* IAllowanceChecker.swift */; };
+		B53A7CF723C722040098A237 /* IExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CF623C722040098A237 /* IExchangeViewModel.swift */; };
+		B53A7CFB23C73EED0098A237 /* RelayerOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CFA23C73EED0098A237 /* RelayerOrders.swift */; };
+		B53A7CFD23C7405F0098A237 /* RelayerOrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CFC23C7405F0098A237 /* RelayerOrdersList.swift */; };
+		B53A7CFF23C744060098A237 /* FillResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CFE23C744060098A237 /* FillResult.swift */; };
+		B53A7D0123C7452D0098A237 /* OrdersUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7D0023C7452D0098A237 /* OrdersUtil.swift */; };
+		B53A7D0323C745A30098A237 /* NormalizedOrderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7D0223C745A30098A237 /* NormalizedOrderData.swift */; };
+		B53A7D0523C747210098A237 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7D0423C747210098A237 /* String+Extension.swift */; };
 		B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */; };
 		B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */; };
 		B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */; };
@@ -103,7 +110,7 @@
 		B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewItem.swift; sourceTree = "<group>"; };
 		B52C4A1923B5FAB2004C1AAE /* ExchangeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeInputView.swift; sourceTree = "<group>"; };
 		B52C4A1D23B9BA74004C1AAE /* ExchangePairsInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangePairsInfo.swift; sourceTree = "<group>"; };
-		B52C4A1F23C32168004C1AAE /* IExchangeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangeViewState.swift; sourceTree = "<group>"; };
+		B52C4A1F23C32168004C1AAE /* ExchangeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewState.swift; sourceTree = "<group>"; };
 		B52C4A2123C321D1004C1AAE /* MarketOrderViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketOrderViewState.swift; sourceTree = "<group>"; };
 		B52C4A2323C32246004C1AAE /* LimitOrderViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitOrderViewState.swift; sourceTree = "<group>"; };
 		B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketExchangeViewModel.swift; sourceTree = "<group>"; };
@@ -124,6 +131,14 @@
 		B53A7CF023C5C5E90098A237 /* ExchangeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeInteractor.swift; sourceTree = "<group>"; };
 		B53A7CF223C5C8F10098A237 /* AllowanceChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceChecker.swift; sourceTree = "<group>"; };
 		B53A7CF423C5C9000098A237 /* IAllowanceChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAllowanceChecker.swift; sourceTree = "<group>"; };
+		B53A7CF623C722040098A237 /* IExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangeViewModel.swift; sourceTree = "<group>"; };
+		B53A7CFA23C73EED0098A237 /* RelayerOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayerOrders.swift; sourceTree = "<group>"; };
+		B53A7CFC23C7405F0098A237 /* RelayerOrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayerOrdersList.swift; sourceTree = "<group>"; };
+		B53A7CFE23C744060098A237 /* FillResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillResult.swift; sourceTree = "<group>"; };
+		B53A7D0023C7452D0098A237 /* OrdersUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersUtil.swift; sourceTree = "<group>"; };
+		B53A7D0223C745A30098A237 /* NormalizedOrderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalizedOrderData.swift; sourceTree = "<group>"; };
+		B53A7D0423C747210098A237 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		B53A7D0623C879DD0098A237 /* zrxkit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = zrxkit.framework; path = UDEX/zrxkit.framework; sourceTree = "<group>"; };
 		B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumBaseAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleError.swift; sourceTree = "<group>"; };
@@ -188,6 +203,7 @@
 		8D472A56C6462D6AF020D490 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B53A7D0623C879DD0098A237 /* zrxkit.framework */,
 				180BCE6212B91ED70CDA8EFC /* Pods_UDEX.framework */,
 			);
 			name = Frameworks;
@@ -207,6 +223,7 @@
 				B50C2F2723B4772F00CE7FBF /* Manager */,
 				B50C2F2223B4770400CE7FBF /* Adapter */,
 				B50C2F1F23B475E900CE7FBF /* Model */,
+				B53A7D0023C7452D0098A237 /* OrdersUtil.swift */,
 			);
 			path = Zrx;
 			sourceTree = "<group>";
@@ -217,6 +234,10 @@
 				B50C2F2023B475F700CE7FBF /* ExchangePair.swift */,
 				B53A7CE823C594E70098A237 /* CreateOrderData.swift */,
 				B53A7CEE23C5C5800098A237 /* FillOrderData.swift */,
+				B53A7CFA23C73EED0098A237 /* RelayerOrders.swift */,
+				B53A7CFC23C7405F0098A237 /* RelayerOrdersList.swift */,
+				B53A7CFE23C744060098A237 /* FillResult.swift */,
+				B53A7D0223C745A30098A237 /* NormalizedOrderData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -271,7 +292,7 @@
 				B50C2F3923B4C56000CE7FBF /* ExchangeCoinViewItem.swift */,
 				B52C4A1423B5B865004C1AAE /* ExchangeViewItem.swift */,
 				B52C4A1D23B9BA74004C1AAE /* ExchangePairsInfo.swift */,
-				B52C4A1F23C32168004C1AAE /* IExchangeViewState.swift */,
+				B52C4A1F23C32168004C1AAE /* ExchangeViewState.swift */,
 				B52C4A2123C321D1004C1AAE /* MarketOrderViewState.swift */,
 				B52C4A2323C32246004C1AAE /* LimitOrderViewState.swift */,
 			);
@@ -284,6 +305,7 @@
 				B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */,
 				B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */,
 				B53A7CE623C593800098A237 /* LimitExchangeViewModel.swift */,
+				B53A7CF623C722040098A237 /* IExchangeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -307,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				B533EBED23AB3BFE00CD18CC /* Logger.swift */,
+				B53A7D0423C747210098A237 /* String+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -642,7 +665,9 @@
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,
 				B59AE90F23B0A58000DF03C1 /* TransactionLockInfo.swift in Sources */,
 				B50C2F2923B4774D00CE7FBF /* IZrxKitManager.swift in Sources */,
+				B53A7D0323C745A30098A237 /* NormalizedOrderData.swift in Sources */,
 				B53A7CED23C5C4840098A237 /* IExchangeInteractor.swift in Sources */,
+				B53A7CFD23C7405F0098A237 /* RelayerOrdersList.swift in Sources */,
 				B50C2F2B23B4777900CE7FBF /* ICoinManager.swift in Sources */,
 				B59AE91423B0A76D00DF03C1 /* IAdapterFactory.swift in Sources */,
 				B59AE91123B0A6CF00DF03C1 /* Erc20Adapter.swift in Sources */,
@@ -655,7 +680,10 @@
 				B533EBFB23AC8E2700CD18CC /* BalanceView.swift in Sources */,
 				B59AE92423B0BD2100DF03C1 /* AdapterManager.swift in Sources */,
 				B53A7CF523C5C9000098A237 /* IAllowanceChecker.swift in Sources */,
-				B52C4A2023C32168004C1AAE /* IExchangeViewState.swift in Sources */,
+				B53A7D0123C7452D0098A237 /* OrdersUtil.swift in Sources */,
+				B53A7CFF23C744060098A237 /* FillResult.swift in Sources */,
+				B53A7CFB23C73EED0098A237 /* RelayerOrders.swift in Sources */,
+				B52C4A2023C32168004C1AAE /* ExchangeViewState.swift in Sources */,
 				B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */,
 				B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */,
 				B59AE90323B0A40F00DF03C1 /* EthereumAdapter.swift in Sources */,
@@ -663,6 +691,7 @@
 				B533EBFD23AC8E3600CD18CC /* BalanceRow.swift in Sources */,
 				B59AE90B23B0A4EB00DF03C1 /* ISendEthereumAdapter.swift in Sources */,
 				B50C2F2623B4772900CE7FBF /* IRelayerAdapter.swift in Sources */,
+				B53A7CF723C722040098A237 /* IExchangeViewModel.swift in Sources */,
 				B50C2F1B23B4729A00CE7FBF /* CoinManager.swift in Sources */,
 				B50C2F1723B2191500CE7FBF /* BalanceViewItem.swift in Sources */,
 				B53A7CF123C5C5E90098A237 /* ExchangeInteractor.swift in Sources */,
@@ -676,6 +705,7 @@
 				B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */,
 				B52C4A2223C321D1004C1AAE /* MarketOrderViewState.swift in Sources */,
 				B50C2F2423B4771100CE7FBF /* BaseRelayerAdapter.swift in Sources */,
+				B53A7D0523C747210098A237 /* String+Extension.swift in Sources */,
 				B533EBFF23ACC3A400CD18CC /* BalanceViewModel.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
 				B59AE90923B0A4B700DF03C1 /* AdapterState.swift in Sources */,
@@ -831,6 +861,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UDEX",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = UDEX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -853,6 +887,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UDEX",
+				);
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = UDEX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -935,6 +973,10 @@
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/UDEX",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = UDEX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

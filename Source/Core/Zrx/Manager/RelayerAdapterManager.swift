@@ -17,6 +17,7 @@ class RelayerAdapterManager: IRelayerAdapterManager {
     
     mainRelayer = BaseRelayerAdapter(
       zrxkit: zrxkit,
+      ethereumKit: ethereumKit,
       coinManager: coinManager,
       exchangeInteractor: exchangeInteractor,
       refreshInterval: 10_000_000,

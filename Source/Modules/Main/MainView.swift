@@ -21,7 +21,7 @@ struct MainView: View {
         )
       )
       
-      ExchangeView(viewModel: LimitExchangeViewModel())
+      ExchangeView(viewModel: ExchangeViewModel())
       .tabItem {
         Text("Exchange")
       }

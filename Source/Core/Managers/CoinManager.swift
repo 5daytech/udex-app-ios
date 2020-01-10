@@ -12,7 +12,7 @@ class CoinManager: ICoinManager {
     coins.filter { coin -> Bool in
       switch coin.type {
       case .erc20(let filterAddress, _, _, _, _):
-        return filterAddress == address
+        return filterAddress.lowercased() == address.lowercased()
       case .ethereum:
         return false
       }
