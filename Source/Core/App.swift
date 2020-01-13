@@ -3,7 +3,7 @@ import zrxkit
 import HSHDWalletKit
 
 class App {
-  static let instance = App()
+  static var instance = App()
   
   let appConfigProvider: IAppConfigProvider
   let adapterManager: IAdapterManager
@@ -11,8 +11,8 @@ class App {
   let zrxKitManager: IZrxKitManager
   let relayerAdapterManager: IRelayerAdapterManager
   
-  private init() {
-    appConfigProvider = AppConfigProvider()
+  private init(words: [String]? = nil) {
+    appConfigProvider = AppConfigProvider(words: words)
     
     let ethereumKitManager = EthereumKitManager(appConfigProvider: appConfigProvider)
     
@@ -31,5 +31,9 @@ class App {
       ethereumKit: ethereumKitManager.ethereumKit!,
       coinManager: coinManager
     )
+  }
+  
+  static func reinit(words: [String]) {
+    instance = App(words: words)
   }
 }

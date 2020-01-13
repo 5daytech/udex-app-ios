@@ -15,6 +15,12 @@ class AppConfigProvider: IAppConfigProvider {
   
   let reachabilityHost = "ipfs.horizontalsystems.xyz"
   
+  let words: [String]?
+  
+  init(words: [String]? = nil) {
+    self.words = words
+  }
+  
   var zrxNetwork: ZrxKit.NetworkType {
     testMode ? ZrxKit.NetworkType.Ropsten : ZrxKit.NetworkType.MainNet
   }
@@ -24,6 +30,10 @@ class AppConfigProvider: IAppConfigProvider {
   }
   
   func defaultWords() -> [String] {
+    if words != nil {
+      return words!
+    }
+    
     do {
       let wordsString: String = try Configuration.value(for: "DEFAULT_WORDS")
       return wordsString.split(separator: " ", omittingEmptySubsequences: true).map(String.init)
