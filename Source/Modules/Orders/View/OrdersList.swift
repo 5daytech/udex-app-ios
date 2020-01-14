@@ -47,9 +47,6 @@ struct OrdersList: View {
       }
       .navigationBarTitle(Text("Order book"))
     }
-    .tabItem({
-      Text("Order book")
-    })
   }
   
   

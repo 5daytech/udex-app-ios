@@ -7,7 +7,12 @@ struct BalanceRow: View {
     var body: some View {
       VStack {
         HStack {
-          Image("ethereum")
+          Image(balance.code)
+          .renderingMode(.original)
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+          .frame(width: 25, height: 25)
+          
           VStack {
             HStack {
               Text(balance.title)
@@ -29,7 +34,7 @@ struct BalanceRow: View {
               
             }) {
               VStack {
-                Image("ethereum")
+                Image("ETH")
                 Text("Send")
               }
             }
@@ -38,7 +43,7 @@ struct BalanceRow: View {
               
             }) {
               VStack {
-                Image("ethereum")
+                Image("ETH")
                 Text("Send")
               }
             }
@@ -48,7 +53,7 @@ struct BalanceRow: View {
               
             }) {
               VStack {
-                Image("ethereum")
+                Image("ETH")
                 Text("Send")
               }
             }
@@ -57,7 +62,7 @@ struct BalanceRow: View {
               
             }) {
               VStack {
-                Image("ethereum")
+                Image("ETH")
                 Text("Send")
               }
             }

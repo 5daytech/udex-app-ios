@@ -22,18 +22,23 @@ struct MainView: View {
               Text("Logout")
             })
           }
-          .tabItem({
-            Text("Balance")
-          })
+          .tabItem {
+            Image("balance").renderingMode(.template)
+          }
+          
           OrdersList(
             viewModel: OrdersViewModel(
               relayerAdapter: App.instance.relayerAdapterManager.mainRelayer
             )
           )
+          .tabItem {
+            Image("markets").renderingMode(.template)
+          }
+          
           
           ExchangeView(viewModel: ExchangeViewModel())
           .tabItem {
-            Text("Exchange")
+            Image("exchange").renderingMode(.template)
           }
         }
       } else {

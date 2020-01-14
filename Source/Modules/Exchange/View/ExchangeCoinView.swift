@@ -6,7 +6,12 @@ struct ExchangeCoinView: View {
   
   var body: some View {
     HStack {
-      Image("ethereum")
+      Image(item?.code ?? "WETH")
+      .renderingMode(.original)
+      .resizable()
+      .aspectRatio(contentMode: .fit)
+      .frame(width: 25, height: 25)
+      
       VStack {
         Text(item?.code ?? "None")
         Text("Balance")

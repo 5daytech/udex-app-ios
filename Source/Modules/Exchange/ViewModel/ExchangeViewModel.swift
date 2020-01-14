@@ -8,13 +8,22 @@ class ExchangeViewModel: ObservableObject {
   }
   
   enum ExchangeListShowType {
-    case SEND, RECEIVE, NONE
+    case SEND, RECEIVE, NONE, CONFIRM, PROGRESS, TRANSACTION_SENT, ERROR
   }
   
   let disposeBag = DisposeBag()
   
   let relayer = App.instance.relayerAdapterManager.mainRelayer
   let coinManager = App.instance.coinManager
+  
+  var blurContent: Bool {
+    switch viewState {
+    case .CONFIRM, .PROGRESS, .TRANSACTION_SENT, .ERROR:
+      return true
+    case .NONE, .SEND, .RECEIVE:
+      return false
+    }
+  }
   
   @Published var baseInputText: String? = nil
   @Published var quoteInputText: String? = nil
@@ -25,6 +34,30 @@ class ExchangeViewModel: ObservableObject {
   @Published var receiveCoinsPair: ExchangePairsInfo? = nil
   
   @Published var isMarketOrder: Bool = true
+  
+  var transactionHash: String = ""
+  
+  var errorMessage: String?
+  
+  var exchangeConfirmViewModel: ExchangeConfirmViewModel {
+    ExchangeConfirmViewModel(
+      info: ExchangeConfirmInfo(
+        sendCoin: state.sendCoin?.code ?? "",
+        receiveCoin: state.receiveCoin?.code ?? "",
+        sendAmount: state.sendAmount,
+        receiveAmount: state.receiveAmount,
+        showLifeTimeInfo: !isMarketOrder,
+        onConfirm: {
+          self.viewState = .PROGRESS
+          if self.isMarketOrder {
+            self.marketBuy()
+          } else {
+            self.postOrder()
+          }
+        }
+      )
+    )
+  }
   
   var filteredSendCoinsPair: ExchangePairsInfo? {
     guard let pair = sendCoinsPair else { return nil }
@@ -55,7 +88,7 @@ class ExchangeViewModel: ObservableObject {
   
   let adapterManager = App.instance.adapterManager
   
-  @Published var listState: ExchangeListShowType = .NONE
+  @Published var viewState: ExchangeListShowType = .NONE
   
   var estimatedSendAmount: Decimal = 0
   var estimatedReceiveAmount: Decimal = 0
@@ -200,15 +233,15 @@ class ExchangeViewModel: ObservableObject {
   }
   
   func openSendCoinList() {
-    listState = listState == .SEND ? .NONE : .SEND
+    viewState = viewState == .SEND ? .NONE : .SEND
   }
   
   func openReceiveCoinList() {
-    listState = listState == .RECEIVE ? .NONE : .RECEIVE
+    viewState = viewState == .RECEIVE ? .NONE : .RECEIVE
   }
   
   func selectSendCoin(coin: ExchangeCoinViewItem) {
-    listState = .NONE
+    viewState = .NONE
     
     if (coin.code == state.receiveCoin?.code) {
       state.sendCoin = coin
@@ -222,7 +255,7 @@ class ExchangeViewModel: ObservableObject {
   }
   
   func selectReceiveCoin(coin: ExchangeCoinViewItem) {
-    listState = .NONE
+    viewState = .NONE
     if (state.receiveCoin?.code != coin.code) {
       state.receiveCoin = coin
       receiveCoinsPair?.selectedCoin = coin
@@ -231,11 +264,7 @@ class ExchangeViewModel: ObservableObject {
   }
   
   func exchangePressed() {
-    if isMarketOrder {
-      marketBuy()
-    } else {
-      postOrder()
-    }
+    viewState = .CONFIRM
   }
   
   private func marketBuy() {
@@ -246,8 +275,11 @@ class ExchangeViewModel: ObservableObject {
         amount: estimatedReceiveAmount
       )
       relayer.fill(fillData: fillData).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
-        print(ethData.hex())
+        self.transactionHash = ethData.hex()
+        self.viewState = .TRANSACTION_SENT
       }, onError: { (err) in
+        self.viewState = .ERROR
+        self.errorMessage = err.localizedDescription
         Logger.e("", error: err)
       }, onCompleted: {
         print("OnComplete")
@@ -267,8 +299,12 @@ class ExchangeViewModel: ObservableObject {
       relayer.createOrder(createData: orderData)
         .observeOn(MainScheduler.instance)
         .subscribe(onError: { (err) in
+          self.errorMessage = err.localizedDescription
+          self.viewState = .ERROR
           print("Error \(err)")
         }, onCompleted: {
+          self.viewState = .ERROR
+          self.errorMessage = "Successfully created"
           print("Order posted")
         })
       .disposed(by: disposeBag)

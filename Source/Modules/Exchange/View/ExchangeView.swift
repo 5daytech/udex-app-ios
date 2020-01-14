@@ -23,18 +23,21 @@ struct ExchangeView: View {
           Button(action: {
             self.viewModel.isMarketOrder = true
           }) {
-            Text("Market")
+            Text("MARKET")
+            .font(.system(size: 20, weight: .bold))
           }
-          .foregroundColor(viewModel.isMarketOrder ? .blue : .gray)
+          .foregroundColor(viewModel.isMarketOrder ? Color("main") : .gray)
           
           Button(action: {
             self.viewModel.isMarketOrder = false
           }) {
-            Text("Limit")
+            Text("LIMIT")
+            .font(.system(size: 20, weight: .bold))
           }
-          .foregroundColor(viewModel.isMarketOrder ? .gray : .blue)
+          .foregroundColor(viewModel.isMarketOrder ? .gray : Color("main"))
           Spacer()
         }
+        .padding(.top, 16)
         // Input fields
         VStack {
           HStack {
@@ -62,82 +65,96 @@ struct ExchangeView: View {
         .padding(20)
         Spacer()
         // Number pad
-        VStack {
-          VStack(alignment: .center, spacing: 40) {
-            HStack {
+        VStack(spacing: 30) {
+          HStack {
+            VStack(alignment: .center, spacing: 40) {
               Button(action: {
                 self.viewModel.inputNumber(input: "1")
               }) {
                 Text("1")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
               }
-              Spacer()
-              Button(action: {
-                self.viewModel.inputNumber(input: "2")
-              }) {
-                Text("2")
-              }
-              Spacer()
-              Button(action: {
-                self.viewModel.inputNumber(input: "3")
-              }) {
-                Text("3")
-              }
-            }
-            HStack {
               Button(action: {
                 self.viewModel.inputNumber(input: "4")
               }) {
                 Text("4")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
               }
-              Spacer()
-              Button(action: {
-                self.viewModel.inputNumber(input: "5")
-              }) {
-                Text("5")
-              }
-              Spacer()
-              Button(action: {
-                self.viewModel.inputNumber(input: "6")
-              }) {
-                Text("6")
-              }
-            }
-            HStack {
               Button(action: {
                 self.viewModel.inputNumber(input: "7")
               }) {
                 Text("7")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
               }
-              Spacer()
-              Button(action: {
-                self.viewModel.inputNumber(input: "8")
-              }) {
-                Text("8")
-              }
-              Spacer()
-              Button(action: {
-                self.viewModel.inputNumber(input: "9")
-              }) {
-                Text("9")
-              }
-            }
-            HStack {
               Button(action: {
                 self.viewModel.inputNumber(input: ".")
               }) {
                 Text(".")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
               }
-              Spacer()
+            }
+            Spacer()
+            VStack(alignment: .center, spacing: 40) {
+              Button(action: {
+                self.viewModel.inputNumber(input: "2")
+              }) {
+                Text("2")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
+              }
+              Button(action: {
+                self.viewModel.inputNumber(input: "5")
+              }) {
+                Text("5")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
+              }
+              Button(action: {
+                self.viewModel.inputNumber(input: "8")
+              }) {
+                Text("8")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
+              }
               Button(action: {
                 self.viewModel.inputNumber(input: "0")
               }) {
                 Text("0")
+                  .font(.system(size: 25))
+                  .foregroundColor(Color("T1"))
               }
-              Spacer()
+            }
+            Spacer()
+            VStack(alignment: .center, spacing: 40) {
+              Button(action: {
+                self.viewModel.inputNumber(input: "3")
+              }) {
+                Text("3")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
+              }
+              Button(action: {
+                self.viewModel.inputNumber(input: "6")
+              }) {
+                Text("6")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
+              }
+              Button(action: {
+                self.viewModel.inputNumber(input: "9")
+              }) {
+                Text("9")
+                .font(.system(size: 25))
+                .foregroundColor(Color("T1"))
+              }
               Button(action: {
                 self.viewModel.inputNumber(input: "d")
               }) {
-                Text("d")
+                Image("delete").renderingMode(.original)
               }
             }
           }
@@ -149,15 +166,33 @@ struct ExchangeView: View {
           ))
           Button(action: {
             // onExchange pressed
-            self.viewModel.exchangePressed()
+            withAnimation {
+              self.viewModel.exchangePressed()
+            }
           }) {
+            Spacer()
             Text("EXCHANGE")
+              .font(.system(size: 18, weight: .bold))
+              .foregroundColor(Color("background"))
+              .padding([.top, .bottom], 16)
+            Spacer()
           }
-          .frame(height: CGFloat(60.0))
+          .background(Color("main"))
+        }
+      }
+      .disabled(viewModel.blurContent)
+      .blur(radius: viewModel.blurContent ? 3 : 0)
+      .onTapGesture {
+        if self.viewModel.blurContent {
+          withAnimation {
+            self.viewModel.viewState = .NONE
+          }
         }
       }
       
-      if viewModel.listState == .SEND {
+      
+      
+      if viewModel.viewState == .SEND {
         List(viewModel.filteredSendCoinsPair!.coins) { coin in
           ExchangeCoinView(item: coin)
           .onTapGesture {
@@ -165,17 +200,34 @@ struct ExchangeView: View {
           }
           
         }
-        .frame(width: 185)
-        .padding(.top, 90)
-      } else if viewModel.listState == .RECEIVE {
+        .shadow(radius: 5)
+        .frame(width: 160)
+        .padding(EdgeInsets(top: 140, leading: 0, bottom: 0, trailing: 20))
+      } else if viewModel.viewState == .RECEIVE {
         List(viewModel.filteredReceiveCoinsPair!.coins) { coin in
           ExchangeCoinView(item: coin)
           .onTapGesture {
             self.viewModel.selectReceiveCoin(coin: coin)
           }
         }
-        .frame(width: 185)
-        .padding(.top, 170)
+        .shadow(radius: 5)
+        .frame(width: 160)
+        .padding(EdgeInsets(top: 210, leading: 0, bottom: 0, trailing: 20))
+      } else if viewModel.viewState == .CONFIRM {
+        ExchangeConfirmView(viewModel: viewModel.exchangeConfirmViewModel)
+          .transition(.move(edge: .bottom))
+      } else if viewModel.viewState == .PROGRESS {
+        ProcessingDialog()
+        .transition(.move(edge: .bottom))
+      } else if viewModel.viewState == .TRANSACTION_SENT {
+        TransactionSentDialog(hash: viewModel.transactionHash)
+        .transition(.move(edge: .bottom))
+      } else if viewModel.viewState == .ERROR {
+        ErrorDialog(message: "") {
+          withAnimation {
+            self.viewModel.viewState = .NONE
+          }
+        }
       }
     }
   }
