@@ -40,7 +40,7 @@ class ZrxKitManager: IZrxKitManager {
   
   init(appConfigProvider: IAppConfigProvider) {
     let seed = Mnemonic.seed(mnemonic: appConfigProvider.defaultWords())
-    let coinType: UInt32 = appConfigProvider.zrxNetwork == .MainNet ? 60 : 1
+    let coinType: UInt32 = 60
     let hdWallet = HDWallet(seed: seed, coinType: coinType, xPrivKey: 0, xPubKey: 0)
     let privateKey = try! hdWallet.privateKey(account: 0, index: 0, chain: .external).raw
     

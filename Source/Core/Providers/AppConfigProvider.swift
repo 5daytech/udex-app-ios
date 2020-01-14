@@ -181,9 +181,9 @@ class AppConfigProvider: IAppConfigProvider {
         feeRecipients: ["0xA5004C8b2D64AD08A80d33Ad000820d63aa2cCC9".lowercased()],
         exchangeAddress: zrxNetwork.exchangeAddress,
         config: RelayerConfig(
-          baseUrl: "https://relayer.ropsten.fridayte.ch",
+          baseUrl: "https://ropsten.api.udex.app/sra",
           suffix: "",
-          version: "v2")
+          version: "v3")
       )
     ]
   }

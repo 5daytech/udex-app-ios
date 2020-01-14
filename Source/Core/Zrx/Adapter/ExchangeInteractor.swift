@@ -11,10 +11,12 @@ class ExchangeInteractor: IExchangeInteractor {
   let exchangeWrapper: IZrxExchange
   let ethereumKit: EthereumKit.Kit
   let zrxKit: ZrxKit
+  let appConfiguration: IAppConfigProvider
   
   private let orderValidTime: TimeInterval = 60 * 60 * 24 * 1
   
-  init(coinManager: ICoinManager, allowanceChecker: IAllowanceChecker, exchangeWrapper: IZrxExchange, ethereumKit: EthereumKit.Kit, zrxKit: ZrxKit) {
+  init(appConfiguration: IAppConfigProvider, coinManager: ICoinManager, allowanceChecker: IAllowanceChecker, exchangeWrapper: IZrxExchange, ethereumKit: EthereumKit.Kit, zrxKit: ZrxKit) {
+    self.appConfiguration = appConfiguration
     self.coinManager = coinManager
     self.allowanceChecker = allowanceChecker
     self.exchangeWrapper = exchangeWrapper
@@ -35,8 +37,8 @@ class ExchangeInteractor: IExchangeInteractor {
     return allowanceChecker.checkAndUnlockAssetPairForPost(
       assetPair: Pair<AssetItem, AssetItem>(first: baseAsset, second: quoteAsset),
       side: createData.side
-    ).flatMap { (_) -> Observable<SignedOrder> in
-      self.postOrderToRelayer(
+    ).flatMap { (allowed) -> Observable<SignedOrder> in
+      return self.postOrderToRelayer(
         feeRecipient: feeRecipient,
         makeAsset: baseAsset.assetData,
         makeAmount: makerAmount,
@@ -80,6 +82,7 @@ class ExchangeInteractor: IExchangeInteractor {
     let takerAsset = side == .BUY ? makeAsset : takeAsset
     
     let order = Order(
+      chainId: appConfiguration.zrxNetwork.id,
       exchangeAddress: exchangeWrapper.contractAddress,
       makerAssetData: makerAsset,
       takerAssetData: takerAsset,
@@ -91,7 +94,9 @@ class ExchangeInteractor: IExchangeInteractor {
       senderAddress: "0x0000000000000000000000000000000000000000",
       feeRecipientAddress: feeRecipient,
       makerFee: "0",
+      makerFeeAssetData: "0x",
       takerFee: "0",
+      takerFeeAssetData: "0x",
       salt: "\(Int(Date().timeIntervalSince1970 * 1000))"
     )
     

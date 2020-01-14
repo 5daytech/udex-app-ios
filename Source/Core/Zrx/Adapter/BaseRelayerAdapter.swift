@@ -49,7 +49,7 @@ class BaseRelayerAdapter: IRelayerAdapter {
     _ = Observable<Int>.interval(.microseconds(refreshInterval), scheduler: scheduler)
       .subscribe { _ in
         self.refreshOrders()
-      }
+    }
     self.refreshOrders()
   }
   

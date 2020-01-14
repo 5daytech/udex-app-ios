@@ -26,9 +26,11 @@ class AllowanceChecker: IAllowanceChecker {
     
     return coinWrapper.proxyAllowance(ethereumKit.receiveAddress).flatMap { (allowance) -> Observable<Bool> in
       if allowance > BigUInt.zero {
+        print("allowance \(allowance)")
         return Observable.just(true)
       } else {
-        return coinWrapper.setUnlimitedProxyAllowance().flatMap { (_) -> Observable<Bool> in
+        return coinWrapper.setUnlimitedProxyAllowance().flatMap { (data) -> Observable<Bool> in
+          print("unlimited \(data.hex())")
           return Observable.just(true)
         }
       }

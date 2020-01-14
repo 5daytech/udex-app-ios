@@ -299,7 +299,7 @@ class ExchangeViewModel: ObservableObject {
       relayer.createOrder(createData: orderData)
         .observeOn(MainScheduler.instance)
         .subscribe(onError: { (err) in
-          self.errorMessage = err.localizedDescription
+          self.errorMessage = "Something went wrong"
           self.viewState = .ERROR
           print("Error \(err)")
         }, onCompleted: {

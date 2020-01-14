@@ -223,7 +223,7 @@ struct ExchangeView: View {
         TransactionSentDialog(hash: viewModel.transactionHash)
         .transition(.move(edge: .bottom))
       } else if viewModel.viewState == .ERROR {
-        ErrorDialog(message: "") {
+        ErrorDialog(message: viewModel.errorMessage ?? "") {
           withAnimation {
             self.viewModel.viewState = .NONE
           }
