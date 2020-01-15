@@ -43,6 +43,7 @@ struct MainView: View {
             Image("orders").renderingMode(.template)
           }
         }
+        .accentColor(Color("main"))
       } else {
         InputWordsView { (words) in
           self.viewModel.inputWords(words: words)
