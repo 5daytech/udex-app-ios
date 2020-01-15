@@ -1,8 +1,6 @@
 import Foundation
 
-struct ExchangeCoinViewItem: Identifiable {
-  var id = UUID().uuidString
-  
+struct ExchangeCoinViewItem: Hashable {  
   let code: String
   let balance: Decimal
   

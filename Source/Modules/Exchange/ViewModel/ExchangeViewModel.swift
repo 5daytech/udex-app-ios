@@ -61,13 +61,15 @@ class ExchangeViewModel: ObservableObject {
   
   var filteredSendCoinsPair: ExchangePairsInfo? {
     guard let pair = sendCoinsPair else { return nil }
-    let coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
+    var coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
+    coins.insert(pair.selectedCoin!, at: 0)
     return ExchangePairsInfo(coins: coins, selectedCoin: pair.selectedCoin)
   }
   
   var filteredReceiveCoinsPair: ExchangePairsInfo? {
     guard let pair = receiveCoinsPair else { return nil }
-    let coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
+    var coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
+    coins.insert(pair.selectedCoin!, at: 0)
     return ExchangePairsInfo(coins: coins, selectedCoin: pair.selectedCoin)
   }
   
