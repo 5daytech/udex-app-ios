@@ -5,7 +5,7 @@ struct ExchangeView: View {
   @State var isPipeShowing = false
   
   var topPadding: CGFloat = 16
-  var coinHeight: CGFloat = 101
+  var coinHeight: CGFloat = 95
   
   private func onBaseInputTap() {
     viewModel.setCurrentInputField(inputType: .BASE)
@@ -46,7 +46,7 @@ struct ExchangeView: View {
             HStack {
               ExchangeInputView(text: self.viewModel.baseInputText, onTap: self.onBaseInputTap, isPipeShowing: self.viewModel.isBaseEditing)
               Spacer()
-              ExchangeCoinView(item: self.viewModel.filteredSendCoinsPair?.selectedCoin)
+              ExchangeCoinView(item: self.viewModel.sendCoinsPair?.selectedCoin)
                 .frame(width: (geometry.size.width / 2) - 20, alignment: .leading)
               .onTapGesture {
                 self.viewModel.openSendCoinList()
@@ -59,7 +59,7 @@ struct ExchangeView: View {
             HStack {
               ExchangeInputView(text: self.viewModel.quoteInputText, onTap: self.onQuoteInputTap, isPipeShowing: self.viewModel.isQuoteEditing)
               Spacer()
-              ExchangeCoinView(item: self.viewModel.filteredReceiveCoinsPair?.selectedCoin)
+              ExchangeCoinView(item: self.viewModel.receiveCoinsPair?.selectedCoin)
               .frame(width: (geometry.size.width / 2) - 20, alignment: .leading)
               .onTapGesture {
                 self.viewModel.openReceiveCoinList()

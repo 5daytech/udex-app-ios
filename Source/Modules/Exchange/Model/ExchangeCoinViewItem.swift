@@ -1,12 +1,11 @@
 import Foundation
 
-struct ExchangeCoinViewItem: Hashable {  
+struct ExchangeCoinViewItem: Hashable {
+  enum State {
+    case down, up, none
+  }
+  
   let code: String
   let balance: Decimal
-  
-  var balanceStr: String {
-    let numberFormatter = NumberFormatter()
-    numberFormatter.maximumFractionDigits = 4
-    return numberFormatter.string(from: balance as NSDecimalNumber)!
-  }
+  var state: State
 }

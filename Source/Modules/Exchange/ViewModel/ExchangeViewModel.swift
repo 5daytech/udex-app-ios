@@ -62,14 +62,18 @@ class ExchangeViewModel: ObservableObject {
   var filteredSendCoinsPair: ExchangePairsInfo? {
     guard let pair = sendCoinsPair else { return nil }
     var coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
-    coins.insert(pair.selectedCoin!, at: 0)
+    var selectedCoin = pair.selectedCoin!
+    selectedCoin.state = .up
+    coins.insert(selectedCoin, at: 0)
     return ExchangePairsInfo(coins: coins, selectedCoin: pair.selectedCoin)
   }
   
   var filteredReceiveCoinsPair: ExchangePairsInfo? {
     guard let pair = receiveCoinsPair else { return nil }
     var coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
-    coins.insert(pair.selectedCoin!, at: 0)
+    var selectedCoin = pair.selectedCoin!
+    selectedCoin.state = .up
+    coins.insert(selectedCoin, at: 0)
     return ExchangePairsInfo(coins: coins, selectedCoin: pair.selectedCoin)
   }
   
@@ -220,7 +224,7 @@ class ExchangeViewModel: ObservableObject {
   
   func getExchangeItem(coin: Coin) -> ExchangeCoinViewItem {
     let balance = adapterManager.balanceAdapter(for: coin)?.balance ?? 0
-    return ExchangeCoinViewItem(code: coin.code, balance: balance)
+    return ExchangeCoinViewItem(code: coin.code, balance: balance, state: .none)
   }
   
   func getAvailableReceiveCoins(baseCoinCode: String) -> [ExchangeCoinViewItem] {

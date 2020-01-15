@@ -11,6 +11,6 @@ class NumberUtils {
   }
   
   func format(_ number: Decimal) -> String {
-    return numberFormatter.string(from: NSNumber(value: (number as NSDecimalNumber).doubleValue))!
+    return numberFormatter.string(from: number as NSDecimalNumber)!
   }
 }

@@ -17,9 +17,15 @@ struct ExchangeCoinView: View {
         Text("Balance")
         .font(.system(size: 14))
         .foregroundColor(Color("T2"))
-        Text(item?.balanceStr ?? "0.00")
+        Text(item?.balance.toDisplayFormat() ?? "0.00")
         .font(.system(size: 14))
         .foregroundColor(Color("T2"))
+      }
+      
+      Spacer()
+      
+      if item != nil && item!.state != .none {
+        Image(item!.state == .down ? "arrow_down" : "arrow_up")
       }
     }
   }
@@ -27,6 +33,6 @@ struct ExchangeCoinView: View {
 
 struct ExchangeCoinView_Previews: PreviewProvider {
   static var previews: some View {
-    ExchangeCoinView(item: ExchangeCoinViewItem(code: "ZRX", balance: 50_000.0))
+    ExchangeCoinView(item: ExchangeCoinViewItem(code: "ZRX", balance: 50_000.0, state: .down))
   }
 }
