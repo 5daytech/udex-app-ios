@@ -13,20 +13,28 @@ struct BalanceRow: View {
           .aspectRatio(contentMode: .fit)
           .frame(width: 25, height: 25)
           
-          VStack {
+          VStack (spacing: 8) {
             HStack {
               Text(balance.title)
+                .foregroundColor(Color("T1"))
               Spacer()
               Text(balance.balance)
+              .foregroundColor(Color("T1"))
               Text(balance.code)
+                .foregroundColor(Color("T1"))
             }
             HStack {
-              Text("$168.17 per \(balance.code)").font(.system(size: 10))
+              Text("$168.17 per \(balance.code)")
+                .font(.system(size: 10))
+                .foregroundColor(Color("T2"))
               Spacer()
-              Text("$66.86").font(.system(size: 10))
+              Text("$66.86")
+                .font(.system(size: 10))
+              .foregroundColor(Color("T2"))
             }
           }
         }
+        .padding()
         if expanded {
           HStack {
             Spacer()
@@ -70,13 +78,9 @@ struct BalanceRow: View {
           }
         }
       }
-      .cornerRadius(5)
+      .background(Color("secondary_background"))
+      .cornerRadius(10)
+      .clipped()
+      .shadow(radius: 3)
     }
 }
-
-//struct BalanceRow_Previews: PreviewProvider {
-//    static var previews: some View {
-//      BalanceRow(balance: <#Balance#>, expanded: true)
-//      .previewLayout(.fixed(width: 300, height: 100))
-//    }
-//}

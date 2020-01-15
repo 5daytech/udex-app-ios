@@ -62,6 +62,7 @@
 		B54F65DB23CE175E008BD76C /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */; };
 		B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DC23CE191C008BD76C /* NumberUtils.swift */; };
 		B54F65E123CED25E008BD76C /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E023CED25E008BD76C /* NumberPad.swift */; };
+		B54F65E323CF04C9008BD76C /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E223CF04C9008BD76C /* Appearance.swift */; };
 		B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */; };
 		B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */; };
 		B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */; };
@@ -165,6 +166,7 @@
 		B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
 		B54F65DC23CE191C008BD76C /* NumberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberUtils.swift; sourceTree = "<group>"; };
 		B54F65E023CED25E008BD76C /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		B54F65E223CF04C9008BD76C /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumBaseAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleError.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 				B53A7D0423C747210098A237 /* String+Extension.swift */,
 				B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */,
 				B54F65DC23CE191C008BD76C /* NumberUtils.swift */,
+				B54F65E223CF04C9008BD76C /* Appearance.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				B53A7CF523C5C9000098A237 /* IAllowanceChecker.swift in Sources */,
 				B53A7D0123C7452D0098A237 /* OrdersUtil.swift in Sources */,
 				B53A7CFF23C744060098A237 /* FillResult.swift in Sources */,
+				B54F65E323CF04C9008BD76C /* Appearance.swift in Sources */,
 				B53A7CFB23C73EED0098A237 /* RelayerOrders.swift in Sources */,
 				B52C4A2023C32168004C1AAE /* ExchangeViewState.swift in Sources */,
 				B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */,
