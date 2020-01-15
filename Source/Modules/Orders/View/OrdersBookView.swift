@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct OrdersList: View {
+struct OrdersBookView: View {
   @ObservedObject var viewModel: OrdersViewModel
   
   let ordersSpacing: CGFloat = 30
@@ -13,12 +13,12 @@ struct OrdersList: View {
             HStack(alignment: .bottom, spacing: ordersSpacing) {
               VStack(alignment: .center, spacing: ordersSpacing) {
                 ForEach(viewModel.buyOrders) { order in
-                  OrderRow(order: order)
+                  OrderBookRow(order: order)
                 }
               }
               VStack(alignment: .center, spacing: ordersSpacing) {
                 ForEach(viewModel.sellOrders) { order in
-                  OrderRow(order: order)
+                  OrderBookRow(order: order)
                 }
               }
             }

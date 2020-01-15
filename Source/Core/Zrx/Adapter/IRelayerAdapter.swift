@@ -5,8 +5,9 @@ import Web3
 protocol IRelayerAdapter {
   var currentPair: ExchangePair { get }
   var exchangePairs: [ExchangePair] { get }
-  var buyOrdersSubject: BehaviorSubject<[SignedOrder]> { get }
-  var sellOrdersSubject: BehaviorSubject<[SignedOrder]> { get }
+  var myOrdersSubject: BehaviorSubject<[SimpleOrder]> { get }
+  var buyOrdersSubject: BehaviorSubject<[SimpleOrder]> { get }
+  var sellOrdersSubject: BehaviorSubject<[SimpleOrder]> { get }
   
   func setSelected(baseCode: String, quoteCode: String)
   func createOrder(createData: CreateOrderData) -> Observable<SignedOrder>

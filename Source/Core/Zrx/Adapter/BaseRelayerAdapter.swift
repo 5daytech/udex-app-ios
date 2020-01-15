@@ -12,6 +12,8 @@ class BaseRelayerAdapter: IRelayerAdapter {
   private let coinManager: ICoinManager
   private let ethereumKit: EthereumKit.Kit
   
+  private let rateConverter = RatesConverter()
+  
   private var selectedPair: ExchangePair
   
   var currentPair: ExchangePair {
@@ -20,9 +22,9 @@ class BaseRelayerAdapter: IRelayerAdapter {
   
   let exchangeInteractor: IExchangeInteractor
   var exchangePairs: [ExchangePair] = []
-  var myOrdersSubject = BehaviorSubject<Void>(value: ()) // TODO: find sibscriber
-  var buyOrdersSubject = BehaviorSubject<[SignedOrder]>(value: [])
-  var sellOrdersSubject = BehaviorSubject<[SignedOrder]>(value: [])
+  var myOrdersSubject = BehaviorSubject<[SimpleOrder]>(value: [])
+  var buyOrdersSubject = BehaviorSubject<[SimpleOrder]>(value: [])
+  var sellOrdersSubject = BehaviorSubject<[SimpleOrder]>(value: [])
   
   var myOrders = [OrderRecord]()
   var myOrdersInfo = [OrderInfo]()
@@ -109,17 +111,18 @@ class BaseRelayerAdapter: IRelayerAdapter {
   }
   
   private func refreshOrders() {
-    relayerManager.getOrders(relayerId: relayerId, makerAddress: ethereumKit.receiveAddress, limit: 100)
+    relayerManager.getOrders(relayerId: relayerId, makerAddress: ethereumKit.receiveAddress.lowercased(), limit: 100)
       .subscribe(onNext: { (orderBook) in
         self.myOrders = orderBook.records.sorted(by: { (left, right) -> Bool in
           left.order.salt > right.order.salt
         })
-        self.myOrdersSubject.onNext(())
+        
+        self.myOrdersSubject.onNext(self.myOrders.map { SimpleOrder.fromOrder(ratesConverter: self.rateConverter, orderRecord: $0, side: .BUY, isMine: true) })
         
         self.exchangeInteractor.ordersInfo(orders: self.myOrders.map { $0.order })
           .subscribe(onNext: { (ordersInfo) in
             self.myOrdersInfo = ordersInfo
-            self.myOrdersSubject.onNext(())
+            self.myOrdersSubject.onNext(self.myOrders.map { SimpleOrder.fromOrder(ratesConverter: self.rateConverter, orderRecord: $0, side: .BUY, isMine: true) })
           }).disposed(by: self.disposeBag)
       }).disposed(by: disposeBag)
     
@@ -137,8 +140,8 @@ class BaseRelayerAdapter: IRelayerAdapter {
   }
   
   private func updateOrders() {
-    buyOrdersSubject.onNext(buyOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.map { $0.order })
-    sellOrdersSubject.onNext(sellOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.map { $0.order })
+    buyOrdersSubject.onNext(buyOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.map { SimpleOrder.fromOrder(ratesConverter: self.rateConverter, orderRecord: $0, side: .BUY) })
+    sellOrdersSubject.onNext(sellOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.map { SimpleOrder.fromOrder(ratesConverter: self.rateConverter, orderRecord: $0, side: .SELL) })
   }
   
   func createOrder(createData: CreateOrderData) -> Observable<SignedOrder> {

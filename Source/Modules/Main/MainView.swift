@@ -26,19 +26,21 @@ struct MainView: View {
             Image("balance").renderingMode(.template)
           }
           
-          OrdersList(
-            viewModel: OrdersViewModel(
-              relayerAdapter: App.instance.relayerAdapterManager.mainRelayer
-            )
+          OrdersBookView(
+            viewModel: viewModel.ordersViewModel
           )
           .tabItem {
             Image("markets").renderingMode(.template)
           }
           
-          
           ExchangeView(viewModel: ExchangeViewModel())
           .tabItem {
             Image("exchange").renderingMode(.template)
+          }
+          
+          OrdersView(viewModel: viewModel.ordersViewModel)
+          .tabItem {
+            Image("orders").renderingMode(.template)
           }
         }
       } else {

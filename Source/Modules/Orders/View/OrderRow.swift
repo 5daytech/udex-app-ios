@@ -1,22 +1,46 @@
 import SwiftUI
 
 struct OrderRow: View {
-  let order: OrderViewItem
+  var order: SimpleOrder
   
   var body: some View {
-    HStack(alignment: .top, spacing: 10) {
-      Text(order.isBuy ? order.takerAmount : order.makerAmount).font(.system(size: 10))
-      Spacer()
-      Text("for").font(.system(size: 10))
-      Spacer()
-      Text(order.isBuy ? order.makerAmount : order.takerAmount).font(.system(size: 10))
+    GeometryReader { geometry in
+      HStack {
+        VStack(alignment: .leading) {
+          HStack {
+            Text(self.order.side == .BUY ? self.order.remainingTakerAmount.toDisplayFormat() : self.order.remainingMakerAmount.toDisplayFormat())
+              .font(.system(size: 14))
+            .foregroundColor(Color("T1"))
+            Text(self.order.side == .BUY ? self.order.takerCoin.code : self.order.makerCoin.code)
+              .font(.system(size: 14))
+            .foregroundColor(Color("T3"))
+          }
+          Text("~ $\(self.order.side == .BUY ? self.order.takerFiatAmount.toDisplayFormat() : self.order.makerFiatAmount.toDisplayFormat())")
+            .font(.system(size: 12))
+          .foregroundColor(Color("T2"))
+        }
+        .frame(width: (geometry.size.width / 2) - 20, alignment: .leading)
+        Spacer()
+        Text("for")
+        .font(.system(size: 8))
+        .foregroundColor(Color("T2"))
+        Spacer()
+        VStack(alignment: .trailing) {
+          HStack {
+            Text(self.order.side == .SELL ? self.order.remainingTakerAmount.toDisplayFormat() : self.order.remainingMakerAmount.toDisplayFormat())
+              .font(.system(size: 14))
+              .foregroundColor(Color.green)
+            Text(self.order.side == .SELL ? self.order.takerCoin.code : self.order.makerCoin.code)
+              .font(.system(size: 14))
+            .foregroundColor(Color("T3"))
+          }
+          Text("~ $\(self.order.side == .SELL ? self.order.takerFiatAmount.toDisplayFormat() : self.order.makerFiatAmount.toDisplayFormat())")
+            .font(.system(size: 12))
+          .foregroundColor(Color("T2"))
+        }
+        .frame(width: (geometry.size.width / 2) - 20, alignment: .trailing)
+        
+      }
     }
   }
-}
-
-struct OrderRow_Previews: PreviewProvider {
-    static var previews: some View {
-      OrderRow(order: TestData.orders()[0])
-        .previewLayout(.fixed(width: 300, height: 50))
-    }
 }

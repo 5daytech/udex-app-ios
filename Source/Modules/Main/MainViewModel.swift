@@ -4,6 +4,8 @@ class MainViewModel: ObservableObject {
   
   @Published var isWordsSaved: Bool
   
+  var ordersViewModel: OrdersViewModel
+  
   init() {
     if let words = UserDefaults.standard.string(forKey: "words") {
       isWordsSaved = true
@@ -11,6 +13,8 @@ class MainViewModel: ObservableObject {
     } else {
       isWordsSaved = false
     }
+    
+    ordersViewModel = OrdersViewModel(relayerAdapter: App.instance.relayerAdapterManager.mainRelayer)
   }
   
   func inputWords(words: String) {

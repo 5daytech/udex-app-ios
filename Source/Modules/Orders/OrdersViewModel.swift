@@ -5,8 +5,9 @@ import BigInt
 
 class OrdersViewModel: ObservableObject {
   private let disposeBag = DisposeBag()
-  @Published var sellOrders: [OrderViewItem] = []
-  @Published var buyOrders: [OrderViewItem] = []
+  @Published var sellOrders: [SimpleOrder] = []
+  @Published var buyOrders: [SimpleOrder] = []
+  @Published var myOrders: [SimpleOrder] = []
   @Published var availablePairs: [ExchangePairViewItem]
   
   var isExpanded: Bool {
@@ -31,12 +32,16 @@ class OrdersViewModel: ObservableObject {
     numberFormatter = NumberFormatter()
     numberFormatter.maximumFractionDigits = 4
     
-    relayerAdapter.buyOrdersSubject.subscribe(onNext: { signedOrders in
-      self.buyOrders = signedOrders.map { self.convert(signedOrder: $0, isBuy: true) }
+    relayerAdapter.buyOrdersSubject.subscribe(onNext: { simpleOrders in
+      self.buyOrders = simpleOrders
     }).disposed(by: disposeBag)
     
-    relayerAdapter.sellOrdersSubject.subscribe(onNext: { signedOrders in
-      self.sellOrders = signedOrders.map { self.convert(signedOrder: $0, isBuy: false) }
+    relayerAdapter.sellOrdersSubject.subscribe(onNext: { simpleOrders in
+      self.sellOrders = simpleOrders
+    }).disposed(by: disposeBag)
+    
+    relayerAdapter.myOrdersSubject.observeOn(MainScheduler.instance).subscribe(onNext: { simpleOrders in
+      self.myOrders = simpleOrders
     }).disposed(by: disposeBag)
   }
   
