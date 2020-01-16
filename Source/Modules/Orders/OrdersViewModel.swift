@@ -16,8 +16,6 @@ class OrdersViewModel: ObservableObject {
   
   let relayerAdapter: IRelayerAdapter
   
-  private let numberFormatter: NumberFormatter
-  
   init(relayerAdapter: IRelayerAdapter) {
     
     self.relayerAdapter = relayerAdapter
@@ -28,9 +26,6 @@ class OrdersViewModel: ObservableObject {
       quoteCoin: relayerAdapter.currentPair.quoteCoinCode,
       quotePrice: 100.0
     )]
-    
-    numberFormatter = NumberFormatter()
-    numberFormatter.maximumFractionDigits = 4
     
     relayerAdapter.buyOrdersSubject.subscribe(onNext: { simpleOrders in
       self.buyOrders = simpleOrders
@@ -43,16 +38,6 @@ class OrdersViewModel: ObservableObject {
     relayerAdapter.myOrdersSubject.observeOn(MainScheduler.instance).subscribe(onNext: { simpleOrders in
       self.myOrders = simpleOrders
     }).disposed(by: disposeBag)
-  }
-  
-  private func convert(signedOrder: SignedOrder, isBuy: Bool) -> OrderViewItem {
-    let maker = signedOrder.makerAssetAmount.normalizeToDecimal(decimal: -18)
-    let taker = signedOrder.takerAssetAmount.normalizeToDecimal(decimal: -18)
-    
-    return OrderViewItem(
-      makerAmount: numberFormatter.string(from: NSNumber(value: (maker as NSDecimalNumber).doubleValue))!,
-      takerAmount: numberFormatter.string(from: NSNumber(value: (taker as NSDecimalNumber).doubleValue))!,
-      isBuy: isBuy)
   }
   
   func onChoosePair(pair: ExchangePairViewItem) {

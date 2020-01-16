@@ -3,8 +3,10 @@ import EthereumKit
 import Erc20Kit
 
 class EthereumKitManager {
+  let disposeBag = DisposeBag()
+  
   private let appConfigProvider: IAppConfigProvider
-  weak var ethereumKit: EthereumKit.Kit?
+  private var ethereumKit: EthereumKit.Kit?
   
   init(appConfigProvider: IAppConfigProvider) {
     self.appConfigProvider = appConfigProvider
@@ -15,7 +17,7 @@ class EthereumKitManager {
       return ethereumKit
     }
     
-    let ethereumKit = try EthereumKit.Kit.instance(
+    ethereumKit = try EthereumKit.Kit.instance(
       words: words,
       syncMode: .api,
       networkType: appConfigProvider.testMode ? .ropsten : .mainNet,
@@ -25,15 +27,15 @@ class EthereumKitManager {
       minLogLevel: .error
     )
     
-    ethereumKit.start()
-    
-    self.ethereumKit = ethereumKit
-    
-    return ethereumKit
+    ethereumKit?.start()
+    return ethereumKit!
   }
   
   var statusInfo: [(String, Any)]? {
     ethereumKit?.statusInfo()
   }
   
+  func refresh() {
+    ethereumKit?.refresh()
+  }
 }

@@ -4,49 +4,34 @@ import RxSwift
 class BalanceViewModel: ObservableObject {
   let disposeBag = DisposeBag()
   
-  let adapterManager: IAdapterManager
+  var balanceLoader = BalanceLoader(
+    coinManager: App.instance.coinManager,
+    adaptersManager: App.instance.adapterManager,
+    ratesManager: App.instance.ratesManager,
+    ratesConverter: App.instance.ratesConverter
+  )
   
-  @Published var balances: [BalanceViewItem] = []
+  @Published var balances: [CoinBalance] = []
   
-  let coins: [Coin]
-  let numberFormatter: NumberFormatter
+  init() {
+    syncBalances()
+    balanceLoader.balancesSyncSubject
+      .observeOn(MainScheduler.instance)
+      .subscribe(onNext: {
+        self.syncBalances()
+      })
+      .disposed(by: disposeBag)
+  }
   
-  init(adapterManager: IAdapterManager, coins: [Coin]) {
-    self.adapterManager = adapterManager
-    self.coins = coins
-    
-    numberFormatter = NumberFormatter()
-    numberFormatter.maximumFractionDigits = 4
-    subscribeToAdapters()
+  private func syncBalances() {
+    balances = balanceLoader.balances
   }
   
   func expand(for balance: BalanceViewItem) {
     
   }
   
-  private func subscribeToAdapters() {
-    for coin in coins {
-      guard let adapter = adapterManager.balanceAdapter(for: coin) else {
-        continue
-      }
-      
-      adapter.balanceUpdatedObservable
-        .observeOn(MainScheduler.instance)
-        .subscribe(onNext: { [weak self] in
-          self?.updateBalances()
-        })
-        .disposed(by: disposeBag)
-      updateBalances()
-    }
-  }
-  
-  private func updateBalances() {
-    balances = []
-    for coin in coins {
-      let balance = adapterManager.balanceAdapter(for: coin)?.balance ?? 0
-      let converted = numberFormatter.string(from: balance as NSDecimalNumber)!
-      let row = BalanceViewItem(title: coin.title, balance: converted, code: coin.code, expanded: false)
-      balances.append(row)
-    }
+  func refresh() {
+    balanceLoader.refresh()
   }
 }

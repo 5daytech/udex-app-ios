@@ -48,6 +48,7 @@ class ExchangeViewModel: ObservableObject {
         receiveAmount: state.receiveAmount,
         showLifeTimeInfo: !isMarketOrder,
         onConfirm: {
+          print("CONFIRM")
           self.viewState = .PROGRESS
           if self.isMarketOrder {
             self.marketBuy()
@@ -140,7 +141,7 @@ class ExchangeViewModel: ObservableObject {
     
     refreshPairs(state: state)
     
-    adapterManager.adaptersReadyObservable.subscribe(onNext: {
+    adapterManager.adaptersUpdatedSignal.subscribe(onNext: {
       Logger.d("refresh")
       self.refreshPairs(state: self.state)
     }).disposed(by: disposeBag)
@@ -280,6 +281,10 @@ class ExchangeViewModel: ObservableObject {
         side: orderSide,
         amount: estimatedReceiveAmount
       )
+      print("MARKET BUY")
+      
+      print(fillData)
+      
       relayer.fill(fillData: fillData).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
         self.transactionHash = ethData.hex()
         self.viewState = .TRANSACTION_SENT
@@ -291,6 +296,9 @@ class ExchangeViewModel: ObservableObject {
         print("OnComplete")
       }).disposed(by: disposeBag)
     }
+    
+    print("send amount \(state.sendAmount)")
+    print("estimated receive amount \(estimatedReceiveAmount)")
   }
   
   private func postOrder() {
@@ -328,9 +336,11 @@ class ExchangeViewModel: ObservableObject {
         amount: state.sendAmount
       )
       
+      print(fillResult)
+      
       estimatedReceiveAmount = fillResult.receiveAmount
       
-      let roundedReceiveAmount = numberFormatter.string(from: NSNumber(value: (estimatedReceiveAmount as NSDecimalNumber).doubleValue))!
+      let roundedReceiveAmount = estimatedReceiveAmount.toDisplayFormat()
       state.receiveAmount = Decimal(string: roundedReceiveAmount) ?? 0
       quoteInputText = roundedReceiveAmount
       

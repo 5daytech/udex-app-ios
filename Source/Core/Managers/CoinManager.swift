@@ -1,15 +1,27 @@
 import Foundation
+import RxSwift
 
-class CoinManager: ICoinManager {
-  
-  let coins: [Coin]
+class CoinManager {
+  private let subject = PublishSubject<Void>()
+  private let _coins: [Coin]
   
   init(appConfigProvider: IAppConfigProvider) {
-    coins = appConfigProvider.coins
+    _coins = appConfigProvider.coins
+    self.subject.onNext(())
+  }
+}
+
+extension CoinManager: ICoinManager {
+  var coins: [Coin] {
+    return _coins
+  }
+  
+  var coinsUpdateSubject: Observable<Void> {
+    return subject.asObserver()
   }
   
   func getErcCoinForAddress(address: String) -> Coin? {
-    coins.filter { coin -> Bool in
+    _coins.filter { coin -> Bool in
       switch coin.type {
       case .erc20(let filterAddress, _, _, _, _):
         return filterAddress.lowercased() == address.lowercased()
@@ -21,7 +33,7 @@ class CoinManager: ICoinManager {
   }
   
   func getCoin(code: String) -> Coin {
-    let coinOrNull = coins.first { (coin) -> Bool in
+    let coinOrNull = _coins.first { (coin) -> Bool in
       coin.code == code
     }
     
@@ -31,4 +43,5 @@ class CoinManager: ICoinManager {
       fatalError() // Throw exception
     }
   }
+  
 }

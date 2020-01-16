@@ -7,13 +7,10 @@ struct MainView: View {
   var body: some View {
     VStack {
       if viewModel.isWordsSaved {
-        TabView {
+        TabView {          
           NavigationView {
             BalanceView(
-              viewModel: BalanceViewModel(
-                adapterManager: App.instance.adapterManager,
-                coins: App.instance.appConfigProvider.coins
-              )
+              viewModel: BalanceViewModel()
             )
             .navigationBarTitle(Text("Balance"))
             .navigationBarItems(leading: Button(action: {

@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct BalanceRow: View {
-  var balance: BalanceViewItem
+  var balance: CoinBalance
   var expanded: Bool
   
     var body: some View {
       VStack {
         HStack {
-          Image(balance.code)
+          Image(balance.coin.code)
           .renderingMode(.original)
           .resizable()
           .aspectRatio(contentMode: .fit)
@@ -15,20 +15,20 @@ struct BalanceRow: View {
           
           VStack (spacing: 8) {
             HStack {
-              Text(balance.title)
+              Text(balance.coin.title)
                 .foregroundColor(Color("T1"))
               Spacer()
-              Text(balance.balance)
+              Text(balance.balance.toDisplayFormat())
               .foregroundColor(Color("T1"))
-              Text(balance.code)
+              Text(balance.coin.code)
                 .foregroundColor(Color("T1"))
             }
             HStack {
-              Text("$168.17 per \(balance.code)")
+              Text("$\(balance.pricePerToken.toDisplayFormat()) per \(balance.coin.code)")
                 .font(.system(size: 10))
                 .foregroundColor(Color("T2"))
               Spacer()
-              Text("$66.86")
+              Text("$\(balance.fiatBalance.toDisplayFormat())")
                 .font(.system(size: 10))
               .foregroundColor(Color("T2"))
             }

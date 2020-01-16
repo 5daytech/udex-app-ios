@@ -63,6 +63,12 @@
 		B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DC23CE191C008BD76C /* NumberUtils.swift */; };
 		B54F65E123CED25E008BD76C /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E023CED25E008BD76C /* NumberPad.swift */; };
 		B54F65E323CF04C9008BD76C /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E223CF04C9008BD76C /* Appearance.swift */; };
+		B54F65E523CF0A00008BD76C /* CoinBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E423CF0A00008BD76C /* CoinBalance.swift */; };
+		B54F65E723CF0B53008BD76C /* BalanceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E623CF0B53008BD76C /* BalanceLoader.swift */; };
+		B54F65E923CF0BC8008BD76C /* IRatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E823CF0BC8008BD76C /* IRatesManager.swift */; };
+		B54F65EB23CF119A008BD76C /* TotalBalanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EA23CF119A008BD76C /* TotalBalanceInfo.swift */; };
+		B54F65ED23CF1346008BD76C /* RatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EC23CF1346008BD76C /* RatesManager.swift */; };
+		B54F65EF23CF191D008BD76C /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EE23CF191D008BD76C /* RefreshableView.swift */; };
 		B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */; };
 		B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */; };
 		B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */; };
@@ -94,7 +100,6 @@
 		B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29823AA0D2900D6FBFA /* TestData.swift */; };
 		B5DAE29C23AA0DB700D6FBFA /* OrderBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29B23AA0DB700D6FBFA /* OrderBookRow.swift */; };
 		B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29D23AA1A5200D6FBFA /* App.swift */; };
-		B5F0A42723CC2E3800592A78 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42623CC2E3800592A78 /* ActivityIndicator.swift */; };
 		B5F0A42B23CC306900592A78 /* ExchangeConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */; };
 		B5F0A42F23CC31A300592A78 /* ExchangeConfirmInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */; };
 		B5F0A43123CC38F600592A78 /* ExchangeConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */; };
@@ -167,6 +172,12 @@
 		B54F65DC23CE191C008BD76C /* NumberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberUtils.swift; sourceTree = "<group>"; };
 		B54F65E023CED25E008BD76C /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
 		B54F65E223CF04C9008BD76C /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
+		B54F65E423CF0A00008BD76C /* CoinBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBalance.swift; sourceTree = "<group>"; };
+		B54F65E623CF0B53008BD76C /* BalanceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLoader.swift; sourceTree = "<group>"; };
+		B54F65E823CF0BC8008BD76C /* IRatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRatesManager.swift; sourceTree = "<group>"; };
+		B54F65EA23CF119A008BD76C /* TotalBalanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalBalanceInfo.swift; sourceTree = "<group>"; };
+		B54F65EC23CF1346008BD76C /* RatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesManager.swift; sourceTree = "<group>"; };
+		B54F65EE23CF191D008BD76C /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
 		B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumBaseAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleError.swift; sourceTree = "<group>"; };
@@ -204,7 +215,6 @@
 		B5DAE29823AA0D2900D6FBFA /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		B5DAE29B23AA0DB700D6FBFA /* OrderBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookRow.swift; sourceTree = "<group>"; };
 		B5DAE29D23AA1A5200D6FBFA /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		B5F0A42623CC2E3800592A78 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmView.swift; sourceTree = "<group>"; };
 		B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmInfo.swift; sourceTree = "<group>"; };
 		B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmViewModel.swift; sourceTree = "<group>"; };
@@ -249,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				B50C2F1623B2191500CE7FBF /* BalanceViewItem.swift */,
+				B54F65EA23CF119A008BD76C /* TotalBalanceInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,7 +310,6 @@
 				B50C2F2823B4774D00CE7FBF /* IZrxKitManager.swift */,
 				B50C2F2C23B47C4000CE7FBF /* IRelayerAdapterManager.swift */,
 				B50C2F2E23B47C6100CE7FBF /* RelayerAdapterManager.swift */,
-				B5347E5523CE0D6300A7B85E /* RatesConverter.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -352,6 +362,7 @@
 		B533EBE723AB33EE00CD18CC /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B5CE202F23D0551E001F519E /* Storage */,
 				B5F0A42523CC2CCD00592A78 /* Views */,
 				B50C2F1E23B475D400CE7FBF /* Zrx */,
 				B59AE91E23B0AD3E00DF03C1 /* Providers */,
@@ -388,6 +399,7 @@
 				B59AE90823B0A4B700DF03C1 /* AdapterState.swift */,
 				B59AE90E23B0A58000DF03C1 /* TransactionLockInfo.swift */,
 				B59AE91923B0A8A700DF03C1 /* Currency.swift */,
+				B54F65E423CF0A00008BD76C /* CoinBalance.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -407,6 +419,7 @@
 				B50C2F1523B2190700CE7FBF /* Model */,
 				B533EBF923AC8E1000CD18CC /* View */,
 				B533EBFE23ACC3A400CD18CC /* BalanceViewModel.swift */,
+				B54F65E623CF0B53008BD76C /* BalanceLoader.swift */,
 			);
 			path = Balance;
 			sourceTree = "<group>";
@@ -454,11 +467,14 @@
 		B59AE91B23B0A8F100DF03C1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B5347E5523CE0D6300A7B85E /* RatesConverter.swift */,
 				B59AE91C23B0A8FF00DF03C1 /* EthereumKitManager.swift */,
 				B59AE92123B0BCAE00DF03C1 /* IAdapterManager.swift */,
 				B59AE92323B0BD2100DF03C1 /* AdapterManager.swift */,
 				B50C2F1A23B4729A00CE7FBF /* CoinManager.swift */,
 				B50C2F2A23B4777900CE7FBF /* ICoinManager.swift */,
+				B54F65E823CF0BC8008BD76C /* IRatesManager.swift */,
+				B54F65EC23CF1346008BD76C /* RatesManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -470,6 +486,13 @@
 				B59AE91F23B0AD5200DF03C1 /* AppConfigProvider.swift */,
 			);
 			path = Providers;
+			sourceTree = "<group>";
+		};
+		B5CE202F23D0551E001F519E /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		B5DAE25523A8E80D00D6FBFA = {
@@ -591,11 +614,11 @@
 		B5F0A42523CC2CCD00592A78 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B5F0A42623CC2E3800592A78 /* ActivityIndicator.swift */,
 				B5F0A43423CC622500592A78 /* ProcessingDialog.swift */,
 				B5F0A43623CC62D000592A78 /* ProgressBar.swift */,
 				B5F0A43823CC890800592A78 /* TransactionSentDialog.swift */,
 				B5F0A43A23CC90EB00592A78 /* ErrorDialog.swift */,
+				B54F65EE23CF191D008BD76C /* RefreshableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -768,9 +791,11 @@
 				B59AE90D23B0A53200DF03C1 /* ITransactionsAdapter.swift in Sources */,
 				B59AE90723B0A47500DF03C1 /* IBalanceAdapter.swift in Sources */,
 				B50C2F2123B475F700CE7FBF /* ExchangePair.swift in Sources */,
+				B54F65E723CF0B53008BD76C /* BalanceLoader.swift in Sources */,
 				B50C2F2F23B47C6100CE7FBF /* RelayerAdapterManager.swift in Sources */,
 				B52C4A1E23B9BA74004C1AAE /* ExchangePairsInfo.swift in Sources */,
 				B5347E5423CE0C5900A7B85E /* SimpleOrder.swift in Sources */,
+				B54F65EB23CF119A008BD76C /* TotalBalanceInfo.swift in Sources */,
 				B533EBFB23AC8E2700CD18CC /* BalanceView.swift in Sources */,
 				B59AE92423B0BD2100DF03C1 /* AdapterManager.swift in Sources */,
 				B53A7CF523C5C9000098A237 /* IAllowanceChecker.swift in Sources */,
@@ -802,20 +827,23 @@
 				B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */,
 				B50C2F3523B4BB7500CE7FBF /* ExchangeView.swift in Sources */,
 				B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */,
+				B54F65E523CF0A00008BD76C /* CoinBalance.swift in Sources */,
 				B5F0A43B23CC90EB00592A78 /* ErrorDialog.swift in Sources */,
 				B52C4A2223C321D1004C1AAE /* MarketOrderViewState.swift in Sources */,
 				B50C2F2423B4771100CE7FBF /* BaseRelayerAdapter.swift in Sources */,
 				B53A7D0523C747210098A237 /* String+Extension.swift in Sources */,
-				B5F0A42723CC2E3800592A78 /* ActivityIndicator.swift in Sources */,
 				B533EBFF23ACC3A400CD18CC /* BalanceViewModel.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
 				B59AE90923B0A4B700DF03C1 /* AdapterState.swift in Sources */,
 				B5347E5023CDEEF100A7B85E /* OrdersView.swift in Sources */,
+				B54F65ED23CF1346008BD76C /* RatesManager.swift in Sources */,
 				B5DAE29123AA0AA500D6FBFA /* OrdersBookView.swift in Sources */,
 				B52C4A1A23B5FAB2004C1AAE /* ExchangeInputView.swift in Sources */,
 				B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */,
+				B54F65E923CF0BC8008BD76C /* IRatesManager.swift in Sources */,
 				B50C2F1923B3818E00CE7FBF /* ZrxKitManager.swift in Sources */,
 				B50C2F3A23B4C56000CE7FBF /* ExchangeCoinViewItem.swift in Sources */,
+				B54F65EF23CF191D008BD76C /* RefreshableView.swift in Sources */,
 				B5F0A43923CC890800592A78 /* TransactionSentDialog.swift in Sources */,
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
