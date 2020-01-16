@@ -4,6 +4,7 @@ import RxSwift
 class CoinManager {
   private let subject = PublishSubject<Void>()
   private let _coins: [Coin]
+  private let baseCoins = ["BTC", "ETH"]
   
   init(appConfigProvider: IAppConfigProvider) {
     _coins = appConfigProvider.coins
@@ -41,6 +42,20 @@ extension CoinManager: ICoinManager {
       return coinOrNull!
     } else {
       fatalError() // Throw exception
+    }
+  }
+  
+  func cleanCoinCode(coinCode: String) -> String {    
+    let baseIndex = baseCoins.firstIndex { (baseCoin) -> Bool in
+      coinCode.starts(with: "W") && coinCode.substr(1, coinCode.count - 1) == baseCoin
+    }
+    
+    if baseIndex != nil {
+      return baseCoins[baseIndex!]
+    } else if coinCode == "SAI" {
+      return "DAI"
+    } else {
+      return coinCode
     }
   }
   

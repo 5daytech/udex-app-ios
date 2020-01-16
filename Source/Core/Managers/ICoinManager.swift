@@ -7,4 +7,5 @@ protocol ICoinManager {
   
   func getErcCoinForAddress(address: String) -> Coin?
   func getCoin(code: String) -> Coin
+  func cleanCoinCode(coinCode: String) -> String
 }

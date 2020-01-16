@@ -5,7 +5,7 @@ import EthereumKit
 class RelayerAdapterManager: IRelayerAdapterManager {
   let mainRelayer: IRelayerAdapter
   
-  init(zrxkit: ZrxKit, ethereumKit: EthereumKit.Kit, coinManager: ICoinManager, appConfiguration: IAppConfigProvider) {
+  init(zrxkit: ZrxKit, ethereumKit: EthereumKit.Kit, coinManager: ICoinManager, ratesConverter: RatesConverter, appConfiguration: IAppConfigProvider) {
     let allowanceChecker = AllowanceChecker(zrxkit: zrxkit, ethereumKit: ethereumKit)
     
     let exchangeInteractor = ExchangeInteractor(
@@ -21,6 +21,7 @@ class RelayerAdapterManager: IRelayerAdapterManager {
       zrxkit: zrxkit,
       ethereumKit: ethereumKit,
       coinManager: coinManager,
+      ratesConverter: ratesConverter,
       exchangeInteractor: exchangeInteractor,
       refreshInterval: 10_000_000,
       relayerId: 0

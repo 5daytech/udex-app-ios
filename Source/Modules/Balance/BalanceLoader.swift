@@ -31,6 +31,11 @@ class BalanceLoader {
     adaptersManager.adaptersUpdatedSignal.subscribe(onNext: {
       self.onRefreshAdapters()
     }).disposed(by: disposeBag)
+    
+    ratesManager.getMarketsObservable.subscribe(onNext: { _ in
+      self.updateBalance()
+    }).disposed(by: disposeBag)
+    
     onRefreshAdapters()
   }
   

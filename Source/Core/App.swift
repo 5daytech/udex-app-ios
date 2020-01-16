@@ -25,9 +25,10 @@ class App {
     
     let adapterFactory: IAdapterFactory = AdapterFactory(appConfigProvider: appConfigProvider, ethereumKitManager: ethereumKitManager)
     
-    ratesConverter = RatesConverter()
-    ratesManager = RatesManager()
     coinManager = CoinManager(appConfigProvider: appConfigProvider)
+    
+    ratesManager = RatesManager(coinManager: coinManager)
+    ratesConverter = RatesConverter(ratesManager: ratesManager)
 
     adapterManager = AdapterManager(coinManager: coinManager, adapterFactory: adapterFactory, ethereumKitManager: ethereumKitManager, words: words)
     
@@ -37,6 +38,7 @@ class App {
       zrxkit: zrxKitManager.zrxkit,
       ethereumKit: ethereumKit,
       coinManager: coinManager,
+      ratesConverter: ratesConverter,
       appConfiguration: appConfigProvider
     )
   }
