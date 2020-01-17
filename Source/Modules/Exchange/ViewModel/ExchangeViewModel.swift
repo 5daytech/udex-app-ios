@@ -305,10 +305,12 @@ class ExchangeViewModel: ObservableObject {
     if state.sendAmount > 0 && priceInfo > 0 {
       let orderData = CreateOrderData(
         coinPair: marketCodes[currentMarketPosition],
-        side: orderSide,
+        side: orderSide == .BUY ? .SELL : .BUY,
         amount: state.sendAmount,
         price: priceInfo
       )
+      
+      print("\(marketCodes[currentMarketPosition].first) \(marketCodes[currentMarketPosition].second)")
       
       relayer.createOrder(createData: orderData)
         .observeOn(MainScheduler.instance)

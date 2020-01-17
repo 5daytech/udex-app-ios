@@ -47,11 +47,11 @@ class BalanceLoader {
   private func onRefreshAdapters() {
     adaptersManager.balanceAdapters.forEach { (adapter) in
       print(adapter)
-      adapter.stateUpdatedObservable.subscribe(onNext: {
+      adapter.stateUpdatedObservable.observeOn(MainScheduler.asyncInstance).subscribe(onNext: {
         self.updateBalance()
       }).disposed(by: disposeBag)
       
-      adapter.balanceUpdatedObservable.subscribe(onNext:  {
+      adapter.balanceUpdatedObservable.observeOn(MainScheduler.asyncInstance).subscribe(onNext:  {
         self.updateBalance()
       }).disposed(by: disposeBag)
     }
