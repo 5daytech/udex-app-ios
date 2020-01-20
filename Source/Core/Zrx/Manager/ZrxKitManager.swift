@@ -10,7 +10,7 @@ class ZrxKitManager: IZrxKitManager {
   static func getContractGasProvider() -> ContractGasProvider {
     class ContractGasProviderImpl: ContractGasProvider {
       func getGasPrice(_ contractFunc: String) -> BigUInt {
-        return 5_000_000_000
+        return 8_000_000_000
       }
       
       func getGasPrice() -> BigUInt {

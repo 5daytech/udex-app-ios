@@ -24,8 +24,6 @@ class AdapterManager {
 //      self.initAdapters()
 //    }).disposed(by: disposeBag)
     
-    
-    
     initAdapters()
     
     let scheduler = SerialDispatchQueueScheduler(qos: .background)
@@ -33,7 +31,6 @@ class AdapterManager {
       .subscribe { _ in
         self.refresh()
     }
-    
   }
   
   private func initAdapters() {

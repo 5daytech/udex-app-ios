@@ -4,6 +4,10 @@ import zrxkit
 class OrdersUtil {
   static let coinManager = App.instance.coinManager
   
+  private static func getErcCoin(coinCode: String) -> Coin {
+    coinManager.getCoin(code: coinCode)
+  }
+  
   static func normalizeOrderDataPrice(orderRecord: OrderRecord, isSellPrice: Bool = true) -> NormalizedOrderData {
     let makerCoin = coinManager.getErcCoinForAddress(address: EAssetProxyId.ERC20.decode(asset: orderRecord.order.makerAssetData))!
     let takerCoin = coinManager.getErcCoinForAddress(address: EAssetProxyId.ERC20.decode(asset: orderRecord.order.takerAssetData))!
@@ -27,5 +31,20 @@ class OrdersUtil {
       price: price,
       order: orderRecord.order
     )
+  }
+  
+  static func calculateBasePrice(orders: [SignedOrder], coinPair: Pair<String, String>, side: EOrderSide) -> Decimal {
+    calculateOrderPrice(coinPair: coinPair, order: orders.first!, side: side)
+  }
+  
+  static func calculateOrderPrice(coinPair: Pair<String, String>, order: IOrder, side: EOrderSide) -> Decimal {
+    let baseCoin = getErcCoin(coinCode: coinPair.first)
+    let quoteCoin = getErcCoin(coinCode: coinPair.second)
+    
+    let makerAmount = order.makerAssetAmount.normalizeToDecimal(decimal: -(side == .BUY ? quoteCoin.decimal : baseCoin.decimal))
+    
+    let takerAmount = order.takerAssetAmount.normalizeToDecimal(decimal: -(side == .BUY ? baseCoin.decimal : quoteCoin.decimal))
+    
+    return makerAmount / takerAmount
   }
 }

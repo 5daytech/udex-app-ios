@@ -44,7 +44,7 @@ struct ExchangeView: View {
           
           VStack {
             HStack {
-              ExchangeInputView(text: self.viewModel.baseInputText, onTap: self.onBaseInputTap, isPipeShowing: self.viewModel.isBaseEditing)
+              ExchangeInputView(text: self.viewModel.baseInputText, onTap: self.onBaseInputTap, isPipeShowing: self.viewModel.isBaseEditing, receiveAmount: nil)
               Spacer()
               ExchangeCoinView(item: self.viewModel.sendCoinsPair?.selectedCoin)
                 .frame(width: (geometry.size.width / 2) - 20, alignment: .leading)
@@ -57,7 +57,7 @@ struct ExchangeView: View {
             Rectangle().frame(height: 1).foregroundColor(Color("separatorLine"))
             
             HStack {
-              ExchangeInputView(text: self.viewModel.quoteInputText, onTap: self.onQuoteInputTap, isPipeShowing: self.viewModel.isQuoteEditing)
+              ExchangeInputView(text: self.viewModel.quoteInputText, onTap: self.onQuoteInputTap, isPipeShowing: self.viewModel.isQuoteEditing, receiveAmount: self.viewModel.inputFieldReceiveAmount)
               Spacer()
               ExchangeCoinView(item: self.viewModel.receiveCoinsPair?.selectedCoin)
               .frame(width: (geometry.size.width / 2) - 20, alignment: .leading)

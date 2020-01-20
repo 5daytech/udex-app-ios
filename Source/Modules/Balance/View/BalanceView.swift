@@ -8,20 +8,18 @@ struct BalanceView: View {
   
   var body: some View {
     
-    RefreshableList(showRefreshView: $showRefreshView, pullStatus: $pullStatus, action: {
-      self.viewModel.refresh()
-    }) {
+//    RefreshableList(showRefreshView: $showRefreshView, pullStatus: $pullStatus, action: {
+//      self.viewModel.refresh()
+//    }) {
+//      ForEach(self.viewModel.balances, id: \.self) { balance in
+//        BalanceRow(balance: balance, expanded: false)
+//      }
+//    }
+    
+    List {
       ForEach(self.viewModel.balances, id: \.self) { balance in
         BalanceRow(balance: balance, expanded: false)
       }
     }
-    
-//    List(viewModel.balances) { balance in
-//      Button(action: {
-//
-//      }) {
-//        BalanceRow(balance: balance, expanded: false)
-//      }
-//    }
   }
 }

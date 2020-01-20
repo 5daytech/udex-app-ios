@@ -1,6 +1,7 @@
 import RxSwift
 import EthereumKit
 import Erc20Kit
+import HSHDWalletKit
 
 class EthereumKitManager {
   let disposeBag = DisposeBag()
@@ -17,14 +18,16 @@ class EthereumKitManager {
       return ethereumKit
     }
     
+    let hdWallet = HDWallet(seed: Mnemonic.seed(mnemonic: words), coinType: 60, xPrivKey: 0, xPubKey: 0)
+    let privateKey = try hdWallet.privateKey(account: 0, index: 0, chain: .external).raw
+    
     ethereumKit = try EthereumKit.Kit.instance(
-      words: words,
+      privateKey: privateKey,
       syncMode: .api,
       networkType: appConfigProvider.testMode ? .ropsten : .mainNet,
       infuraCredentials: appConfigProvider.infuraCredentials,
       etherscanApiKey: appConfigProvider.etherscanKey,
-      walletId: "default",
-      minLogLevel: .error
+      walletId: "default"
     )
     
     ethereumKit?.start()

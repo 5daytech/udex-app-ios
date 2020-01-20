@@ -33,7 +33,19 @@ class ExchangeViewModel: ObservableObject {
   @Published var sendCoinsPair: ExchangePairsInfo? = nil
   @Published var receiveCoinsPair: ExchangePairsInfo? = nil
   
-  @Published var isMarketOrder: Bool = true
+  @Published var isMarketOrder: Bool = true {
+    didSet {
+      baseInputText = nil
+      quoteInputText = nil
+      if isMarketOrder {
+        inputFieldReceiveAmount = nil
+      } else {
+        inputFieldReceiveAmount = "-\(receiveCoinsPair?.selectedCoin?.code ?? "")"
+      }
+      
+    }
+  }
+  @Published var inputFieldReceiveAmount: String? = nil
   
   var transactionHash: String = ""
   
@@ -48,7 +60,6 @@ class ExchangeViewModel: ObservableObject {
         receiveAmount: state.receiveAmount,
         showLifeTimeInfo: !isMarketOrder,
         onConfirm: {
-          print("CONFIRM")
           self.viewState = .PROGRESS
           if self.isMarketOrder {
             self.marketBuy()
@@ -100,8 +111,6 @@ class ExchangeViewModel: ObservableObject {
   var estimatedSendAmount: Decimal = 0
   var estimatedReceiveAmount: Decimal = 0
   
-  let numberFormatter: NumberFormatter
-  
   var orderSide: EOrderSide {
     let market = marketCodes[currentMarketPosition]
     
@@ -123,10 +132,6 @@ class ExchangeViewModel: ObservableObject {
   }
   
   init() {
-    
-    numberFormatter = NumberFormatter()
-    numberFormatter.maximumFractionDigits = 4
-    
     marketCodes = relayer.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) }
     
     exchangeableCoins = coinManager.coins.filter { coin -> Bool in
@@ -195,6 +200,8 @@ class ExchangeViewModel: ObservableObject {
       state.receiveAmount = Decimal(string: quoteInputText ?? "") ?? 0
       if isMarketOrder {
         updateSendAmount()
+      } else {
+        updateReceiveAmount(updateView: false)
       }
     }
   }
@@ -253,12 +260,11 @@ class ExchangeViewModel: ObservableObject {
     if (coin.code == state.receiveCoin?.code) {
       state.sendCoin = coin
       state.receiveCoin = nil
-      refreshPairs(state: state)
     } else if (state.sendCoin?.code != coin.code) {
       state.sendCoin = coin
-      refreshPairs(state: state)
-      updateReceiveAmount()
     }
+    refreshPairs(state: state)
+    updateReceiveAmount()
   }
   
   func selectReceiveCoin(coin: ExchangeCoinViewItem) {
@@ -281,10 +287,6 @@ class ExchangeViewModel: ObservableObject {
         side: orderSide,
         amount: estimatedReceiveAmount
       )
-      print("MARKET BUY")
-      
-      print(fillData)
-      
       relayer.fill(fillData: fillData).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
         self.transactionHash = ethData.hex()
         self.viewState = .TRANSACTION_SENT
@@ -292,13 +294,8 @@ class ExchangeViewModel: ObservableObject {
         self.viewState = .ERROR
         self.errorMessage = err.localizedDescription
         Logger.e("", error: err)
-      }, onCompleted: {
-        print("OnComplete")
       }).disposed(by: disposeBag)
     }
-    
-    print("send amount \(state.sendAmount)")
-    print("estimated receive amount \(estimatedReceiveAmount)")
   }
   
   private func postOrder() {
@@ -310,24 +307,20 @@ class ExchangeViewModel: ObservableObject {
         price: priceInfo
       )
       
-      print("\(marketCodes[currentMarketPosition].first) \(marketCodes[currentMarketPosition].second)")
-      
       relayer.createOrder(createData: orderData)
         .observeOn(MainScheduler.instance)
         .subscribe(onError: { (err) in
           self.errorMessage = "Something went wrong"
           self.viewState = .ERROR
-          print("Error \(err)")
         }, onCompleted: {
           self.viewState = .ERROR
           self.errorMessage = "Successfully created"
-          print("Order posted")
         })
       .disposed(by: disposeBag)
     }
   }
   
-  func updateReceiveAmount() {
+  func updateReceiveAmount(updateView: Bool = true) {
     if isMarketOrder {
       let currentMarket = currentMarketPosition
       if currentMarket < 0 { return }
@@ -338,17 +331,15 @@ class ExchangeViewModel: ObservableObject {
         amount: state.sendAmount
       )
       
-      print(fillResult)
-      
       estimatedReceiveAmount = fillResult.receiveAmount
       
       let roundedReceiveAmount = estimatedReceiveAmount.toDisplayFormat()
       state.receiveAmount = Decimal(string: roundedReceiveAmount) ?? 0
       quoteInputText = roundedReceiveAmount
-      
     } else {
       let receiveAmount = state.sendAmount * priceInfo
-      print(receiveAmount)
+      state.receiveAmount = receiveAmount
+      inputFieldReceiveAmount = "\(receiveAmount.toDisplayFormat()) \(receiveCoinsPair?.selectedCoin?.code ?? "")"
     }
   }
   
@@ -364,10 +355,10 @@ class ExchangeViewModel: ObservableObject {
     
     estimatedSendAmount = fillResult.sendAmount
     
-    let roundedSendAmount = numberFormatter.string(from: NSNumber(value: (estimatedSendAmount as NSDecimalNumber).doubleValue))!
+    let roundedSendAmount = estimatedSendAmount.toDisplayFormat()
     state.sendAmount = Decimal(string: roundedSendAmount) ?? 0
     baseInputText = roundedSendAmount
     
-    estimatedSendAmount = fillResult.receiveAmount != state.receiveAmount ? fillResult.receiveAmount : state.receiveAmount
+    estimatedReceiveAmount = fillResult.receiveAmount != state.receiveAmount ? fillResult.receiveAmount : state.receiveAmount
   }
 }

@@ -28,7 +28,6 @@
 		B52C4A2023C32168004C1AAE /* ExchangeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A1F23C32168004C1AAE /* ExchangeViewState.swift */; };
 		B52C4A2223C321D1004C1AAE /* MarketOrderViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2123C321D1004C1AAE /* MarketOrderViewState.swift */; };
 		B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2323C32246004C1AAE /* LimitOrderViewState.swift */; };
-		B52C4A2723C323E2004C1AAE /* MarketExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */; };
 		B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBE823AB352F00CD18CC /* Configuration.swift */; };
 		B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */; };
 		B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533EBED23AB3BFE00CD18CC /* Logger.swift */; };
@@ -42,7 +41,6 @@
 		B5347E5223CE097800A7B85E /* OrderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5347E5123CE097800A7B85E /* OrderRow.swift */; };
 		B5347E5423CE0C5900A7B85E /* SimpleOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5347E5323CE0C5900A7B85E /* SimpleOrder.swift */; };
 		B5347E5623CE0D6300A7B85E /* RatesConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5347E5523CE0D6300A7B85E /* RatesConverter.swift */; };
-		B53A7CE723C593800098A237 /* LimitExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CE623C593800098A237 /* LimitExchangeViewModel.swift */; };
 		B53A7CE923C594E70098A237 /* CreateOrderData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CE823C594E70098A237 /* CreateOrderData.swift */; };
 		B53A7CEB23C595660098A237 /* EOrderSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CEA23C595660098A237 /* EOrderSide.swift */; };
 		B53A7CED23C5C4840098A237 /* IExchangeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CEC23C5C4840098A237 /* IExchangeInteractor.swift */; };
@@ -136,7 +134,6 @@
 		B52C4A1F23C32168004C1AAE /* ExchangeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeViewState.swift; sourceTree = "<group>"; };
 		B52C4A2123C321D1004C1AAE /* MarketOrderViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketOrderViewState.swift; sourceTree = "<group>"; };
 		B52C4A2323C32246004C1AAE /* LimitOrderViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitOrderViewState.swift; sourceTree = "<group>"; };
-		B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketExchangeViewModel.swift; sourceTree = "<group>"; };
 		B533EBE823AB352F00CD18CC /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		B533EBEA23AB38D300CD18CC /* OrdersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrdersViewModel.swift; path = Source/Modules/Orders/OrdersViewModel.swift; sourceTree = SOURCE_ROOT; };
 		B533EBED23AB3BFE00CD18CC /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -150,7 +147,6 @@
 		B5347E5123CE097800A7B85E /* OrderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRow.swift; sourceTree = "<group>"; };
 		B5347E5323CE0C5900A7B85E /* SimpleOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleOrder.swift; sourceTree = "<group>"; };
 		B5347E5523CE0D6300A7B85E /* RatesConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesConverter.swift; sourceTree = "<group>"; };
-		B53A7CE623C593800098A237 /* LimitExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitExchangeViewModel.swift; sourceTree = "<group>"; };
 		B53A7CE823C594E70098A237 /* CreateOrderData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderData.swift; sourceTree = "<group>"; };
 		B53A7CEA23C595660098A237 /* EOrderSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EOrderSide.swift; sourceTree = "<group>"; };
 		B53A7CEC23C5C4840098A237 /* IExchangeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangeInteractor.swift; sourceTree = "<group>"; };
@@ -352,8 +348,6 @@
 			isa = PBXGroup;
 			children = (
 				B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */,
-				B52C4A2623C323E2004C1AAE /* MarketExchangeViewModel.swift */,
-				B53A7CE623C593800098A237 /* LimitExchangeViewModel.swift */,
 				B53A7CF623C722040098A237 /* IExchangeViewModel.swift */,
 			);
 			path = ViewModel;
@@ -817,7 +811,6 @@
 				B50C2F1723B2191500CE7FBF /* BalanceViewItem.swift in Sources */,
 				B53A7CF123C5C5E90098A237 /* ExchangeInteractor.swift in Sources */,
 				B533EBF123AB3FBF00CD18CC /* Coin.swift in Sources */,
-				B53A7CE723C593800098A237 /* LimitExchangeViewModel.swift in Sources */,
 				B59AE90123B0A35D00DF03C1 /* ConnectionError.swift in Sources */,
 				B53A7D1323C8965D0098A237 /* MainViewModel.swift in Sources */,
 				B5F0A43123CC38F600592A78 /* ExchangeConfirmViewModel.swift in Sources */,
@@ -848,7 +841,6 @@
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
 				B59AE92223B0BCAE00DF03C1 /* IAdapterManager.swift in Sources */,
-				B52C4A2723C323E2004C1AAE /* MarketExchangeViewModel.swift in Sources */,
 				B53A7D1123C8963E0098A237 /* InputWordsView.swift in Sources */,
 				B52C4A1323B5B7BD004C1AAE /* ExchangeViewModel.swift in Sources */,
 				B59AE91823B0A87200DF03C1 /* IAppConfigProvider.swift in Sources */,

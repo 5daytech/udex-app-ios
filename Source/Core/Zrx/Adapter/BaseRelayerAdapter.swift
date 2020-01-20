@@ -154,6 +154,10 @@ class BaseRelayerAdapter: IRelayerAdapter {
     return exchangeInteractor.fill(orders: fillResult.orders, fillData: fillData)
   }
   
+  func calculateBasePrice(coinPair: Pair<String, String>, side: EOrderSide) -> Decimal {
+    OrdersUtil.calculateBasePrice(orders: getPairOrders(coinPair: coinPair, side: side).orders.map { $0.order }, coinPair: coinPair, side: side)
+  }
+  
   func calculateFillAmount(coinPair: Pair<String, String>, side: EOrderSide, amount: Decimal) -> FillResult {
     let orders = getPairOrders(coinPair: coinPair, side: side).orders
     return calculateFillResult(orders: orders, side: side, amount: amount)
