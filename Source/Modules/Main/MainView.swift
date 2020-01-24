@@ -49,7 +49,9 @@ struct MainView: View {
 //        InputWordsView { (words) in
 //          self.viewModel.inputWords(words: words)
 //        }
-        GuestView(restoreViewModel: viewModel.restoreViewModel!)
+        GuestView(restoreViewModel: viewModel.restoreViewModel!, onCreateWallet: {
+          self.viewModel.createWallet()
+        })
       }
     }
   }

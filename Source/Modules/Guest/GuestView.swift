@@ -3,13 +3,14 @@ import SwiftUI
 struct GuestView: View {
   
   var restoreViewModel: RestoreViewModel
+  var onCreateWallet: () -> Void
   
   var body: some View {
     NavigationView {
       VStack {
         Spacer()
         Button(action: {
-          
+          self.onCreateWallet()
         }) {
           Spacer()
           Text("CREATE WALLET")
