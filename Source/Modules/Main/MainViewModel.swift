@@ -27,16 +27,15 @@ class MainViewModel: ObservableObject {
       self.ordersViewModel = OrdersViewModel(relayerAdapter: App.instance.relayerAdapterManager.mainRelayer!)
       self.isLoggedIn = true
     }).disposed(by: disposeBag)
+    
+    App.instance.securityCenterViewModel.logoutSubject.subscribe(onNext: {
+      self.isLoggedIn = false
+    }).disposed(by: disposeBag)
   }
   
   func createWallet() {
     let words = try! wordsManager.generateWords()
     try! authManager.login(words: words)
     isLoggedIn = true
-  }
-  
-  func logout() {
-    cleanupManager.logout()
-    isLoggedIn = false
   }
 }

@@ -16,6 +16,9 @@ class App {
   var authManager: IAuthManager
   let cleanupManager: ICleanupManager
   
+  let securityCenterViewModel: SecurityCenterViewModel
+  
+  
   private init(words: [String]? = nil) {
     appConfigProvider = AppConfigProvider(words: words)
     
@@ -48,5 +51,7 @@ class App {
     authManager.relayerAdapterManager = relayerAdapterManager
     
     cleanupManager = CleanupManager(authManager: authManager, zrxKitManager: zrxKitManager)
+    
+    securityCenterViewModel = SecurityCenterViewModel(cleanupManager: cleanupManager)
   }
 }

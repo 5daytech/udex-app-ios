@@ -17,11 +17,6 @@ struct MainView: View {
               viewModel: BalanceViewModel()
             )
             .navigationBarTitle(Text("Balance"))
-            .navigationBarItems(leading: Button(action: {
-              self.viewModel.logout()
-            }){
-              Text("Logout")
-            })
           }
           .tabItem {
             Image("balance").renderingMode(.template)
@@ -43,12 +38,14 @@ struct MainView: View {
           .tabItem {
             Image("orders").renderingMode(.template)
           }
+          
+          SettingsView()
+          .tabItem {
+            Image("settings").renderingMode(.template)
+          }
         }
         .accentColor(Color("main"))
       } else {
-//        InputWordsView { (words) in
-//          self.viewModel.inputWords(words: words)
-//        }
         GuestView(restoreViewModel: viewModel.restoreViewModel!, onCreateWallet: {
           self.viewModel.createWallet()
         })

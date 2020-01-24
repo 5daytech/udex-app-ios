@@ -28,7 +28,6 @@ class AuthData {
       version = Int(separated[0], radix: 10)!
       words = separated[1].split(separator: wordsSeparator).map(String.init)
       walletId = separated[2]
-      print(separated[3].hexToBytes())
       seed = Data(hex: separated[3])
     } else {
       version = 1
@@ -48,7 +47,6 @@ class AuthData {
 
 extension AuthData: CustomStringConvertible {
   var description: String {
-    print("\(seed.makeBytes())")
     return ["\(version)", words.joined(separator: String(wordsSeparator)), walletId, seed.toRawHexString()].joined(separator: String(partsSeparator))
   }
 }
