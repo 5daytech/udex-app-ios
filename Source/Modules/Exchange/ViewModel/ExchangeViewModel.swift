@@ -132,7 +132,7 @@ class ExchangeViewModel: ObservableObject {
   }
   
   init() {
-    marketCodes = relayer.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) }
+    marketCodes = relayer?.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) } ?? []
     
     exchangeableCoins = coinManager.coins.filter { coin -> Bool in
       marketCodes.first { pair -> Bool in
@@ -287,7 +287,7 @@ class ExchangeViewModel: ObservableObject {
         side: orderSide,
         amount: estimatedReceiveAmount
       )
-      relayer.fill(fillData: fillData).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
+      relayer?.fill(fillData: fillData).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
         self.transactionHash = ethData.hex()
         self.viewState = .TRANSACTION_SENT
       }, onError: { (err) in
@@ -307,7 +307,7 @@ class ExchangeViewModel: ObservableObject {
         price: priceInfo
       )
       
-      relayer.createOrder(createData: orderData)
+      relayer?.createOrder(createData: orderData)
         .observeOn(MainScheduler.instance)
         .subscribe(onError: { (err) in
           self.errorMessage = "Something went wrong"
@@ -322,6 +322,7 @@ class ExchangeViewModel: ObservableObject {
   
   func updateReceiveAmount(updateView: Bool = true) {
     if isMarketOrder {
+      guard let relayer = relayer else { return }
       let currentMarket = currentMarketPosition
       if currentMarket < 0 { return }
       
@@ -344,6 +345,7 @@ class ExchangeViewModel: ObservableObject {
   }
   
   func updateSendAmount() {
+    guard let relayer = relayer else { return }
     let currentMarket = currentMarketPosition
     if currentMarket < 0 { return }
     

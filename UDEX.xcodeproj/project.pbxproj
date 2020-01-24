@@ -57,6 +57,10 @@
 		B53A7D0523C747210098A237 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7D0423C747210098A237 /* String+Extension.swift */; };
 		B53A7D1123C8963E0098A237 /* InputWordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7D1023C8963E0098A237 /* InputWordsView.swift */; };
 		B53A7D1323C8965D0098A237 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7D1223C8965D0098A237 /* MainViewModel.swift */; };
+		B54C34A823DAB18200BFABEB /* SecuredStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34A723DAB18200BFABEB /* SecuredStorage.swift */; };
+		B54C34AA23DADFF900BFABEB /* ICleanupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34A923DADFF900BFABEB /* ICleanupManager.swift */; };
+		B54C34AC23DAE02B00BFABEB /* CleanupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34AB23DAE02B00BFABEB /* CleanupManager.swift */; };
+		B54C34AE23DAE3C000BFABEB /* IEthereumKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34AD23DAE3C000BFABEB /* IEthereumKitManager.swift */; };
 		B54F65DB23CE175E008BD76C /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */; };
 		B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DC23CE191C008BD76C /* NumberUtils.swift */; };
 		B54F65E123CED25E008BD76C /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E023CED25E008BD76C /* NumberPad.swift */; };
@@ -67,6 +71,16 @@
 		B54F65EB23CF119A008BD76C /* TotalBalanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EA23CF119A008BD76C /* TotalBalanceInfo.swift */; };
 		B54F65ED23CF1346008BD76C /* RatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EC23CF1346008BD76C /* RatesManager.swift */; };
 		B54F65EF23CF191D008BD76C /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EE23CF191D008BD76C /* RefreshableView.swift */; };
+		B577871423D5BEDE0080F9E9 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871323D5BEDE0080F9E9 /* GuestView.swift */; };
+		B577871723D5C6210080F9E9 /* RestoreWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871623D5C6210080F9E9 /* RestoreWalletView.swift */; };
+		B577871923D5C7EF0080F9E9 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */; };
+		B577871B23D5CCCC0080F9E9 /* RestoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871A23D5CCCC0080F9E9 /* RestoreViewModel.swift */; };
+		B577871E23D6E09C0080F9E9 /* IAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871D23D6E09C0080F9E9 /* IAuthManager.swift */; };
+		B577872023D6E11B0080F9E9 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871F23D6E11B0080F9E9 /* AuthData.swift */; };
+		B577872223D6E7E70080F9E9 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577872123D6E7E70080F9E9 /* AuthManager.swift */; };
+		B577872523D6E86F0080F9E9 /* ISecuredStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577872423D6E86F0080F9E9 /* ISecuredStorage.swift */; };
+		B577872723D9894D0080F9E9 /* WordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577872623D9894D0080F9E9 /* WordsManager.swift */; };
+		B577872923D9895C0080F9E9 /* IWordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577872823D9895C0080F9E9 /* IWordsManager.swift */; };
 		B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */; };
 		B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */; };
 		B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */; };
@@ -164,6 +178,10 @@
 		B53A7D0623C879DD0098A237 /* zrxkit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = zrxkit.framework; path = UDEX/zrxkit.framework; sourceTree = "<group>"; };
 		B53A7D1023C8963E0098A237 /* InputWordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputWordsView.swift; sourceTree = "<group>"; };
 		B53A7D1223C8965D0098A237 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		B54C34A723DAB18200BFABEB /* SecuredStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredStorage.swift; sourceTree = "<group>"; };
+		B54C34A923DADFF900BFABEB /* ICleanupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICleanupManager.swift; sourceTree = "<group>"; };
+		B54C34AB23DAE02B00BFABEB /* CleanupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanupManager.swift; sourceTree = "<group>"; };
+		B54C34AD23DAE3C000BFABEB /* IEthereumKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEthereumKitManager.swift; sourceTree = "<group>"; };
 		B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
 		B54F65DC23CE191C008BD76C /* NumberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberUtils.swift; sourceTree = "<group>"; };
 		B54F65E023CED25E008BD76C /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
@@ -174,6 +192,16 @@
 		B54F65EA23CF119A008BD76C /* TotalBalanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalBalanceInfo.swift; sourceTree = "<group>"; };
 		B54F65EC23CF1346008BD76C /* RatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesManager.swift; sourceTree = "<group>"; };
 		B54F65EE23CF191D008BD76C /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
+		B577871323D5BEDE0080F9E9 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
+		B577871623D5C6210080F9E9 /* RestoreWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreWalletView.swift; sourceTree = "<group>"; };
+		B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
+		B577871A23D5CCCC0080F9E9 /* RestoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreViewModel.swift; sourceTree = "<group>"; };
+		B577871D23D6E09C0080F9E9 /* IAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAuthManager.swift; sourceTree = "<group>"; };
+		B577871F23D6E11B0080F9E9 /* AuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
+		B577872123D6E7E70080F9E9 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		B577872423D6E86F0080F9E9 /* ISecuredStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISecuredStorage.swift; sourceTree = "<group>"; };
+		B577872623D9894D0080F9E9 /* WordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsManager.swift; sourceTree = "<group>"; };
+		B577872823D9895C0080F9E9 /* IWordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWordsManager.swift; sourceTree = "<group>"; };
 		B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumBaseAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleError.swift; sourceTree = "<group>"; };
@@ -356,6 +384,7 @@
 		B533EBE723AB33EE00CD18CC /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B577872323D6E8580080F9E9 /* Security */,
 				B5CE202F23D0551E001F519E /* Storage */,
 				B5F0A42523CC2CCD00592A78 /* Views */,
 				B50C2F1E23B475D400CE7FBF /* Zrx */,
@@ -394,6 +423,7 @@
 				B59AE90E23B0A58000DF03C1 /* TransactionLockInfo.swift */,
 				B59AE91923B0A8A700DF03C1 /* Currency.swift */,
 				B54F65E423CF0A00008BD76C /* CoinBalance.swift */,
+				B577871F23D6E11B0080F9E9 /* AuthData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -435,6 +465,43 @@
 			path = InputWords;
 			sourceTree = "<group>";
 		};
+		B577871223D5BC520080F9E9 /* Guest */ = {
+			isa = PBXGroup;
+			children = (
+				B577871323D5BEDE0080F9E9 /* GuestView.swift */,
+			);
+			path = Guest;
+			sourceTree = "<group>";
+		};
+		B577871523D5C60F0080F9E9 /* Restore */ = {
+			isa = PBXGroup;
+			children = (
+				B577871623D5C6210080F9E9 /* RestoreWalletView.swift */,
+				B577871A23D5CCCC0080F9E9 /* RestoreViewModel.swift */,
+			);
+			path = Restore;
+			sourceTree = "<group>";
+		};
+		B577871C23D6E0420080F9E9 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				B577871D23D6E09C0080F9E9 /* IAuthManager.swift */,
+				B577872123D6E7E70080F9E9 /* AuthManager.swift */,
+				B577872623D9894D0080F9E9 /* WordsManager.swift */,
+				B577872823D9895C0080F9E9 /* IWordsManager.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		B577872323D6E8580080F9E9 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				B577872423D6E86F0080F9E9 /* ISecuredStorage.swift */,
+				B54C34A723DAB18200BFABEB /* SecuredStorage.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
 		B59AE8F823B08AA600DF03C1 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
@@ -461,6 +528,7 @@
 		B59AE91B23B0A8F100DF03C1 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B577871C23D6E0420080F9E9 /* Auth */,
 				B5347E5523CE0D6300A7B85E /* RatesConverter.swift */,
 				B59AE91C23B0A8FF00DF03C1 /* EthereumKitManager.swift */,
 				B59AE92123B0BCAE00DF03C1 /* IAdapterManager.swift */,
@@ -469,6 +537,9 @@
 				B50C2F2A23B4777900CE7FBF /* ICoinManager.swift */,
 				B54F65E823CF0BC8008BD76C /* IRatesManager.swift */,
 				B54F65EC23CF1346008BD76C /* RatesManager.swift */,
+				B54C34A923DADFF900BFABEB /* ICleanupManager.swift */,
+				B54C34AB23DAE02B00BFABEB /* CleanupManager.swift */,
+				B54C34AD23DAE3C000BFABEB /* IEthereumKitManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -556,6 +627,8 @@
 		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B577871523D5C60F0080F9E9 /* Restore */,
+				B577871223D5BC520080F9E9 /* Guest */,
 				B5F0A42C23CC315500592A78 /* Dialogs */,
 				B53A7D0F23C896260098A237 /* InputWords */,
 				B50C2F3023B4BB3800CE7FBF /* Exchange */,
@@ -613,6 +686,7 @@
 				B5F0A43823CC890800592A78 /* TransactionSentDialog.swift */,
 				B5F0A43A23CC90EB00592A78 /* ErrorDialog.swift */,
 				B54F65EE23CF191D008BD76C /* RefreshableView.swift */,
+				B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -750,6 +824,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B54C34AA23DADFF900BFABEB /* ICleanupManager.swift in Sources */,
 				B59AE90523B0A43F00DF03C1 /* TransactionRecord.swift in Sources */,
 				B59AE91D23B0A8FF00DF03C1 /* EthereumKitManager.swift in Sources */,
 				B59AE91623B0A78600DF03C1 /* AdapterFactory.swift in Sources */,
@@ -757,6 +832,7 @@
 				B5F0A42F23CC31A300592A78 /* ExchangeConfirmInfo.swift in Sources */,
 				B53A7CF323C5C8F10098A237 /* AllowanceChecker.swift in Sources */,
 				B5F0A42B23CC306900592A78 /* ExchangeConfirmView.swift in Sources */,
+				B577872223D6E7E70080F9E9 /* AuthManager.swift in Sources */,
 				B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */,
 				B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */,
 				B50C2F1D23B4752900CE7FBF /* ExchangePairViewItem.swift in Sources */,
@@ -765,6 +841,7 @@
 				B50C2F2D23B47C4000CE7FBF /* IRelayerAdapterManager.swift in Sources */,
 				B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */,
 				B50C2F3723B4BE3400CE7FBF /* ExchangeCoinView.swift in Sources */,
+				B54C34AE23DAE3C000BFABEB /* IEthereumKitManager.swift in Sources */,
 				B54F65E123CED25E008BD76C /* NumberPad.swift in Sources */,
 				B59AE91A23B0A8A700DF03C1 /* Currency.swift in Sources */,
 				B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */,
@@ -778,8 +855,12 @@
 				B53A7CED23C5C4840098A237 /* IExchangeInteractor.swift in Sources */,
 				B53A7CFD23C7405F0098A237 /* RelayerOrdersList.swift in Sources */,
 				B50C2F2B23B4777900CE7FBF /* ICoinManager.swift in Sources */,
+				B577871723D5C6210080F9E9 /* RestoreWalletView.swift in Sources */,
 				B59AE91423B0A76D00DF03C1 /* IAdapterFactory.swift in Sources */,
+				B577872723D9894D0080F9E9 /* WordsManager.swift in Sources */,
 				B59AE91123B0A6CF00DF03C1 /* Erc20Adapter.swift in Sources */,
+				B577871923D5C7EF0080F9E9 /* MultilineTextField.swift in Sources */,
+				B577871B23D5CCCC0080F9E9 /* RestoreViewModel.swift in Sources */,
 				B5F0A43723CC62D000592A78 /* ProgressBar.swift in Sources */,
 				B5DAE29623AA0C3300D6FBFA /* OrderViewItem.swift in Sources */,
 				B59AE90D23B0A53200DF03C1 /* ITransactionsAdapter.swift in Sources */,
@@ -795,7 +876,9 @@
 				B53A7CF523C5C9000098A237 /* IAllowanceChecker.swift in Sources */,
 				B53A7D0123C7452D0098A237 /* OrdersUtil.swift in Sources */,
 				B53A7CFF23C744060098A237 /* FillResult.swift in Sources */,
+				B577871423D5BEDE0080F9E9 /* GuestView.swift in Sources */,
 				B54F65E323CF04C9008BD76C /* Appearance.swift in Sources */,
+				B577872523D6E86F0080F9E9 /* ISecuredStorage.swift in Sources */,
 				B53A7CFB23C73EED0098A237 /* RelayerOrders.swift in Sources */,
 				B52C4A2023C32168004C1AAE /* ExchangeViewState.swift in Sources */,
 				B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */,
@@ -813,6 +896,7 @@
 				B533EBF123AB3FBF00CD18CC /* Coin.swift in Sources */,
 				B59AE90123B0A35D00DF03C1 /* ConnectionError.swift in Sources */,
 				B53A7D1323C8965D0098A237 /* MainViewModel.swift in Sources */,
+				B577871E23D6E09C0080F9E9 /* IAuthManager.swift in Sources */,
 				B5F0A43123CC38F600592A78 /* ExchangeConfirmViewModel.swift in Sources */,
 				B5DAE29C23AA0DB700D6FBFA /* OrderBookRow.swift in Sources */,
 				B5F0A43523CC622500592A78 /* ProcessingDialog.swift in Sources */,
@@ -834,15 +918,19 @@
 				B52C4A1A23B5FAB2004C1AAE /* ExchangeInputView.swift in Sources */,
 				B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */,
 				B54F65E923CF0BC8008BD76C /* IRatesManager.swift in Sources */,
+				B577872923D9895C0080F9E9 /* IWordsManager.swift in Sources */,
 				B50C2F1923B3818E00CE7FBF /* ZrxKitManager.swift in Sources */,
 				B50C2F3A23B4C56000CE7FBF /* ExchangeCoinViewItem.swift in Sources */,
 				B54F65EF23CF191D008BD76C /* RefreshableView.swift in Sources */,
 				B5F0A43923CC890800592A78 /* TransactionSentDialog.swift in Sources */,
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
+				B577872023D6E11B0080F9E9 /* AuthData.swift in Sources */,
 				B59AE92223B0BCAE00DF03C1 /* IAdapterManager.swift in Sources */,
+				B54C34AC23DAE02B00BFABEB /* CleanupManager.swift in Sources */,
 				B53A7D1123C8963E0098A237 /* InputWordsView.swift in Sources */,
 				B52C4A1323B5B7BD004C1AAE /* ExchangeViewModel.swift in Sources */,
+				B54C34A823DAB18200BFABEB /* SecuredStorage.swift in Sources */,
 				B59AE91823B0A87200DF03C1 /* IAppConfigProvider.swift in Sources */,
 				B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */,
 			);

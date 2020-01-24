@@ -3,10 +3,12 @@ import RxSwift
 
 class CoinManager {
   private let subject = PublishSubject<Void>()
-  private let _coins: [Coin]
+  private var _coins: [Coin]
   private let baseCoins = ["BTC", "ETH"]
+  private let appConfigProvider: IAppConfigProvider
   
   init(appConfigProvider: IAppConfigProvider) {
+    self.appConfigProvider = appConfigProvider
     _coins = appConfigProvider.coins
     self.subject.onNext(())
   }
@@ -19,6 +21,10 @@ extension CoinManager: ICoinManager {
   
   var coinsUpdateSubject: Observable<Void> {
     return subject.asObserver()
+  }
+  
+  func enableDefaultCoins() {
+    _coins = appConfigProvider.coins
   }
   
   func getErcCoinForAddress(address: String) -> Coin? {
@@ -59,4 +65,7 @@ extension CoinManager: ICoinManager {
     }
   }
   
+  func clear() {
+    _coins = []
+  }
 }

@@ -118,12 +118,12 @@ class BaseRelayerAdapter: IRelayerAdapter {
           left.order.salt > right.order.salt
         })
         
-        self.myOrdersSubject.onNext(self.myOrders.map { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .BUY, isMine: true) })
+        self.myOrdersSubject.onNext(self.myOrders.compactMap { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .BUY, isMine: true) })
         
         self.exchangeInteractor.ordersInfo(orders: self.myOrders.map { $0.order })
           .subscribe(onNext: { (ordersInfo) in
             self.myOrdersInfo = ordersInfo
-            self.myOrdersSubject.onNext(self.myOrders.map { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .BUY, isMine: true) })
+            self.myOrdersSubject.onNext(self.myOrders.compactMap { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .BUY, isMine: true) })
           }).disposed(by: self.disposeBag)
       }).disposed(by: disposeBag)
     
@@ -141,8 +141,8 @@ class BaseRelayerAdapter: IRelayerAdapter {
   }
   
   private func updateOrders() {
-    buyOrdersSubject.onNext(buyOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.map { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .BUY) })
-    sellOrdersSubject.onNext(sellOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.map { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .SELL) })
+    buyOrdersSubject.onNext(buyOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.compactMap { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .BUY) })
+    sellOrdersSubject.onNext(sellOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.compactMap { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .SELL) })
   }
   
   func createOrder(createData: CreateOrderData) -> Observable<SignedOrder> {
@@ -170,7 +170,7 @@ class BaseRelayerAdapter: IRelayerAdapter {
     var requestedAmount = amount
     var fillAmount: Decimal = 0
     
-    let sortedOrders = orders.map { OrdersUtil.normalizeOrderDataPrice(orderRecord: $0, isSellPrice: false) }.sorted { side == .BUY ? $0.price > $1.price : $0.price < $1.price }
+    let sortedOrders = orders.compactMap { OrdersUtil.normalizeOrderDataPrice(orderRecord: $0, isSellPrice: false) }.sorted { side == .BUY ? $0.price > $1.price : $0.price < $1.price }
     
     for normalizedOrder in sortedOrders {      
       if requestedAmount != 0 {
@@ -222,7 +222,7 @@ class BaseRelayerAdapter: IRelayerAdapter {
     var requestedAmount = amount
     var fillAmount: Decimal = 0
     
-    let sortedOrders = orders.map { OrdersUtil.normalizeOrderDataPrice(orderRecord: $0) }.sorted { side == .BUY ? $0.price > $1.price : $0.price < $1.price }
+    let sortedOrders = orders.compactMap { OrdersUtil.normalizeOrderDataPrice(orderRecord: $0) }.sorted { side == .BUY ? $0.price > $1.price : $0.price < $1.price }
     
     for orderData in sortedOrders {
       if requestedAmount != 0 {

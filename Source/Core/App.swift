@@ -12,38 +12,41 @@ class App {
   let relayerAdapterManager: IRelayerAdapterManager
   let ratesManager: IRatesManager
   let ratesConverter: RatesConverter
+  let wordsManager: IWordsManager
+  var authManager: IAuthManager
+  let cleanupManager: ICleanupManager
   
   private init(words: [String]? = nil) {
     appConfigProvider = AppConfigProvider(words: words)
     
     let ethereumKitManager = EthereumKitManager(appConfigProvider: appConfigProvider)
     
-    let ethereumKit = try! ethereumKitManager.ethereumKit(words: appConfigProvider.defaultWords())
+    coinManager = CoinManager(appConfigProvider: appConfigProvider)
     
-    
-    let words = appConfigProvider.defaultWords()
+    let securedStorage = SecuredStorage()
+    authManager = AuthManager(securedStorage: securedStorage, coinManager: coinManager)
+    wordsManager = WordsManager()
     
     let adapterFactory: IAdapterFactory = AdapterFactory(appConfigProvider: appConfigProvider, ethereumKitManager: ethereumKitManager)
-    
-    coinManager = CoinManager(appConfigProvider: appConfigProvider)
     
     ratesManager = RatesManager(coinManager: coinManager)
     ratesConverter = RatesConverter(ratesManager: ratesManager)
 
-    adapterManager = AdapterManager(coinManager: coinManager, adapterFactory: adapterFactory, ethereumKitManager: ethereumKitManager, words: words)
+    adapterManager = AdapterManager(coinManager: coinManager, adapterFactory: adapterFactory, ethereumKitManager: ethereumKitManager, authManager: authManager)
+    authManager.adapterManager = adapterManager
     
-    zrxKitManager = ZrxKitManager(appConfigProvider: appConfigProvider)
+    zrxKitManager = ZrxKitManager(appConfigProvider: appConfigProvider, authManager: authManager)
     
     relayerAdapterManager = RelayerAdapterManager(
-      zrxkit: zrxKitManager.zrxkit,
-      ethereumKit: ethereumKit,
+      zrxKitManager: zrxKitManager,
+      ethereumKitManager: ethereumKitManager,
       coinManager: coinManager,
       ratesConverter: ratesConverter,
-      appConfiguration: appConfigProvider
+      appConfiguration: appConfigProvider,
+      authManager: authManager
     )
-  }
-  
-  static func reinit(words: [String]) {
-    instance = App(words: words)
+    authManager.relayerAdapterManager = relayerAdapterManager
+    
+    cleanupManager = CleanupManager(authManager: authManager, zrxKitManager: zrxKitManager)
   }
 }

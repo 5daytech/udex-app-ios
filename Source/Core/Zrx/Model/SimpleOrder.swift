@@ -19,8 +19,10 @@ struct SimpleOrder: Identifiable {
   let status: String
   let filledAmount: Decimal
   
-  static func fromOrder(ratesConverter: RatesConverter, orderRecord: OrderRecord, side: EOrderSide, orderInfo: OrderInfo? = nil, isMine: Bool = false) -> SimpleOrder {
-    let normalizedData = OrdersUtil.normalizeOrderDataPrice(orderRecord: orderRecord)
+  static func fromOrder(ratesConverter: RatesConverter, orderRecord: OrderRecord, side: EOrderSide, orderInfo: OrderInfo? = nil, isMine: Bool = false) -> SimpleOrder? {
+    guard let normalizedData = OrdersUtil.normalizeOrderDataPrice(orderRecord: orderRecord) else {
+      return nil
+    }
     
     let status = orderInfo?.orderStatus != nil ? "\(orderInfo!.orderStatus)" : "unknown"
     

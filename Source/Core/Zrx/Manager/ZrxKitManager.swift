@@ -2,10 +2,11 @@ import zrxkit
 import HSHDWalletKit
 import BigInt
 
-class ZrxKitManager: IZrxKitManager {
+class ZrxKitManager: IZrxKitManager {  
+  private var kit: ZrxKit?
+  private let authManager: IAuthManager
+  private let appConfiguration: IAppConfigProvider
   
-  let zrxkit: ZrxKit
-  let zrxExchange: IZrxExchange
   
   static func getContractGasProvider() -> ContractGasProvider {
     class ContractGasProviderImpl: ContractGasProvider {
@@ -38,13 +39,27 @@ class ZrxKitManager: IZrxKitManager {
     return ContractGasProviderImpl()
   }
   
-  init(appConfigProvider: IAppConfigProvider) {
-    let seed = Mnemonic.seed(mnemonic: appConfigProvider.defaultWords())
-    let coinType: UInt32 = 60
-    let hdWallet = HDWallet(seed: seed, coinType: coinType, xPrivKey: 0, xPubKey: 0)
-    let privateKey = try! hdWallet.privateKey(account: 0, index: 0, chain: .external).raw
+  init(appConfigProvider: IAppConfigProvider, authManager: IAuthManager) {
+    self.appConfiguration = appConfigProvider
+    self.authManager = authManager
+  }
+  
+  func zrxKit() -> ZrxKit {
+    if kit != nil {
+      return kit!
+    }
     
-    zrxkit = ZrxKit.getInstance(relayers: appConfigProvider.relayers, privateKey: privateKey, infuraKey: appConfigProvider.infuraCredentials.secret, networkType: appConfigProvider.zrxNetwork, gasInfoProvider: ZrxKitManager.getContractGasProvider())
-    zrxExchange = zrxkit.getExchangeInstance()
+    kit = ZrxKit.getInstance(
+      relayers: appConfiguration.relayers,
+      privateKey: authManager.authData!.privateKey,
+      infuraKey: appConfiguration.infuraCredentials.secret,
+      networkType: appConfiguration.zrxNetwork,
+      gasInfoProvider: ZrxKitManager.getContractGasProvider()
+    )
+    return kit!
+  }
+  
+  func unlink() {
+    kit = nil
   }
 }

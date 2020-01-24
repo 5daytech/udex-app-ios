@@ -6,23 +6,26 @@ class AdapterManager {
   private let adapterFactory: IAdapterFactory
   private let ethereumKitManager: EthereumKitManager
   private let coinManager: ICoinManager
-  private let words: [String]
+  private let authManager: IAuthManager
   
   
   private let subject = PublishSubject<Void>()
   
-  private let queue = DispatchQueue(label: "fridaytech.udex.adapter_manager", qos: .userInitiated)
   private var adapters = [Coin: IAdapter]()
   
-  init(coinManager: ICoinManager, adapterFactory: IAdapterFactory, ethereumKitManager: EthereumKitManager, words: [String]) {
+  init(coinManager: ICoinManager, adapterFactory: IAdapterFactory, ethereumKitManager: EthereumKitManager, authManager: IAuthManager) {
     self.coinManager = coinManager
     self.adapterFactory = adapterFactory
     self.ethereumKitManager = ethereumKitManager
-    self.words = words
+    self.authManager = authManager
     
 //    coinManager.coinsUpdateSubject.subscribe(onNext: {
 //      self.initAdapters()
 //    }).disposed(by: disposeBag)
+    
+    authManager.authDataSubject.subscribe(onNext: {
+      self.initAdapters()
+    }).disposed(by: disposeBag)
     
     initAdapters()
     
@@ -34,13 +37,15 @@ class AdapterManager {
   }
   
   private func initAdapters() {
-    var newAdapters = adapters
+    var newAdapters: [Coin : IAdapter] = [:]
     
-    coinManager.coins.forEach { coin in
-      if newAdapters[coin] == nil {
-        if let adapter = adapterFactory.adapter(coin: coin, words: words) {
-          newAdapters[coin] = adapter
-          adapter.start()
+    if let data = authManager.authData {
+      coinManager.coins.forEach { coin in
+        if newAdapters[coin] == nil {
+          if let adapter = adapterFactory.adapter(coin: coin, authData: data) {
+            newAdapters[coin] = adapter
+            adapter.start()
+          }
         }
       }
     }
@@ -56,10 +61,10 @@ class AdapterManager {
     
     
     
-    queue.async {
-      self.adapters = newAdapters
-      self.subject.onNext(())
-    }
+    
+    adapters = newAdapters
+    subject.onNext(())
+    
     
     removedAdapters.forEach { adapter in
       adapter.stop()
@@ -70,33 +75,38 @@ class AdapterManager {
 
 extension AdapterManager: IAdapterManager {
   var adaptersUpdatedSignal: Observable<Void> {
-    queue.sync { subject.asObservable() }
+    subject.asObservable()
   }
   
   var balanceAdapters: [IBalanceAdapter] {    
-    queue.sync { adapters.values.map { $0 as! IBalanceAdapter } }
+    adapters.values.map { $0 as! IBalanceAdapter }
   }
   
   func adapter(for coin: Coin) -> IAdapter? {
-    queue.sync { adapters[coin] }
+    adapters[coin]
   }
   
   func balanceAdapter(for coin: Coin) -> IBalanceAdapter? {
-    queue.sync { adapters[coin] as? IBalanceAdapter }
+    adapters[coin] as? IBalanceAdapter
   }
   
   func transactionsAdapter(for coin: Coin) -> ITransactionsAdapter? {
-    queue.sync { adapters[coin] as? ITransactionsAdapter }
+    adapters[coin] as? ITransactionsAdapter
   }
   
   func refresh() {
-    queue.async {
-      for adapter in self.adapters.values {
-        adapter.refresh()
-      }
+    for adapter in self.adapters.values {
+      adapter.refresh()
     }
     
     ethereumKitManager.refresh()
   }
   
+  func stopKits() {
+    adapters.values.forEach { (adapter) in
+      adapter.stop()
+    }
+    adapters = [:]
+    subject.onNext(())
+  }
 }

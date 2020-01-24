@@ -2,11 +2,15 @@ import SwiftUI
 
 struct MainView: View {
   
-  @ObservedObject var viewModel: MainViewModel
+  @ObservedObject var viewModel = MainViewModel(
+    wordsManager: App.instance.wordsManager,
+    authManager: App.instance.authManager,
+    cleanupManager: App.instance.cleanupManager
+  )
   
   var body: some View {
     VStack {
-      if viewModel.isWordsSaved {
+      if viewModel.isLoggedIn {
         TabView {          
           NavigationView {
             BalanceView(
@@ -24,7 +28,7 @@ struct MainView: View {
           }
           
           OrdersBookView(
-            viewModel: viewModel.ordersViewModel
+            viewModel: viewModel.ordersViewModel!
           )
           .tabItem {
             Image("markets").renderingMode(.template)
@@ -35,23 +39,18 @@ struct MainView: View {
             Image("exchange").renderingMode(.template)
           }
           
-          OrdersView(viewModel: viewModel.ordersViewModel)
+          OrdersView(viewModel: viewModel.ordersViewModel!)
           .tabItem {
             Image("orders").renderingMode(.template)
           }
         }
         .accentColor(Color("main"))
       } else {
-        InputWordsView { (words) in
-          self.viewModel.inputWords(words: words)
-        }
+//        InputWordsView { (words) in
+//          self.viewModel.inputWords(words: words)
+//        }
+        GuestView(restoreViewModel: viewModel.restoreViewModel!)
       }
     }
-  }
-}
-
-struct MainView_Previews: PreviewProvider {
-  static var previews: some View {
-    MainView(viewModel: MainViewModel())
   }
 }

@@ -7,14 +7,14 @@ class AdapterFactory: IAdapterFactory {
         self.ethereumKitManager = ethereumKitManager
     }
 
-  func adapter(coin: Coin, words: [String]) -> IAdapter? {
+  func adapter(coin: Coin, authData: AuthData) -> IAdapter? {
         switch coin.type {
         case .ethereum:
-            if let ethereumKit = try? ethereumKitManager.ethereumKit(words: words) {
+          if let ethereumKit = try? ethereumKitManager.ethereumKit(authData: authData) {
                 return EthereumAdapter(ethereumKit: ethereumKit)
             }
         case let .erc20(address, fee, gasLimit, minimumRequiredBalance, minimumSpendableAmount):
-            if let ethereumKit = try? ethereumKitManager.ethereumKit(words: words) {
+            if let ethereumKit = try? ethereumKitManager.ethereumKit(authData: authData) {
                 return try? Erc20Adapter(ethereumKit: ethereumKit, contractAddress: address, decimal: coin.decimal, fee: fee, gasLimit: gasLimit, minimumRequiredBalance: minimumRequiredBalance, minimumSpendableAmount: minimumSpendableAmount)
             }
         }

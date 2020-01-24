@@ -7,4 +7,6 @@ protocol IAdapterManager: class {
   func balanceAdapter(for coin: Coin) -> IBalanceAdapter?
   func transactionsAdapter(for coin: Coin) -> ITransactionsAdapter?
   func refresh()
+  
+  func stopKits()
 }

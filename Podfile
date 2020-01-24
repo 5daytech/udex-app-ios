@@ -9,5 +9,5 @@ target 'UDEX' do
   pod 'zrxkit', :path => '~/WORK/DAO/zrxkit'
   pod 'EthereumKit.swift', '0.8'
   pod 'Erc20Kit.swift', '0.8'
-  pod 'XRatesKit.swift'
+  pod 'XRatesKit.swift', '0.4.1'
 end

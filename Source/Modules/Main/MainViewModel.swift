@@ -1,33 +1,32 @@
 import Foundation
+import RxSwift
 
 class MainViewModel: ObservableObject {
+  private let disposeBag = DisposeBag()
+  @Published var isLoggedIn: Bool
   
-  @Published var isWordsSaved: Bool
+  var ordersViewModel: OrdersViewModel?
+  var restoreViewModel: RestoreViewModel?
+  private let cleanupManager: ICleanupManager
   
-  var ordersViewModel: OrdersViewModel
-  
-  init() {
-    if let words = UserDefaults.standard.string(forKey: "words") {
-      isWordsSaved = true
-      App.reinit(words: words.split(separator: " ").map(String.init))
-    } else {
-      isWordsSaved = false
+  init(wordsManager: IWordsManager, authManager: IAuthManager, cleanupManager: ICleanupManager) {
+    self.cleanupManager = cleanupManager
+    isLoggedIn = authManager.isLoggedIn
+    
+    if authManager.isLoggedIn {
+      try! authManager.safeLoad()
+      self.ordersViewModel = OrdersViewModel(relayerAdapter: App.instance.relayerAdapterManager.mainRelayer!)
     }
     
-    ordersViewModel = OrdersViewModel(relayerAdapter: App.instance.relayerAdapterManager.mainRelayer)
-  }
-  
-  func inputWords(words: String) {
-    let separated = words.split(separator: " ").map(String.init)
-    if separated.count == 12 {
-      UserDefaults.standard.set(words, forKey: "words")
-      App.reinit(words: separated)
-      isWordsSaved = true
-    }
+    restoreViewModel = RestoreViewModel(wordsManager: wordsManager, authManager: authManager)
+    restoreViewModel?.onAuth.subscribe(onNext: {
+      self.ordersViewModel = OrdersViewModel(relayerAdapter: App.instance.relayerAdapterManager.mainRelayer!)
+      self.isLoggedIn = true
+    }).disposed(by: disposeBag)
   }
   
   func logout() {
-    UserDefaults.standard.removeObject(forKey: "words")
-    isWordsSaved = false
+    cleanupManager.logout()
+    isLoggedIn = false
   }
 }

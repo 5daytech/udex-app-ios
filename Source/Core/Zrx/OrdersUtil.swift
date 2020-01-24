@@ -8,9 +8,9 @@ class OrdersUtil {
     coinManager.getCoin(code: coinCode)
   }
   
-  static func normalizeOrderDataPrice(orderRecord: OrderRecord, isSellPrice: Bool = true) -> NormalizedOrderData {
-    let makerCoin = coinManager.getErcCoinForAddress(address: EAssetProxyId.ERC20.decode(asset: orderRecord.order.makerAssetData))!
-    let takerCoin = coinManager.getErcCoinForAddress(address: EAssetProxyId.ERC20.decode(asset: orderRecord.order.takerAssetData))!
+  static func normalizeOrderDataPrice(orderRecord: OrderRecord, isSellPrice: Bool = true) -> NormalizedOrderData? {
+    guard let makerCoin = coinManager.getErcCoinForAddress(address: EAssetProxyId.ERC20.decode(asset: orderRecord.order.makerAssetData)) else { return nil }
+    guard let takerCoin = coinManager.getErcCoinForAddress(address: EAssetProxyId.ERC20.decode(asset: orderRecord.order.takerAssetData)) else { return nil }
     
     let makerAmount = orderRecord.order.makerAssetAmount.normalizeToDecimal(decimal: -makerCoin.decimal)
     let takerAmount = orderRecord.order.takerAssetAmount.normalizeToDecimal(decimal: -takerCoin.decimal)

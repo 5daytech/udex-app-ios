@@ -1,3 +1,3 @@
 protocol IAdapterFactory {
-  func adapter(coin: Coin, words: [String]) -> IAdapter?
+  func adapter(coin: Coin, authData: AuthData) -> IAdapter?
 }

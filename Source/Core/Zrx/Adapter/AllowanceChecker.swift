@@ -5,11 +5,11 @@ import RxSwift
 import BigInt
 
 class AllowanceChecker: IAllowanceChecker {
-  let zrxkit: ZrxKit
+  let zrxKit: ZrxKit
   let ethereumKit: EthereumKit.Kit
   
-  init(zrxkit: ZrxKit, ethereumKit: EthereumKit.Kit) {
-    self.zrxkit = zrxkit
+  init(zrxKit: ZrxKit, ethereumKit: EthereumKit.Kit) {
+    self.zrxKit = zrxKit
     self.ethereumKit = ethereumKit
   }
   
@@ -22,7 +22,7 @@ class AllowanceChecker: IAllowanceChecker {
   }
   
   private func checkAndUnlockTokenAddress(address: String) -> Observable<Bool> {
-    let coinWrapper = zrxkit.getErc20ProxyInstance(tokenAddress: address)
+    let coinWrapper = zrxKit.getErc20ProxyInstance(tokenAddress: address)
     
     return coinWrapper.proxyAllowance(ethereumKit.receiveAddress).flatMap { (allowance) -> Observable<Bool> in
       if allowance > BigUInt.zero {

@@ -3,42 +3,44 @@ import EthereumKit
 import Erc20Kit
 import HSHDWalletKit
 
-class EthereumKitManager {
+class EthereumKitManager: IEthereumKitManager {  
   let disposeBag = DisposeBag()
   
   private let appConfigProvider: IAppConfigProvider
-  private var ethereumKit: EthereumKit.Kit?
+  private var kit: EthereumKit.Kit?
   
   init(appConfigProvider: IAppConfigProvider) {
     self.appConfigProvider = appConfigProvider
   }
   
-  func ethereumKit(words: [String]) throws -> EthereumKit.Kit {
-    if let ethereumKit = self.ethereumKit {
+  func ethereumKit(authData: AuthData) throws -> EthereumKit.Kit {
+    if let ethereumKit = self.kit {
       return ethereumKit
     }
     
-    let hdWallet = HDWallet(seed: Mnemonic.seed(mnemonic: words), coinType: 60, xPrivKey: 0, xPubKey: 0)
-    let privateKey = try hdWallet.privateKey(account: 0, index: 0, chain: .external).raw
-    
-    ethereumKit = try EthereumKit.Kit.instance(
-      privateKey: privateKey,
+    kit = try EthereumKit.Kit.instance(
+      privateKey: authData.privateKey,
       syncMode: .api,
       networkType: appConfigProvider.testMode ? .ropsten : .mainNet,
       infuraCredentials: appConfigProvider.infuraCredentials,
       etherscanApiKey: appConfigProvider.etherscanKey,
-      walletId: "default"
+      walletId: authData.walletId
     )
     
-    ethereumKit?.start()
-    return ethereumKit!
+    kit?.start()
+    return kit!
   }
   
   var statusInfo: [(String, Any)]? {
-    ethereumKit?.statusInfo()
+    kit?.statusInfo()
   }
   
   func refresh() {
-    ethereumKit?.refresh()
+    kit?.refresh()
+  }
+  
+  func unlink() {
+    kit?.stop()
+    kit = nil
   }
 }
