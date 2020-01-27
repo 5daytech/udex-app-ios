@@ -33,18 +33,12 @@ class ExchangeViewModel: ObservableObject {
   @Published var sendCoinsPair: ExchangePairsInfo? = nil
   @Published var receiveCoinsPair: ExchangePairsInfo? = nil
   
-  @Published var isMarketOrder: Bool = true {
-    didSet {
-      baseInputText = nil
-      quoteInputText = nil
-      if isMarketOrder {
-        inputFieldReceiveAmount = nil
-      } else {
-        inputFieldReceiveAmount = "-\(receiveCoinsPair?.selectedCoin?.code ?? "")"
-      }
-      
-    }
+  @Published var isMarketOrder: Bool
+  
+  var mainButtonTitle: String {
+    isMarketOrder ? "EXCHANGE" : "PLACE ORDER"
   }
+  
   @Published var inputFieldReceiveAmount: String? = nil
   
   var transactionHash: String = ""
@@ -131,7 +125,16 @@ class ExchangeViewModel: ObservableObject {
     } ?? -1
   }
   
-  init() {
+  init(isMarketOrder: Bool) {
+    
+    self.isMarketOrder = isMarketOrder
+    
+    if isMarketOrder {
+      inputFieldReceiveAmount = nil
+    } else {
+      inputFieldReceiveAmount = "-\(receiveCoinsPair?.selectedCoin?.code ?? "")"
+    }
+    
     marketCodes = relayer?.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) } ?? []
     
     exchangeableCoins = coinManager.coins.filter { coin -> Bool in

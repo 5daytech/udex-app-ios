@@ -22,16 +22,20 @@ struct MainView: View {
             Image("balance").renderingMode(.template)
           }
           
-          OrdersBookView(
-            viewModel: viewModel.ordersViewModel!
-          )
-          .tabItem {
-            Image("markets").renderingMode(.template)
+          NavigationView {
+            ExchangeView(viewModel: ExchangeViewModel(isMarketOrder: false))
+            .navigationBarTitle("Limit order")
           }
-          
-          ExchangeView(viewModel: ExchangeViewModel())
           .tabItem {
             Image("exchange").renderingMode(.template)
+          }
+          
+          NavigationView {
+            ExchangeView(viewModel: ExchangeViewModel(isMarketOrder: true))
+            .navigationBarTitle("Swap")
+          }
+          .tabItem {
+            Image("swap").renderingMode(.template)
           }
           
           OrdersView(viewModel: viewModel.ordersViewModel!)

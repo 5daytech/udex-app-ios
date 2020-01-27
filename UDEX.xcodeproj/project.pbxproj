@@ -48,7 +48,6 @@
 		B53A7CF123C5C5E90098A237 /* ExchangeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CF023C5C5E90098A237 /* ExchangeInteractor.swift */; };
 		B53A7CF323C5C8F10098A237 /* AllowanceChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CF223C5C8F10098A237 /* AllowanceChecker.swift */; };
 		B53A7CF523C5C9000098A237 /* IAllowanceChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CF423C5C9000098A237 /* IAllowanceChecker.swift */; };
-		B53A7CF723C722040098A237 /* IExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CF623C722040098A237 /* IExchangeViewModel.swift */; };
 		B53A7CFB23C73EED0098A237 /* RelayerOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CFA23C73EED0098A237 /* RelayerOrders.swift */; };
 		B53A7CFD23C7405F0098A237 /* RelayerOrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CFC23C7405F0098A237 /* RelayerOrdersList.swift */; };
 		B53A7CFF23C744060098A237 /* FillResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53A7CFE23C744060098A237 /* FillResult.swift */; };
@@ -67,6 +66,7 @@
 		B54C34BC23DB09D500BFABEB /* ShowKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34BB23DB09D500BFABEB /* ShowKeyView.swift */; };
 		B54C34BE23DB11E100BFABEB /* BackupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34BD23DB11E100BFABEB /* BackupView.swift */; };
 		B54C34C023DB129400BFABEB /* BackupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34BF23DB129400BFABEB /* BackupViewModel.swift */; };
+		B54C34C523DE9C6100BFABEB /* IExchangeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34C423DE9C6100BFABEB /* IExchangeViewModel.swift */; };
 		B54F65DB23CE175E008BD76C /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */; };
 		B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DC23CE191C008BD76C /* NumberUtils.swift */; };
 		B54F65E123CED25E008BD76C /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E023CED25E008BD76C /* NumberPad.swift */; };
@@ -174,7 +174,6 @@
 		B53A7CF023C5C5E90098A237 /* ExchangeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeInteractor.swift; sourceTree = "<group>"; };
 		B53A7CF223C5C8F10098A237 /* AllowanceChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllowanceChecker.swift; sourceTree = "<group>"; };
 		B53A7CF423C5C9000098A237 /* IAllowanceChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAllowanceChecker.swift; sourceTree = "<group>"; };
-		B53A7CF623C722040098A237 /* IExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangeViewModel.swift; sourceTree = "<group>"; };
 		B53A7CFA23C73EED0098A237 /* RelayerOrders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayerOrders.swift; sourceTree = "<group>"; };
 		B53A7CFC23C7405F0098A237 /* RelayerOrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayerOrdersList.swift; sourceTree = "<group>"; };
 		B53A7CFE23C744060098A237 /* FillResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillResult.swift; sourceTree = "<group>"; };
@@ -194,6 +193,7 @@
 		B54C34BB23DB09D500BFABEB /* ShowKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowKeyView.swift; sourceTree = "<group>"; };
 		B54C34BD23DB11E100BFABEB /* BackupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupView.swift; sourceTree = "<group>"; };
 		B54C34BF23DB129400BFABEB /* BackupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupViewModel.swift; sourceTree = "<group>"; };
+		B54C34C423DE9C6100BFABEB /* IExchangeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangeViewModel.swift; sourceTree = "<group>"; };
 		B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
 		B54F65DC23CE191C008BD76C /* NumberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberUtils.swift; sourceTree = "<group>"; };
 		B54F65E023CED25E008BD76C /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
@@ -388,7 +388,7 @@
 			isa = PBXGroup;
 			children = (
 				B52C4A1223B5B7BD004C1AAE /* ExchangeViewModel.swift */,
-				B53A7CF623C722040098A237 /* IExchangeViewModel.swift */,
+				B54C34C423DE9C6100BFABEB /* IExchangeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -895,6 +895,7 @@
 				B54F65E723CF0B53008BD76C /* BalanceLoader.swift in Sources */,
 				B50C2F2F23B47C6100CE7FBF /* RelayerAdapterManager.swift in Sources */,
 				B52C4A1E23B9BA74004C1AAE /* ExchangePairsInfo.swift in Sources */,
+				B54C34C523DE9C6100BFABEB /* IExchangeViewModel.swift in Sources */,
 				B5347E5423CE0C5900A7B85E /* SimpleOrder.swift in Sources */,
 				B54F65EB23CF119A008BD76C /* TotalBalanceInfo.swift in Sources */,
 				B533EBFB23AC8E2700CD18CC /* BalanceView.swift in Sources */,
@@ -917,7 +918,6 @@
 				B59AE90B23B0A4EB00DF03C1 /* ISendEthereumAdapter.swift in Sources */,
 				B50C2F2623B4772900CE7FBF /* IRelayerAdapter.swift in Sources */,
 				B54C34B123DAF10200BFABEB /* SettingsView.swift in Sources */,
-				B53A7CF723C722040098A237 /* IExchangeViewModel.swift in Sources */,
 				B50C2F1B23B4729A00CE7FBF /* CoinManager.swift in Sources */,
 				B50C2F1723B2191500CE7FBF /* BalanceViewItem.swift in Sources */,
 				B53A7CF123C5C5E90098A237 /* ExchangeInteractor.swift in Sources */,

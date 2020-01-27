@@ -110,7 +110,7 @@ struct NumberPad: View {
         self.onMainPressed()
       }) {
         Spacer()
-        Text("EXCHANGE")
+        Text(mainTitle)
           .font(.system(size: 18, weight: .bold))
           .foregroundColor(Color("background"))
           .padding([.top, .bottom], 16)

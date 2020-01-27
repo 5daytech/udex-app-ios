@@ -19,29 +19,7 @@ struct ExchangeView: View {
     GeometryReader { geometry in
       ZStack(alignment: .trailing) {
         VStack {
-          // Market/Limit buttons
-          HStack {
-            Spacer()
-            Button(action: {
-              self.viewModel.isMarketOrder = true
-            }) {
-              Text("MARKET")
-              .font(.system(size: 20, weight: .bold))
-            }
-            .foregroundColor(self.viewModel.isMarketOrder ? Color("main") : .gray)
-            
-            Button(action: {
-              self.viewModel.isMarketOrder = false
-            }) {
-              Text("LIMIT")
-              .font(.system(size: 20, weight: .bold))
-            }
-            .foregroundColor(self.viewModel.isMarketOrder ? .gray : Color("main"))
-            Spacer()
-          }
-          .padding(.top, self.topPadding)
           // Input fields
-          
           VStack {
             HStack {
               ExchangeInputView(text: self.viewModel.baseInputText, onTap: self.onBaseInputTap, isPipeShowing: self.viewModel.isBaseEditing, receiveAmount: nil)
@@ -71,7 +49,7 @@ struct ExchangeView: View {
           .padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
           Spacer()
           // Number pad
-          NumberPad(mainTitle: "Exchange", onNumberPressed: { (number) in
+          NumberPad(mainTitle: self.viewModel.mainButtonTitle, onNumberPressed: { (number) in
             self.viewModel.inputNumber(input: number)
           }) {
             withAnimation {
