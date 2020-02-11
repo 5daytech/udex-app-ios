@@ -5,7 +5,7 @@ struct ExchangeCoinViewItem: Hashable {
     case down, up, none
   }
   
-  let code: String
+  let coin: Coin
   let balance: Decimal
   var state: State
 }

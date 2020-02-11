@@ -20,32 +20,37 @@ struct MainView: View {
           }
           .tabItem {
             Image("balance").renderingMode(.template)
+            Text("")
           }
           
           NavigationView {
-            ExchangeView(viewModel: ExchangeViewModel(isMarketOrder: false))
+            ExchangeView<LimitInteractor>.makeView()
             .navigationBarTitle("Limit order")
           }
           .tabItem {
             Image("exchange").renderingMode(.template)
+            Text("")
           }
           
           NavigationView {
-            ExchangeView(viewModel: ExchangeViewModel(isMarketOrder: true))
+            ExchangeView<MarketInteractor>.makeView()
             .navigationBarTitle("Swap")
           }
           .tabItem {
             Image("swap").renderingMode(.template)
+            Text("")
           }
           
           OrdersView(viewModel: viewModel.ordersViewModel!)
           .tabItem {
             Image("orders").renderingMode(.template)
+            Text("")
           }
           
           SettingsView()
           .tabItem {
             Image("settings").renderingMode(.template)
+            Text("")
           }
         }
         .accentColor(Color("main"))

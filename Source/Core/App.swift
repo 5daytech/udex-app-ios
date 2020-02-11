@@ -15,12 +15,14 @@ class App {
   let wordsManager: IWordsManager
   var authManager: IAuthManager
   let cleanupManager: ICleanupManager
+  let feeRateProvider: IFeeRateProvider
   
   let securityCenterViewModel: SecurityCenterViewModel
   
   
   private init(words: [String]? = nil) {
     appConfigProvider = AppConfigProvider(words: words)
+    feeRateProvider = FeeRateProvider()
     
     let ethereumKitManager = EthereumKitManager(appConfigProvider: appConfigProvider)
     
@@ -30,7 +32,7 @@ class App {
     authManager = AuthManager(securedStorage: securedStorage, coinManager: coinManager)
     wordsManager = WordsManager()
     
-    let adapterFactory: IAdapterFactory = AdapterFactory(appConfigProvider: appConfigProvider, ethereumKitManager: ethereumKitManager)
+    let adapterFactory: IAdapterFactory = AdapterFactory(ethereumKitManager: ethereumKitManager, feeRateProvider: feeRateProvider)
     
     ratesManager = RatesManager(coinManager: coinManager)
     ratesConverter = RatesConverter(ratesManager: ratesManager)

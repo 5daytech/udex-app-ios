@@ -2,18 +2,34 @@ import Foundation
 import RxSwift
 import zrxkit
 
-class ExchangeViewModel: ObservableObject {
+class ExchangeViewModel<T: IMLInteractor>: ObservableObject {  
+  static func instance() -> ExchangeViewModel {
+    let interactor: T
+    switch T.self {
+    case is MarketInteractor.Type:
+      interactor = MarketInteractor() as! T
+    case is LimitInteractor.Type:
+      interactor = LimitInteractor() as! T
+    default:
+      fatalError()
+    }
+    return ExchangeViewModel<T>(interactor: interactor)
+  }
+  
   enum ExchangeInputType {
     case BASE, QUOTE
   }
   
   enum ExchangeListShowType {
-    case SEND, RECEIVE, NONE, CONFIRM, PROGRESS, TRANSACTION_SENT, ERROR
+    case SEND, RECEIVE, NONE, PROGRESS
+    case CONFIRM(ExchangeViewState, Bool, () -> Void)
+    case TRANSACTION_SENT(String)
+    case ERROR(String)
   }
   
-  let disposeBag = DisposeBag()
+  @Published var viewState: ExchangeListShowType = .NONE
   
-  let relayer = App.instance.relayerAdapterManager.mainRelayer
+  let disposeBag = DisposeBag()
   let coinManager = App.instance.coinManager
   
   var blurContent: Bool {
@@ -25,49 +41,23 @@ class ExchangeViewModel: ObservableObject {
     }
   }
   
-  @Published var baseInputText: String? = nil
-  @Published var quoteInputText: String? = nil
+  @Published var sendInputText: String? = nil
+  @Published var receiveInputText: String? = nil
   @Published var isBaseEditing = false
   @Published var isQuoteEditing = false
-  
   @Published var sendCoinsPair: ExchangePairsInfo? = nil
   @Published var receiveCoinsPair: ExchangePairsInfo? = nil
-  
-  @Published var isMarketOrder: Bool
+  @Published var state: ExchangeViewState?
   
   var mainButtonTitle: String {
-    isMarketOrder ? "EXCHANGE" : "PLACE ORDER"
+    interactor.actionTitle
   }
   
-  @Published var inputFieldReceiveAmount: String? = nil
-  
-  var transactionHash: String = ""
-  
-  var errorMessage: String?
-  
-  var exchangeConfirmViewModel: ExchangeConfirmViewModel {
-    ExchangeConfirmViewModel(
-      info: ExchangeConfirmInfo(
-        sendCoin: state.sendCoin?.code ?? "",
-        receiveCoin: state.receiveCoin?.code ?? "",
-        sendAmount: state.sendAmount,
-        receiveAmount: state.receiveAmount,
-        showLifeTimeInfo: !isMarketOrder,
-        onConfirm: {
-          self.viewState = .PROGRESS
-          if self.isMarketOrder {
-            self.marketBuy()
-          } else {
-            self.postOrder()
-          }
-        }
-      )
-    )
-  }
+  let interactor: T
   
   var filteredSendCoinsPair: ExchangePairsInfo? {
     guard let pair = sendCoinsPair else { return nil }
-    var coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
+    var coins = pair.coins.filter { $0.coin.code != pair.selectedCoin?.coin.code }
     var selectedCoin = pair.selectedCoin!
     selectedCoin.state = .up
     coins.insert(selectedCoin, at: 0)
@@ -76,7 +66,7 @@ class ExchangeViewModel: ObservableObject {
   
   var filteredReceiveCoinsPair: ExchangePairsInfo? {
     guard let pair = receiveCoinsPair else { return nil }
-    var coins = pair.coins.filter { $0.code != pair.selectedCoin?.code }
+    var coins = pair.coins.filter { $0.coin.code != pair.selectedCoin?.coin.code }
     var selectedCoin = pair.selectedCoin!
     selectedCoin.state = .up
     coins.insert(selectedCoin, at: 0)
@@ -84,79 +74,64 @@ class ExchangeViewModel: ObservableObject {
   }
   
   var priceInfo: Decimal {
-    return Decimal(string: quoteInputText ?? "") ?? 0
+    return Decimal(string: receiveInputText ?? "") ?? 0
   }
   
   var inputType: ExchangeInputType? = nil
   
   var sendCoins: [ExchangeCoinViewItem] = []
-  
   var receiveCoins: [ExchangeCoinViewItem] = []
   
   var exchangeableCoins: [Coin] = []
   var marketCodes: [Pair<String, String>] = []
   
-  var state: ExchangeViewState = ExchangeViewState(sendAmount: 0, receiveAmount: 0)
-  
   let adapterManager = App.instance.adapterManager
-  
-  @Published var viewState: ExchangeListShowType = .NONE
   
   var estimatedSendAmount: Decimal = 0
   var estimatedReceiveAmount: Decimal = 0
   
   var orderSide: EOrderSide {
-    let market = marketCodes[currentMarketPosition]
-    
-    if market.first == state.sendCoin?.code {
-      return EOrderSide.BUY
-    } else {
-      return EOrderSide.SELL
-    }
+    interactor.orderSide
   }
   
-  var currentMarketPosition: Int {
-    let sendCoin = state.sendCoin?.code ?? ""
-    let receiveCoin = state.receiveCoin?.code ?? ""
+  init(interactor: T) {
+    self.interactor = interactor
     
-    return marketCodes.firstIndex { (pair) -> Bool in
-      return (pair.first == sendCoin && pair.second == receiveCoin) ||
-        (pair.first == receiveCoin && pair.second == sendCoin)
-    } ?? -1
-  }
-  
-  init(isMarketOrder: Bool) {
+    interactor.stateObservable.subscribe(onNext: { (state) in
+      self.state = state
+    }).disposed(by: disposeBag)
     
-    self.isMarketOrder = isMarketOrder
+    interactor.sendAmountObservable.subscribe(onNext: { amount in
+      self.sendInputText = amount
+    }).disposed(by: disposeBag)
     
-    if isMarketOrder {
-      inputFieldReceiveAmount = nil
-    } else {
-      inputFieldReceiveAmount = "-\(receiveCoinsPair?.selectedCoin?.code ?? "")"
-    }
+    interactor.receiveAmountObservable.subscribe(onNext: { amount in
+      self.receiveInputText = amount
+    }).disposed(by: disposeBag)
     
-    marketCodes = relayer?.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) } ?? []
+    interactor.actionObservable.subscribe(onNext: { (ethData) in
+      if ethData != nil {
+        self.viewState = .TRANSACTION_SENT(ethData!.hex())
+      } else {
+        self.viewState = .ERROR("Successfully created")
+      }
+    }, onError: { (err) in
+      self.viewState = .ERROR(err.localizedDescription)
+    }).disposed(by: disposeBag)
+    
+    interactor.sendCoinsObservable.subscribe(onNext: { (coins) in
+      self.sendCoinsPair = coins
+    }).disposed(by: disposeBag)
+    
+    interactor.receiveCoinsObservable.subscribe(onNext: { (coins) in
+      self.receiveCoinsPair = coins
+    }).disposed(by: disposeBag)
     
     exchangeableCoins = coinManager.coins.filter { coin -> Bool in
       marketCodes.first { pair -> Bool in
         pair.first == coin.code || pair.second == coin.code
       } != nil
     }
-    
-    refreshPairs(state: nil)
-    
-    initState(sendItem: sendCoins.first, receiveItem: receiveCoins.first)
-    
-    refreshPairs(state: state)
-    
-    adapterManager.adaptersUpdatedSignal.subscribe(onNext: {
-      Logger.d("refresh")
-      self.refreshPairs(state: self.state)
-    }).disposed(by: disposeBag)
-  }
-  
-  func initState(sendItem: ExchangeCoinViewItem?, receiveItem: ExchangeCoinViewItem?) {
-    state = ExchangeViewState(sendAmount: 0, sendCoin: sendItem, receiveCoin: receiveItem, receiveAmount: 0)
   }
   
   func setCurrentInputField(inputType: ExchangeInputType) {
@@ -175,7 +150,7 @@ class ExchangeViewModel: ObservableObject {
     
     guard let inputType = inputType else { return }
     
-    var inputText = inputType == .BASE ? baseInputText : quoteInputText
+    var inputText = inputType == .BASE ? sendInputText : receiveInputText
     switch input {
     case "d":
       if inputText != nil {
@@ -195,175 +170,46 @@ class ExchangeViewModel: ObservableObject {
     
     switch inputType {
     case .BASE:
-      baseInputText = inputText
-      state.sendAmount = Decimal(string: baseInputText ?? "") ?? 0
-      updateReceiveAmount()
+      sendInputText = inputText
+      interactor.setSendAmount(sendInputText)
     case .QUOTE:
-      quoteInputText = inputText
-      state.receiveAmount = Decimal(string: quoteInputText ?? "") ?? 0
-      if isMarketOrder {
-        updateSendAmount()
-      } else {
-        updateReceiveAmount(updateView: false)
-      }
+      receiveInputText = inputText
+      interactor.setReceiveAmount(receiveInputText)
     }
-  }
-  
-  func refreshPairs(state: ExchangeViewState?, refreshSendCoins: Bool = true) {
-    if refreshSendCoins {
-      sendCoins = getAvailableSendCoins()
-    }
-    
-    sendCoinsPair = ExchangePairsInfo(coins: sendCoins, selectedCoin: self.state.sendCoin)
-    
-    if !sendCoins.isEmpty {
-      let sendCoin = state?.sendCoin?.code ?? sendCoins.first!.code
-      receiveCoins = getAvailableReceiveCoins(baseCoinCode: sendCoin)
-      receiveCoinsPair = ExchangePairsInfo(coins: receiveCoins, selectedCoin: receiveCoins.first)
-      
-      let currentReceiveIndex = receiveCoins.firstIndex { $0.code == state?.receiveCoin?.code }
-      if (currentReceiveIndex == nil || self.state.receiveCoin == nil) {
-        self.state.receiveCoin = receiveCoins.first
-        receiveCoinsPair = ExchangePairsInfo(coins: receiveCoins, selectedCoin: receiveCoins.first)
-      }
-    }
-  }
-  
-  func getAvailableSendCoins() -> [ExchangeCoinViewItem] {
-    exchangeableCoins.map { getExchangeItem(coin: $0) }
-  }
-  
-  func getExchangeItem(coin: Coin) -> ExchangeCoinViewItem {
-    let balance = adapterManager.balanceAdapter(for: coin)?.balance ?? 0
-    return ExchangeCoinViewItem(code: coin.code, balance: balance, state: .none)
-  }
-  
-  func getAvailableReceiveCoins(baseCoinCode: String) -> [ExchangeCoinViewItem] {
-    exchangeableCoins.filter { coin -> Bool in
-      marketCodes.first { pair -> Bool in
-        let isBuySide = pair.first == baseCoinCode && pair.second == coin.code
-        let isSellSide = pair.second == baseCoinCode && pair.first == coin.code
-        return isBuySide || isSellSide
-      } != nil
-    }
-    .map { getExchangeItem(coin: $0) }
   }
   
   func openSendCoinList() {
-    viewState = viewState == .SEND ? .NONE : .SEND
+    switch viewState {
+    case .SEND:
+      viewState = .NONE
+    default:
+      viewState = .SEND
+    }
   }
   
   func openReceiveCoinList() {
-    viewState = viewState == .RECEIVE ? .NONE : .RECEIVE
+    switch viewState {
+    case .RECEIVE:
+      viewState = .NONE
+    default:
+      viewState = .RECEIVE
+    }
   }
   
   func selectSendCoin(coin: ExchangeCoinViewItem) {
     viewState = .NONE
-    
-    if (coin.code == state.receiveCoin?.code) {
-      state.sendCoin = coin
-      state.receiveCoin = nil
-    } else if (state.sendCoin?.code != coin.code) {
-      state.sendCoin = coin
-    }
-    refreshPairs(state: state)
-    updateReceiveAmount()
+    interactor.selectSendCoin(coin)
   }
   
   func selectReceiveCoin(coin: ExchangeCoinViewItem) {
     viewState = .NONE
-    if (state.receiveCoin?.code != coin.code) {
-      state.receiveCoin = coin
-      receiveCoinsPair?.selectedCoin = coin
-      updateReceiveAmount()
-    }
+    interactor.selectReceiveCoin(coin)
   }
   
   func exchangePressed() {
-    viewState = .CONFIRM
-  }
-  
-  private func marketBuy() {
-    if state.sendAmount > 0 && estimatedReceiveAmount > 0 {
-      let fillData = FillOrderData(
-        coinPair: marketCodes[currentMarketPosition],
-        side: orderSide,
-        amount: estimatedReceiveAmount
-      )
-      relayer?.fill(fillData: fillData).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
-        self.transactionHash = ethData.hex()
-        self.viewState = .TRANSACTION_SENT
-      }, onError: { (err) in
-        self.viewState = .ERROR
-        self.errorMessage = err.localizedDescription
-        Logger.e("", error: err)
-      }).disposed(by: disposeBag)
-    }
-  }
-  
-  private func postOrder() {
-    if state.sendAmount > 0 && priceInfo > 0 {
-      let orderData = CreateOrderData(
-        coinPair: marketCodes[currentMarketPosition],
-        side: orderSide == .BUY ? .SELL : .BUY,
-        amount: state.sendAmount,
-        price: priceInfo
-      )
-      
-      relayer?.createOrder(createData: orderData)
-        .observeOn(MainScheduler.instance)
-        .subscribe(onError: { (err) in
-          self.errorMessage = "Something went wrong"
-          self.viewState = .ERROR
-        }, onCompleted: {
-          self.viewState = .ERROR
-          self.errorMessage = "Successfully created"
-        })
-      .disposed(by: disposeBag)
-    }
-  }
-  
-  func updateReceiveAmount(updateView: Bool = true) {
-    if isMarketOrder {
-      guard let relayer = relayer else { return }
-      let currentMarket = currentMarketPosition
-      if currentMarket < 0 { return }
-      
-      let fillResult = relayer.calculateFillAmount(
-        coinPair: marketCodes[currentMarket],
-        side: orderSide,
-        amount: state.sendAmount
-      )
-      
-      estimatedReceiveAmount = fillResult.receiveAmount
-      
-      let roundedReceiveAmount = estimatedReceiveAmount.toDisplayFormat()
-      state.receiveAmount = Decimal(string: roundedReceiveAmount) ?? 0
-      quoteInputText = roundedReceiveAmount
-    } else {
-      let receiveAmount = state.sendAmount * priceInfo
-      state.receiveAmount = receiveAmount
-      inputFieldReceiveAmount = "\(receiveAmount.toDisplayFormat()) \(receiveCoinsPair?.selectedCoin?.code ?? "")"
-    }
-  }
-  
-  func updateSendAmount() {
-    guard let relayer = relayer else { return }
-    let currentMarket = currentMarketPosition
-    if currentMarket < 0 { return }
-    
-    let fillResult = relayer.calculateSendAmount(
-      coinPair: marketCodes[currentMarket],
-      side: orderSide,
-      amount: state.receiveAmount
-    )
-    
-    estimatedSendAmount = fillResult.sendAmount
-    
-    let roundedSendAmount = estimatedSendAmount.toDisplayFormat()
-    state.sendAmount = Decimal(string: roundedSendAmount) ?? 0
-    baseInputText = roundedSendAmount
-    
-    estimatedReceiveAmount = fillResult.receiveAmount != state.receiveAmount ? fillResult.receiveAmount : state.receiveAmount
+    viewState = .CONFIRM(interactor.state, interactor.isMarketOrder, {
+      self.viewState = .PROGRESS
+      self.interactor.mainAction()
+    })
   }
 }

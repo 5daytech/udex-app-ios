@@ -6,14 +6,16 @@ import class Erc20Kit.TransactionInfo
 class Erc20Adapter: EthereumBaseAdapter {
   private let erc20Kit: Erc20Kit.Kit
   private let contractAddress: String
+  private let feeRateProvider: IFeeRateProvider
   private let fee: Decimal
   private let gasLimit: Int?
   private(set) var minimumRequiredBalance: Decimal
   private(set) var minimumSpendableAmount: Decimal?
   
-  init(ethereumKit: EthereumKit.Kit, contractAddress: String, decimal: Int, fee: Decimal, gasLimit: Int? = nil, minimumRequiredBalance: Decimal, minimumSpendableAmount: Decimal?) throws {
+  init(ethereumKit: EthereumKit.Kit, contractAddress: String, feeRateProvider: IFeeRateProvider, decimal: Int, fee: Decimal, gasLimit: Int? = nil, minimumRequiredBalance: Decimal, minimumSpendableAmount: Decimal?) throws {
     self.erc20Kit = try Erc20Kit.Kit.instance(ethereumKit: ethereumKit, contractAddress: contractAddress)
     self.contractAddress = contractAddress
+    self.feeRateProvider = feeRateProvider
     self.fee = fee
     self.gasLimit = gasLimit
     self.minimumRequiredBalance = minimumRequiredBalance
@@ -112,6 +114,19 @@ extension Erc20Adapter: IBalanceAdapter {
     erc20Kit.balanceObservable.map { _ in () }
   }
   
+  func validate(amount: Decimal, feePriority: FeeRatePriority) -> [SendStateError] {
+    var errors = [SendStateError]()
+    if (amount > availableBalance(gasPrice: 0, gasLimit: nil)) {
+      errors.append(.insufficientAmount)
+    }
+    
+    let estimateGasLimit = 100_000
+    if (balance < fee(gasPrice: feeRateProvider.ethereumGasPrice(priority: feePriority), gasLimit: estimateGasLimit)) {
+      errors.append(.insufficientFeeBalance)
+    }
+    
+    return errors
+  }
 }
 
 extension Erc20Adapter: ISendEthereumAdapter {

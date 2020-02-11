@@ -19,6 +19,9 @@ PODS:
     - OpenSslKit.swift (~> 1.0)
     - RxSwift (~> 5.0)
     - Secp256k1Kit.swift (~> 1.0)
+  - FeeRateKit.swift (0.4):
+    - Alamofire (~> 4.0)
+    - RxSwift (~> 5.0)
   - GRDB.swift (4.7.0):
     - GRDB.swift/standard (= 4.7.0)
   - GRDB.swift/standard (4.7.0)
@@ -71,11 +74,12 @@ PODS:
 DEPENDENCIES:
   - Erc20Kit.swift (= 0.8)
   - EthereumKit.swift (= 0.8)
+  - FeeRateKit.swift
   - XRatesKit.swift (= 0.4.1)
   - zrxkit (from `~/WORK/DAO/zrxkit`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - BigInt
     - BlueSocket
@@ -94,6 +98,8 @@ SPEC REPOS:
     - Secp256k1Kit.swift
     - Web3
     - XRatesKit.swift
+  trunk:
+    - FeeRateKit.swift
 
 EXTERNAL SOURCES:
   zrxkit:
@@ -106,6 +112,7 @@ SPEC CHECKSUMS:
   CryptoSwift: 1283821600233bdbeb96d7b389c3288c3bf77211
   Erc20Kit.swift: fc066841a8bd9f1a5a3a35345b68a1f557a5ad4b
   EthereumKit.swift: fd9fc1eae2f96313efd8d0115a76cff7e7c3ceb0
+  FeeRateKit.swift: a2e4b9994cd67d321b32c5b99084bf7e664c4ebc
   GRDB.swift: 0df1953957f179bff46fccb8402a196e3b7a77f5
   HSHDWalletKit: 32f4be6c71cd986dcbdcd057d224638d0ff80445
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
@@ -120,6 +127,6 @@ SPEC CHECKSUMS:
   XRatesKit.swift: 23c713115f7b327aa8691c8a429b4cc094affa7e
   zrxkit: 1d48839df38bd038303e184870e1561882bd9e49
 
-PODFILE CHECKSUM: b2da3f43ce749c752d65d484e24fc513b68dc92c
+PODFILE CHECKSUM: 7ff0f569c245677525e59568b9c58d41ae449af1
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.4

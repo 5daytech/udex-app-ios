@@ -10,4 +10,5 @@ target 'UDEX' do
   pod 'EthereumKit.swift', '0.8'
   pod 'Erc20Kit.swift', '0.8'
   pod 'XRatesKit.swift', '0.4.1'
+  pod 'FeeRateKit.swift'
 end
