@@ -61,44 +61,36 @@ struct ExchangeConfirmView: View {
         }
         
         VStack {
-          
           HStack {
             Text("Price Per Token:")
             .font(.system(size: 16))
             .foregroundColor(Color("T3"))
-            
             Spacer()
-            
             Text(self.viewModel.priceAmount)
           }
-          
-          Rectangle()
-            .frame(height: 1)
-            .background(Color("confirm_separator"))
-          
-          HStack {
-            Text("Estimated Fee:")
-            .font(.system(size: 16))
-            .foregroundColor(Color("T3"))
-            
-            Spacer()
-            
-            Text(self.viewModel.feeAmount)
-            
-          }
-          
           Rectangle()
           .frame(height: 1)
+          .background(Color("confirm_separator"))
+          
+          if (self.viewModel.feeAmount != nil) {
+            HStack {
+              Text("Estimated Fee:")
+              .font(.system(size: 16))
+              .foregroundColor(Color("T3"))
+              Spacer()
+              Text(self.viewModel.feeAmount ?? "")
+            }
+            Rectangle()
+            .frame(height: 1)
             .background(Color("confirm_separator"))
+          }
           
           HStack {
             Text("Processing Time:")
             .font(.system(size: 16))
             .foregroundColor(Color("T3"))
-            
             Spacer()
-            
-            Text("0.0")
+            Text(self.viewModel.processingTime)
           }
         }
         .padding([.leading, .trailing, .bottom], 16)
@@ -141,6 +133,7 @@ struct ExchangeConfirmView_Previews: PreviewProvider {
           receiveCoin: "ZRX",
           sendAmount: 0.7,
           receiveAmount: 450,
+          fee: 0.0064,
           showLifeTimeInfo: true,
           onConfirm: {}
         )

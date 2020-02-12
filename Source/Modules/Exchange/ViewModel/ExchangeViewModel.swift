@@ -22,7 +22,7 @@ class ExchangeViewModel<T: IMLInteractor>: ObservableObject {
   
   enum ExchangeListShowType {
     case SEND, RECEIVE, NONE, PROGRESS
-    case CONFIRM(ExchangeViewState, Bool, () -> Void)
+    case CONFIRM(ExchangeViewState, Bool, Decimal?, () -> Void)
     case TRANSACTION_SENT(String)
     case ERROR(String)
   }
@@ -207,7 +207,7 @@ class ExchangeViewModel<T: IMLInteractor>: ObservableObject {
   }
   
   func exchangePressed() {
-    viewState = .CONFIRM(interactor.state, interactor.isMarketOrder, {
+    viewState = .CONFIRM(interactor.state, interactor.isMarketOrder, interactor.calcFee(), {
       self.viewState = .PROGRESS
       self.interactor.mainAction()
     })

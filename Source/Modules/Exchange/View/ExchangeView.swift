@@ -34,7 +34,7 @@ struct ExchangeView<T: IMLInteractor>: View {
         }
         .shadow(radius: 5)
         .frame(width: (geometry.size.width / 2) + 5)
-        .padding(EdgeInsets(top: self.topPadding + 62, leading: 0, bottom: 0, trailing: 0))
+        .padding(EdgeInsets(top: self.topPadding, leading: 0, bottom: 0, trailing: 0))
       )
     case .RECEIVE:
       return AnyView(
@@ -49,9 +49,9 @@ struct ExchangeView<T: IMLInteractor>: View {
         }
         .shadow(radius: 5)
         .frame(width: (geometry.size.width / 2) + 5)
-        .padding(EdgeInsets(top: self.topPadding + self.coinHeight + 62, leading: 0, bottom: 0, trailing: 0))
+        .padding(EdgeInsets(top: self.topPadding + self.coinHeight, leading: 0, bottom: 0, trailing: 0))
       )
-    case .CONFIRM(let state, let isMarketOrder, let onConfirm):
+    case .CONFIRM(let state, let isMarketOrder, let fee, let onConfirm):
       return AnyView(
         ExchangeConfirmView(
           viewModel: ExchangeConfirmViewModel(
@@ -60,6 +60,7 @@ struct ExchangeView<T: IMLInteractor>: View {
               receiveCoin: state.receiveCoin?.coin.code ?? "",
               sendAmount: state.sendAmount,
               receiveAmount: state.receiveAmount,
+              fee: fee,
               showLifeTimeInfo: !isMarketOrder,
               onConfirm: onConfirm
             )

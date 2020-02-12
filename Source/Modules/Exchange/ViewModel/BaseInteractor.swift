@@ -77,6 +77,8 @@ class BaseInteractor {
   
   internal func updateSendAmount() { fatalError("Must implement in child") }
   
+  internal func feeCalculation() -> Decimal? { fatalError("Must implement in child") }
+  
   // MARK: Private
   
   private func updateSendHint() {
@@ -159,6 +161,10 @@ extension BaseInteractor: IMLInteractor {
   }
   
   var isMarketOrder: Bool { isMarket }
+  
+  func calcFee() -> Decimal? {
+    feeCalculation()
+  }
   
   func mainAction() {
     action()

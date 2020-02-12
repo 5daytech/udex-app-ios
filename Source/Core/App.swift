@@ -5,7 +5,7 @@ import HSHDWalletKit
 class App {
   static var instance = App()
   
-  let appConfigProvider: IAppConfigProvider
+  // MARK: Managers
   let adapterManager: IAdapterManager
   let coinManager: ICoinManager
   let zrxKitManager: IZrxKitManager
@@ -15,14 +15,19 @@ class App {
   let wordsManager: IWordsManager
   var authManager: IAuthManager
   let cleanupManager: ICleanupManager
-  let feeRateProvider: IFeeRateProvider
   
   let securityCenterViewModel: SecurityCenterViewModel
+  
+  // MARK: Providers
+  let appConfigProvider: IAppConfigProvider
+  let feeRateProvider: IFeeRateProvider
+  let processingDurationProvider: IProcessingDurationProvider
   
   
   private init(words: [String]? = nil) {
     appConfigProvider = AppConfigProvider(words: words)
     feeRateProvider = FeeRateProvider()
+    processingDurationProvider = ProcessingDurationProvider()
     
     let ethereumKitManager = EthereumKitManager(appConfigProvider: appConfigProvider)
     

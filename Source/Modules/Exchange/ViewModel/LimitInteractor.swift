@@ -33,4 +33,6 @@ class LimitInteractor: BaseInteractor {
   override internal func updateReceiveAmount() {
     state.receiveAdditional = state.receiveAmount * state.sendAmount
   }
+  
+  override func feeCalculation() -> Decimal? { nil }
 }

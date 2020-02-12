@@ -5,6 +5,7 @@ struct ExchangeConfirmInfo {
   let receiveCoin: String
   let sendAmount: Decimal
   let receiveAmount: Decimal
+  let fee: Decimal?
   let showLifeTimeInfo: Bool
   let onConfirm: () -> Void
 }

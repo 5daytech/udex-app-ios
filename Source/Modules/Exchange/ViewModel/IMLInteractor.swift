@@ -14,6 +14,7 @@ protocol IMLInteractor {
   var state: ExchangeViewState { get set }
   var isMarketOrder: Bool { get }
   
+  func calcFee() -> Decimal?
   func mainAction()
   func setSendAmount(_ amount: String?)
   func setReceiveAmount(_ amount: String?)

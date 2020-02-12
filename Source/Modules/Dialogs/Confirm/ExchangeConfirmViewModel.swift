@@ -3,6 +3,7 @@ import SwiftUI
 
 class ExchangeConfirmViewModel: ObservableObject {
   let info: ExchangeConfirmInfo
+  private let processingDurationProvider = App.instance.processingDurationProvider
   
   var sellAmount: String {
     "\(info.sendAmount)"
@@ -13,21 +14,23 @@ class ExchangeConfirmViewModel: ObservableObject {
   }
   
   var priceAmount: String {
-    numberFormatter.string(from: price as NSDecimalNumber) ?? ""
+    price.toDisplayFormat()
   }
   
-  @Published var feeAmount: String = "0.0"
+  var feeAmount: String? {
+    info.fee?.toDisplayFormat()
+  }
+  
+  var processingTime: String {
+    "\(processingDurationProvider.getEstimatedDuration(type: .EXCHANGE))"
+  }
   
   private var price: Decimal {
     info.receiveAmount / info.sendAmount
   }
   
-  let numberFormatter: NumberFormatter
-  
   init(info: ExchangeConfirmInfo) {
     self.info = info
-    numberFormatter = NumberFormatter()
-    numberFormatter.maximumFractionDigits = 4
   }
   
   func onConfirm() {
