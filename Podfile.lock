@@ -28,6 +28,7 @@ PODS:
   - HSHDWalletKit (1.3):
     - OpenSslKit.swift (~> 1.0)
     - Secp256k1Kit.swift (~> 1.0)
+  - KeychainAccess (4.1.0)
   - ObjectMapper (3.5.1)
   - OpenSslKit.swift (1.0)
   - RxCocoa (5.0.1):
@@ -75,6 +76,7 @@ DEPENDENCIES:
   - Erc20Kit.swift (= 0.8)
   - EthereumKit.swift (= 0.8)
   - FeeRateKit.swift
+  - KeychainAccess
   - XRatesKit.swift (= 0.4.1)
   - zrxkit (from `~/WORK/DAO/zrxkit`)
 
@@ -100,6 +102,7 @@ SPEC REPOS:
     - XRatesKit.swift
   trunk:
     - FeeRateKit.swift
+    - KeychainAccess
 
 EXTERNAL SOURCES:
   zrxkit:
@@ -115,6 +118,7 @@ SPEC CHECKSUMS:
   FeeRateKit.swift: a2e4b9994cd67d321b32c5b99084bf7e664c4ebc
   GRDB.swift: 0df1953957f179bff46fccb8402a196e3b7a77f5
   HSHDWalletKit: 32f4be6c71cd986dcbdcd057d224638d0ff80445
+  KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   OpenSslKit.swift: 6e699e0d69fae6b306eaca0b8971c59bc45546ab
   RxCocoa: e741b9749968e8a143e2b787f1dfbff2b63d0a5c
@@ -127,6 +131,6 @@ SPEC CHECKSUMS:
   XRatesKit.swift: 23c713115f7b327aa8691c8a429b4cc094affa7e
   zrxkit: 1d48839df38bd038303e184870e1561882bd9e49
 
-PODFILE CHECKSUM: 7ff0f569c245677525e59568b9c58d41ae449af1
+PODFILE CHECKSUM: bb102e8888dcc141b5a8e5491d76eeec29e7cbde
 
 COCOAPODS: 1.8.4

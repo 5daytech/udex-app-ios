@@ -1,28 +1,35 @@
 import Foundation
+import KeychainAccess
 
 class SecuredStorage: ISecuredStorage {
   
   private let AUTH_DATA_KEY = "auth_data_key"
+  private let APPLICATION_SERVICE = "fridaytech.udex.dev"
   
   var authData: AuthData? {
-    guard let data = UserDefaults.standard.string(forKey: AUTH_DATA_KEY) else {
+    let keychain = Keychain(service: APPLICATION_SERVICE)
+    guard let data = try? keychain.get(AUTH_DATA_KEY) else {
       return nil
     }
+    
     return AuthData(serialized: data)
   }
   
   var savedPin: String?
   
   func saveAuthData(authData: AuthData) {
-    UserDefaults.standard.set("\(authData)", forKey: AUTH_DATA_KEY)
+    let keychain = Keychain(service: APPLICATION_SERVICE)
+    try! keychain.set("\(authData)", key: AUTH_DATA_KEY)
   }
   
   func removeAuthData() {
-    UserDefaults.standard.set(nil, forKey: AUTH_DATA_KEY)
+    let keychain = Keychain(service: APPLICATION_SERVICE)
+    try! keychain.remove(AUTH_DATA_KEY)
   }
   
   func noAuthData() -> Bool {
-    return UserDefaults.standard.string(forKey: AUTH_DATA_KEY) == nil
+    let keychain = Keychain(service: APPLICATION_SERVICE)
+    return try! keychain.get(AUTH_DATA_KEY) == nil
   }
   
   func savePin(pin: String) {

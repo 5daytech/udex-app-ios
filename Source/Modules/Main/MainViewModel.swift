@@ -36,6 +36,7 @@ class MainViewModel: ObservableObject {
   func createWallet() {
     let words = try! wordsManager.generateWords()
     try! authManager.login(words: words)
+    ordersViewModel = OrdersViewModel(relayerAdapter: App.instance.relayerAdapterManager.mainRelayer!)
     isLoggedIn = true
   }
 }
