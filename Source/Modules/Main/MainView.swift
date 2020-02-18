@@ -11,13 +11,12 @@ struct MainView: View {
   var body: some View {
     VStack {
       if viewModel.isLoggedIn {
-        TabView {          
-          NavigationView {
-            BalanceView(
-              viewModel: BalanceViewModel()
-            )
-            .navigationBarTitle(Text("Balance"))
-          }
+        TabView {
+//          NavigationView {
+//
+//          }
+//          .navigationBarTitle(Text("Balance"))
+          BalanceView()
           .tabItem {
             Image("balance").renderingMode(.template)
             Text("")

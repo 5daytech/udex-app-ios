@@ -42,8 +42,8 @@ struct BalanceRow: View {
               
             }) {
               VStack {
-                Image("ETH")
-                Text("Send")
+                Image("receive")
+                Text("Receive")
               }
             }
             Spacer()
@@ -51,7 +51,7 @@ struct BalanceRow: View {
               
             }) {
               VStack {
-                Image("ETH")
+                Image("send")
                 Text("Send")
               }
             }
@@ -70,8 +70,8 @@ struct BalanceRow: View {
               
             }) {
               VStack {
-                Image("ETH")
-                Text("Send")
+                Image("wrap")
+                Text("Wrap")
               }
             }
             Spacer()

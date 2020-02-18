@@ -82,7 +82,6 @@
 		B54F65E923CF0BC8008BD76C /* IRatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E823CF0BC8008BD76C /* IRatesManager.swift */; };
 		B54F65EB23CF119A008BD76C /* TotalBalanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EA23CF119A008BD76C /* TotalBalanceInfo.swift */; };
 		B54F65ED23CF1346008BD76C /* RatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EC23CF1346008BD76C /* RatesManager.swift */; };
-		B54F65EF23CF191D008BD76C /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EE23CF191D008BD76C /* RefreshableView.swift */; };
 		B577871423D5BEDE0080F9E9 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871323D5BEDE0080F9E9 /* GuestView.swift */; };
 		B577871723D5C6210080F9E9 /* RestoreWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871623D5C6210080F9E9 /* RestoreWalletView.swift */; };
 		B577871923D5C7EF0080F9E9 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */; };
@@ -116,6 +115,10 @@
 		B5A985BA23F3F019009AEBD8 /* IProcessingDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985B923F3F019009AEBD8 /* IProcessingDurationProvider.swift */; };
 		B5A985BC23F3F05E009AEBD8 /* ETransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BB23F3F05E009AEBD8 /* ETransactionType.swift */; };
 		B5A985BE23F3F093009AEBD8 /* ProcessingDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BD23F3F093009AEBD8 /* ProcessingDurationProvider.swift */; };
+		B5A985C023F6B8D6009AEBD8 /* BalanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BF23F6B8D6009AEBD8 /* BalanceVC.swift */; };
+		B5A985C223F6BB7C009AEBD8 /* BalanceTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985C123F6BB7C009AEBD8 /* BalanceTVC.swift */; };
+		B5A985C423F6C479009AEBD8 /* BalanceTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A985C323F6C479009AEBD8 /* BalanceTVC.xib */; };
+		B5A985C623F6C558009AEBD8 /* BalanceViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985C523F6C558009AEBD8 /* BalanceViewWrapper.swift */; };
 		B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */; };
 		B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */; };
 		B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26523A8E80D00D6FBFA /* ContentView.swift */; };
@@ -219,7 +222,6 @@
 		B54F65E823CF0BC8008BD76C /* IRatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRatesManager.swift; sourceTree = "<group>"; };
 		B54F65EA23CF119A008BD76C /* TotalBalanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalBalanceInfo.swift; sourceTree = "<group>"; };
 		B54F65EC23CF1346008BD76C /* RatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesManager.swift; sourceTree = "<group>"; };
-		B54F65EE23CF191D008BD76C /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
 		B577871323D5BEDE0080F9E9 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
 		B577871623D5C6210080F9E9 /* RestoreWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreWalletView.swift; sourceTree = "<group>"; };
 		B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
@@ -253,6 +255,10 @@
 		B5A985B923F3F019009AEBD8 /* IProcessingDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProcessingDurationProvider.swift; sourceTree = "<group>"; };
 		B5A985BB23F3F05E009AEBD8 /* ETransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETransactionType.swift; sourceTree = "<group>"; };
 		B5A985BD23F3F093009AEBD8 /* ProcessingDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingDurationProvider.swift; sourceTree = "<group>"; };
+		B5A985BF23F6B8D6009AEBD8 /* BalanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceVC.swift; sourceTree = "<group>"; };
+		B5A985C123F6BB7C009AEBD8 /* BalanceTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTVC.swift; sourceTree = "<group>"; };
+		B5A985C323F6C479009AEBD8 /* BalanceTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BalanceTVC.xib; sourceTree = "<group>"; };
+		B5A985C523F6C558009AEBD8 /* BalanceViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewWrapper.swift; sourceTree = "<group>"; };
 		B5DAE25E23A8E80D00D6FBFA /* UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -488,6 +494,10 @@
 			children = (
 				B533EBFA23AC8E2700CD18CC /* BalanceView.swift */,
 				B533EBFC23AC8E3600CD18CC /* BalanceRow.swift */,
+				B5A985BF23F6B8D6009AEBD8 /* BalanceVC.swift */,
+				B5A985C123F6BB7C009AEBD8 /* BalanceTVC.swift */,
+				B5A985C323F6C479009AEBD8 /* BalanceTVC.xib */,
+				B5A985C523F6C558009AEBD8 /* BalanceViewWrapper.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -757,7 +767,6 @@
 				B5F0A43623CC62D000592A78 /* ProgressBar.swift */,
 				B5F0A43823CC890800592A78 /* TransactionSentDialog.swift */,
 				B5F0A43A23CC90EB00592A78 /* ErrorDialog.swift */,
-				B54F65EE23CF191D008BD76C /* RefreshableView.swift */,
 				B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */,
 			);
 			path = Views;
@@ -843,6 +852,7 @@
 			files = (
 				B5DAE26E23A8E81000D6FBFA /* LaunchScreen.storyboard in Resources */,
 				B5DAE26B23A8E81000D6FBFA /* Preview Assets.xcassets in Resources */,
+				B5A985C423F6C479009AEBD8 /* BalanceTVC.xib in Resources */,
 				B5DAE26823A8E81000D6FBFA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -910,6 +920,7 @@
 				B50C2F1D23B4752900CE7FBF /* ExchangePairViewItem.swift in Sources */,
 				B533EBF623AB6E3E00CD18CC /* MainView.swift in Sources */,
 				B59AE92023B0AD5200DF03C1 /* AppConfigProvider.swift in Sources */,
+				B5A985C623F6C558009AEBD8 /* BalanceViewWrapper.swift in Sources */,
 				B50C2F2D23B47C4000CE7FBF /* IRelayerAdapterManager.swift in Sources */,
 				B541F91A23F265C70076742E /* IFeeRateProvider.swift in Sources */,
 				B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */,
@@ -958,9 +969,11 @@
 				B577872523D6E86F0080F9E9 /* ISecuredStorage.swift in Sources */,
 				B53A7CFB23C73EED0098A237 /* RelayerOrders.swift in Sources */,
 				B52C4A2023C32168004C1AAE /* ExchangeViewState.swift in Sources */,
+				B5A985C023F6B8D6009AEBD8 /* BalanceVC.swift in Sources */,
 				B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */,
 				B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */,
 				B59AE90323B0A40F00DF03C1 /* EthereumAdapter.swift in Sources */,
+				B5A985C223F6BB7C009AEBD8 /* BalanceTVC.swift in Sources */,
 				B53A7CE923C594E70098A237 /* CreateOrderData.swift in Sources */,
 				B5347E5623CE0D6300A7B85E /* RatesConverter.swift in Sources */,
 				B533EBFD23AC8E3600CD18CC /* BalanceRow.swift in Sources */,
@@ -1006,7 +1019,6 @@
 				B577872923D9895C0080F9E9 /* IWordsManager.swift in Sources */,
 				B50C2F1923B3818E00CE7FBF /* ZrxKitManager.swift in Sources */,
 				B50C2F3A23B4C56000CE7FBF /* ExchangeCoinViewItem.swift in Sources */,
-				B54F65EF23CF191D008BD76C /* RefreshableView.swift in Sources */,
 				B5FAF57A23EA87ED00014EA6 /* BaseInteractor.swift in Sources */,
 				B5F0A43923CC890800592A78 /* TransactionSentDialog.swift in Sources */,
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,

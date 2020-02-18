@@ -12,4 +12,5 @@ target 'UDEX' do
   pod 'XRatesKit.swift', '0.4.1'
   pod 'FeeRateKit.swift'
   pod 'KeychainAccess'
+  pod 'SnapKit'
 end

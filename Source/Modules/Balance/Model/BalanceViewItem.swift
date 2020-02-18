@@ -1,10 +1,8 @@
 import Foundation
 
-struct BalanceViewItem: Identifiable {
-  var id = UUID().uuidString
-  let title: String
-  let balance: String
-  let code: String
+struct BalanceViewItem {
+  let balance: CoinBalance
   var expanded: Bool
+  let wrap: String?
 }
 

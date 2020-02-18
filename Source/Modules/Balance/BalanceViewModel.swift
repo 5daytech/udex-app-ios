@@ -13,6 +13,8 @@ class BalanceViewModel: ObservableObject {
   
   @Published var balances: [CoinBalance] = []
   
+  var balancesSubject = PublishSubject<Void>()
+  
   init() {
     syncBalances()
     balanceLoader.balancesSyncSubject
@@ -24,6 +26,7 @@ class BalanceViewModel: ObservableObject {
   }
   
   private func syncBalances() {
+    balancesSubject.onNext(())
     balances = balanceLoader.balances
   }
   
