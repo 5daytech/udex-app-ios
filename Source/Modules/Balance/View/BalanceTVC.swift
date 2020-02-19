@@ -33,6 +33,7 @@ class BalanceTVC: UITableViewCell {
     title.text = item.balance.coin.title
     pricePerToken.text = "$\(item.balance.pricePerToken.toDisplayFormat()) per \(item.balance.coin.code)"
     amountInCoin.text = "\(item.balance.balance.toDisplayFormat()) \(item.balance.coin.code)"
+    amountInFiat.text = "$\(item.balance.fiatBalance.toDisplayFormat(2))"
   }
   
   func setupCell() {

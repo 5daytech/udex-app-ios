@@ -2,6 +2,14 @@ import UIKit
 import SnapKit
 import RxSwift
 
+protocol BalanceVCDelegate {
+  func onWrap()
+  func onUnwrap()
+  func onReceive()
+  func onSend()
+  func onTransactions()
+}
+
 class BalanceVC: UIViewController {
   private let disposeBag = DisposeBag()
   private var tableView: UITableView!
@@ -9,6 +17,11 @@ class BalanceVC: UIViewController {
   private let viewModel = BalanceViewModel()
   
   private var items = [BalanceViewItem]()
+  
+  private var totalFiatLabel: UILabel?
+  private var totalLabel: UILabel?
+  
+  var delegate: BalanceVCDelegate?
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,6 +45,8 @@ class BalanceVC: UIViewController {
   }
   
   private func refresh() {
+    totalFiatLabel?.text = viewModel.totalBalance.fiatBalanceStr
+    totalLabel?.text = viewModel.totalBalance.balanceStr
     var newCoins = [BalanceViewItem]()
     viewModel.balances.enumerated().forEach { index, balance in
       let filtered = items.filter { $0.balance == balance }.first
@@ -62,22 +77,22 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     
     if item.balance.coin.code == "ETH" {
       wrap = {
-        
+        self.delegate?.onWrap()
       }
     } else if item.balance.coin.code == "WETH" {
       wrap = {
-        
+        self.delegate?.onUnwrap()
       }
     }
     
     cell.onBind(
       items[indexPath.row],
       onReceive: {
-        
+        self.delegate?.onReceive()
       }, onSend: {
-        
+        self.delegate?.onSend()
       }, onTransactions: {
-        
+        self.delegate?.onTransactions()
       }, onWrap: wrap
     )
     return cell
@@ -89,6 +104,33 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     (cell as? BalanceTVC)?.setupCell()
+  }
+  
+  func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    let view = UIView()
+    view.backgroundColor = UIColor(named: "background")
+    
+    totalFiatLabel = UILabel()
+    totalFiatLabel?.text = viewModel.totalBalance.fiatBalanceStr
+    totalFiatLabel?.textColor = UIColor(named: "T1")
+    totalFiatLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+    view.addSubview(totalFiatLabel!)
+    totalFiatLabel?.snp.makeConstraints({ (maker) in
+      maker.leading.top.equalToSuperview().offset(16)
+    })
+    
+    totalLabel = UILabel()
+    totalLabel?.text = viewModel.totalBalance.balanceStr
+    totalLabel?.textColor = UIColor(named: "T2")
+    totalLabel?.font = UIFont.systemFont(ofSize: 20)
+    view.addSubview(totalLabel!)
+    totalLabel?.snp.makeConstraints({ (maker) in
+      maker.top.equalTo(totalFiatLabel!.snp.bottom).offset(4)
+      maker.leading.equalToSuperview().offset(16)
+      maker.bottom.equalToSuperview().offset(-16)
+    })
+    
+    return view
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

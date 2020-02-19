@@ -75,7 +75,7 @@
 		B54C34CD23DEC79E00BFABEB /* LimitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54C34CC23DEC79E00BFABEB /* LimitInteractor.swift */; };
 		B54F65DB23CE175E008BD76C /* Decimal+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */; };
 		B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65DC23CE191C008BD76C /* NumberUtils.swift */; };
-		B54F65E123CED25E008BD76C /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E023CED25E008BD76C /* NumberPad.swift */; };
+		B54F65E123CED25E008BD76C /* ExchangeNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E023CED25E008BD76C /* ExchangeNumberPad.swift */; };
 		B54F65E323CF04C9008BD76C /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E223CF04C9008BD76C /* Appearance.swift */; };
 		B54F65E523CF0A00008BD76C /* CoinBalance.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E423CF0A00008BD76C /* CoinBalance.swift */; };
 		B54F65E723CF0B53008BD76C /* BalanceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65E623CF0B53008BD76C /* BalanceLoader.swift */; };
@@ -119,6 +119,11 @@
 		B5A985C223F6BB7C009AEBD8 /* BalanceTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985C123F6BB7C009AEBD8 /* BalanceTVC.swift */; };
 		B5A985C423F6C479009AEBD8 /* BalanceTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A985C323F6C479009AEBD8 /* BalanceTVC.xib */; };
 		B5A985C623F6C558009AEBD8 /* BalanceViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985C523F6C558009AEBD8 /* BalanceViewWrapper.swift */; };
+		B5A985C823FCF206009AEBD8 /* BottomCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985C723FCF206009AEBD8 /* BottomCard.swift */; };
+		B5A985CB23FCFE66009AEBD8 /* ConvertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985CA23FCFE65009AEBD8 /* ConvertView.swift */; };
+		B5A985CD23FD28D7009AEBD8 /* ConvertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985CC23FD28D7009AEBD8 /* ConvertViewModel.swift */; };
+		B5A985D123FD2D80009AEBD8 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D023FD2D80009AEBD8 /* NumberPad.swift */; };
+		B5A985D323FD2FC0009AEBD8 /* PipeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D223FD2FC0009AEBD8 /* PipeInputView.swift */; };
 		B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */; };
 		B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */; };
 		B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26523A8E80D00D6FBFA /* ContentView.swift */; };
@@ -215,7 +220,7 @@
 		B54C34CC23DEC79E00BFABEB /* LimitInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LimitInteractor.swift; sourceTree = "<group>"; };
 		B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extension.swift"; sourceTree = "<group>"; };
 		B54F65DC23CE191C008BD76C /* NumberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberUtils.swift; sourceTree = "<group>"; };
-		B54F65E023CED25E008BD76C /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		B54F65E023CED25E008BD76C /* ExchangeNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeNumberPad.swift; sourceTree = "<group>"; };
 		B54F65E223CF04C9008BD76C /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		B54F65E423CF0A00008BD76C /* CoinBalance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinBalance.swift; sourceTree = "<group>"; };
 		B54F65E623CF0B53008BD76C /* BalanceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceLoader.swift; sourceTree = "<group>"; };
@@ -259,6 +264,11 @@
 		B5A985C123F6BB7C009AEBD8 /* BalanceTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceTVC.swift; sourceTree = "<group>"; };
 		B5A985C323F6C479009AEBD8 /* BalanceTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BalanceTVC.xib; sourceTree = "<group>"; };
 		B5A985C523F6C558009AEBD8 /* BalanceViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceViewWrapper.swift; sourceTree = "<group>"; };
+		B5A985C723FCF206009AEBD8 /* BottomCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCard.swift; sourceTree = "<group>"; };
+		B5A985CA23FCFE65009AEBD8 /* ConvertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertView.swift; sourceTree = "<group>"; };
+		B5A985CC23FD28D7009AEBD8 /* ConvertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertViewModel.swift; sourceTree = "<group>"; };
+		B5A985D023FD2D80009AEBD8 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
+		B5A985D223FD2FC0009AEBD8 /* PipeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeInputView.swift; sourceTree = "<group>"; };
 		B5DAE25E23A8E80D00D6FBFA /* UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -392,7 +402,7 @@
 				B50C2F3423B4BB7500CE7FBF /* ExchangeView.swift */,
 				B50C2F3623B4BE3400CE7FBF /* ExchangeCoinView.swift */,
 				B52C4A1923B5FAB2004C1AAE /* ExchangeInputView.swift */,
-				B54F65E023CED25E008BD76C /* NumberPad.swift */,
+				B54F65E023CED25E008BD76C /* ExchangeNumberPad.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -634,6 +644,15 @@
 			path = Duration;
 			sourceTree = "<group>";
 		};
+		B5A985C923FCFE52009AEBD8 /* Convert */ = {
+			isa = PBXGroup;
+			children = (
+				B5A985CA23FCFE65009AEBD8 /* ConvertView.swift */,
+				B5A985CC23FD28D7009AEBD8 /* ConvertViewModel.swift */,
+			);
+			path = Convert;
+			sourceTree = "<group>";
+		};
 		B5CE202F23D0551E001F519E /* Storage */ = {
 			isa = PBXGroup;
 			children = (
@@ -708,6 +727,7 @@
 		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B5A985C923FCFE52009AEBD8 /* Convert */,
 				B54C34B423DAF8ED00BFABEB /* SecurityCenter */,
 				B54C34AF23DAF0C400BFABEB /* Settings */,
 				B577871523D5C60F0080F9E9 /* Restore */,
@@ -768,6 +788,9 @@
 				B5F0A43823CC890800592A78 /* TransactionSentDialog.swift */,
 				B5F0A43A23CC90EB00592A78 /* ErrorDialog.swift */,
 				B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */,
+				B5A985C723FCF206009AEBD8 /* BottomCard.swift */,
+				B5A985D023FD2D80009AEBD8 /* NumberPad.swift */,
+				B5A985D223FD2FC0009AEBD8 /* PipeInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -918,6 +941,7 @@
 				B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */,
 				B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */,
 				B50C2F1D23B4752900CE7FBF /* ExchangePairViewItem.swift in Sources */,
+				B5A985CD23FD28D7009AEBD8 /* ConvertViewModel.swift in Sources */,
 				B533EBF623AB6E3E00CD18CC /* MainView.swift in Sources */,
 				B59AE92023B0AD5200DF03C1 /* AppConfigProvider.swift in Sources */,
 				B5A985C623F6C558009AEBD8 /* BalanceViewWrapper.swift in Sources */,
@@ -926,7 +950,7 @@
 				B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */,
 				B50C2F3723B4BE3400CE7FBF /* ExchangeCoinView.swift in Sources */,
 				B54C34AE23DAE3C000BFABEB /* IEthereumKitManager.swift in Sources */,
-				B54F65E123CED25E008BD76C /* NumberPad.swift in Sources */,
+				B54F65E123CED25E008BD76C /* ExchangeNumberPad.swift in Sources */,
 				B59AE91A23B0A8A700DF03C1 /* Currency.swift in Sources */,
 				B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */,
 				B533EBF323AB404F00CD18CC /* CoinType.swift in Sources */,
@@ -950,6 +974,7 @@
 				B5DAE29623AA0C3300D6FBFA /* OrderViewItem.swift in Sources */,
 				B59AE90D23B0A53200DF03C1 /* ITransactionsAdapter.swift in Sources */,
 				B59AE90723B0A47500DF03C1 /* IBalanceAdapter.swift in Sources */,
+				B5A985D123FD2D80009AEBD8 /* NumberPad.swift in Sources */,
 				B50C2F2123B475F700CE7FBF /* ExchangePair.swift in Sources */,
 				B54F65E723CF0B53008BD76C /* BalanceLoader.swift in Sources */,
 				B541F91E23F2666B0076742E /* FeeRateProvider.swift in Sources */,
@@ -996,15 +1021,18 @@
 				B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */,
 				B50C2F3523B4BB7500CE7FBF /* ExchangeView.swift in Sources */,
 				B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */,
+				B5A985C823FCF206009AEBD8 /* BottomCard.swift in Sources */,
 				B54F65E523CF0A00008BD76C /* CoinBalance.swift in Sources */,
 				B54C34BC23DB09D500BFABEB /* ShowKeyView.swift in Sources */,
 				B5F0A43B23CC90EB00592A78 /* ErrorDialog.swift in Sources */,
 				B52C4A2223C321D1004C1AAE /* MarketOrderViewState.swift in Sources */,
+				B5A985CB23FCFE66009AEBD8 /* ConvertView.swift in Sources */,
 				B50C2F2423B4771100CE7FBF /* BaseRelayerAdapter.swift in Sources */,
 				B53A7D0523C747210098A237 /* String+Extension.swift in Sources */,
 				B533EBFF23ACC3A400CD18CC /* BalanceViewModel.swift in Sources */,
 				B5A985BC23F3F05E009AEBD8 /* ETransactionType.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
+				B5A985D323FD2FC0009AEBD8 /* PipeInputView.swift in Sources */,
 				B59AE90923B0A4B700DF03C1 /* AdapterState.swift in Sources */,
 				B5347E5023CDEEF100A7B85E /* OrdersView.swift in Sources */,
 				B54C34B323DAF14800BFABEB /* SettingsItemView.swift in Sources */,
@@ -1183,6 +1211,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1209,6 +1238,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1295,6 +1325,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

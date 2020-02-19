@@ -141,7 +141,7 @@ struct ExchangeView<T: IMLInteractor>: View {
           .padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
           Spacer()
           // Number pad
-          NumberPad(
+          ExchangeNumberPad(
             mainTitle: self.viewModel.mainButtonTitle,
             onNumberPressed: { (number) in
               self.viewModel.inputNumber(input: number)

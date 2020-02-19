@@ -1,7 +1,7 @@
 import Foundation
 import RxSwift
 
-class BalanceViewModel: ObservableObject {
+class BalanceViewModel {
   let disposeBag = DisposeBag()
   
   var balanceLoader = BalanceLoader(
@@ -11,11 +11,13 @@ class BalanceViewModel: ObservableObject {
     ratesConverter: App.instance.ratesConverter
   )
   
-  @Published var balances: [CoinBalance] = []
+  var balances: [CoinBalance] = []
+  var totalBalance: TotalBalanceInfo
   
   var balancesSubject = PublishSubject<Void>()
   
   init() {
+    totalBalance = TotalBalanceInfo(coin: App.instance.coinManager.getCoin(code: "ETH"), balance: 0, fiatBalance: 0)
     syncBalances()
     balanceLoader.balancesSyncSubject
       .observeOn(MainScheduler.instance)
@@ -28,6 +30,7 @@ class BalanceViewModel: ObservableObject {
   private func syncBalances() {
     balancesSubject.onNext(())
     balances = balanceLoader.balances
+    totalBalance = balanceLoader.totalBalance
   }
   
   func expand(for balance: BalanceViewItem) {
@@ -37,4 +40,6 @@ class BalanceViewModel: ObservableObject {
   func refresh() {
     balanceLoader.refresh()
   }
+  
+  
 }

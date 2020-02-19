@@ -7,10 +7,10 @@ class NumberUtils {
   
   private init() {
     numberFormatter = NumberFormatter()
-    numberFormatter.maximumFractionDigits = 4
   }
   
-  func format(_ number: Decimal) -> String {
+  func format(_ number: Decimal, precise: Int = 4) -> String {
+    numberFormatter.maximumFractionDigits = precise
     return numberFormatter.string(from: number as NSDecimalNumber)!
   }
 }

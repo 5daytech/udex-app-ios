@@ -21,23 +21,7 @@ struct ExchangeInputView: View {
           .font(.system(size: 12))
           .foregroundColor(Color("T2"))
       }
-      HStack {
-        Text(text ?? (isPipeShowing ? "" : "0.00"))
-          .lineLimit(1)
-        if isPipeShowing {
-          Text("|")
-            .offset(x: -9)
-            .opacity(dim ? 0 : 1.0)
-            .animation(
-              Animation
-                .linear(duration: 0.5)
-                .repeatForever()
-          )
-            .onAppear {
-              self.dim.toggle()
-          }
-        }
-      }
+      PipeInputView(isPipeShowing: isPipeShowing, text: text)
       if receiveAmount != nil {
         Text("You receive: \(receiveAmount!)")
           .font(.system(size: 14, weight: .bold))
