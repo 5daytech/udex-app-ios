@@ -124,6 +124,9 @@
 		B5A985CD23FD28D7009AEBD8 /* ConvertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985CC23FD28D7009AEBD8 /* ConvertViewModel.swift */; };
 		B5A985D123FD2D80009AEBD8 /* NumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D023FD2D80009AEBD8 /* NumberPad.swift */; };
 		B5A985D323FD2FC0009AEBD8 /* PipeInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D223FD2FC0009AEBD8 /* PipeInputView.swift */; };
+		B5A985D523FD923F009AEBD8 /* ConvertConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D423FD923F009AEBD8 /* ConvertConfig.swift */; };
+		B5A985D723FD926E009AEBD8 /* EConvertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D623FD926E009AEBD8 /* EConvertType.swift */; };
+		B5A985D923FD98D3009AEBD8 /* BigUInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D823FD98D3009AEBD8 /* BigUInt+Extension.swift */; };
 		B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */; };
 		B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */; };
 		B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26523A8E80D00D6FBFA /* ContentView.swift */; };
@@ -269,6 +272,9 @@
 		B5A985CC23FD28D7009AEBD8 /* ConvertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertViewModel.swift; sourceTree = "<group>"; };
 		B5A985D023FD2D80009AEBD8 /* NumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPad.swift; sourceTree = "<group>"; };
 		B5A985D223FD2FC0009AEBD8 /* PipeInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeInputView.swift; sourceTree = "<group>"; };
+		B5A985D423FD923F009AEBD8 /* ConvertConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertConfig.swift; sourceTree = "<group>"; };
+		B5A985D623FD926E009AEBD8 /* EConvertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EConvertType.swift; sourceTree = "<group>"; };
+		B5A985D823FD98D3009AEBD8 /* BigUInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigUInt+Extension.swift"; sourceTree = "<group>"; };
 		B5DAE25E23A8E80D00D6FBFA /* UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -458,6 +464,7 @@
 				B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */,
 				B54F65DC23CE191C008BD76C /* NumberUtils.swift */,
 				B54F65E223CF04C9008BD76C /* Appearance.swift */,
+				B5A985D823FD98D3009AEBD8 /* BigUInt+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -649,6 +656,8 @@
 			children = (
 				B5A985CA23FCFE65009AEBD8 /* ConvertView.swift */,
 				B5A985CC23FD28D7009AEBD8 /* ConvertViewModel.swift */,
+				B5A985D423FD923F009AEBD8 /* ConvertConfig.swift */,
+				B5A985D623FD926E009AEBD8 /* EConvertType.swift */,
 			);
 			path = Convert;
 			sourceTree = "<group>";
@@ -984,6 +993,7 @@
 				B5347E5423CE0C5900A7B85E /* SimpleOrder.swift in Sources */,
 				B5A985BA23F3F019009AEBD8 /* IProcessingDurationProvider.swift in Sources */,
 				B54F65EB23CF119A008BD76C /* TotalBalanceInfo.swift in Sources */,
+				B5A985D723FD926E009AEBD8 /* EConvertType.swift in Sources */,
 				B533EBFB23AC8E2700CD18CC /* BalanceView.swift in Sources */,
 				B59AE92423B0BD2100DF03C1 /* AdapterManager.swift in Sources */,
 				B53A7CF523C5C9000098A237 /* IAllowanceChecker.swift in Sources */,
@@ -1019,6 +1029,7 @@
 				B54C34C023DB129400BFABEB /* BackupViewModel.swift in Sources */,
 				B53A7CEF23C5C5800098A237 /* FillOrderData.swift in Sources */,
 				B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */,
+				B5A985D523FD923F009AEBD8 /* ConvertConfig.swift in Sources */,
 				B50C2F3523B4BB7500CE7FBF /* ExchangeView.swift in Sources */,
 				B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */,
 				B5A985C823FCF206009AEBD8 /* BottomCard.swift in Sources */,
@@ -1032,6 +1043,7 @@
 				B533EBFF23ACC3A400CD18CC /* BalanceViewModel.swift in Sources */,
 				B5A985BC23F3F05E009AEBD8 /* ETransactionType.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
+				B5A985D923FD98D3009AEBD8 /* BigUInt+Extension.swift in Sources */,
 				B5A985D323FD2FC0009AEBD8 /* PipeInputView.swift in Sources */,
 				B59AE90923B0A4B700DF03C1 /* AdapterState.swift in Sources */,
 				B5347E5023CDEEF100A7B85E /* OrdersView.swift in Sources */,

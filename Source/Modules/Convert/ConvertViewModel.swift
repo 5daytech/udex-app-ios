@@ -1,9 +1,39 @@
 import Foundation
+import BigInt
+import RxSwift
 
 class ConvertViewModel: ObservableObject {
+  private let disposeBag = DisposeBag()
+  private let adapterManager = App.instance.adapterManager
+  private let coinManager = App.instance.coinManager
+  private let ratesConverter = App.instance.ratesConverter
+  private let wethWrapper = App.instance.zrxKitManager.zrxKit().getWethWrapperInstance()
   
   @Published var amount: String? = nil
   @Published var wrapDisabled: Bool = true
+  @Published var availableBalance: Decimal = 0.0
+  @Published var availableBalanceInFiat: Decimal = 0.0
+  @Published var sendAmountInFiat: Decimal = 0.0
+  @Published var estimatedFee: Decimal = 0.0
+  @Published var title: String
+  @Published var coinCode: String
+  
+  private var sendAmount: Decimal = 0.0
+  let config: ConvertConfig
+  let onDone: () -> Void
+  
+  init(config: ConvertConfig, onDone: @escaping () -> Void) {
+    self.onDone = onDone
+    self.config = config
+    self.coinCode = config.coinCode
+    self.title = config.type.title
+    let fromCoin = coinManager.getCoin(code: config.coinCode)
+    let toCoin = coinManager.getCoin(code: config.type == .WRAP ? "WETH" : "ETH")
+    let fromAdapter = adapterManager.balanceAdapter(for: fromCoin)
+    availableBalance = fromAdapter!.balance
+    availableBalanceInFiat = ratesConverter.getCoinsPrice(code: fromCoin.code, amount: availableBalance)
+    estimatedFee = wethWrapper.depositEstimatedPrice.toNormalDecimal(decimal: 18)
+  }
   
   func setAmount(_ number: String) {
     var inputText = amount
@@ -24,5 +54,38 @@ class ConvertViewModel: ObservableObject {
       inputText?.append(number)
     }
     amount = inputText
+    proccessAmount(amount)
+  }
+  
+  private func proccessAmount(_ amount: String?) {
+    sendAmount = Decimal(string: amount ?? "") ?? 0
+    sendAmountInFiat = ratesConverter.getCoinsPrice(code: config.coinCode, amount: sendAmount)
+    wrapDisabled = sendAmount <= 0 || sendAmount > availableBalance
+  }
+  
+  func convert() {
+    if sendAmount < availableBalance {
+      switch config.type {
+      case .WRAP:
+        wethWrapper.deposit(sendAmount.toEth(), onReceipt: { (ethTransactionReceipt) in
+          
+        }, onDeposit: { eventResponse in
+          
+        }).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
+          print(ethData.hex())
+        }).disposed(by: disposeBag)
+      case .UNWRAP:
+        wethWrapper.withdraw(sendAmount.toEth(), onReceipt: { (ethTransactionReceipt) in
+          
+        }, onWithdrawal: { eventResponse in
+          
+        }).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
+          print(ethData.hex())
+        }).disposed(by: disposeBag)
+      case .NONE:
+        fatalError()
+      }
+     onDone()
+    }
   }
 }

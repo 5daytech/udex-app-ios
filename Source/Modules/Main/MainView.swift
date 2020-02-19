@@ -2,7 +2,8 @@ import SwiftUI
 
 struct MainView: View {
   
-  @State var showBottomCard = false
+  @State var showWrapCard = false
+  @State var showUnwrapCard = false
   let screenHeight = UIScreen.main.bounds.height
   
   @ObservedObject var viewModel = MainViewModel(
@@ -21,7 +22,13 @@ struct MainView: View {
             //          }
             //          .navigationBarTitle(Text("Balance"))
             BalanceView(onWrap: {
-              self.showBottomCard.toggle()
+              self.showWrapCard = true
+            }, onUnwrap: {
+              self.showUnwrapCard = true
+            }, onSend: {
+              
+            }, onReceive: {
+              
             })
               .tabItem {
                 Image("balance").renderingMode(.template)
@@ -59,8 +66,39 @@ struct MainView: View {
             }
           }
           .accentColor(Color("main"))
-          BottomCard(showBottomCard: $showBottomCard, content: ConvertView())
-          .offset(y: screenHeight - ( showBottomCard ? (screenHeight - 100) : 0))
+          
+          // WRAP CARD
+          BottomCard(
+            showBottomCard: $showWrapCard,
+            content: ConvertView(
+              viewModel: ConvertViewModel(
+                config: ConvertConfig(
+                  coinCode: "ETH",
+                  type: .WRAP),
+                onDone: {
+                  self.showWrapCard = false
+                }
+              )
+            )
+          )
+          .offset(y: screenHeight - ( showWrapCard ? (screenHeight - 100) : 0))
+          .animation(.easeInOut(duration: 0.3))
+          
+          // UNWRAP CARD
+          BottomCard(
+            showBottomCard: $showUnwrapCard,
+            content: ConvertView(
+              viewModel: ConvertViewModel(
+                config: ConvertConfig(
+                  coinCode: "WETH",
+                  type: .UNWRAP),
+                onDone: {
+                  self.showUnwrapCard = false
+                }
+              )
+            )
+          )
+          .offset(y: screenHeight - ( showUnwrapCard ? (screenHeight - 100) : 0))
           .animation(.easeInOut(duration: 0.3))
         }
       } else {

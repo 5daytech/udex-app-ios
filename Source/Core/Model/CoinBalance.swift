@@ -18,7 +18,3 @@ extension CoinBalance: Equatable {
 enum BalanceState {
   case SYNCED, SYNCING, FAILED
 }
-
-enum EConvertType {
-  case NONE, WRAP, UNWRAP
-}

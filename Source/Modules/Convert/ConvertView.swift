@@ -1,35 +1,36 @@
 import SwiftUI
 
 struct ConvertView: View {
-  
-  @ObservedObject var viewModel = ConvertViewModel()
+  @ObservedObject var viewModel: ConvertViewModel
   
   @State var inputed: String = ""
   
   var body: some View {
     VStack(alignment: .leading, spacing: 10) {
       HStack {
-        Image("ETH")
+        Image(viewModel.coinCode)
           .resizable()
           .aspectRatio(contentMode: .fit)
           .frame(width: 20, height: 20)
-        Text("Wrap ")
+        Text(viewModel.title)
           .fontWeight(.bold)
           +
-        Text("ETH")
+        Text(" ")
+          +
+        Text(viewModel.coinCode)
           .foregroundColor(Color("main"))
           .fontWeight(.bold)
       }
       Text("AVAILABLE BALANCE")
         .font(Font.system(size: 12))
         .foregroundColor(Color("T2"))
-      Text("0.6969 ETH")
+      Text("\(viewModel.availableBalance.toDisplayFormat()) ETH")
         .foregroundColor(Color("T1"))
         .font(Font.system(size: 18, weight: .bold))
-      Text("$ 193.00")
+      Text("$\(viewModel.availableBalanceInFiat.toDisplayFormat(2))")
         .font(Font.system(size: 12))
         .foregroundColor(Color("T2"))
-      Text("You send $0.0")
+      Text("You send $\(viewModel.sendAmountInFiat.toDisplayFormat(2))")
         .font(Font.system(size: 10))
         .foregroundColor(Color("T3"))
       HStack {
@@ -48,16 +49,16 @@ struct ConvertView: View {
           .font(Font.system(size: 12))
           .foregroundColor(Color("T2"))
         Spacer()
-        Text("~ 0.0008 ETH")
+        Text("~\(viewModel.estimatedFee.toDisplayFormat()) ETH")
           .foregroundColor(Color("T1"))
           .font(Font.system(size: 12))
       }
       
       Button(action: {
-        
+        self.viewModel.convert()
       }) {
         Spacer()
-        Text("WRAP")
+        Text(viewModel.title.uppercased())
           .font(.system(size: 18, weight: .bold))
           .foregroundColor(Color("background"))
           .padding([.top, .bottom], 16)
@@ -75,11 +76,5 @@ struct ConvertView: View {
 extension ConvertView: NumberPadInputable {
   func inputNumber(_ number: String) {
     viewModel.setAmount(number)
-  }
-}
-
-struct ConvertView_Previews: PreviewProvider {
-  static var previews: some View {
-    ConvertView()
   }
 }
