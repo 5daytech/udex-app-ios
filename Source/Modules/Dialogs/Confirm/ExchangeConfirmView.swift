@@ -19,7 +19,7 @@ struct ExchangeConfirmView: View {
             .resizable()
             .aspectRatio(contentMode: .fit)
             .frame(width: 25, height: 25)
-            Image("exchange")
+            Image("exchange_confirm")
               .renderingMode(.template)
               .foregroundColor(Color("main"))
             Image(self.viewModel.info.receiveCoin)

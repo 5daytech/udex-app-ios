@@ -127,6 +127,7 @@
 		B5A985D523FD923F009AEBD8 /* ConvertConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D423FD923F009AEBD8 /* ConvertConfig.swift */; };
 		B5A985D723FD926E009AEBD8 /* EConvertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D623FD926E009AEBD8 /* EConvertType.swift */; };
 		B5A985D923FD98D3009AEBD8 /* BigUInt+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985D823FD98D3009AEBD8 /* BigUInt+Extension.swift */; };
+		B5A985DB23FE3B7E009AEBD8 /* ConvertConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985DA23FE3B7E009AEBD8 /* ConvertConfirmView.swift */; };
 		B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */; };
 		B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */; };
 		B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE26523A8E80D00D6FBFA /* ContentView.swift */; };
@@ -275,6 +276,7 @@
 		B5A985D423FD923F009AEBD8 /* ConvertConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertConfig.swift; sourceTree = "<group>"; };
 		B5A985D623FD926E009AEBD8 /* EConvertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EConvertType.swift; sourceTree = "<group>"; };
 		B5A985D823FD98D3009AEBD8 /* BigUInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigUInt+Extension.swift"; sourceTree = "<group>"; };
+		B5A985DA23FE3B7E009AEBD8 /* ConvertConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertConfirmView.swift; sourceTree = "<group>"; };
 		B5DAE25E23A8E80D00D6FBFA /* UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 				B5A985CC23FD28D7009AEBD8 /* ConvertViewModel.swift */,
 				B5A985D423FD923F009AEBD8 /* ConvertConfig.swift */,
 				B5A985D623FD926E009AEBD8 /* EConvertType.swift */,
+				B5A985DA23FE3B7E009AEBD8 /* ConvertConfirmView.swift */,
 			);
 			path = Convert;
 			sourceTree = "<group>";
@@ -951,6 +954,7 @@
 				B5DAE26223A8E80D00D6FBFA /* AppDelegate.swift in Sources */,
 				B50C2F1D23B4752900CE7FBF /* ExchangePairViewItem.swift in Sources */,
 				B5A985CD23FD28D7009AEBD8 /* ConvertViewModel.swift in Sources */,
+				B5A985DB23FE3B7E009AEBD8 /* ConvertConfirmView.swift in Sources */,
 				B533EBF623AB6E3E00CD18CC /* MainView.swift in Sources */,
 				B59AE92023B0AD5200DF03C1 /* AppConfigProvider.swift in Sources */,
 				B5A985C623F6C558009AEBD8 /* BalanceViewWrapper.swift in Sources */,
@@ -1210,6 +1214,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
@@ -1223,7 +1228,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1237,6 +1242,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
@@ -1250,7 +1256,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1324,6 +1330,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
@@ -1337,7 +1344,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
+				MARKETING_VERSION = 0.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

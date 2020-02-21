@@ -41,20 +41,20 @@ class BalanceTVC: UITableViewCell {
       buttonsStackView = setupButtonsStack()
     }
     
-    if receiveBtn == nil {
-      receiveBtn = setupReceiveButton()
-      buttonsStackView?.addArrangedSubview(receiveBtn!)
-    }
-    
-    if sendBtn == nil {
-      sendBtn = setupSendButton()
-      buttonsStackView?.addArrangedSubview(sendBtn!)
-    }
-    
-    if transactionsBtn == nil {
-      transactionsBtn = setupTransactionsButton()
-      buttonsStackView?.addArrangedSubview(transactionsBtn!)
-    }
+//    if receiveBtn == nil {
+//      receiveBtn = setupReceiveButton()
+//      buttonsStackView?.addArrangedSubview(receiveBtn!)
+//    }
+//
+//    if sendBtn == nil {
+//      sendBtn = setupSendButton()
+//      buttonsStackView?.addArrangedSubview(sendBtn!)
+//    }
+//
+//    if transactionsBtn == nil {
+//      transactionsBtn = setupTransactionsButton()
+//      buttonsStackView?.addArrangedSubview(transactionsBtn!)
+//    }
     
     if item!.wrap != nil {
       if wrapBtn != nil {
