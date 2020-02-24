@@ -29,7 +29,7 @@ class ConvertViewModel: ObservableObject {
   private var sendAmount: Decimal = 0.0
   let config: ConvertConfig
   let onDone: () -> Void
-  let onConfirm: () -> Void
+  let onConfirm: (ConvertConfirmConfig) -> Void
   let onProcessing: () -> Void
   let onTransaction: (String) -> Void
   let onError: (String) -> Void
@@ -38,7 +38,7 @@ class ConvertViewModel: ObservableObject {
   init(
     config: ConvertConfig,
     onDone: @escaping () -> Void,
-    onConfirm: @escaping () -> Void,
+    onConfirm: @escaping (ConvertConfirmConfig) -> Void,
     onProcessing: @escaping () -> Void,
     onTransaction: @escaping (String) -> Void,
     onError: @escaping (String) -> Void
@@ -125,6 +125,10 @@ class ConvertViewModel: ObservableObject {
   
   func convert() {
     viewState = .confirm
-    self.onConfirm()
+    self.onConfirm(ConvertConfirmConfig(
+      value: sendAmount,
+      estimatedFee: 0.0008,
+      processingTime: 20,
+      type: config.type))
   }
 }

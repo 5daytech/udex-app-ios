@@ -147,6 +147,7 @@
 		B5E3ECB92403EE8300833F42 /* ScanQRWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECB82403EE8300833F42 /* ScanQRWrapper.swift */; };
 		B5E3ECBB2403F39900833F42 /* SendConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECBA2403F39900833F42 /* SendConfirmView.swift */; };
 		B5E3ECBD2403F88200833F42 /* SendConfirmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECBC2403F88200833F42 /* SendConfirmConfig.swift */; };
+		B5E3ECBF24044BDF00833F42 /* ConvertConfirmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECBE24044BDF00833F42 /* ConvertConfirmConfig.swift */; };
 		B5F0A42B23CC306900592A78 /* ExchangeConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */; };
 		B5F0A42F23CC31A300592A78 /* ExchangeConfirmInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */; };
 		B5F0A43123CC38F600592A78 /* ExchangeConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */; };
@@ -313,6 +314,7 @@
 		B5E3ECB82403EE8300833F42 /* ScanQRWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRWrapper.swift; sourceTree = "<group>"; };
 		B5E3ECBA2403F39900833F42 /* SendConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmView.swift; sourceTree = "<group>"; };
 		B5E3ECBC2403F88200833F42 /* SendConfirmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmConfig.swift; sourceTree = "<group>"; };
+		B5E3ECBE24044BDF00833F42 /* ConvertConfirmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertConfirmConfig.swift; sourceTree = "<group>"; };
 		B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmView.swift; sourceTree = "<group>"; };
 		B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmInfo.swift; sourceTree = "<group>"; };
 		B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmViewModel.swift; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				B5A985D423FD923F009AEBD8 /* ConvertConfig.swift */,
 				B5A985D623FD926E009AEBD8 /* EConvertType.swift */,
 				B5A985DA23FE3B7E009AEBD8 /* ConvertConfirmView.swift */,
+				B5E3ECBE24044BDF00833F42 /* ConvertConfirmConfig.swift */,
 			);
 			path = Convert;
 			sourceTree = "<group>";
@@ -1016,6 +1019,7 @@
 				B54F65E123CED25E008BD76C /* ExchangeNumberPad.swift in Sources */,
 				B59AE91A23B0A8A700DF03C1 /* Currency.swift in Sources */,
 				B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */,
+				B5E3ECBF24044BDF00833F42 /* ConvertConfirmConfig.swift in Sources */,
 				B533EBF323AB404F00CD18CC /* CoinType.swift in Sources */,
 				B54F65DB23CE175E008BD76C /* Decimal+Extension.swift in Sources */,
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,

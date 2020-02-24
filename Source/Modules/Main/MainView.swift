@@ -4,7 +4,7 @@ struct MainView: View {
   
   enum DialogViewsState {
     case NONE
-    case CONFIRM_CONVERT
+    case CONFIRM_CONVERT(ConvertConfirmConfig)
     case CONFIRM_SEND(SendConfirmConfig)
     case PROGRESS
     case TRANSACTION_SENT(String)
@@ -76,9 +76,9 @@ struct MainView: View {
   
   private func topView() -> AnyView? {
     switch viewState {
-    case .CONFIRM_CONVERT:
+    case .CONFIRM_CONVERT(let config):
       return AnyView(
-        ConvertConfirmView(onConfirm: {
+        ConvertConfirmView(config: config, onConfirm: {
           self.viewState = .PROGRESS
           self.viewModel.convertView?.confirmConvert()
         })
@@ -125,8 +125,8 @@ struct MainView: View {
         onDone: {
           self.showBottomCard = false
       },
-        onConfirm: {
-          self.viewState = .CONFIRM_CONVERT
+        onConfirm: { config in
+          self.viewState = .CONFIRM_CONVERT(config)
       },
         onProcessing: {
           self.viewState = .PROGRESS

@@ -1,14 +1,15 @@
 import SwiftUI
 
 struct ConvertConfirmView: View {
+  var config: ConvertConfirmConfig
   var onConfirm: () -> Void
   
   var body: some View {
     VStack(spacing: 20) {
       HStack {
-        Text("Wrap")
+        Text(config.type == .WRAP ? "Wrap" : "Unwrap")
         Spacer()
-        Image("ETH")
+        Image(config.type == .WRAP ? "ETH" : "WETH")
         .renderingMode(.original)
         .resizable()
         .aspectRatio(contentMode: .fit)
@@ -18,36 +19,36 @@ struct ConvertConfirmView: View {
         .resizable()
         .aspectRatio(contentMode: .fit)
         .frame(width: 25, height: 25)
-        Image("WETH")
+        Image(config.type == .WRAP ? "WETH" : "ETH")
         .renderingMode(.original)
         .resizable()
         .aspectRatio(contentMode: .fit)
         .frame(width: 25, height: 25)
       }
-      Text("0.10")
+      Text(config.value.toDisplayFormat())
       +
-      Text("ETH")
+      Text(config.type == .WRAP ? "ETH" : "WETH")
       .foregroundColor(Color("main"))
       
       Text("to")
       .foregroundColor(Color("T2"))
       
-      Text("0.10")
+      Text(config.value.toDisplayFormat())
       +
-      Text("WETH")
+      Text(config.type == .WRAP ? "WETH" : "ETH")
       .foregroundColor(Color("main"))
       
       HStack {
         Text("Estimated Fee:")
         .foregroundColor(Color("T2"))
         Spacer()
-        Text("~0.0008 ETH")
+        Text("~\(config.estimatedFee.toDisplayFormat()) ETH")
       }
       HStack {
         Text("Processing Time:")
         .foregroundColor(Color("T2"))
         Spacer()
-        Text("~20 s")
+        Text("~\(config.processingTime) s")
       }
       Button(action: {
         self.onConfirm()
