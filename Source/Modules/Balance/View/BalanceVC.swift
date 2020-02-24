@@ -6,7 +6,7 @@ protocol BalanceVCDelegate {
   func onWrap()
   func onUnwrap()
   func onReceive(_ coin: Coin)
-  func onSend()
+  func onSend(_ coin: Coin)
   func onTransactions()
 }
 
@@ -89,8 +89,8 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
       items[indexPath.row],
       onReceive: { coin in
         self.delegate?.onReceive(coin)
-      }, onSend: {
-        self.delegate?.onSend()
+      }, onSend: { coin in
+        self.delegate?.onSend(coin)
       }, onTransactions: {
         self.delegate?.onTransactions()
       }, onWrap: wrap

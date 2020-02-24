@@ -48,9 +48,9 @@ class EthereumAdapter: EthereumBaseAdapter {
     )
   }
   
-  override func sendSingle(to address: String, value: String, gasPrice: Int, gasLimit: Int) -> Single<Void> {
+  override func sendSingle(to address: String, value: String, gasPrice: Int, gasLimit: Int) -> Single<String?> {
     ethereumKit.sendSingle(to: address, value: value, gasPrice: gasPrice, gasLimit: gasLimit)
-      .map { _ in ()}
+      .map { txInfo in txInfo.blockHash }
       .catchError { [weak self] error in
         Single.error(self?.createSendError(from: error) ?? error)
     }
@@ -102,7 +102,6 @@ extension EthereumAdapter: IBalanceAdapter {
 }
 
 extension EthereumAdapter: ISendEthereumAdapter {
-  
   func availableBalance(gasPrice: Int, gasLimit: Int?) -> Decimal {
     guard let gasLimit = gasLimit else {
       return balance
@@ -124,6 +123,14 @@ extension EthereumAdapter: ISendEthereumAdapter {
   
   func fee(gasPrice: Int, gasLimit: Int) -> Decimal {
     ethereumKit.fee(gasPrice: gasPrice) / pow(10, EthereumAdapter.decimal)
+  }
+  
+  func fee(value: Decimal, address: String?, feePriority: FeeRatePriority) -> Decimal {
+    ethereumKit.fee(gasPrice: feeRateProvider.ethereumGasPrice(priority: feePriority)) / pow(10, EthereumAdapter.decimal)
+  }
+  
+  func send(amount: Decimal, address: String, feePriority: FeeRatePriority) -> Single<String?> {
+    return sendSingle(amount: amount, address: address, gasPrice: feeRateProvider.ethereumGasPrice(priority: feePriority), gasLimit: ethereumKit.gasLimit)
   }
   
 }

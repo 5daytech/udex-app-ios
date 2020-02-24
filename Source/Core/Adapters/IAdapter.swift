@@ -1,3 +1,5 @@
+import Foundation
+
 protocol IAdapter: class {
   func start()
   func stop()

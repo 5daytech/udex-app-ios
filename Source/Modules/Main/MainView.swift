@@ -5,6 +5,7 @@ struct MainView: View {
   enum DialogViewsState {
     case NONE
     case CONFIRM_CONVERT
+    case CONFIRM_SEND(SendConfirmConfig)
     case PROGRESS
     case TRANSACTION_SENT(String)
     case ERROR(String)
@@ -14,7 +15,7 @@ struct MainView: View {
     case NONE
     case WRAP
     case UNWRAP
-    case SEND
+    case SEND(Coin)
     case RECEIVE(Coin)
   }
   
@@ -53,8 +54,16 @@ struct MainView: View {
           content: convertView
         )
       )
-    case .SEND:
-      return nil
+    case .SEND(let coin):
+      return AnyView(
+        BottomCard(
+          showBottomCard: $showBottomCard,
+          showNumberPad: true,
+          content: SendView(viewModel: SendViewModel(coin: coin, onConfirm: { config in
+            self.viewState = .CONFIRM_SEND(config)
+          }))
+        )
+      )
     case .RECEIVE(let coin):
       return AnyView(
         BottomCard(
@@ -74,6 +83,17 @@ struct MainView: View {
           self.viewModel.convertView?.confirmConvert()
         })
           .transition(.move(edge: .bottom))
+      )
+    case .CONFIRM_SEND(let config):
+      return AnyView(
+        SendConfirmView(config: config) {
+          self.viewState = .PROGRESS
+          self.viewModel.send(config, onTransaction: { (txHash) in
+            self.viewState = .TRANSACTION_SENT(txHash)
+          }, onError: { error in
+            self.viewState = .ERROR(error)
+          })
+        }
       )
     case .PROGRESS:
       return AnyView(
@@ -124,7 +144,7 @@ struct MainView: View {
   
   var isBlur: Bool {
     switch viewState {
-    case .CONFIRM_CONVERT, .ERROR, .PROGRESS, .TRANSACTION_SENT:
+    case .CONFIRM_CONVERT, .CONFIRM_SEND, .ERROR, .PROGRESS, .TRANSACTION_SENT:
       return true
     case .NONE:
       return false
@@ -142,8 +162,9 @@ struct MainView: View {
             }, onUnwrap: {
               self.showBottomCard = true
               self.bottomViewState = .UNWRAP
-            }, onSend: {
-              
+            }, onSend: { coin in
+              self.showBottomCard = true
+              self.bottomViewState = .SEND(coin)
             }, onReceive: { coin in
               self.showBottomCard = true
               self.bottomViewState = .RECEIVE(coin)

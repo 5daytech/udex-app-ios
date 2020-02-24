@@ -9,6 +9,7 @@ class Erc20Adapter: EthereumBaseAdapter {
   private let feeRateProvider: IFeeRateProvider
   private let fee: Decimal
   private let gasLimit: Int?
+  private let estimateGasLimit = 100_000
   private(set) var minimumRequiredBalance: Decimal
   private(set) var minimumSpendableAmount: Decimal?
   
@@ -59,10 +60,12 @@ class Erc20Adapter: EthereumBaseAdapter {
     )
   }
   
-  override func sendSingle(to address: String, value: String, gasPrice: Int, gasLimit: Int) -> Single<Void> {
+  override func sendSingle(to address: String, value: String, gasPrice: Int, gasLimit: Int) -> Single<String?> {
     do {
       return try erc20Kit.sendSingle(to: address, value: value, gasPrice: gasPrice, gasLimit: gasLimit)
-        .map { _ in ()}
+        .map { txInfo in
+          txInfo.transactionHash
+        }
         .catchError { [weak self] error in
           Single.error(self?.createSendError(from: error) ?? error)
       }
@@ -120,7 +123,6 @@ extension Erc20Adapter: IBalanceAdapter {
       errors.append(.insufficientAmount)
     }
     
-    let estimateGasLimit = 100_000
     if (balance < fee(gasPrice: feeRateProvider.ethereumGasPrice(priority: feePriority), gasLimit: estimateGasLimit)) {
       errors.append(.insufficientFeeBalance)
     }
@@ -130,7 +132,6 @@ extension Erc20Adapter: IBalanceAdapter {
 }
 
 extension Erc20Adapter: ISendEthereumAdapter {
-  
   func availableBalance(gasPrice: Int, gasLimit: Int?) -> Decimal {
     max(0, balance - fee)
   }
@@ -144,6 +145,14 @@ extension Erc20Adapter: ISendEthereumAdapter {
     return value / pow(10, EthereumAdapter.decimal)
   }
   
+  func fee(value: Decimal, address: String?, feePriority: FeeRatePriority) -> Decimal {
+    let value = Decimal(feeRateProvider.ethereumGasPrice(priority: feePriority)) * Decimal(estimateGasLimit)
+    return value / pow(10, EthereumAdapter.decimal)
+  }
+  
+  func send(amount: Decimal, address: String, feePriority: FeeRatePriority) -> Single<String?> {
+    return sendSingle(amount: amount, address: address, gasPrice: feeRateProvider.ethereumGasPrice(priority: feePriority), gasLimit: gasLimit ?? 150_000)
+  }
 }
 
 extension Erc20Adapter: ITransactionsAdapter {

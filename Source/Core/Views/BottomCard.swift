@@ -11,7 +11,7 @@ struct BottomCard<T: View>: View where T: NumberPadInputable {
   var content: T
   
   var body: some View {
-    VStack {
+    VStack(spacing: 32) {
       Button(action: {
         self.showBottomCard.toggle()
       }) {
@@ -25,7 +25,7 @@ struct BottomCard<T: View>: View where T: NumberPadInputable {
         Spacer()
       }
       
-      VStack {
+      VStack(spacing: 32) {
         content
         if showNumberPad {
           NumberPad { (number) in

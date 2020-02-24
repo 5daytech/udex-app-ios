@@ -90,6 +90,10 @@ extension AdapterManager: IAdapterManager {
     adapters[coin] as? IBalanceAdapter
   }
   
+  func sendAdapter(for coin: Coin) -> ISendEthereumAdapter? {
+    adapters[coin] as? ISendEthereumAdapter
+  }
+  
   func transactionsAdapter(for coin: Coin) -> ITransactionsAdapter? {
     adapters[coin] as? ITransactionsAdapter
   }

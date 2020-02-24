@@ -12,8 +12,13 @@ class MainViewModel: ObservableObject {
   private let authManager: IAuthManager
   
   var convertView: ConvertView?
+  var sendViewModel: SendViewModel?
   
-  init(wordsManager: IWordsManager, authManager: IAuthManager, cleanupManager: ICleanupManager) {
+  init(
+    wordsManager: IWordsManager,
+    authManager: IAuthManager,
+    cleanupManager: ICleanupManager
+  ) {
     self.cleanupManager = cleanupManager
     self.wordsManager = wordsManager
     self.authManager = authManager
@@ -51,5 +56,18 @@ class MainViewModel: ObservableObject {
     case .UNWRAP, .WRAP, .SEND:
       return UIScreen.main.bounds.height - 100
     }
+  }
+  
+  func send(
+    _ config: SendConfirmConfig,
+    onTransaction: @escaping (String) -> Void,
+    onError: @escaping (String) -> Void
+  ) {
+    let adapter = App.instance.adapterManager.sendAdapter(for: config.coin)!
+    adapter.send(amount: config.sendAmount, address: config.receiveAddress, feePriority: .MEDIUM).observeOn(MainScheduler.instance).subscribe(onSuccess: { (txHash) in
+      onTransaction(txHash!)
+    }, onError: { err in
+      onError(err.localizedDescription)
+    }).disposed(by: disposeBag)
   }
 }

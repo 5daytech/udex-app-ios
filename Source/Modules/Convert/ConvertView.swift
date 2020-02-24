@@ -35,7 +35,7 @@ struct ConvertView: View {
           .font(Font.system(size: 10))
           .foregroundColor(Color("T3"))
         HStack {
-          Text("ETH")
+          Text(self.viewModel.coinCode)
             .fontWeight(.bold)
             .foregroundColor(Color("T2"))
           PipeInputView(isPipeShowing: true, text: self.viewModel.amount)

@@ -6,7 +6,7 @@ struct BalanceView: View {
   
   var onWrap: () -> Void
   var onUnwrap: () -> Void
-  var onSend: () -> Void
+  var onSend: (Coin) -> Void
   var onReceive: (Coin) -> Void
   
   var body: some View {
@@ -18,8 +18,8 @@ struct BalanceView: View {
         onUnwrap: {
           self.onUnwrap()
         },
-        onSend: {
-          self.onSend()
+        onSend: { coin in
+          self.onSend(coin)
         },
         onReceive: { coin in
           self.onReceive(coin)
