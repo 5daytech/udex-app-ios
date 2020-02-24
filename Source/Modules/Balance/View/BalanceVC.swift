@@ -5,7 +5,7 @@ import RxSwift
 protocol BalanceVCDelegate {
   func onWrap()
   func onUnwrap()
-  func onReceive()
+  func onReceive(_ coin: Coin)
   func onSend()
   func onTransactions()
 }
@@ -87,8 +87,8 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     
     cell.onBind(
       items[indexPath.row],
-      onReceive: {
-        self.delegate?.onReceive()
+      onReceive: { coin in
+        self.delegate?.onReceive(coin)
       }, onSend: {
         self.delegate?.onSend()
       }, onTransactions: {

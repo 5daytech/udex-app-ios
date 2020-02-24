@@ -6,6 +6,7 @@ protocol NumberPadInputable {
 
 struct BottomCard<T: View>: View where T: NumberPadInputable {
   @Binding var showBottomCard: Bool
+  var showNumberPad: Bool
   
   var content: T
   
@@ -26,8 +27,10 @@ struct BottomCard<T: View>: View where T: NumberPadInputable {
       
       VStack {
         content
-        NumberPad { (number) in
-          self.content.inputNumber(number)
+        if showNumberPad {
+          NumberPad { (number) in
+            self.content.inputNumber(number)
+          }
         }
       }
       

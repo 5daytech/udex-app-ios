@@ -139,6 +139,7 @@
 		B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29823AA0D2900D6FBFA /* TestData.swift */; };
 		B5DAE29C23AA0DB700D6FBFA /* OrderBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29B23AA0DB700D6FBFA /* OrderBookRow.swift */; };
 		B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DAE29D23AA1A5200D6FBFA /* App.swift */; };
+		B5E3ECAE2403C9E100833F42 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECAD2403C9E100833F42 /* ShareSheet.swift */; };
 		B5F0A42B23CC306900592A78 /* ExchangeConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */; };
 		B5F0A42F23CC31A300592A78 /* ExchangeConfirmInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */; };
 		B5F0A43123CC38F600592A78 /* ExchangeConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */; };
@@ -146,6 +147,9 @@
 		B5F0A43723CC62D000592A78 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A43623CC62D000592A78 /* ProgressBar.swift */; };
 		B5F0A43923CC890800592A78 /* TransactionSentDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A43823CC890800592A78 /* TransactionSentDialog.swift */; };
 		B5F0A43B23CC90EB00592A78 /* ErrorDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A43A23CC90EB00592A78 /* ErrorDialog.swift */; };
+		B5F8EFE323FFC8A90001001C /* ReceiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F8EFE223FFC8A90001001C /* ReceiveView.swift */; };
+		B5F8EFE523FFED8B0001001C /* ReceiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F8EFE423FFED8B0001001C /* ReceiveViewModel.swift */; };
+		B5F8EFE723FFEE2A0001001C /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F8EFE623FFEE2A0001001C /* UIImage+Extension.swift */; };
 		B5FAF57A23EA87ED00014EA6 /* BaseInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FAF57923EA87ED00014EA6 /* BaseInteractor.swift */; };
 		D5D67649481B180DA125F5B6 /* Pods_UDEX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180BCE6212B91ED70CDA8EFC /* Pods_UDEX.framework */; };
 /* End PBXBuildFile section */
@@ -294,6 +298,7 @@
 		B5DAE29823AA0D2900D6FBFA /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		B5DAE29B23AA0DB700D6FBFA /* OrderBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookRow.swift; sourceTree = "<group>"; };
 		B5DAE29D23AA1A5200D6FBFA /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		B5E3ECAD2403C9E100833F42 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmView.swift; sourceTree = "<group>"; };
 		B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmInfo.swift; sourceTree = "<group>"; };
 		B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmViewModel.swift; sourceTree = "<group>"; };
@@ -301,6 +306,9 @@
 		B5F0A43623CC62D000592A78 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 		B5F0A43823CC890800592A78 /* TransactionSentDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSentDialog.swift; sourceTree = "<group>"; };
 		B5F0A43A23CC90EB00592A78 /* ErrorDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorDialog.swift; sourceTree = "<group>"; };
+		B5F8EFE223FFC8A90001001C /* ReceiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveView.swift; sourceTree = "<group>"; };
+		B5F8EFE423FFED8B0001001C /* ReceiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewModel.swift; sourceTree = "<group>"; };
+		B5F8EFE623FFEE2A0001001C /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		B5FAF57923EA87ED00014EA6 /* BaseInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -467,6 +475,7 @@
 				B54F65DC23CE191C008BD76C /* NumberUtils.swift */,
 				B54F65E223CF04C9008BD76C /* Appearance.swift */,
 				B5A985D823FD98D3009AEBD8 /* BigUInt+Extension.swift */,
+				B5F8EFE623FFEE2A0001001C /* UIImage+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -739,6 +748,7 @@
 		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B5F8EFE123FFC89A0001001C /* Receive */,
 				B5A985C923FCFE52009AEBD8 /* Convert */,
 				B54C34B423DAF8ED00BFABEB /* SecurityCenter */,
 				B54C34AF23DAF0C400BFABEB /* Settings */,
@@ -803,6 +813,7 @@
 				B5A985C723FCF206009AEBD8 /* BottomCard.swift */,
 				B5A985D023FD2D80009AEBD8 /* NumberPad.swift */,
 				B5A985D223FD2FC0009AEBD8 /* PipeInputView.swift */,
+				B5E3ECAD2403C9E100833F42 /* ShareSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -823,6 +834,15 @@
 				B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */,
 			);
 			path = Confirm;
+			sourceTree = "<group>";
+		};
+		B5F8EFE123FFC89A0001001C /* Receive */ = {
+			isa = PBXGroup;
+			children = (
+				B5F8EFE223FFC8A90001001C /* ReceiveView.swift */,
+				B5F8EFE423FFED8B0001001C /* ReceiveViewModel.swift */,
+			);
+			path = Receive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -986,6 +1006,7 @@
 				B5F0A43723CC62D000592A78 /* ProgressBar.swift in Sources */,
 				B5DAE29623AA0C3300D6FBFA /* OrderViewItem.swift in Sources */,
 				B59AE90D23B0A53200DF03C1 /* ITransactionsAdapter.swift in Sources */,
+				B5F8EFE723FFEE2A0001001C /* UIImage+Extension.swift in Sources */,
 				B59AE90723B0A47500DF03C1 /* IBalanceAdapter.swift in Sources */,
 				B5A985D123FD2D80009AEBD8 /* NumberPad.swift in Sources */,
 				B50C2F2123B475F700CE7FBF /* ExchangePair.swift in Sources */,
@@ -1008,6 +1029,7 @@
 				B577872523D6E86F0080F9E9 /* ISecuredStorage.swift in Sources */,
 				B53A7CFB23C73EED0098A237 /* RelayerOrders.swift in Sources */,
 				B52C4A2023C32168004C1AAE /* ExchangeViewState.swift in Sources */,
+				B5F8EFE323FFC8A90001001C /* ReceiveView.swift in Sources */,
 				B5A985C023F6B8D6009AEBD8 /* BalanceVC.swift in Sources */,
 				B533EBE923AB352F00CD18CC /* Configuration.swift in Sources */,
 				B5DAE29923AA0D2900D6FBFA /* TestData.swift in Sources */,
@@ -1036,6 +1058,7 @@
 				B5A985D523FD923F009AEBD8 /* ConvertConfig.swift in Sources */,
 				B50C2F3523B4BB7500CE7FBF /* ExchangeView.swift in Sources */,
 				B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */,
+				B5F8EFE523FFED8B0001001C /* ReceiveViewModel.swift in Sources */,
 				B5A985C823FCF206009AEBD8 /* BottomCard.swift in Sources */,
 				B54F65E523CF0A00008BD76C /* CoinBalance.swift in Sources */,
 				B54C34BC23DB09D500BFABEB /* ShowKeyView.swift in Sources */,
@@ -1049,6 +1072,7 @@
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
 				B5A985D923FD98D3009AEBD8 /* BigUInt+Extension.swift in Sources */,
 				B5A985D323FD2FC0009AEBD8 /* PipeInputView.swift in Sources */,
+				B5E3ECAE2403C9E100833F42 /* ShareSheet.swift in Sources */,
 				B59AE90923B0A4B700DF03C1 /* AdapterState.swift in Sources */,
 				B5347E5023CDEEF100A7B85E /* OrdersView.swift in Sources */,
 				B54C34B323DAF14800BFABEB /* SettingsItemView.swift in Sources */,

@@ -11,6 +11,8 @@ class MainViewModel: ObservableObject {
   private let wordsManager: IWordsManager
   private let authManager: IAuthManager
   
+  var convertView: ConvertView?
+  
   init(wordsManager: IWordsManager, authManager: IAuthManager, cleanupManager: ICleanupManager) {
     self.cleanupManager = cleanupManager
     self.wordsManager = wordsManager
@@ -38,5 +40,16 @@ class MainViewModel: ObservableObject {
     try! authManager.login(words: words)
     ordersViewModel = OrdersViewModel(relayerAdapter: App.instance.relayerAdapterManager.mainRelayer!)
     isLoggedIn = true
+  }
+  
+  func height(for bottomState: MainView.BottomViewsState) -> CGFloat {
+    switch bottomState {
+    case .NONE:
+      return 0
+    case .RECEIVE:
+      return 400
+    case .UNWRAP, .WRAP, .SEND:
+      return UIScreen.main.bounds.height - 100
+    }
   }
 }

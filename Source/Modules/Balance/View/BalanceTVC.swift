@@ -17,13 +17,13 @@ class BalanceTVC: UITableViewCell {
   private var receiveBtn: UIButton?
   private var sendBtn: UIButton?
   private var transactionsBtn: UIButton?
-  private var onReceiveAction: (() -> Void)?
+  private var onReceiveAction: ((Coin) -> Void)?
   private var onSendAction: (() -> Void)?
   private var onTransactionsAction: (() -> Void)?
   private var onWrapAction: (() -> Void)?
   private var item: BalanceViewItem?
   
-  func onBind(_ item: BalanceViewItem, onReceive: @escaping () -> Void, onSend: @escaping () -> Void, onTransactions: @escaping () -> Void, onWrap: (() -> Void)?) {
+  func onBind(_ item: BalanceViewItem, onReceive: @escaping (Coin) -> Void, onSend: @escaping () -> Void, onTransactions: @escaping () -> Void, onWrap: (() -> Void)?) {
     self.item = item
     onReceiveAction = onReceive
     onSendAction = onSend
@@ -41,10 +41,10 @@ class BalanceTVC: UITableViewCell {
       buttonsStackView = setupButtonsStack()
     }
     
-//    if receiveBtn == nil {
-//      receiveBtn = setupReceiveButton()
-//      buttonsStackView?.addArrangedSubview(receiveBtn!)
-//    }
+    if receiveBtn == nil {
+      receiveBtn = setupReceiveButton()
+      buttonsStackView?.addArrangedSubview(receiveBtn!)
+    }
 //
 //    if sendBtn == nil {
 //      sendBtn = setupSendButton()
@@ -123,7 +123,7 @@ class BalanceTVC: UITableViewCell {
   }
   
   @objc func onReceive(_ sender: Any) {
-    onReceiveAction?()
+    onReceiveAction?(item!.balance.coin)
   }
   
   @objc func onSend(_ sender: Any) {

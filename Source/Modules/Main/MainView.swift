@@ -15,15 +15,13 @@ struct MainView: View {
     case WRAP
     case UNWRAP
     case SEND
-    case RECEIVE
+    case RECEIVE(Coin)
   }
   
   @State var viewState: DialogViewsState = .NONE
   @State var bottomViewState: BottomViewsState = .NONE
-  @State var showWrapCard = false
-  @State var showUnwrapCard = false
+  @State var showBottomCard = false
   let screenHeight = UIScreen.main.bounds.height
-  @State var convertView: ConvertView?
   
   @ObservedObject var viewModel = MainViewModel(
     wordsManager: App.instance.wordsManager,
@@ -36,25 +34,34 @@ struct MainView: View {
     case .NONE:
       return nil
     case .WRAP:
-      convertView = getConvertView(ConvertConfig(coinCode: "ETH", type: .WRAP))
+      let convertView = getConvertView(ConvertConfig(coinCode: "ETH", type: .WRAP))
+      self.viewModel.convertView = convertView
       return AnyView(
         BottomCard(
-          showBottomCard: $showWrapCard,
-          content: convertView!
+          showBottomCard: $showBottomCard,
+          showNumberPad: true,
+          content: convertView
         )
       )
     case .UNWRAP:
-      convertView = getConvertView(ConvertConfig(coinCode: "WETH", type: .UNWRAP))
+      let convertView = getConvertView(ConvertConfig(coinCode: "WETH", type: .UNWRAP))
+      self.viewModel.convertView = convertView
       return AnyView(
         BottomCard(
-          showBottomCard: $showWrapCard,
-          content: convertView!
+          showBottomCard: $showBottomCard,
+          showNumberPad: true,
+          content: convertView
         )
       )
     case .SEND:
       return nil
-    case .RECEIVE:
-      return nil
+    case .RECEIVE(let coin):
+      return AnyView(
+        BottomCard(
+          showBottomCard: $showBottomCard,
+          showNumberPad: false,
+          content: ReceiveView(viewModel: ReceiveViewModel(coin: coin)))
+      )
     }
   }
   
@@ -64,20 +71,19 @@ struct MainView: View {
       return AnyView(
         ConvertConfirmView(onConfirm: {
           self.viewState = .PROGRESS
-          self.convertView?.confirmConvert()
-          self.convertView = nil
+          self.viewModel.convertView?.confirmConvert()
         })
-        .transition(.move(edge: .bottom))
+          .transition(.move(edge: .bottom))
       )
     case .PROGRESS:
       return AnyView(
         ProcessingDialog()
-        .transition(.move(edge: .bottom))
+          .transition(.move(edge: .bottom))
       )
     case .TRANSACTION_SENT(let hash):
       return AnyView(
         TransactionSentDialog(hash: hash)
-        .transition(.move(edge: .bottom))
+          .transition(.move(edge: .bottom))
       )
     case .ERROR(let message):
       return AnyView(
@@ -92,25 +98,25 @@ struct MainView: View {
     }
   }
   
-func getConvertView(_ config: ConvertConfig) -> ConvertView {
+  func getConvertView(_ config: ConvertConfig) -> ConvertView {
     let convertView = ConvertView(
       viewModel: ConvertViewModel(
         config: config,
         onDone: {
-          self.showWrapCard = false
-        },
+          self.showBottomCard = false
+      },
         onConfirm: {
           self.viewState = .CONFIRM_CONVERT
-        },
+      },
         onProcessing: {
           self.viewState = .PROGRESS
-        },
+      },
         onTransaction: { transactionAddress in
           self.viewState = .TRANSACTION_SENT(transactionAddress)
-        },
+      },
         onError: { message in
           self.viewState = .ERROR(message)
-        }
+      }
       )
     )
     return convertView
@@ -130,18 +136,17 @@ func getConvertView(_ config: ConvertConfig) -> ConvertView {
       if viewModel.isLoggedIn {
         ZStack {
           TabView {
-            //          NavigationView {
-            //
-            //          }
-            //          .navigationBarTitle(Text("Balance"))
             BalanceView(onWrap: {
-              self.showWrapCard = true
+              self.showBottomCard = true
+              self.bottomViewState = .WRAP
             }, onUnwrap: {
-              self.showUnwrapCard = true
+              self.showBottomCard = true
+              self.bottomViewState = .UNWRAP
             }, onSend: {
               
-            }, onReceive: {
-              
+            }, onReceive: { coin in
+              self.showBottomCard = true
+              self.bottomViewState = .RECEIVE(coin)
             })
               .tabItem {
                 Image("balance").renderingMode(.template)
@@ -181,12 +186,10 @@ func getConvertView(_ config: ConvertConfig) -> ConvertView {
           .accentColor(Color("main"))
           .blur(radius: isBlur ? 3 : 0)
           
-          // WRAP CARD
-
           bottomView()?
-          .offset(y: screenHeight - ( showWrapCard ? (screenHeight - 100) : 0))
-          .animation(.easeInOut(duration: 0.3))
-          
+            .blur(radius: isBlur ? 3 : 0)
+            .offset(y: screenHeight - ( showBottomCard ? self.viewModel.height(for: bottomViewState) : 0))
+            .animation(.easeInOut(duration: 0.3))
           
           if isBlur {
             Rectangle()
@@ -197,28 +200,9 @@ func getConvertView(_ config: ConvertConfig) -> ConvertView {
                   self.viewState = .NONE
                 }
             }
-          
-            
           }
           
           topView()
-          
-          // UNWRAP CARD
-//          BottomCard(
-//            showBottomCard: $showUnwrapCard,
-//            content: ConvertView(
-//              viewModel: ConvertViewModel(
-//                config: ConvertConfig(
-//                  coinCode: "WETH",
-//                  type: .UNWRAP),
-//                onDone: {
-//                  self.showUnwrapCard = false
-//                }
-//              )
-//            )
-//          )
-//          .offset(y: screenHeight - ( showUnwrapCard ? (screenHeight - 100) : 0))
-//          .animation(.easeInOut(duration: 0.3))
         }
       } else {
         GuestView(restoreViewModel: viewModel.restoreViewModel!, onCreateWallet: {
