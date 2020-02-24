@@ -11,9 +11,6 @@ class MainViewModel: ObservableObject {
   private let wordsManager: IWordsManager
   private let authManager: IAuthManager
   
-  var convertView: ConvertView?
-  var sendViewModel: SendViewModel?
-  
   init(
     wordsManager: IWordsManager,
     authManager: IAuthManager,
@@ -69,5 +66,37 @@ class MainViewModel: ObservableObject {
     }, onError: { err in
       onError(err.localizedDescription)
     }).disposed(by: disposeBag)
+  }
+  
+  func convert(
+    _ config: ConvertConfirmConfig,
+    onTransaction: @escaping (String) -> Void,
+    onError: @escaping (String) -> Void
+  ) {
+    let wethWrapper = App.instance.zrxKitManager.zrxKit().getWethWrapperInstance()
+    switch config.type {
+    case .WRAP:
+      wethWrapper.deposit(config.value.toEth(), onReceipt: { (ethTransactionReceipt) in
+        
+      }, onDeposit: { eventResponse in
+        
+      }).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
+        onTransaction(ethData.hex())
+      }, onError: { err in
+        onError("Something went wrong")
+      }).disposed(by: disposeBag)
+    case .UNWRAP:
+      wethWrapper.withdraw(config.value.toEth(), onReceipt: { (ethTransactionReceipt) in
+        
+      }, onWithdrawal: { eventResponse in
+        
+      }).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
+        onTransaction(ethData.hex())
+      }, onError: { err in
+        onError("Something went wrong")
+      }).disposed(by: disposeBag)
+    case .NONE:
+      fatalError()
+    }
   }
 }

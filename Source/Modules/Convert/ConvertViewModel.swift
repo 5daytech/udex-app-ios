@@ -88,41 +88,6 @@ class ConvertViewModel: ObservableObject {
     wrapDisabled = sendAmount <= 0 || sendAmount > availableBalance
   }
   
-  func confirm() {
-    if sendAmount < availableBalance {
-      viewState = .processing
-      self.onProcessing()
-      switch config.type {
-      case .WRAP:
-        wethWrapper.deposit(sendAmount.toEth(), onReceipt: { (ethTransactionReceipt) in
-          
-        }, onDeposit: { eventResponse in
-          
-        }).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
-          self.viewState = .transactionSent(ethData.hex())
-          self.onTransaction(ethData.hex())
-        }, onError: { err in
-          self.onError("Something went wrong")
-          self.viewState = .error("Something went wrong")
-        }).disposed(by: disposeBag)
-      case .UNWRAP:
-        wethWrapper.withdraw(sendAmount.toEth(), onReceipt: { (ethTransactionReceipt) in
-          
-        }, onWithdrawal: { eventResponse in
-          
-        }).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
-          self.viewState = .transactionSent(ethData.hex())
-          self.onTransaction(ethData.hex())
-        }, onError: { err in
-          self.onError("Something went wrong")
-          self.viewState = .error("Something went wrong")
-        }).disposed(by: disposeBag)
-      case .NONE:
-        fatalError()
-      }
-    }
-  }
-  
   func convert() {
     viewState = .confirm
     self.onConfirm(ConvertConfirmConfig(

@@ -78,8 +78,4 @@ extension ConvertView: NumberPadInputable {
   func inputNumber(_ number: String) {
     viewModel.setAmount(number)
   }
-  
-  func confirmConvert() {
-    viewModel.confirm()
-  }
 }

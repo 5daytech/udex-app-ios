@@ -36,7 +36,6 @@ struct MainView: View {
       return nil
     case .WRAP:
       let convertView = getConvertView(ConvertConfig(coinCode: "ETH", type: .WRAP))
-      self.viewModel.convertView = convertView
       return AnyView(
         BottomCard(
           showBottomCard: $showBottomCard,
@@ -46,7 +45,6 @@ struct MainView: View {
       )
     case .UNWRAP:
       let convertView = getConvertView(ConvertConfig(coinCode: "WETH", type: .UNWRAP))
-      self.viewModel.convertView = convertView
       return AnyView(
         BottomCard(
           showBottomCard: $showBottomCard,
@@ -80,7 +78,11 @@ struct MainView: View {
       return AnyView(
         ConvertConfirmView(config: config, onConfirm: {
           self.viewState = .PROGRESS
-          self.viewModel.convertView?.confirmConvert()
+          self.viewModel.convert(config, onTransaction: { (txHash) in
+            self.viewState = .TRANSACTION_SENT(txHash)
+          }, onError: { error in
+            self.viewState = .ERROR(error)
+          })
         })
           .transition(.move(edge: .bottom))
       )
