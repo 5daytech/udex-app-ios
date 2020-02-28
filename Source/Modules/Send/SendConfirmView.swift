@@ -7,13 +7,17 @@ struct SendConfirmView: View {
   var body: some View {
     VStack(alignment: .leading, spacing: 16) {
       Text("Confirm")
+        .font(.system(size: 18, weight: .bold))
       
       HStack {
         Spacer()
         VStack(alignment: .center, spacing: 10) {
           Text("\(config.sendAmount.toDisplayFormat()) \(config.coin.code)")
+            .foregroundColor(Color("main"))
+            .font(.system(size: 18, weight: .bold))
           Text("$\(config.sendAmountInFiat.toDisplayFormat(2))")
           Text("#\(config.receiveAddress)")
+            .font(.system(size: 12))
         }
         Spacer()
       }

@@ -41,4 +41,8 @@ class RatesManager: IRatesManager {
   func refresh() {
     kit.refresh()
   }
+  
+  func getHistoricalRate(coinCode: String, date: Date) -> Single<Decimal> {
+    kit.historicalRateSingle(coinCode: coinCode, currencyCode: currencyCode, timestamp: date.timeIntervalSince1970)
+  }
 }

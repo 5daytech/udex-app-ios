@@ -25,8 +25,8 @@ struct BalanceViewWrapper: UIViewControllerRepresentable {
       parent.onSend(coin)
     }
     
-    func onTransactions() {
-      parent.onTransactions()
+    func onTransactions(_ coin: Coin) {
+      parent.onTransactions(coin)
     }
   }
   
@@ -34,7 +34,7 @@ struct BalanceViewWrapper: UIViewControllerRepresentable {
   let onUnwrap: () -> Void
   let onSend: (Coin) -> Void
   let onReceive: (Coin) -> Void
-  let onTransactions: () -> Void
+  let onTransactions: (Coin) -> Void
   
   func makeCoordinator() -> BalanceViewWrapper.Coordinator {
     Coordinator(self)

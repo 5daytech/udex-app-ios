@@ -27,6 +27,8 @@ struct ConvertConfirmView: View {
       }
       Text(config.value.toDisplayFormat())
       +
+      Text(" ")
+      +
       Text(config.type == .WRAP ? "ETH" : "WETH")
       .foregroundColor(Color("main"))
       
@@ -34,6 +36,8 @@ struct ConvertConfirmView: View {
       .foregroundColor(Color("T2"))
       
       Text(config.value.toDisplayFormat())
+      +
+      Text(" ")
       +
       Text(config.type == .WRAP ? "WETH" : "ETH")
       .foregroundColor(Color("main"))

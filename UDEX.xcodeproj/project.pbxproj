@@ -148,6 +148,14 @@
 		B5E3ECBB2403F39900833F42 /* SendConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECBA2403F39900833F42 /* SendConfirmView.swift */; };
 		B5E3ECBD2403F88200833F42 /* SendConfirmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECBC2403F88200833F42 /* SendConfirmConfig.swift */; };
 		B5E3ECBF24044BDF00833F42 /* ConvertConfirmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECBE24044BDF00833F42 /* ConvertConfirmConfig.swift */; };
+		B5E3ECC22406562000833F42 /* TransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECC12406562000833F42 /* TransactionsView.swift */; };
+		B5E3ECC42406563500833F42 /* TransactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECC32406563500833F42 /* TransactionsViewModel.swift */; };
+		B5E3ECC62406575A00833F42 /* TransactionsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECC52406575A00833F42 /* TransactionsLoader.swift */; };
+		B5E3ECC824065F1000833F42 /* TransactionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECC724065F1000833F42 /* TransactionViewItem.swift */; };
+		B5E3ECCA24066B5900833F42 /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECC924066B5900833F42 /* TransactionStatus.swift */; };
+		B5E3ECCC2408E94F00833F42 /* TransactionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECCB2408E94F00833F42 /* TransactionsRow.swift */; };
+		B5E3ECCE24090B1800833F42 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECCD24090B1800833F42 /* DateHelper.swift */; };
+		B5E3ECD02409330F00833F42 /* TransactionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECCF2409330F00833F42 /* TransactionDetails.swift */; };
 		B5F0A42B23CC306900592A78 /* ExchangeConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */; };
 		B5F0A42F23CC31A300592A78 /* ExchangeConfirmInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */; };
 		B5F0A43123CC38F600592A78 /* ExchangeConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */; };
@@ -315,6 +323,14 @@
 		B5E3ECBA2403F39900833F42 /* SendConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmView.swift; sourceTree = "<group>"; };
 		B5E3ECBC2403F88200833F42 /* SendConfirmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmConfig.swift; sourceTree = "<group>"; };
 		B5E3ECBE24044BDF00833F42 /* ConvertConfirmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertConfirmConfig.swift; sourceTree = "<group>"; };
+		B5E3ECC12406562000833F42 /* TransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsView.swift; sourceTree = "<group>"; };
+		B5E3ECC32406563500833F42 /* TransactionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsViewModel.swift; sourceTree = "<group>"; };
+		B5E3ECC52406575A00833F42 /* TransactionsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsLoader.swift; sourceTree = "<group>"; };
+		B5E3ECC724065F1000833F42 /* TransactionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewItem.swift; sourceTree = "<group>"; };
+		B5E3ECC924066B5900833F42 /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
+		B5E3ECCB2408E94F00833F42 /* TransactionsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsRow.swift; sourceTree = "<group>"; };
+		B5E3ECCD24090B1800833F42 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		B5E3ECCF2409330F00833F42 /* TransactionDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetails.swift; sourceTree = "<group>"; };
 		B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmView.swift; sourceTree = "<group>"; };
 		B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmInfo.swift; sourceTree = "<group>"; };
 		B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmViewModel.swift; sourceTree = "<group>"; };
@@ -493,6 +509,7 @@
 				B5A985D823FD98D3009AEBD8 /* BigUInt+Extension.swift */,
 				B5F8EFE623FFEE2A0001001C /* UIImage+Extension.swift */,
 				B5E3ECB62403ECE600833F42 /* PermissionHelper.swift */,
+				B5E3ECCD24090B1800833F42 /* DateHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -766,6 +783,7 @@
 		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B5E3ECC02406560200833F42 /* Transactions */,
 				B5E3ECAF2403D1EF00833F42 /* Send */,
 				B5F8EFE123FFC89A0001001C /* Receive */,
 				B5A985C923FCFE52009AEBD8 /* Convert */,
@@ -832,6 +850,20 @@
 				B5E3ECBC2403F88200833F42 /* SendConfirmConfig.swift */,
 			);
 			path = Send;
+			sourceTree = "<group>";
+		};
+		B5E3ECC02406560200833F42 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				B5E3ECC12406562000833F42 /* TransactionsView.swift */,
+				B5E3ECC32406563500833F42 /* TransactionsViewModel.swift */,
+				B5E3ECC52406575A00833F42 /* TransactionsLoader.swift */,
+				B5E3ECC724065F1000833F42 /* TransactionViewItem.swift */,
+				B5E3ECC924066B5900833F42 /* TransactionStatus.swift */,
+				B5E3ECCB2408E94F00833F42 /* TransactionsRow.swift */,
+				B5E3ECCF2409330F00833F42 /* TransactionDetails.swift */,
+			);
+			path = Transactions;
 			sourceTree = "<group>";
 		};
 		B5F0A42523CC2CCD00592A78 /* Views */ = {
@@ -1008,6 +1040,9 @@
 				B50C2F1D23B4752900CE7FBF /* ExchangePairViewItem.swift in Sources */,
 				B5A985CD23FD28D7009AEBD8 /* ConvertViewModel.swift in Sources */,
 				B5A985DB23FE3B7E009AEBD8 /* ConvertConfirmView.swift in Sources */,
+				B5E3ECD02409330F00833F42 /* TransactionDetails.swift in Sources */,
+				B5E3ECCE24090B1800833F42 /* DateHelper.swift in Sources */,
+				B5E3ECC62406575A00833F42 /* TransactionsLoader.swift in Sources */,
 				B533EBF623AB6E3E00CD18CC /* MainView.swift in Sources */,
 				B59AE92023B0AD5200DF03C1 /* AppConfigProvider.swift in Sources */,
 				B5A985C623F6C558009AEBD8 /* BalanceViewWrapper.swift in Sources */,
@@ -1024,6 +1059,7 @@
 				B54F65DB23CE175E008BD76C /* Decimal+Extension.swift in Sources */,
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,
 				B59AE90F23B0A58000DF03C1 /* TransactionLockInfo.swift in Sources */,
+				B5E3ECC42406563500833F42 /* TransactionsViewModel.swift in Sources */,
 				B5347E5223CE097800A7B85E /* OrderRow.swift in Sources */,
 				B5E3ECB92403EE8300833F42 /* ScanQRWrapper.swift in Sources */,
 				B50C2F2923B4774D00CE7FBF /* IZrxKitManager.swift in Sources */,
@@ -1041,6 +1077,7 @@
 				B5F0A43723CC62D000592A78 /* ProgressBar.swift in Sources */,
 				B5DAE29623AA0C3300D6FBFA /* OrderViewItem.swift in Sources */,
 				B59AE90D23B0A53200DF03C1 /* ITransactionsAdapter.swift in Sources */,
+				B5E3ECC824065F1000833F42 /* TransactionViewItem.swift in Sources */,
 				B5E3ECB52403EC9600833F42 /* ScanQRController.swift in Sources */,
 				B5F8EFE723FFEE2A0001001C /* UIImage+Extension.swift in Sources */,
 				B59AE90723B0A47500DF03C1 /* IBalanceAdapter.swift in Sources */,
@@ -1088,6 +1125,7 @@
 				B577871E23D6E09C0080F9E9 /* IAuthManager.swift in Sources */,
 				B5F0A43123CC38F600592A78 /* ExchangeConfirmViewModel.swift in Sources */,
 				B5DAE29C23AA0DB700D6FBFA /* OrderBookRow.swift in Sources */,
+				B5E3ECCA24066B5900833F42 /* TransactionStatus.swift in Sources */,
 				B5F0A43523CC622500592A78 /* ProcessingDialog.swift in Sources */,
 				B54C34C023DB129400BFABEB /* BackupViewModel.swift in Sources */,
 				B53A7CEF23C5C5800098A237 /* FillOrderData.swift in Sources */,
@@ -1120,6 +1158,7 @@
 				B52C4A1A23B5FAB2004C1AAE /* ExchangeInputView.swift in Sources */,
 				B541F92023F2B0EE0076742E /* SendStateError.swift in Sources */,
 				B54C34CD23DEC79E00BFABEB /* LimitInteractor.swift in Sources */,
+				B5E3ECCC2408E94F00833F42 /* TransactionsRow.swift in Sources */,
 				B5DAE26623A8E80D00D6FBFA /* ContentView.swift in Sources */,
 				B5E3ECB32403E39000833F42 /* SendViewModel.swift in Sources */,
 				B5E3ECB12403D7CD00833F42 /* SendView.swift in Sources */,
@@ -1130,6 +1169,7 @@
 				B5FAF57A23EA87ED00014EA6 /* BaseInteractor.swift in Sources */,
 				B5F0A43923CC890800592A78 /* TransactionSentDialog.swift in Sources */,
 				B533EBEB23AB38D300CD18CC /* OrdersViewModel.swift in Sources */,
+				B5E3ECC22406562000833F42 /* TransactionsView.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
 				B541F91C23F2661E0076742E /* FeeRatePriority.swift in Sources */,
 				B54C34B823DAF91D00BFABEB /* SecurityCenterView.swift in Sources */,

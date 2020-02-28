@@ -7,10 +7,11 @@ protocol BalanceVCDelegate {
   func onUnwrap()
   func onReceive(_ coin: Coin)
   func onSend(_ coin: Coin)
-  func onTransactions()
+  func onTransactions(_ coin: Coin)
 }
 
 class BalanceVC: UIViewController {
+  
   private let disposeBag = DisposeBag()
   private var tableView: UITableView!
   
@@ -91,8 +92,8 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
         self.delegate?.onReceive(coin)
       }, onSend: { coin in
         self.delegate?.onSend(coin)
-      }, onTransactions: {
-        self.delegate?.onTransactions()
+      }, onTransactions: { coin in
+        self.delegate?.onTransactions(coin)
       }, onWrap: wrap
     )
     return cell
