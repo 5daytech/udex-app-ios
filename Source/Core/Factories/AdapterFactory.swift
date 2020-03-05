@@ -15,7 +15,7 @@ class AdapterFactory: IAdapterFactory {
       }
     case let .erc20(address, fee, gasLimit, minimumRequiredBalance, minimumSpendableAmount):
       if let ethereumKit = try? ethereumKitManager.ethereumKit(authData: authData) {
-        return try? Erc20Adapter(ethereumKit: ethereumKit, contractAddress: address, feeRateProvider: feeRateProvider, decimal: coin.decimal, fee: fee, gasLimit: gasLimit, minimumRequiredBalance: minimumRequiredBalance, minimumSpendableAmount: minimumSpendableAmount)
+        return try? Erc20Adapter(ethereumKit: ethereumKit, contractAddress: address, feeRateProvider: feeRateProvider, decimal: coin.decimal, fee: fee, gasLimit: gasLimit, minimumRequiredBalance: minimumRequiredBalance, minimumSpendableAmount: minimumSpendableAmount, coinCode: coin.code)
       }
     }
     

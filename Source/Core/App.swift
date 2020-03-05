@@ -15,6 +15,7 @@ class App {
   let wordsManager: IWordsManager
   var authManager: IAuthManager
   let cleanupManager: ICleanupManager
+  let exchangeHistoryManager: IExchangeHistoryManager
   
   let securityCenterViewModel: SecurityCenterViewModel
   
@@ -44,6 +45,8 @@ class App {
 
     adapterManager = AdapterManager(coinManager: coinManager, adapterFactory: adapterFactory, ethereumKitManager: ethereumKitManager, authManager: authManager)
     authManager.adapterManager = adapterManager
+    
+    exchangeHistoryManager = ExchangeHistoryManager(adapterManager)
     
     zrxKitManager = ZrxKitManager(appConfigProvider: appConfigProvider, authManager: authManager)
     

@@ -10,10 +10,11 @@ class Erc20Adapter: EthereumBaseAdapter {
   private let fee: Decimal
   private let gasLimit: Int?
   private let estimateGasLimit = 100_000
+  private let code: String
   private(set) var minimumRequiredBalance: Decimal
   private(set) var minimumSpendableAmount: Decimal?
   
-  init(ethereumKit: EthereumKit.Kit, contractAddress: String, feeRateProvider: IFeeRateProvider, decimal: Int, fee: Decimal, gasLimit: Int? = nil, minimumRequiredBalance: Decimal, minimumSpendableAmount: Decimal?) throws {
+  init(ethereumKit: EthereumKit.Kit, contractAddress: String, feeRateProvider: IFeeRateProvider, decimal: Int, fee: Decimal, gasLimit: Int? = nil, minimumRequiredBalance: Decimal, minimumSpendableAmount: Decimal?, coinCode: String) throws {
     self.erc20Kit = try Erc20Kit.Kit.instance(ethereumKit: ethereumKit, contractAddress: contractAddress)
     self.contractAddress = contractAddress
     self.feeRateProvider = feeRateProvider
@@ -21,6 +22,7 @@ class Erc20Adapter: EthereumBaseAdapter {
     self.gasLimit = gasLimit
     self.minimumRequiredBalance = minimumRequiredBalance
     self.minimumSpendableAmount = minimumSpendableAmount
+    self.code = coinCode
     
     super.init(ethereumKit: ethereumKit, decimal: decimal)
   }
@@ -156,6 +158,8 @@ extension Erc20Adapter: ISendEthereumAdapter {
 }
 
 extension Erc20Adapter: ITransactionsAdapter {
+  
+  var coinCode: String { code }
   
   var transactionRecordsObservable: Observable<[TransactionRecord]> {
     erc20Kit.transactionsObservable.map { [weak self] in

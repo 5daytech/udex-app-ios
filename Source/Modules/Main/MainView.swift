@@ -194,11 +194,17 @@ struct MainView: View {
               Text("")
             }
             
-            OrdersView(viewModel: viewModel.ordersViewModel!)
+            ExchangeHistoryView()
               .tabItem {
                 Image("orders").renderingMode(.template)
                 Text("")
             }
+            
+            OrdersView(viewModel: viewModel.ordersViewModel!)
+              .tabItem {
+                Image("orders").renderingMode(.template)
+                Text("")
+              }
             
             SettingsView()
               .tabItem {

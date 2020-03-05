@@ -74,6 +74,10 @@ class AdapterManager {
 }
 
 extension AdapterManager: IAdapterManager {
+  var transactionsAdapters: [ITransactionsAdapter] {
+    adapters.values.map { $0 as! ITransactionsAdapter }
+  }
+  
   var adaptersUpdatedSignal: Observable<Void> {
     subject.asObservable()
   }

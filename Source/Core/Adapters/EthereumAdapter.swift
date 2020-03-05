@@ -137,6 +137,8 @@ extension EthereumAdapter: ISendEthereumAdapter {
 
 extension EthereumAdapter: ITransactionsAdapter {
   
+  var coinCode: String { "ETH" }
+  
   var transactionRecordsObservable: Observable<[TransactionRecord]> {
     ethereumKit.transactionsObservable.map { [weak self] in
       $0.compactMap { self?.transactionRecord(fromTransaction: $0) }
