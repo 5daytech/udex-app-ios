@@ -162,6 +162,7 @@
 		B5E3ECD92410E0A600833F42 /* ExchangeHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECD82410E0A500833F42 /* ExchangeHistoryManager.swift */; };
 		B5E3ECDB2410E10A00833F42 /* ExchangeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECDA2410E10A00833F42 /* ExchangeRecord.swift */; };
 		B5E3ECDD2410E16A00833F42 /* IExchangeHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECDC2410E16A00833F42 /* IExchangeHistoryManager.swift */; };
+		B5E3ECE0241129CA00833F42 /* TradesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E3ECDF241129CA00833F42 /* TradesView.swift */; };
 		B5F0A42B23CC306900592A78 /* ExchangeConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */; };
 		B5F0A42F23CC31A300592A78 /* ExchangeConfirmInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */; };
 		B5F0A43123CC38F600592A78 /* ExchangeConfirmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */; };
@@ -343,6 +344,7 @@
 		B5E3ECD82410E0A500833F42 /* ExchangeHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeHistoryManager.swift; sourceTree = "<group>"; };
 		B5E3ECDA2410E10A00833F42 /* ExchangeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRecord.swift; sourceTree = "<group>"; };
 		B5E3ECDC2410E16A00833F42 /* IExchangeHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IExchangeHistoryManager.swift; sourceTree = "<group>"; };
+		B5E3ECDF241129CA00833F42 /* TradesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesView.swift; sourceTree = "<group>"; };
 		B5F0A42A23CC306900592A78 /* ExchangeConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmView.swift; sourceTree = "<group>"; };
 		B5F0A42E23CC31A300592A78 /* ExchangeConfirmInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmInfo.swift; sourceTree = "<group>"; };
 		B5F0A43023CC38F600592A78 /* ExchangeConfirmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeConfirmViewModel.swift; sourceTree = "<group>"; };
@@ -798,6 +800,7 @@
 		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B5E3ECDE241129B900833F42 /* Trades */,
 				B5E3ECD1240E55CE00833F42 /* ExchangeHistory */,
 				B5E3ECC02406560200833F42 /* Transactions */,
 				B5E3ECAF2403D1EF00833F42 /* Send */,
@@ -890,6 +893,14 @@
 				B5E3ECD6240E8C2700833F42 /* ExchangeHistoryViewModel.swift */,
 			);
 			path = ExchangeHistory;
+			sourceTree = "<group>";
+		};
+		B5E3ECDE241129B900833F42 /* Trades */ = {
+			isa = PBXGroup;
+			children = (
+				B5E3ECDF241129CA00833F42 /* TradesView.swift */,
+			);
+			path = Trades;
 			sourceTree = "<group>";
 		};
 		B5F0A42523CC2CCD00592A78 /* Views */ = {
@@ -1099,6 +1110,7 @@
 				B59AE91423B0A76D00DF03C1 /* IAdapterFactory.swift in Sources */,
 				B577872723D9894D0080F9E9 /* WordsManager.swift in Sources */,
 				B59AE91123B0A6CF00DF03C1 /* Erc20Adapter.swift in Sources */,
+				B5E3ECE0241129CA00833F42 /* TradesView.swift in Sources */,
 				B577871923D5C7EF0080F9E9 /* MultilineTextField.swift in Sources */,
 				B5E3ECDD2410E16A00833F42 /* IExchangeHistoryManager.swift in Sources */,
 				B577871B23D5CCCC0080F9E9 /* RestoreViewModel.swift in Sources */,
@@ -1350,7 +1362,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
@@ -1364,7 +1376,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.4;
+				MARKETING_VERSION = 0.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1378,7 +1390,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
@@ -1392,7 +1404,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.4;
+				MARKETING_VERSION = 0.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1466,7 +1478,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = U4R65QQKZ7;
 				ENABLE_PREVIEWS = YES;
@@ -1480,7 +1492,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.4;
+				MARKETING_VERSION = 0.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -194,13 +194,7 @@ struct MainView: View {
               Text("")
             }
             
-            ExchangeHistoryView()
-              .tabItem {
-                Image("orders").renderingMode(.template)
-                Text("")
-            }
-            
-            OrdersView(viewModel: viewModel.ordersViewModel!)
+              TradesView(ordersViewModel: viewModel.ordersViewModel!)
               .tabItem {
                 Image("orders").renderingMode(.template)
                 Text("")

@@ -6,6 +6,8 @@ extension Decimal {
     return NumberUtils.instance.format(self, precise: precise)
   }
   
+  func toString() -> String { "\(self)" }
+  
   func toEth() -> BigUInt {
     BigUInt("\((self * pow(10, 18)))", radix: 10)!
   }
