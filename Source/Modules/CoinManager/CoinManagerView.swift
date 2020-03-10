@@ -13,33 +13,31 @@ struct CoinManagerView: View {
   var body: some View {
     VStack {
       List {
-        ForEach(viewModel.enabledCoins, id: \.code) { coin in
-          CoinManagerRow(isEnabled: Binding(
-            get: {
-              print("asd")
-              return self.viewModel.isEnabled(coin)
-              
-          },
-            set: {_ in}), coin: coin)
-            .listRowInsets(EdgeInsets())
-            .onTapGesture {
-              self.viewModel.onTapCoin(coin)
-            }
-        }
-        .onMove { (indexSet, index) in
-          self.viewModel.move(indexSet, index)
+        Section {
+          ForEach(viewModel.enabledViewItems) { coinViewItem in
+            CoinManagerRow(viewItem: coinViewItem)
+              .listRowInsets(EdgeInsets())
+              .onTapGesture {
+                self.viewModel.onTapCoin(coinViewItem.coin)
+              }
+          }
+          .onMove { (indexSet, index) in
+            self.viewModel.move(indexSet, index)
+          }
         }
         Spacer(minLength: 6)
-        ForEach(viewModel.disabledCoins, id: \.code) { coin in
-          CoinManagerRow(isEnabled: Binding(
-          get: { self.viewModel.isEnabled(coin) },
-          set: {_ in})
-            , coin: coin)
-            .listRowInsets(EdgeInsets())
-            .onTapGesture {
-              self.viewModel.onTapCoin(coin)
-            }
+        Section {
+          ForEach(viewModel.disabledViewItems) { coinViewItem in
+            CoinManagerRow(viewItem: coinViewItem)
+              .listRowInsets(EdgeInsets())
+              .onTapGesture {
+                self.viewModel.onTapCoin(coinViewItem.coin)
+              }
+          }
         }
+        
+
+        
       }
       .environment(\.editMode, $isEditMode)
     }

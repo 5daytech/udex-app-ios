@@ -5,8 +5,11 @@ class CoinManagerViewModel: ObservableObject {
   let enabledCoinsStorage = App.instance.enabledCoinsStorage
   let allCoins: [Coin]
   
-  @Published var enabledCoins = [Coin]()
-  @Published var disabledCoins = [Coin]()
+  @Published var enabledViewItems = [CoinManagerViewItem]()
+  @Published var disabledViewItems = [CoinManagerViewItem]()
+  
+  var enabledCoins = [Coin]()
+  var disabledCoins = [Coin]()
   
   init() {
     allCoins = coinManager.coins
@@ -21,12 +24,18 @@ class CoinManagerViewModel: ObservableObject {
     } catch {}
     
     setDisablesCoin()
+    updateViewItems()
   }
   
   private func setDisablesCoin() {
     disabledCoins = allCoins.filter({ (coin) -> Bool in
       !enabledCoins.contains(coin)
     })
+  }
+  
+  private func updateViewItems() {
+    enabledViewItems = enabledCoins.map { CoinManagerViewItem(coin: $0, isEnabled: true) }
+    disabledViewItems = disabledCoins.map { CoinManagerViewItem(coin: $0, isEnabled: false) }
   }
   
   func move(_ indexSet: IndexSet, _ index: Int) {
@@ -37,12 +46,14 @@ class CoinManagerViewModel: ObservableObject {
     enabledCoins.append(coin)
     print("enable \(enabledCoins.count)")
     setDisablesCoin()
+    updateViewItems()
   }
   
   private func disable(_ coin: Coin) {
     enabledCoins.removeAll { $0.code == coin.code }
     print("disable \(enabledCoins.count)")
     setDisablesCoin()
+    updateViewItems()
   }
   
   func onTapCoin(_ coin: Coin) {
@@ -50,7 +61,6 @@ class CoinManagerViewModel: ObservableObject {
   }
   
   func isEnabled(_ coin: Coin) -> Bool {
-    print("CHECK INABLED")
     return enabledCoins.contains(coin)
   }
 }

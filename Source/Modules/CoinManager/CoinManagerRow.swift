@@ -1,12 +1,11 @@
 import SwiftUI
 
 struct CoinManagerRow: View {
-  @Binding var isEnabled: Bool
-  var coin: Coin
+  var viewItem: CoinManagerViewItem
   
   var body: some View {
     HStack {
-      if isEnabled {
+      if viewItem.isEnabled {
         Image("enabled")
           .resizable()
           .aspectRatio(contentMode: .fit)
@@ -15,23 +14,26 @@ struct CoinManagerRow: View {
       }
       
       VStack(alignment: .leading, spacing: 8) {
-        Text(coin.title)
+        Text(viewItem.coin.title)
           .font(.system(size: 14))
           .foregroundColor(Color("T1"))
-        Text(coin.code)
+        Text(viewItem.coin.code)
           .font(.system(size: 14, weight: .bold))
         .foregroundColor(Color("T2"))
       }
-      .padding(.leading, isEnabled ? 0 : 35)
+      .padding(.leading, viewItem.isEnabled ? 0 : 35)
       
       Spacer()
-      Image(coin.code)
+      Image(viewItem.coin.code)
         .resizable()
         .aspectRatio(contentMode: .fit)
         .frame(width: 25, height: 25)
-        .padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: isEnabled ? 45 : 8))
+        .padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: viewItem.isEnabled ? 45 : 8))
     }
     .background(Color("other_coin_background"))
-    .padding(EdgeInsets(top: 0, leading: isEnabled ? -37 : 0, bottom: 0, trailing: isEnabled ? -37 : 0))
+    .padding(EdgeInsets(top: 0, leading: viewItem.isEnabled ? -37 : 0, bottom: 0, trailing: viewItem.isEnabled ? -37 : 0))
+    .onAppear {
+      print("row \(self.viewItem.coin.code) \(self.viewItem.isEnabled)")
+    }
   }
 }
