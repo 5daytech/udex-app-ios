@@ -5,8 +5,16 @@ struct OrdersView: View {
   @ObservedObject var viewModel: OrdersViewModel
   
   var body: some View {
-    List(viewModel.myOrders) { order in
-      OrderRow(order: order)
+    VStack {
+      if viewModel.myOrders.isEmpty {
+        Spacer()
+        EmptyView(text: "NO OPEN ORDERS")
+        Spacer()
+      } else {
+        List(viewModel.myOrders) { order in
+          OrderRow(order: order)
+        }
+      }
     }
   }
 }

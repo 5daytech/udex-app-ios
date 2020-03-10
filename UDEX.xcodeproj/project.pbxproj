@@ -112,6 +112,9 @@
 		B59AE92023B0AD5200DF03C1 /* AppConfigProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE91F23B0AD5200DF03C1 /* AppConfigProvider.swift */; };
 		B59AE92223B0BCAE00DF03C1 /* IAdapterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE92123B0BCAE00DF03C1 /* IAdapterManager.swift */; };
 		B59AE92423B0BD2100DF03C1 /* AdapterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE92323B0BD2100DF03C1 /* AdapterManager.swift */; };
+		B59CBD9824166338001055C5 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBD9724166338001055C5 /* AboutView.swift */; };
+		B59CBD9A24166588001055C5 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBD9924166588001055C5 /* Bundle+Extension.swift */; };
+		B59CBD9C24166916001055C5 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBD9B24166916001055C5 /* EmptyView.swift */; };
 		B5A985BA23F3F019009AEBD8 /* IProcessingDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985B923F3F019009AEBD8 /* IProcessingDurationProvider.swift */; };
 		B5A985BC23F3F05E009AEBD8 /* ETransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BB23F3F05E009AEBD8 /* ETransactionType.swift */; };
 		B5A985BE23F3F093009AEBD8 /* ProcessingDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BD23F3F093009AEBD8 /* ProcessingDurationProvider.swift */; };
@@ -288,6 +291,9 @@
 		B59AE91F23B0AD5200DF03C1 /* AppConfigProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfigProvider.swift; sourceTree = "<group>"; };
 		B59AE92123B0BCAE00DF03C1 /* IAdapterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapterManager.swift; sourceTree = "<group>"; };
 		B59AE92323B0BD2100DF03C1 /* AdapterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdapterManager.swift; sourceTree = "<group>"; };
+		B59CBD9724166338001055C5 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		B59CBD9924166588001055C5 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		B59CBD9B24166916001055C5 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		B5A985B923F3F019009AEBD8 /* IProcessingDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProcessingDurationProvider.swift; sourceTree = "<group>"; };
 		B5A985BB23F3F05E009AEBD8 /* ETransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETransactionType.swift; sourceTree = "<group>"; };
 		B5A985BD23F3F093009AEBD8 /* ProcessingDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingDurationProvider.swift; sourceTree = "<group>"; };
@@ -516,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				B533EBED23AB3BFE00CD18CC /* Logger.swift */,
+				B59CBD9924166588001055C5 /* Bundle+Extension.swift */,
 				B53A7D0423C747210098A237 /* String+Extension.swift */,
 				B54F65DA23CE175E008BD76C /* Decimal+Extension.swift */,
 				B54F65DC23CE191C008BD76C /* NumberUtils.swift */,
@@ -703,6 +710,14 @@
 			path = Providers;
 			sourceTree = "<group>";
 		};
+		B59CBD9624166327001055C5 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				B59CBD9724166338001055C5 /* AboutView.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		B5A985B823F3EFFF009AEBD8 /* Duration */ = {
 			isa = PBXGroup;
 			children = (
@@ -800,6 +815,7 @@
 		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B59CBD9624166327001055C5 /* About */,
 				B5E3ECDE241129B900833F42 /* Trades */,
 				B5E3ECD1240E55CE00833F42 /* ExchangeHistory */,
 				B5E3ECC02406560200833F42 /* Transactions */,
@@ -915,6 +931,7 @@
 				B5A985D023FD2D80009AEBD8 /* NumberPad.swift */,
 				B5A985D223FD2FC0009AEBD8 /* PipeInputView.swift */,
 				B5E3ECAD2403C9E100833F42 /* ShareSheet.swift */,
+				B59CBD9B24166916001055C5 /* EmptyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1080,8 +1097,10 @@
 				B5E3ECDB2410E10A00833F42 /* ExchangeRecord.swift in Sources */,
 				B5E3ECD02409330F00833F42 /* TransactionDetails.swift in Sources */,
 				B5E3ECCE24090B1800833F42 /* DateHelper.swift in Sources */,
+				B59CBD9C24166916001055C5 /* EmptyView.swift in Sources */,
 				B5E3ECC62406575A00833F42 /* TransactionsLoader.swift in Sources */,
 				B533EBF623AB6E3E00CD18CC /* MainView.swift in Sources */,
+				B59CBD9824166338001055C5 /* AboutView.swift in Sources */,
 				B59AE92023B0AD5200DF03C1 /* AppConfigProvider.swift in Sources */,
 				B5A985C623F6C558009AEBD8 /* BalanceViewWrapper.swift in Sources */,
 				B50C2F2D23B47C4000CE7FBF /* IRelayerAdapterManager.swift in Sources */,
@@ -1152,6 +1171,7 @@
 				B5E3ECB72403ECE600833F42 /* PermissionHelper.swift in Sources */,
 				B5A985C223F6BB7C009AEBD8 /* BalanceTVC.swift in Sources */,
 				B5E3ECD5240E8AA200833F42 /* ExchangeHistoryView.swift in Sources */,
+				B59CBD9A24166588001055C5 /* Bundle+Extension.swift in Sources */,
 				B53A7CE923C594E70098A237 /* CreateOrderData.swift in Sources */,
 				B5347E5623CE0D6300A7B85E /* RatesConverter.swift in Sources */,
 				B533EBFD23AC8E3600CD18CC /* BalanceRow.swift in Sources */,

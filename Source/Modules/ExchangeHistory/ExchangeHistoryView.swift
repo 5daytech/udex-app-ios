@@ -6,13 +6,19 @@ struct ExchangeHistoryView: View {
   
   var body: some View {
     VStack {
-      List(viewModel.transactions) { tx in
-        VStack {
-          ExchangeHistoryRow(tx: tx)
-            .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
-          Rectangle()
-          .frame(height: 1)
-            .background(Color("T2"))
+      if viewModel.transactions.isEmpty {
+        Spacer()
+        EmptyView(text: "NO HISTORY YET")
+        Spacer()
+      } else {
+        List(viewModel.transactions) { tx in
+          VStack {
+            ExchangeHistoryRow(tx: tx)
+              .padding(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+            Rectangle()
+              .frame(height: 1)
+              .background(Color("T2"))
+          }
         }
       }
     }
