@@ -48,6 +48,9 @@ PODS:
   - secp256k1.swift (0.1.4)
   - Secp256k1Kit.swift (1.0)
   - SnapKit (5.0.1)
+  - SQLite.swift (0.12.2):
+    - SQLite.swift/standard (= 0.12.2)
+  - SQLite.swift/standard (0.12.2)
   - Web3 (0.4.1):
     - Web3/Core (= 0.4.1)
     - Web3/HTTPExtension (= 0.4.1)
@@ -79,6 +82,7 @@ DEPENDENCIES:
   - FeeRateKit.swift
   - KeychainAccess
   - SnapKit
+  - SQLite.swift (~> 0.12.0)
   - XRatesKit.swift (= 0.4.1)
   - zrxkit (from `~/WORK/DAO/zrxkit`)
 
@@ -106,6 +110,7 @@ SPEC REPOS:
     - FeeRateKit.swift
     - KeychainAccess
     - SnapKit
+    - SQLite.swift
 
 EXTERNAL SOURCES:
   zrxkit:
@@ -131,10 +136,11 @@ SPEC CHECKSUMS:
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   Secp256k1Kit.swift: 93b1bfbb8909c12605666cc3b1e59d1d1fde7322
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   Web3: a4eb0d0cdedbef3f0e4c97ea83a4232a1b1f952b
   XRatesKit.swift: 23c713115f7b327aa8691c8a429b4cc094affa7e
   zrxkit: 1d48839df38bd038303e184870e1561882bd9e49
 
-PODFILE CHECKSUM: 017e88cde291314ea6c420b232e60cdec0806f51
+PODFILE CHECKSUM: e9c8453e885068ee0a6d19a7fffcccd43cf4adea
 
 COCOAPODS: 1.8.4

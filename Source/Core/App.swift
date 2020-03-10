@@ -24,15 +24,19 @@ class App {
   let feeRateProvider: IFeeRateProvider
   let processingDurationProvider: IProcessingDurationProvider
   
+  // MARK: Storage
+  let enabledCoinsStorage: IEnabledCoinsStorage
+  
   
   private init(words: [String]? = nil) {
     appConfigProvider = AppConfigProvider(words: words)
+    enabledCoinsStorage = EnabledCoinsDao()
     feeRateProvider = FeeRateProvider()
     processingDurationProvider = ProcessingDurationProvider()
     
     let ethereumKitManager = EthereumKitManager(appConfigProvider: appConfigProvider)
     
-    coinManager = CoinManager(appConfigProvider: appConfigProvider)
+    coinManager = CoinManager(appConfigProvider: appConfigProvider, enabledCoinsStorage: enabledCoinsStorage)
     
     let securedStorage = SecuredStorage()
     authManager = AuthManager(securedStorage: securedStorage, coinManager: coinManager)

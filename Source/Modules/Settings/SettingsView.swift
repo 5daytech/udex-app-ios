@@ -15,6 +15,12 @@ struct SettingsView: View {
               .padding([.trailing], -30)
           }
           
+          NavigationLink(destination: CoinManagerView()) {
+            SettingsItemView(icon: "about", title: "Coin Manager")
+              .padding([.leading], -16)
+              .padding([.trailing], -30)
+          }
+          
           NavigationLink(destination: AboutView()) {
             SettingsItemView(icon: "about", title: "About UDEX")
               .padding([.leading], -16)

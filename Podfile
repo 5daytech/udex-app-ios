@@ -13,4 +13,5 @@ target 'UDEX' do
   pod 'FeeRateKit.swift'
   pod 'KeychainAccess'
   pod 'SnapKit'
+  pod 'SQLite.swift', '~> 0.12.0'
 end

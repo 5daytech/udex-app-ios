@@ -6,10 +6,15 @@ class CoinManager {
   private var _coins: [Coin]
   private let baseCoins = ["BTC", "ETH"]
   private let appConfigProvider: IAppConfigProvider
+  private let enabledCoinsStorage: IEnabledCoinsStorage
   
-  init(appConfigProvider: IAppConfigProvider) {
+  init(appConfigProvider: IAppConfigProvider, enabledCoinsStorage: IEnabledCoinsStorage) {
     self.appConfigProvider = appConfigProvider
+    self.enabledCoinsStorage = enabledCoinsStorage
     _coins = appConfigProvider.coins
+    if try! enabledCoinsStorage.getEnabledCoins().isEmpty {
+      enableDefaultCoins()
+    }
     self.subject.onNext(())
   }
 }
@@ -24,7 +29,11 @@ extension CoinManager: ICoinManager {
   }
   
   func enableDefaultCoins() {
-    _coins = appConfigProvider.coins
+    var enabledCoins = [EnabledCoin]()
+    appConfigProvider.featuredCoins.enumerated().forEach { (order, coin) in
+      enabledCoins.append(EnabledCoin(coinCode: coin.code, order: order))
+    }
+    try! enabledCoinsStorage.insertCoins(enabledCoins)
   }
   
   func getErcCoinForAddress(address: String) -> Coin? {
