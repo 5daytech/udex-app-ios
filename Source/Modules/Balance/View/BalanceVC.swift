@@ -149,6 +149,10 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: false)
+    if indexPath.row == items.count {
+      delegate?.onOpenCoinManager()
+      return
+    }
     let expandedCoin = items.enumerated().filter { $1.expanded }.first?.offset
     var reloadRows = [indexPath]
     if expandedCoin == indexPath.row {

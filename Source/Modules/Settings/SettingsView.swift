@@ -16,7 +16,7 @@ struct SettingsView: View {
           }
           
           NavigationLink(destination: CoinManagerView()) {
-            SettingsItemView(icon: "about", title: "Coin Manager")
+            SettingsItemView(icon: "coin_manager", title: "Coin Manager")
               .padding([.leading], -16)
               .padding([.trailing], -30)
           }
