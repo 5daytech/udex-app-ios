@@ -122,6 +122,8 @@
 		B59CBDA724178953001055C5 /* IEnabledCoinsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBDA624178953001055C5 /* IEnabledCoinsStorage.swift */; };
 		B59CBDA92417A886001055C5 /* CoinManagerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBDA82417A885001055C5 /* CoinManagerRow.swift */; };
 		B59CBDAD24180845001055C5 /* CoinManagerViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBDAC24180845001055C5 /* CoinManagerViewItem.swift */; };
+		B59CBDAF24190166001055C5 /* AddCoinTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59CBDAE24190166001055C5 /* AddCoinTVC.xib */; };
+		B59CBDB124190264001055C5 /* AddCoinTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBDB024190264001055C5 /* AddCoinTVC.swift */; };
 		B5A985BA23F3F019009AEBD8 /* IProcessingDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985B923F3F019009AEBD8 /* IProcessingDurationProvider.swift */; };
 		B5A985BC23F3F05E009AEBD8 /* ETransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BB23F3F05E009AEBD8 /* ETransactionType.swift */; };
 		B5A985BE23F3F093009AEBD8 /* ProcessingDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BD23F3F093009AEBD8 /* ProcessingDurationProvider.swift */; };
@@ -308,6 +310,8 @@
 		B59CBDA624178953001055C5 /* IEnabledCoinsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IEnabledCoinsStorage.swift; sourceTree = "<group>"; };
 		B59CBDA82417A885001055C5 /* CoinManagerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManagerRow.swift; sourceTree = "<group>"; };
 		B59CBDAC24180845001055C5 /* CoinManagerViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManagerViewItem.swift; sourceTree = "<group>"; };
+		B59CBDAE24190166001055C5 /* AddCoinTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCoinTVC.xib; sourceTree = "<group>"; };
+		B59CBDB024190264001055C5 /* AddCoinTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinTVC.swift; sourceTree = "<group>"; };
 		B5A985B923F3F019009AEBD8 /* IProcessingDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProcessingDurationProvider.swift; sourceTree = "<group>"; };
 		B5A985BB23F3F05E009AEBD8 /* ETransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETransactionType.swift; sourceTree = "<group>"; };
 		B5A985BD23F3F093009AEBD8 /* ProcessingDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingDurationProvider.swift; sourceTree = "<group>"; };
@@ -597,6 +601,8 @@
 				B5A985C123F6BB7C009AEBD8 /* BalanceTVC.swift */,
 				B5A985C323F6C479009AEBD8 /* BalanceTVC.xib */,
 				B5A985C523F6C558009AEBD8 /* BalanceViewWrapper.swift */,
+				B59CBDAE24190166001055C5 /* AddCoinTVC.xib */,
+				B59CBDB024190264001055C5 /* AddCoinTVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1052,6 +1058,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B59CBDAF24190166001055C5 /* AddCoinTVC.xib in Resources */,
 				B5DAE26E23A8E81000D6FBFA /* LaunchScreen.storyboard in Resources */,
 				B5DAE26B23A8E81000D6FBFA /* Preview Assets.xcassets in Resources */,
 				B5A985C423F6C479009AEBD8 /* BalanceTVC.xib in Resources */,
@@ -1144,6 +1151,7 @@
 				B54F65DD23CE191C008BD76C /* NumberUtils.swift in Sources */,
 				B5E3ECBF24044BDF00833F42 /* ConvertConfirmConfig.swift in Sources */,
 				B533EBF323AB404F00CD18CC /* CoinType.swift in Sources */,
+				B59CBDB124190264001055C5 /* AddCoinTVC.swift in Sources */,
 				B54F65DB23CE175E008BD76C /* Decimal+Extension.swift in Sources */,
 				B59CBDA524178179001055C5 /* EnabledCoin.swift in Sources */,
 				B5DAE26423A8E80D00D6FBFA /* SceneDelegate.swift in Sources */,

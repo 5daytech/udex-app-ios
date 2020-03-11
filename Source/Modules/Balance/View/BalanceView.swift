@@ -5,8 +5,9 @@ struct BalanceView: View {
   @State public var pullStatus: CGFloat = 0
   
   @State var isTransactionDest = false
+  @State var isCoinManagerDest = false
   
-  @State var coin = App.instance.coinManager.getCoin(code: "WETH")
+  @State var coin: Coin?
   
   var onWrap: () -> Void
   var onUnwrap: () -> Void
@@ -30,9 +31,14 @@ struct BalanceView: View {
       onTransactions: { coin in
         self.coin = coin
         self.isTransactionDest = true
+      },
+      onOpenCoinManager: {
+        self.isCoinManagerDest = true
       }
     ).sheet(isPresented: $isTransactionDest) {
-      TransactionsView(viewModel: TransactionsViewModel(coin: self.coin))
+      TransactionsView(viewModel: TransactionsViewModel(coin: self.coin ?? App.instance.coinManager.getCoin(code: "WETH")))
+    }.sheet(isPresented: $isCoinManagerDest) {
+      CoinManagerView()
     }
   }
 }

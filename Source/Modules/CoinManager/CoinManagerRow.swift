@@ -32,8 +32,5 @@ struct CoinManagerRow: View {
     }
     .background(Color("other_coin_background"))
     .padding(EdgeInsets(top: 0, leading: viewItem.isEnabled ? -37 : 0, bottom: 0, trailing: viewItem.isEnabled ? -37 : 0))
-    .onAppear {
-      print("row \(self.viewItem.coin.code) \(self.viewItem.isEnabled)")
-    }
   }
 }

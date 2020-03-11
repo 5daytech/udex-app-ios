@@ -14,9 +14,9 @@ class BaseRelayerAdapter: IRelayerAdapter {
   
   private let ratesConverter: RatesConverter
   
-  private var selectedPair: ExchangePair
+  private var selectedPair: ExchangePair?
   
-  var currentPair: ExchangePair {
+  var currentPair: ExchangePair? {
     selectedPair
   }
   
@@ -39,14 +39,10 @@ class BaseRelayerAdapter: IRelayerAdapter {
     self.relayerId = relayerId
     self.relayerManager = zrxkit.relayerManager
     self.relayer = relayerManager.availableRelayers[relayerId]
-    let pair = relayerManager.availableRelayers[relayerId].availablePairs[0]
-    self.selectedPair = ExchangePair(
-      baseCoinCode: coinManager.getErcCoinForAddress(address: pair.first.address)!.code,
-      quoteCoinCode: coinManager.getErcCoinForAddress(address: pair.second.address)!.code,
-      baseAsset: pair.first,
-      quoteAsset: pair.second
-    )
-    initPairs(relayer: relayerManager.availableRelayers[relayerId], coinManager: coinManager)
+    
+    coinManager.coinsUpdateSubject.subscribe(onNext: {
+      self.initPairs(relayer: self.relayerManager.availableRelayers[relayerId], coinManager: coinManager)
+    }).disposed(by: disposeBag)
     
     let scheduler = SerialDispatchQueueScheduler(qos: .background)
     _ = Observable<Int>.interval(.microseconds(refreshInterval), scheduler: scheduler)
@@ -57,6 +53,17 @@ class BaseRelayerAdapter: IRelayerAdapter {
   }
   
   private func initPairs(relayer: Relayer, coinManager: ICoinManager) {
+    let pair = relayerManager.availableRelayers[relayerId].availablePairs[0]
+    if let baseCoin = coinManager.getErcCoinForAddress(address: pair.first.address),
+      let quoteCoin = coinManager.getErcCoinForAddress(address: pair.second.address) {
+      self.selectedPair = ExchangePair(
+        baseCoinCode: baseCoin.code,
+        quoteCoinCode: quoteCoin.code,
+        baseAsset: pair.first,
+        quoteAsset: pair.second
+      )
+    }
+    
     exchangePairs = relayer.availablePairs
     .filter { pair -> Bool in
       let baseCoin = coinManager.getErcCoinForAddress(address: pair.first.address)
@@ -141,6 +148,7 @@ class BaseRelayerAdapter: IRelayerAdapter {
   }
   
   private func updateOrders() {
+    guard let selectedPair = selectedPair else { return }
     buyOrdersSubject.onNext(buyOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.compactMap { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .BUY) })
     sellOrdersSubject.onNext(sellOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.compactMap { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .SELL) })
   }

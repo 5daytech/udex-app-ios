@@ -3,7 +3,7 @@ import zrxkit
 import Web3
 
 protocol IRelayerAdapter {
-  var currentPair: ExchangePair { get }
+  var currentPair: ExchangePair? { get }
   var exchangePairs: [ExchangePair] { get }
   var myOrdersSubject: BehaviorSubject<[SimpleOrder]> { get }
   var buyOrdersSubject: BehaviorSubject<[SimpleOrder]> { get }

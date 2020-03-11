@@ -8,6 +8,7 @@ protocol BalanceVCDelegate {
   func onReceive(_ coin: Coin)
   func onSend(_ coin: Coin)
   func onTransactions(_ coin: Coin)
+  func onOpenCoinManager()
 }
 
 class BalanceVC: UIViewController {
@@ -39,6 +40,7 @@ class BalanceVC: UIViewController {
     tableView.dataSource = self
     tableView.estimatedRowHeight = 70
     tableView.register(UINib(nibName: BalanceTVC.reuseID, bundle: nil), forCellReuseIdentifier: BalanceTVC.reuseID)
+    tableView.register(UINib(nibName: AddCoinTVC.reuseID, bundle: nil), forCellReuseIdentifier: AddCoinTVC.reuseID)
     view.addSubview(tableView)
     tableView.snp.makeConstraints { (maker) in
       maker.edges.equalToSuperview()
@@ -66,40 +68,51 @@ class BalanceVC: UIViewController {
 
 extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return items.count
+    return items.count + 1
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(withIdentifier: BalanceTVC.reuseID) as? BalanceTVC else {
-      fatalError()
-    }
-    let item = items[indexPath.row]
-    var wrap: (() -> Void)? = nil
-    
-    if item.balance.coin.code == "ETH" {
-      wrap = {
-        self.delegate?.onWrap()
+    if indexPath.row == items.count {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: AddCoinTVC.reuseID) as? AddCoinTVC else {
+        fatalError()
       }
-    } else if item.balance.coin.code == "WETH" {
-      wrap = {
-        self.delegate?.onUnwrap()
+      cell.onBind {
+        self.delegate?.onOpenCoinManager()
       }
+      return cell
+    } else {
+      guard let cell = tableView.dequeueReusableCell(withIdentifier: BalanceTVC.reuseID) as? BalanceTVC else {
+        fatalError()
+      }
+      let item = items[indexPath.row]
+      var wrap: (() -> Void)? = nil
+      
+      if item.balance.coin.code == "ETH" {
+        wrap = {
+          self.delegate?.onWrap()
+        }
+      } else if item.balance.coin.code == "WETH" {
+        wrap = {
+          self.delegate?.onUnwrap()
+        }
+      }
+      
+      cell.onBind(
+        items[indexPath.row],
+        onReceive: { coin in
+          self.delegate?.onReceive(coin)
+        }, onSend: { coin in
+          self.delegate?.onSend(coin)
+        }, onTransactions: { coin in
+          self.delegate?.onTransactions(coin)
+        }, onWrap: wrap
+      )
+      return cell
     }
-    
-    cell.onBind(
-      items[indexPath.row],
-      onReceive: { coin in
-        self.delegate?.onReceive(coin)
-      }, onSend: { coin in
-        self.delegate?.onSend(coin)
-      }, onTransactions: { coin in
-        self.delegate?.onTransactions(coin)
-      }, onWrap: wrap
-    )
-    return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    if indexPath.row == items.count { return 50 }
     return items[indexPath.row].expanded ? BalanceTVC.expandedHeight : BalanceTVC.height
   }
   

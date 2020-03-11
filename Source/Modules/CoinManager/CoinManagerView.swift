@@ -5,41 +5,43 @@ struct CoinManagerView: View {
   
   @State var isEditMode: EditMode = .active
   
-  @State var isEnabled = false
-  
-  var isEnabledBindable: Binding<Bool> { Binding(
-    get: { true }, set: {_ in}) }
+  @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
   
   var body: some View {
-    VStack {
-      List {
-        Section {
-          ForEach(viewModel.enabledViewItems) { coinViewItem in
-            CoinManagerRow(viewItem: coinViewItem)
-              .listRowInsets(EdgeInsets())
-              .onTapGesture {
-                self.viewModel.onTapCoin(coinViewItem.coin)
-              }
+    ZStack(alignment: .bottom) {
+      VStack {
+        List {
+          Section {
+            ForEach(viewModel.enabledViewItems) { coinViewItem in
+              CoinManagerRow(viewItem: coinViewItem)
+                .listRowInsets(EdgeInsets())
+                .onTapGesture {
+                  self.viewModel.onTapCoin(coinViewItem.coin)
+                }
+            }
+            .onMove { (indexSet, index) in
+              self.viewModel.move(indexSet, index)
+            }
           }
-          .onMove { (indexSet, index) in
-            self.viewModel.move(indexSet, index)
+          Spacer(minLength: 6)
+          Section {
+            ForEach(viewModel.disabledViewItems) { coinViewItem in
+              CoinManagerRow(viewItem: coinViewItem)
+                .listRowInsets(EdgeInsets())
+                .onTapGesture {
+                  self.viewModel.onTapCoin(coinViewItem.coin)
+                }
+            }
           }
         }
-        Spacer(minLength: 6)
-        Section {
-          ForEach(viewModel.disabledViewItems) { coinViewItem in
-            CoinManagerRow(viewItem: coinViewItem)
-              .listRowInsets(EdgeInsets())
-              .onTapGesture {
-                self.viewModel.onTapCoin(coinViewItem.coin)
-              }
-          }
-        }
-        
-
-        
+        .environment(\.editMode, $isEditMode)
       }
-      .environment(\.editMode, $isEditMode)
+      Button(action: {
+        self.viewModel.saveCoins()
+        self.presentationMode.wrappedValue.dismiss()
+      }) {
+        Image("done").renderingMode(.original)
+      }
     }
     .navigationBarTitle("Coin Manager")
   }

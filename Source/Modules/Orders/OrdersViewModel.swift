@@ -8,7 +8,7 @@ class OrdersViewModel: ObservableObject {
   @Published var sellOrders: [SimpleOrder] = []
   @Published var buyOrders: [SimpleOrder] = []
   @Published var myOrders: [SimpleOrder] = []
-  @Published var availablePairs: [ExchangePairViewItem]
+  @Published var availablePairs: [ExchangePairViewItem] = []
   
   var isExpanded: Bool {
     availablePairs.count != 1
@@ -20,12 +20,11 @@ class OrdersViewModel: ObservableObject {
     
     self.relayerAdapter = relayerAdapter
     
-    availablePairs = [ExchangePairViewItem(
-      baseCoin: relayerAdapter.currentPair.baseCoinCode,
-      basePrice: 100.0,
-      quoteCoin: relayerAdapter.currentPair.quoteCoinCode,
-      quotePrice: 100.0
-    )]
+    App.instance.coinManager.coinsUpdateSubject.subscribe(onNext: {
+      self.initAvailablePairs()
+    }).disposed(by: disposeBag)
+    
+    initAvailablePairs()
     
     relayerAdapter.buyOrdersSubject.subscribe(onNext: { simpleOrders in
       self.buyOrders = simpleOrders
@@ -38,6 +37,19 @@ class OrdersViewModel: ObservableObject {
     relayerAdapter.myOrdersSubject.observeOn(MainScheduler.instance).subscribe(onNext: { simpleOrders in
       self.myOrders = simpleOrders
     }).disposed(by: disposeBag)
+    
+    
+  }
+  
+  func initAvailablePairs() {
+    if relayerAdapter.currentPair != nil {
+      availablePairs = [ExchangePairViewItem(
+        baseCoin: relayerAdapter.currentPair!.baseCoinCode,
+        basePrice: 100.0,
+        quoteCoin: relayerAdapter.currentPair!.quoteCoinCode,
+        quotePrice: 100.0
+      )]
+    }
   }
   
   func onChoosePair(pair: ExchangePairViewItem) {

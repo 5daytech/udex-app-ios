@@ -12,7 +12,7 @@ class CoinManagerViewModel: ObservableObject {
   var disabledCoins = [Coin]()
   
   init() {
-    allCoins = coinManager.coins
+    allCoins = coinManager.allCoins
     do {
       try enabledCoinsStorage.getEnabledCoins().forEach { enabledCoin in
         if let coin = self.coinManager.coins.first(where: { (coin) -> Bool in
@@ -44,14 +44,12 @@ class CoinManagerViewModel: ObservableObject {
   
   private func enable(_ coin: Coin) {
     enabledCoins.append(coin)
-    print("enable \(enabledCoins.count)")
     setDisablesCoin()
     updateViewItems()
   }
   
   private func disable(_ coin: Coin) {
     enabledCoins.removeAll { $0.code == coin.code }
-    print("disable \(enabledCoins.count)")
     setDisablesCoin()
     updateViewItems()
   }
@@ -62,5 +60,9 @@ class CoinManagerViewModel: ObservableObject {
   
   func isEnabled(_ coin: Coin) -> Bool {
     return enabledCoins.contains(coin)
+  }
+  
+  func saveCoins() {
+    try! enabledCoinsStorage.insertCoins(enabledCoins.enumerated().map { EnabledCoin(coinCode: $0.element.code, order: $0.offset) })
   }
 }

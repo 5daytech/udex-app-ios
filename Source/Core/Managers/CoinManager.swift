@@ -2,20 +2,48 @@ import Foundation
 import RxSwift
 
 class CoinManager {
+  private let disposeBag = DisposeBag()
   private let subject = PublishSubject<Void>()
-  private var _coins: [Coin]
+  private var _coins: [Coin] {
+    didSet {
+      subject.onNext(())
+    }
+  }
   private let baseCoins = ["BTC", "ETH"]
   private let appConfigProvider: IAppConfigProvider
   private let enabledCoinsStorage: IEnabledCoinsStorage
   
+  var allCoins: [Coin] {
+    appConfigProvider.coins
+  }
+  
   init(appConfigProvider: IAppConfigProvider, enabledCoinsStorage: IEnabledCoinsStorage) {
     self.appConfigProvider = appConfigProvider
     self.enabledCoinsStorage = enabledCoinsStorage
-    _coins = appConfigProvider.coins
-    if try! enabledCoinsStorage.getEnabledCoins().isEmpty {
-      enableDefaultCoins()
+    _coins = []
+    
+    enabledCoinsStorage.enabledCoinsObservable.subscribe(onNext: { (enabledCoins) in
+      self.setup(enabledCoins)
+    }).disposed(by: disposeBag)
+    print(try! enabledCoinsStorage.getEnabledCoins())
+    setup(try! enabledCoinsStorage.getEnabledCoins())
+  }
+  
+  private func setup(_ enabledCoins: [EnabledCoin]) {
+    if enabledCoins.isEmpty {
+      self.enableDefaultCoins()
+      return
     }
-    self.subject.onNext(())
+    
+    var enabled = [Coin]()
+    enabledCoins.forEach { (enabledCoin) in
+      if let addingCoin = self.allCoins.first(where: { (coin) -> Bool in
+        coin.code == enabledCoin.coinCode
+      }) {
+        enabled.append(addingCoin)
+      }
+    }
+    self._coins = enabled
   }
 }
 
@@ -34,6 +62,7 @@ extension CoinManager: ICoinManager {
       enabledCoins.append(EnabledCoin(coinCode: coin.code, order: order))
     }
     try! enabledCoinsStorage.insertCoins(enabledCoins)
+    
   }
   
   func getErcCoinForAddress(address: String) -> Coin? {
@@ -49,7 +78,7 @@ extension CoinManager: ICoinManager {
   }
   
   func getCoin(code: String) -> Coin {
-    let coinOrNull = _coins.first { (coin) -> Bool in
+    let coinOrNull = allCoins.first { (coin) -> Bool in
       coin.code == code
     }
     

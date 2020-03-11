@@ -1,6 +1,7 @@
 import Foundation
 import SQLite
 import SQLite3
+import RxSwift
 
 class EnabledCoinsDao: IEnabledCoinsStorage {
   let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first!
@@ -8,6 +9,12 @@ class EnabledCoinsDao: IEnabledCoinsStorage {
   let enabledCoins = Table("enabled_coins")
   let coinCode = Expression<String>("coin_code")
   let order = Expression<Int?>("order")
+  
+  var subject = PublishSubject<[EnabledCoin]>()
+  
+  var enabledCoinsObservable: Observable<[EnabledCoin]> {
+    subject.asObservable()
+  }
   
   init() {
     db = try! Connection("\(path)/udex.sqlite3")
@@ -26,7 +33,9 @@ class EnabledCoinsDao: IEnabledCoinsStorage {
   }
   
   func insertCoins(_ coins: [EnabledCoin]) throws {
+    try deleteAll()
     try coins.forEach { try insert($0) }
+    subject.onNext(coins)
   }
   
   func deleteAll() throws {

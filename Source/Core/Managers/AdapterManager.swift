@@ -19,9 +19,9 @@ class AdapterManager {
     self.ethereumKitManager = ethereumKitManager
     self.authManager = authManager
     
-//    coinManager.coinsUpdateSubject.subscribe(onNext: {
-//      self.initAdapters()
-//    }).disposed(by: disposeBag)
+    coinManager.coinsUpdateSubject.subscribe(onNext: {
+      self.initAdapters()
+    }).disposed(by: disposeBag)
     
     authManager.authDataSubject.subscribe(onNext: {
       self.initAdapters()

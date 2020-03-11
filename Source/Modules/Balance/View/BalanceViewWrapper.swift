@@ -28,6 +28,10 @@ struct BalanceViewWrapper: UIViewControllerRepresentable {
     func onTransactions(_ coin: Coin) {
       parent.onTransactions(coin)
     }
+    
+    func onOpenCoinManager() {
+      parent.onOpenCoinManager()
+    }
   }
   
   let onWrap: () -> Void
@@ -35,6 +39,7 @@ struct BalanceViewWrapper: UIViewControllerRepresentable {
   let onSend: (Coin) -> Void
   let onReceive: (Coin) -> Void
   let onTransactions: (Coin) -> Void
+  let onOpenCoinManager: () -> Void
   
   func makeCoordinator() -> BalanceViewWrapper.Coordinator {
     Coordinator(self)
