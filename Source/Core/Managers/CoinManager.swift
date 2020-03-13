@@ -6,6 +6,7 @@ class CoinManager {
   private let subject = PublishSubject<Void>()
   private var _coins: [Coin] {
     didSet {
+      print("coins updated")
       subject.onNext(())
     }
   }
@@ -25,7 +26,6 @@ class CoinManager {
     enabledCoinsStorage.enabledCoinsObservable.subscribe(onNext: { (enabledCoins) in
       self.setup(enabledCoins)
     }).disposed(by: disposeBag)
-    print(try! enabledCoinsStorage.getEnabledCoins())
     setup(try! enabledCoinsStorage.getEnabledCoins())
   }
   

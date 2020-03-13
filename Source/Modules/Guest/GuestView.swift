@@ -20,8 +20,8 @@ struct GuestView: View {
           Spacer()
         }
         .background(Color("main"))
-        
-        
+
+
         NavigationLink(destination: RestoreWalletView(viewModel: restoreViewModel)) {
           Text("RESTORE")
           .foregroundColor(Color("T1"))
@@ -30,5 +30,6 @@ struct GuestView: View {
       }
     }
     .accentColor(Color("main"))
+    .navigationViewStyle(StackNavigationViewStyle())
   }
 }

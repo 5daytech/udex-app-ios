@@ -92,6 +92,13 @@
 		B577872523D6E86F0080F9E9 /* ISecuredStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577872423D6E86F0080F9E9 /* ISecuredStorage.swift */; };
 		B577872723D9894D0080F9E9 /* WordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577872623D9894D0080F9E9 /* WordsManager.swift */; };
 		B577872923D9895C0080F9E9 /* IWordsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577872823D9895C0080F9E9 /* IWordsManager.swift */; };
+		B57B93DF241A332A0017BB10 /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93DE241A332A0017BB10 /* PinView.swift */; };
+		B57B93E1241A391C0017BB10 /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93E0241A391C0017BB10 /* PinViewModel.swift */; };
+		B57B93E3241A4B840017BB10 /* PinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93E2241A4B840017BB10 /* PinManager.swift */; };
+		B57B93E5241A4B990017BB10 /* IPinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93E4241A4B990017BB10 /* IPinManager.swift */; };
+		B57B93E7241A55A60017BB10 /* LockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93E6241A55A60017BB10 /* LockManager.swift */; };
+		B57B93E9241A55B00017BB10 /* ILockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93E8241A55B00017BB10 /* ILockManager.swift */; };
+		B57B93EB241BA7F10017BB10 /* SettingsItemToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93EA241BA7F10017BB10 /* SettingsItemToggleView.swift */; };
 		B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */; };
 		B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */; };
 		B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */; };
@@ -280,6 +287,13 @@
 		B577872423D6E86F0080F9E9 /* ISecuredStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISecuredStorage.swift; sourceTree = "<group>"; };
 		B577872623D9894D0080F9E9 /* WordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsManager.swift; sourceTree = "<group>"; };
 		B577872823D9895C0080F9E9 /* IWordsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWordsManager.swift; sourceTree = "<group>"; };
+		B57B93DE241A332A0017BB10 /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		B57B93E0241A391C0017BB10 /* PinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewModel.swift; sourceTree = "<group>"; };
+		B57B93E2241A4B840017BB10 /* PinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinManager.swift; sourceTree = "<group>"; };
+		B57B93E4241A4B990017BB10 /* IPinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPinManager.swift; sourceTree = "<group>"; };
+		B57B93E6241A55A60017BB10 /* LockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockManager.swift; sourceTree = "<group>"; };
+		B57B93E8241A55B00017BB10 /* ILockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILockManager.swift; sourceTree = "<group>"; };
+		B57B93EA241BA7F10017BB10 /* SettingsItemToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemToggleView.swift; sourceTree = "<group>"; };
 		B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumBaseAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleError.swift; sourceTree = "<group>"; };
@@ -622,6 +636,7 @@
 			children = (
 				B54C34B023DAF10200BFABEB /* SettingsView.swift */,
 				B54C34B223DAF14800BFABEB /* SettingsItemView.swift */,
+				B57B93EA241BA7F10017BB10 /* SettingsItemToggleView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -675,6 +690,15 @@
 			path = Security;
 			sourceTree = "<group>";
 		};
+		B57B93DD241A33160017BB10 /* Pin */ = {
+			isa = PBXGroup;
+			children = (
+				B57B93DE241A332A0017BB10 /* PinView.swift */,
+				B57B93E0241A391C0017BB10 /* PinViewModel.swift */,
+			);
+			path = Pin;
+			sourceTree = "<group>";
+		};
 		B59AE8F823B08AA600DF03C1 /* Adapters */ = {
 			isa = PBXGroup;
 			children = (
@@ -716,6 +740,10 @@
 				B54C34AD23DAE3C000BFABEB /* IEthereumKitManager.swift */,
 				B5E3ECD82410E0A500833F42 /* ExchangeHistoryManager.swift */,
 				B5E3ECDC2410E16A00833F42 /* IExchangeHistoryManager.swift */,
+				B57B93E2241A4B840017BB10 /* PinManager.swift */,
+				B57B93E4241A4B990017BB10 /* IPinManager.swift */,
+				B57B93E6241A55A60017BB10 /* LockManager.swift */,
+				B57B93E8241A55B00017BB10 /* ILockManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -849,6 +877,7 @@
 		B5DAE29223AA0BC000D6FBFA /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				B57B93DD241A33160017BB10 /* Pin */,
 				B59CBD9D24173F8D001055C5 /* CoinManager */,
 				B59CBD9624166327001055C5 /* About */,
 				B5E3ECDE241129B900833F42 /* Trades */,
@@ -1135,6 +1164,7 @@
 				B5E3ECCE24090B1800833F42 /* DateHelper.swift in Sources */,
 				B59CBD9C24166916001055C5 /* EmptyView.swift in Sources */,
 				B5E3ECC62406575A00833F42 /* TransactionsLoader.swift in Sources */,
+				B57B93E7241A55A60017BB10 /* LockManager.swift in Sources */,
 				B59CBDA324177D73001055C5 /* EnabledCoinsDao.swift in Sources */,
 				B533EBF623AB6E3E00CD18CC /* MainView.swift in Sources */,
 				B59CBD9824166338001055C5 /* AboutView.swift in Sources */,
@@ -1145,6 +1175,8 @@
 				B59CBDA92417A886001055C5 /* CoinManagerRow.swift in Sources */,
 				B533EBEE23AB3BFE00CD18CC /* Logger.swift in Sources */,
 				B50C2F3723B4BE3400CE7FBF /* ExchangeCoinView.swift in Sources */,
+				B57B93DF241A332A0017BB10 /* PinView.swift in Sources */,
+				B57B93E5241A4B990017BB10 /* IPinManager.swift in Sources */,
 				B54C34AE23DAE3C000BFABEB /* IEthereumKitManager.swift in Sources */,
 				B54F65E123CED25E008BD76C /* ExchangeNumberPad.swift in Sources */,
 				B59AE91A23B0A8A700DF03C1 /* Currency.swift in Sources */,
@@ -1162,6 +1194,7 @@
 				B5E3ECB92403EE8300833F42 /* ScanQRWrapper.swift in Sources */,
 				B50C2F2923B4774D00CE7FBF /* IZrxKitManager.swift in Sources */,
 				B53A7D0323C745A30098A237 /* NormalizedOrderData.swift in Sources */,
+				B57B93E1241A391C0017BB10 /* PinViewModel.swift in Sources */,
 				B53A7CED23C5C4840098A237 /* IExchangeInteractor.swift in Sources */,
 				B53A7CFD23C7405F0098A237 /* RelayerOrdersList.swift in Sources */,
 				B50C2F2B23B4777900CE7FBF /* ICoinManager.swift in Sources */,
@@ -1169,6 +1202,7 @@
 				B54C34CB23DEC78E00BFABEB /* MarketInteractor.swift in Sources */,
 				B59AE91423B0A76D00DF03C1 /* IAdapterFactory.swift in Sources */,
 				B577872723D9894D0080F9E9 /* WordsManager.swift in Sources */,
+				B57B93E9241A55B00017BB10 /* ILockManager.swift in Sources */,
 				B59AE91123B0A6CF00DF03C1 /* Erc20Adapter.swift in Sources */,
 				B5E3ECE0241129CA00833F42 /* TradesView.swift in Sources */,
 				B577871923D5C7EF0080F9E9 /* MultilineTextField.swift in Sources */,
@@ -1248,6 +1282,8 @@
 				B52C4A2223C321D1004C1AAE /* MarketOrderViewState.swift in Sources */,
 				B5A985CB23FCFE66009AEBD8 /* ConvertView.swift in Sources */,
 				B50C2F2423B4771100CE7FBF /* BaseRelayerAdapter.swift in Sources */,
+				B57B93E3241A4B840017BB10 /* PinManager.swift in Sources */,
+				B57B93EB241BA7F10017BB10 /* SettingsItemToggleView.swift in Sources */,
 				B53A7D0523C747210098A237 /* String+Extension.swift in Sources */,
 				B533EBFF23ACC3A400CD18CC /* BalanceViewModel.swift in Sources */,
 				B5A985BC23F3F05E009AEBD8 /* ETransactionType.swift in Sources */,
@@ -1425,10 +1461,11 @@
 			baseConfigurationReference = B5DAE28723A9E82700D6FBFA /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_ID_SUFFIX = .dev;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
-				DEVELOPMENT_TEAM = U4R65QQKZ7;
+				DEVELOPMENT_TEAM = 9234M6VAS4;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1441,7 +1478,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fridaytech.UDEX${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1453,10 +1490,11 @@
 			baseConfigurationReference = B5DAE28823A9E83700D6FBFA /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_ID_SUFFIX = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
-				DEVELOPMENT_TEAM = U4R65QQKZ7;
+				DEVELOPMENT_TEAM = 9234M6VAS4;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1469,7 +1507,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fridaytech.UDEX${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1541,10 +1579,11 @@
 			baseConfigurationReference = B5DAE28A23A9E85400D6FBFA /* Staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BUNDLE_ID_SUFFIX = .staging;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
-				DEVELOPMENT_TEAM = U4R65QQKZ7;
+				DEVELOPMENT_TEAM = 9234M6VAS4;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1557,7 +1596,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.7;
-				PRODUCT_BUNDLE_IDENTIFIER = com.makeuseof.UDEX;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.fridaytech.UDEX${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

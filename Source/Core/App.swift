@@ -27,6 +27,11 @@ class App {
   // MARK: Storage
   let enabledCoinsStorage: IEnabledCoinsStorage
   
+  let pinManager: IPinManager
+  let lockManager: ILockManager
+  
+  var lastExitDate: TimeInterval = 0
+  
   
   private init(words: [String]? = nil) {
     appConfigProvider = AppConfigProvider(words: words)
@@ -66,6 +71,9 @@ class App {
     
     cleanupManager = CleanupManager(authManager: authManager, zrxKitManager: zrxKitManager)
     
-    securityCenterViewModel = SecurityCenterViewModel(cleanupManager: cleanupManager)
+    pinManager = PinManager(securedStorage: securedStorage)
+    lockManager = LockManager(pinManager: pinManager)
+    
+    securityCenterViewModel = SecurityCenterViewModel(cleanupManager: cleanupManager, pinManager: pinManager)
   }
 }

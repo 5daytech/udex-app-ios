@@ -27,7 +27,8 @@ struct MainView: View {
   @ObservedObject var viewModel = MainViewModel(
     wordsManager: App.instance.wordsManager,
     authManager: App.instance.authManager,
-    cleanupManager: App.instance.cleanupManager
+    cleanupManager: App.instance.cleanupManager,
+    lockManager: App.instance.lockManager
   )
   
   private func bottomView() -> AnyView? {
@@ -156,77 +157,86 @@ struct MainView: View {
   var body: some View {
     VStack {
       if viewModel.isLoggedIn {
-        ZStack {
-          TabView {
-            BalanceView(onWrap: {
-              self.showBottomCard = true
-              self.bottomViewState = .WRAP
-            }, onUnwrap: {
-              self.showBottomCard = true
-              self.bottomViewState = .UNWRAP
-            }, onSend: { coin in
-              self.showBottomCard = true
-              self.bottomViewState = .SEND(coin)
-            }, onReceive: { coin in
-              self.showBottomCard = true
-              self.bottomViewState = .RECEIVE(coin)
-            })
+        if viewModel.isPinEnabled {
+          PinView(onValidate: {
+            self.viewModel.onValidate()
+          })
+        } else {
+          ZStack {
+            TabView {
+              BalanceView(onWrap: {
+                self.showBottomCard = true
+                self.bottomViewState = .WRAP
+              }, onUnwrap: {
+                self.showBottomCard = true
+                self.bottomViewState = .UNWRAP
+              }, onSend: { coin in
+                self.showBottomCard = true
+                self.bottomViewState = .SEND(coin)
+              }, onReceive: { coin in
+                self.showBottomCard = true
+                self.bottomViewState = .RECEIVE(coin)
+              })
               .tabItem {
                 Image("balance").renderingMode(.template)
                 Text("")
-            }
-            
-            NavigationView {
-              ExchangeView<LimitInteractor>.makeView()
-                .navigationBarTitle("Limit order")
-            }
-            .tabItem {
-              Image("exchange").renderingMode(.template)
-              Text("")
-            }
-            
-            NavigationView {
-              ExchangeView<MarketInteractor>.makeView()
-                .navigationBarTitle("Swap")
-            }
-            .tabItem {
-              Image("swap").renderingMode(.template)
-              Text("")
-            }
-            
-              TradesView(ordersViewModel: viewModel.ordersViewModel!)
+              }
+              
+              NavigationView {
+                ExchangeView<LimitInteractor>.makeView()
+                  .navigationBarTitle("Limit order")
+              }
+              .navigationViewStyle(StackNavigationViewStyle())
               .tabItem {
-                Image("orders").renderingMode(.template)
+                Image("exchange").renderingMode(.template)
                 Text("")
               }
-            
-            SettingsView()
+              
+              NavigationView {
+                ExchangeView<MarketInteractor>.makeView()
+                  .navigationBarTitle("Swap")
+              }
+              .navigationViewStyle(StackNavigationViewStyle())
               .tabItem {
-                Image("settings").renderingMode(.template)
+                Image("swap").renderingMode(.template)
                 Text("")
-            }
-          }
-          .accentColor(Color("main"))
-          .blur(radius: isBlur ? 3 : 0)
-          
-          bottomView()?
-            .blur(radius: isBlur ? 3 : 0)
-            .offset(y: screenHeight - ( showBottomCard ? self.viewModel.height(for: bottomViewState) : 0))
-            .animation(.easeInOut(duration: 0.3))
-          
-          if isBlur {
-            Rectangle()
-              .foregroundColor(Color.white.opacity(0.01))
-              .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-              .onTapGesture {
-                withAnimation {
-                  self.viewState = .NONE
+              }
+              
+                TradesView(ordersViewModel: viewModel.ordersViewModel!)
+                .tabItem {
+                  Image("orders").renderingMode(.template)
+                  Text("")
                 }
+              
+              SettingsView()
+                .tabItem {
+                  Image("settings").renderingMode(.template)
+                  Text("")
+              }
             }
+            .accentColor(Color("main"))
+            .blur(radius: isBlur ? 3 : 0)
+            
+            bottomView()?
+              .blur(radius: isBlur ? 3 : 0)
+              .offset(y: screenHeight - ( showBottomCard ? self.viewModel.height(for: bottomViewState) : 0))
+              .animation(.easeInOut(duration: 0.3))
+            
+            if isBlur {
+              Rectangle()
+                .foregroundColor(Color.white.opacity(0.01))
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                .onTapGesture {
+                  withAnimation {
+                    self.viewState = .NONE
+                  }
+              }
+            }
+            
+            topView()
           }
-          
-          topView()
         }
+        
       } else {
         GuestView(restoreViewModel: viewModel.restoreViewModel!, onCreateWallet: {
           self.viewModel.createWallet()

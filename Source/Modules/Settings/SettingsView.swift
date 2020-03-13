@@ -63,6 +63,7 @@ struct SettingsView: View {
       }
       .navigationBarTitle("Settings")
     }
+    .navigationViewStyle(StackNavigationViewStyle())
     .sheet(isPresented: $showShareSheet) {
       ShareSheet(activityItems: [URL(string: "https://udex.app/share")!])
     }

@@ -22,6 +22,7 @@ class BalanceVC: UIViewController {
   
   private var totalFiatLabel: UILabel?
   private var totalLabel: UILabel?
+  private var titleLabel: UILabel?
   
   var delegate: BalanceVCDelegate?
   
@@ -124,13 +125,23 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     let view = UIView()
     view.backgroundColor = UIColor(named: "background")
     
+    titleLabel = UILabel()
+    titleLabel?.text = "Wallet"
+    titleLabel?.textColor = UIColor(named: "T1")
+    titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+    view.addSubview(titleLabel!)
+    titleLabel?.snp.makeConstraints({ (maker) in
+      maker.top.leading.equalToSuperview().offset(16)
+    })
+    
     totalFiatLabel = UILabel()
     totalFiatLabel?.text = viewModel.totalBalance.fiatBalanceStr
     totalFiatLabel?.textColor = UIColor(named: "T1")
     totalFiatLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
     view.addSubview(totalFiatLabel!)
     totalFiatLabel?.snp.makeConstraints({ (maker) in
-      maker.leading.top.equalToSuperview().offset(16)
+      maker.leading.equalToSuperview().offset(16)
+      maker.top.equalTo(titleLabel!.snp.bottom).offset(8)
     })
     
     totalLabel = UILabel()

@@ -4,27 +4,35 @@ import RxSwift
 class MainViewModel: ObservableObject {
   private let disposeBag = DisposeBag()
   @Published var isLoggedIn: Bool
+  @Published var isPinEnabled: Bool
   
   var ordersViewModel: OrdersViewModel?
   var restoreViewModel: RestoreViewModel?
   private let cleanupManager: ICleanupManager
   private let wordsManager: IWordsManager
   private let authManager: IAuthManager
+  private let lockManager: ILockManager
   
   init(
     wordsManager: IWordsManager,
     authManager: IAuthManager,
-    cleanupManager: ICleanupManager
+    cleanupManager: ICleanupManager,
+    lockManager: ILockManager
   ) {
     self.cleanupManager = cleanupManager
     self.wordsManager = wordsManager
     self.authManager = authManager
+    self.lockManager = lockManager
     isLoggedIn = authManager.isLoggedIn
-    
+    isPinEnabled = lockManager.isLocked
     if authManager.isLoggedIn {
       try! authManager.safeLoad()
       self.ordersViewModel = OrdersViewModel(relayerAdapter: App.instance.relayerAdapterManager.mainRelayer!)
     }
+    
+    lockManager.lockStateUpdatedSignal.subscribe(onNext: {
+      self.isPinEnabled = self.lockManager.isLocked 
+    }).disposed(by: disposeBag)
     
     restoreViewModel = RestoreViewModel(wordsManager: wordsManager, authManager: authManager)
     restoreViewModel?.onAuth.subscribe(onNext: {
@@ -98,5 +106,10 @@ class MainViewModel: ObservableObject {
     case .NONE:
       fatalError()
     }
+  }
+  
+  func onValidate() {
+    lockManager.onUnlock()
+    isPinEnabled = false
   }
 }

@@ -19,18 +19,3 @@ struct SettingsItemView: View {
   .background(Color("secondary_background"))
   }
 }
-
-struct SettingsItemView_Previews: PreviewProvider {
-  static var width: CGFloat = 360
-  static var height: CGFloat = 50
-  
-  static var previews: some View {
-    Group {
-      SettingsItemView(icon: "security", title: "Security center")
-        .previewLayout(.fixed(width: width, height: height))
-      SettingsItemView(icon: "security", title: "Security center")
-        .previewLayout(.fixed(width: width, height: height))
-        .environment(\.colorScheme, .dark)
-    }
-  }
-}
