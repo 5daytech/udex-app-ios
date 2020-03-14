@@ -39,7 +39,7 @@ class BalanceVC: UIViewController {
     tableView = UITableView()
     tableView.delegate = self
     tableView.dataSource = self
-    tableView.estimatedRowHeight = 70
+    tableView.estimatedRowHeight = 65
     tableView.register(UINib(nibName: BalanceTVC.reuseID, bundle: nil), forCellReuseIdentifier: BalanceTVC.reuseID)
     tableView.register(UINib(nibName: AddCoinTVC.reuseID, bundle: nil), forCellReuseIdentifier: AddCoinTVC.reuseID)
     view.addSubview(tableView)
@@ -128,7 +128,7 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     titleLabel = UILabel()
     titleLabel?.text = "Wallet"
     titleLabel?.textColor = UIColor(named: "T1")
-    titleLabel?.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+    titleLabel?.font = UIFont(name: Constants.Fonts.bold, size: 24)
     view.addSubview(titleLabel!)
     titleLabel?.snp.makeConstraints({ (maker) in
       maker.top.leading.equalToSuperview().offset(16)
@@ -137,7 +137,7 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     totalFiatLabel = UILabel()
     totalFiatLabel?.text = viewModel.totalBalance.fiatBalanceStr
     totalFiatLabel?.textColor = UIColor(named: "T1")
-    totalFiatLabel?.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+    totalFiatLabel?.font = UIFont(name: Constants.Fonts.bold, size: 30)
     view.addSubview(totalFiatLabel!)
     totalFiatLabel?.snp.makeConstraints({ (maker) in
       maker.leading.equalToSuperview().offset(16)
@@ -147,7 +147,7 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     totalLabel = UILabel()
     totalLabel?.text = viewModel.totalBalance.balanceStr
     totalLabel?.textColor = UIColor(named: "T2")
-    totalLabel?.font = UIFont.systemFont(ofSize: 20)
+    totalLabel?.font = UIFont(name: Constants.Fonts.regular, size: 18)
     view.addSubview(totalLabel!)
     totalLabel?.snp.makeConstraints({ (maker) in
       maker.top.equalTo(totalFiatLabel!.snp.bottom).offset(4)

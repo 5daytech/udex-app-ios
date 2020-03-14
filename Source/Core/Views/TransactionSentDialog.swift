@@ -30,7 +30,7 @@ struct TransactionSentDialog: View {
       .padding(16)
       
       Button(action: {
-        UIApplication.shared.open(URL(string: "https://ropsten.etherscan.io/tx/\(self.hash)")!)
+        App.instance.openTransactionInfo(self.hash)
       }) {
         Spacer()
         Text("VIEW ON ETHERSCAN.IO")

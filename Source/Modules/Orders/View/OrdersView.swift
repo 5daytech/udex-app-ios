@@ -14,6 +14,14 @@ struct OrdersView: View {
         List(viewModel.myOrders) { order in
           OrderRow(order: order)
         }
+        Button(action: {
+          self.viewModel.cancelOrders()
+        }) {
+          Image("cancel")
+          Text("Cancel All Orders")
+            .font(.custom(Constants.Fonts.bold, size: 14))
+        }
+      .accentColor(Color("cancel_color"))
       }
     }
   }

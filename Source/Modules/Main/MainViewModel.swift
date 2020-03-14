@@ -85,9 +85,7 @@ class MainViewModel: ObservableObject {
     switch config.type {
     case .WRAP:
       wethWrapper.deposit(config.value.toEth(), onReceipt: { (ethTransactionReceipt) in
-        
       }, onDeposit: { eventResponse in
-        
       }).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
         onTransaction(ethData.hex())
       }, onError: { err in
@@ -95,9 +93,7 @@ class MainViewModel: ObservableObject {
       }).disposed(by: disposeBag)
     case .UNWRAP:
       wethWrapper.withdraw(config.value.toEth(), onReceipt: { (ethTransactionReceipt) in
-        
       }, onWithdrawal: { eventResponse in
-        
       }).observeOn(MainScheduler.instance).subscribe(onNext: { (ethData) in
         onTransaction(ethData.hex())
       }, onError: { err in

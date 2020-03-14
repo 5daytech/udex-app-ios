@@ -5,6 +5,8 @@ import HSHDWalletKit
 class App {
   static var instance = App()
   
+  
+  
   // MARK: Managers
   let adapterManager: IAdapterManager
   let coinManager: ICoinManager
@@ -71,7 +73,7 @@ class App {
     )
     authManager.relayerAdapterManager = relayerAdapterManager
     
-    cleanupManager = CleanupManager(authManager: authManager, zrxKitManager: zrxKitManager)
+    cleanupManager = CleanupManager(authManager: authManager, zrxKitManager: zrxKitManager, securedStorage: securedStorage)
     
     pinManager = PinManager(securedStorage: securedStorage)
     lockManager = LockManager(pinManager: pinManager)
@@ -79,5 +81,13 @@ class App {
     biometricManager = BiometricManager()
     
     securityCenterViewModel = SecurityCenterViewModel(cleanupManager: cleanupManager, pinManager: pinManager)
+  }
+  
+  func openTransactionInfo(_ hash: String) {
+    if appConfigProvider.testMode {
+      UIApplication.shared.open(URL(string: "https://ropsten.etherscan.io/tx/\(hash)")!)
+    } else {
+      UIApplication.shared.open(URL(string: "https://etherscan.io/tx/\(hash)")!)
+    }
   }
 }

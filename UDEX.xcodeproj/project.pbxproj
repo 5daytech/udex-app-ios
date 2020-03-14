@@ -100,6 +100,13 @@
 		B57B93E9241A55B00017BB10 /* ILockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93E8241A55B00017BB10 /* ILockManager.swift */; };
 		B57B93EB241BA7F10017BB10 /* SettingsItemToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93EA241BA7F10017BB10 /* SettingsItemToggleView.swift */; };
 		B57B93ED241BC6040017BB10 /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93EC241BC6040017BB10 /* BiometricManager.swift */; };
+		B57B93F3241CE62E0017BB10 /* sf_pro_display_bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B57B93EF241CE62E0017BB10 /* sf_pro_display_bold.otf */; };
+		B57B93F4241CE62E0017BB10 /* sf_pro_display_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = B57B93F0241CE62E0017BB10 /* sf_pro_display_light.otf */; };
+		B57B93F5241CE62E0017BB10 /* sf_pro_display_regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = B57B93F1241CE62E0017BB10 /* sf_pro_display_regular.otf */; };
+		B57B93F6241CE62E0017BB10 /* sf_pro_display_semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = B57B93F2241CE62E0017BB10 /* sf_pro_display_semibold.otf */; };
+		B57B93F8241CE80D0017BB10 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93F7241CE80D0017BB10 /* Constants.swift */; };
+		B57B93FA241D0A550017BB10 /* AddressData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93F9241D0A550017BB10 /* AddressData.swift */; };
+		B57B93FC241D3BED0017BB10 /* AddressParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93FB241D3BEC0017BB10 /* AddressParser.swift */; };
 		B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */; };
 		B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */; };
 		B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */; };
@@ -296,6 +303,13 @@
 		B57B93E8241A55B00017BB10 /* ILockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILockManager.swift; sourceTree = "<group>"; };
 		B57B93EA241BA7F10017BB10 /* SettingsItemToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemToggleView.swift; sourceTree = "<group>"; };
 		B57B93EC241BC6040017BB10 /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
+		B57B93EF241CE62E0017BB10 /* sf_pro_display_bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sf_pro_display_bold.otf; sourceTree = "<group>"; };
+		B57B93F0241CE62E0017BB10 /* sf_pro_display_light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sf_pro_display_light.otf; sourceTree = "<group>"; };
+		B57B93F1241CE62E0017BB10 /* sf_pro_display_regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sf_pro_display_regular.otf; sourceTree = "<group>"; };
+		B57B93F2241CE62E0017BB10 /* sf_pro_display_semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sf_pro_display_semibold.otf; sourceTree = "<group>"; };
+		B57B93F7241CE80D0017BB10 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B57B93F9241D0A550017BB10 /* AddressData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressData.swift; sourceTree = "<group>"; };
+		B57B93FB241D3BEC0017BB10 /* AddressParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressParser.swift; sourceTree = "<group>"; };
 		B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumBaseAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleError.swift; sourceTree = "<group>"; };
@@ -344,7 +358,7 @@
 		B5A985D623FD926E009AEBD8 /* EConvertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EConvertType.swift; sourceTree = "<group>"; };
 		B5A985D823FD98D3009AEBD8 /* BigUInt+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BigUInt+Extension.swift"; sourceTree = "<group>"; };
 		B5A985DA23FE3B7E009AEBD8 /* ConvertConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertConfirmView.swift; sourceTree = "<group>"; };
-		B5DAE25E23A8E80D00D6FBFA /* UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UDEX.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5DAE25E23A8E80D00D6FBFA /* Ropsten UDEX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ropsten UDEX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5DAE26123A8E80D00D6FBFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26323A8E80D00D6FBFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B5DAE26523A8E80D00D6FBFA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -565,6 +579,8 @@
 				B5F8EFE623FFEE2A0001001C /* UIImage+Extension.swift */,
 				B5E3ECB62403ECE600833F42 /* PermissionHelper.swift */,
 				B5E3ECCD24090B1800833F42 /* DateHelper.swift */,
+				B57B93F7241CE80D0017BB10 /* Constants.swift */,
+				B57B93FB241D3BEC0017BB10 /* AddressParser.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -584,6 +600,7 @@
 				B577871F23D6E11B0080F9E9 /* AuthData.swift */,
 				B5E3ECDA2410E10A00833F42 /* ExchangeRecord.swift */,
 				B59CBDA424178179001055C5 /* EnabledCoin.swift */,
+				B57B93F9241D0A550017BB10 /* AddressData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -699,6 +716,17 @@
 				B57B93E0241A391C0017BB10 /* PinViewModel.swift */,
 			);
 			path = Pin;
+			sourceTree = "<group>";
+		};
+		B57B93EE241CE60C0017BB10 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B57B93EF241CE62E0017BB10 /* sf_pro_display_bold.otf */,
+				B57B93F0241CE62E0017BB10 /* sf_pro_display_light.otf */,
+				B57B93F1241CE62E0017BB10 /* sf_pro_display_regular.otf */,
+				B57B93F2241CE62E0017BB10 /* sf_pro_display_semibold.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		B59AE8F823B08AA600DF03C1 /* Adapters */ = {
@@ -828,7 +856,7 @@
 		B5DAE25F23A8E80D00D6FBFA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B5DAE25E23A8E80D00D6FBFA /* UDEX.app */,
+				B5DAE25E23A8E80D00D6FBFA /* Ropsten UDEX.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -869,6 +897,7 @@
 		B5DAE28D23A9EAA100D6FBFA /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B57B93EE241CE60C0017BB10 /* Fonts */,
 				B533EBEC23AB3BF100CD18CC /* Utils */,
 				B533EBE723AB33EE00CD18CC /* Core */,
 				B5DAE29723AA0D1D00D6FBFA /* TestData */,
@@ -1049,7 +1078,7 @@
 			);
 			name = UDEX;
 			productName = UDEX;
-			productReference = B5DAE25E23A8E80D00D6FBFA /* UDEX.app */;
+			productReference = B5DAE25E23A8E80D00D6FBFA /* Ropsten UDEX.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1090,9 +1119,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B57B93F5241CE62E0017BB10 /* sf_pro_display_regular.otf in Resources */,
 				B59CBDAF24190166001055C5 /* AddCoinTVC.xib in Resources */,
 				B5DAE26E23A8E81000D6FBFA /* LaunchScreen.storyboard in Resources */,
+				B57B93F3241CE62E0017BB10 /* sf_pro_display_bold.otf in Resources */,
+				B57B93F6241CE62E0017BB10 /* sf_pro_display_semibold.otf in Resources */,
 				B5DAE26B23A8E81000D6FBFA /* Preview Assets.xcassets in Resources */,
+				B57B93F4241CE62E0017BB10 /* sf_pro_display_light.otf in Resources */,
 				B5A985C423F6C479009AEBD8 /* BalanceTVC.xib in Resources */,
 				B5DAE26823A8E81000D6FBFA /* Assets.xcassets in Resources */,
 			);
@@ -1199,6 +1232,7 @@
 				B53A7D0323C745A30098A237 /* NormalizedOrderData.swift in Sources */,
 				B57B93E1241A391C0017BB10 /* PinViewModel.swift in Sources */,
 				B53A7CED23C5C4840098A237 /* IExchangeInteractor.swift in Sources */,
+				B57B93FA241D0A550017BB10 /* AddressData.swift in Sources */,
 				B53A7CFD23C7405F0098A237 /* RelayerOrdersList.swift in Sources */,
 				B50C2F2B23B4777900CE7FBF /* ICoinManager.swift in Sources */,
 				B577871723D5C6210080F9E9 /* RestoreWalletView.swift in Sources */,
@@ -1311,6 +1345,7 @@
 				B54F65E923CF0BC8008BD76C /* IRatesManager.swift in Sources */,
 				B577872923D9895C0080F9E9 /* IWordsManager.swift in Sources */,
 				B50C2F1923B3818E00CE7FBF /* ZrxKitManager.swift in Sources */,
+				B57B93F8241CE80D0017BB10 /* Constants.swift in Sources */,
 				B50C2F3A23B4C56000CE7FBF /* ExchangeCoinViewItem.swift in Sources */,
 				B5FAF57A23EA87ED00014EA6 /* BaseInteractor.swift in Sources */,
 				B5F0A43923CC890800592A78 /* TransactionSentDialog.swift in Sources */,
@@ -1324,6 +1359,7 @@
 				B577872023D6E11B0080F9E9 /* AuthData.swift in Sources */,
 				B59AE92223B0BCAE00DF03C1 /* IAdapterManager.swift in Sources */,
 				B54C34AC23DAE02B00BFABEB /* CleanupManager.swift in Sources */,
+				B57B93FC241D3BED0017BB10 /* AddressParser.swift in Sources */,
 				B54C34BE23DB11E100BFABEB /* BackupView.swift in Sources */,
 				B52C4A1323B5B7BD004C1AAE /* ExchangeViewModel.swift in Sources */,
 				B54C34A823DAB18200BFABEB /* SecuredStorage.swift in Sources */,
@@ -1464,10 +1500,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B5DAE28723A9E82700D6FBFA /* Debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
 				BUNDLE_ID_SUFFIX = .dev;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = 9234M6VAS4;
 				ENABLE_PREVIEWS = YES;
@@ -1481,9 +1517,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.7;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fridaytech.UDEX${BUNDLE_ID_SUFFIX}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Ropsten $(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1496,7 +1532,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BUNDLE_ID_SUFFIX = "";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = 9234M6VAS4;
 				ENABLE_PREVIEWS = YES;
@@ -1510,7 +1546,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.7;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fridaytech.UDEX${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1582,10 +1618,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B5DAE28A23A9E85400D6FBFA /* Staging.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon${BUNDLE_ID_SUFFIX}";
 				BUNDLE_ID_SUFFIX = .staging;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_ASSET_PATHS = "\"UDEX/Preview Content\"";
 				DEVELOPMENT_TEAM = 9234M6VAS4;
 				ENABLE_PREVIEWS = YES;
@@ -1599,7 +1635,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.7;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fridaytech.UDEX${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

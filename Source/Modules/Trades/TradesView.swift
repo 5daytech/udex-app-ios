@@ -15,7 +15,7 @@ struct TradesView: View {
           VStack {
             Text("OPEN ORDERS")
             .foregroundColor(isOrders ? Color("main") : Color("T2"))
-            .font(.system(size: 14, weight: .bold))
+            .font(.custom(Constants.Fonts.regular, size: 14))
             
             Rectangle()
               .frame(width: 110, height: 1)
@@ -33,7 +33,7 @@ struct TradesView: View {
           VStack {
             Text("TRADE HISTORY")
               .foregroundColor(isOrders ? Color("T2") : Color("main"))
-              .font(.system(size: 14, weight: .bold))
+              .font(.custom(Constants.Fonts.regular, size: 14))
             
             Rectangle()
               .frame(width: 110, height: 1)

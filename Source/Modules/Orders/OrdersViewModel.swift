@@ -73,4 +73,9 @@ class OrdersViewModel: ObservableObject {
     }    
     relayerAdapter.setSelected(baseCode: pair.baseCoin, quoteCode: pair.quoteCoin)
   }
+  
+  func cancelOrders() {
+    relayerAdapter.cancelOrders().subscribe(onNext: { (ethData) in
+    }).disposed(by: disposeBag)
+  }
 }

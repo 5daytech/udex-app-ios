@@ -50,19 +50,14 @@ class BaseInteractor {
   }
   
   init() {
-    marketCodes = relayer?.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) } ?? []
-    
-    print(marketCodes)
-    print("init base interactor")
     coinManager.coinsUpdateSubject.subscribe(onNext: {
-      print("coins update in baseInteractor")
       self.initData()
     }).disposed(by: disposeBag)
     self.initData()
   }
   
   func initData() {
-    print(coinManager.coins)
+    marketCodes = relayer?.exchangePairs.map { Pair<String, String>(first: $0.baseCoinCode, second: $0.quoteCoinCode) } ?? []
     exchangeableCoins = coinManager.coins.filter { coin -> Bool in
       marketCodes.first { pair -> Bool in
         pair.first == coin.code || pair.second == coin.code
@@ -115,8 +110,6 @@ class BaseInteractor {
     }
     
     sendCoinsPair = ExchangePairsInfo(coins: sendCoins, selectedCoin: self.state.sendCoin)
-    
-    print(sendCoinsPair)
     
     if !sendCoins.isEmpty {
       let sendCoin = state?.sendCoin?.coin.code ?? sendCoins.first!.coin.code

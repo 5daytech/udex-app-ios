@@ -12,13 +12,14 @@ struct ExchangeCoinView: View {
       .aspectRatio(contentMode: .fit)
       .frame(width: 25, height: 25)
       
-      VStack(alignment: .leading) {
+      VStack(alignment: .leading, spacing: 4) {
         Text(item?.coin.code ?? "None")
+          .font(.custom(Constants.Fonts.regular, size: 12))
         Text("Balance")
-        .font(.system(size: 14))
-        .foregroundColor(Color("T2"))
+          .font(.custom(Constants.Fonts.regular, size: 10))
+          .foregroundColor(Color("T2"))
         Text(item?.balance.toDisplayFormat() ?? "0.00")
-        .font(.system(size: 14))
+        .font(.custom(Constants.Fonts.regular, size: 10)  )
         .foregroundColor(Color("T2"))
       }
       

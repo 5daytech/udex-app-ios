@@ -13,6 +13,7 @@ struct SettingsItemToggleView: View {
       Text(title)
         .padding(.leading, 16)
         .foregroundColor(Color("T1"))
+      .font(.custom(Constants.Fonts.regular, size: 14))
       Spacer()
       Toggle(isOn: $isToggleOn) {
         Text("")

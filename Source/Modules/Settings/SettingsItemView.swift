@@ -13,6 +13,7 @@ struct SettingsItemView: View {
       Text(title)
         .padding(.leading, 16)
         .foregroundColor(titleColor)
+        .font(.custom(Constants.Fonts.regular, size: 14))
       Spacer()
     }
   .frame(height: 50)

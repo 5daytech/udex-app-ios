@@ -3,8 +3,8 @@ import SnapKit
 
 class BalanceTVC: UITableViewCell {
   static let reuseID = "\(BalanceTVC.self)"
-  static let height: CGFloat = 70
-  static let expandedHeight: CGFloat = 140
+  static let height: CGFloat = 65
+  static let expandedHeight: CGFloat = 135
   
   @IBOutlet weak var icon: UIImageView!
   @IBOutlet weak var title: UILabel!
@@ -110,7 +110,7 @@ class BalanceTVC: UITableViewCell {
     let button = UIButton()
     button.setTitle(title, for: .normal)
     button.setTitleColor(UIColor(named: color), for: .normal)
-    button.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+    button.titleLabel?.font = UIFont(name: Constants.Fonts.bold, size: 10)  
     button.setImage(UIImage(named: image), for: .normal)
     button.addTarget(self, action: action, for: .touchUpInside)
     button.contentEdgeInsets = UIEdgeInsets(top: 0, left: -20, bottom: 0, right: 0)

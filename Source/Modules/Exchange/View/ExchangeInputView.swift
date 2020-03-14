@@ -14,21 +14,21 @@ struct ExchangeInputView: View {
     VStack(alignment: .leading) {
       if errorMessage != nil {
         Text("\(errorMessage!)")
-          .font(.system(size: 12))
+          .font(.custom(Constants.Fonts.regular, size: 10))
           .foregroundColor(Color.red)
       } else if fiatAmount != nil {
         Text("~$\(fiatAmount!)")
-          .font(.system(size: 12))
+          .font(.custom(Constants.Fonts.regular, size: 10))
           .foregroundColor(Color("T2"))
       }
       PipeInputView(isPipeShowing: isPipeShowing, text: text)
       if receiveAmount != nil {
         Text("You receive: \(receiveAmount!)")
-          .font(.system(size: 14, weight: .bold))
+          .font(.custom(Constants.Fonts.regular, size: 10))
           .foregroundColor(Color("T1"))
       } else if availableAmount != nil {
         Text("Available: \(availableAmount!)")
-          .font(.system(size: 12))
+          .font(.custom(Constants.Fonts.regular, size: 10))
           .foregroundColor(Color.orange)
       }
     }

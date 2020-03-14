@@ -6,7 +6,6 @@ class CoinManager {
   private let subject = PublishSubject<Void>()
   private var _coins: [Coin] {
     didSet {
-      print("coins updated")
       subject.onNext(())
     }
   }

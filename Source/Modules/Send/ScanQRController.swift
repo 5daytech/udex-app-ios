@@ -136,7 +136,8 @@ class ScanQRController: UIViewController {
   }
   
   private func found(code: String) {
-    delegate?.didScan(string: code)
+    let parser = AddressParser(validScheme: "ethereum", removeScheme: true)
+    delegate?.didScan(string: parser.parse(paymentAddress: code).address)
   }
   
 }

@@ -52,7 +52,7 @@ class ZrxKitManager: IZrxKitManager {
     kit = ZrxKit.getInstance(
       relayers: appConfiguration.relayers,
       privateKey: authManager.authData!.privateKey,
-      infuraKey: appConfiguration.infuraCredentials.secret,
+      infuraKey: appConfiguration.infuraCredentials.id,
       networkType: appConfiguration.zrxNetwork,
       gasInfoProvider: ZrxKitManager.getContractGasProvider()
     )

@@ -24,6 +24,14 @@ class ExchangeInteractor: IExchangeInteractor {
     self.zrxKit = zrxKit
   }
   
+  func cancelOrders(orders: [SignedOrder]) -> Observable<EthereumData> {
+    return exchangeWrapper.batchCancelOrders(orders: orders, onReceipt: { (receipt) in
+      
+    }, onCancel: { cancelEvent in
+      
+    })
+  }
+  
   func createOrder(feeRecipient: String, createData: CreateOrderData) -> Observable<SignedOrder> {
     let baseCoin = coinManager.getCoin(code: createData.coinPair.first)
     let quoteCoin = coinManager.getCoin(code: createData.coinPair.second)
@@ -57,9 +65,9 @@ class ExchangeInteractor: IExchangeInteractor {
     let calcAmount = BigUInt(amountRoundedStr, radix: 10)!
     return allowanceChecker.checkAndUnlockPairForFill(pair: Pair<String, String>(first: baseCoin.type.address, second: quoteCoin.type.address), side: fillData.side).flatMap { (_) -> Observable<EthereumData> in
       return self.exchangeWrapper.marketBuyOrders(orders: orders, fillAmount: calcAmount, onReceipt: { (transaction) in
-        print(transaction)
+        
       }) { (fillEventResponse) in
-        print(fillEventResponse)
+        
       }
     }
   }

@@ -5,6 +5,7 @@ import RxSwift
 import BigInt
 
 class AllowanceChecker: IAllowanceChecker {
+  let disposeBag = DisposeBag()
   let zrxKit: ZrxKit
   let ethereumKit: EthereumKit.Kit
   
@@ -14,7 +15,7 @@ class AllowanceChecker: IAllowanceChecker {
   }
   
   func checkAndUnlockAssetPairForPost(assetPair: Pair<AssetItem, AssetItem>, side: EOrderSide) -> Observable<Bool> {
-    checkAndUnlockTokenAddress(address: side == .SELL ? assetPair.first.address : assetPair.second.address)
+    return checkAndUnlockTokenAddress(address: side == .SELL ? assetPair.first.address : assetPair.second.address)
   }
   
   func checkAndUnlockPairForFill(pair: Pair<String, String>, side: EOrderSide) -> Observable<Bool> {
@@ -23,7 +24,6 @@ class AllowanceChecker: IAllowanceChecker {
   
   private func checkAndUnlockTokenAddress(address: String) -> Observable<Bool> {
     let coinWrapper = zrxKit.getErc20ProxyInstance(tokenAddress: address)
-    
     return coinWrapper.proxyAllowance(ethereumKit.receiveAddress).flatMap { (allowance) -> Observable<Bool> in
       if allowance > BigUInt.zero {
         return Observable.just(true)

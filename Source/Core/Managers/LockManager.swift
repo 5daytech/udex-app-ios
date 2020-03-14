@@ -31,7 +31,6 @@ class LockManager: ILockManager {
     if (isLocked || !pinManager.isPinSet) { return }
     
     let secondsAgo = Date().timeIntervalSince1970 - App.instance.lastExitDate
-    print(secondsAgo)
     if secondsAgo > lockTimeout {
       isLocked = true
     }

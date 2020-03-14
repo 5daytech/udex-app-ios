@@ -9,6 +9,7 @@ struct PipeInputView: View {
   var body: some View {
     HStack {
       Text(text ?? "0.00")
+        .font(.custom(Constants.Fonts.bold, size: 18))
         .foregroundColor(text != nil ? Color("T1") : Color("T2"))
         .lineLimit(1)
       if isPipeShowing {

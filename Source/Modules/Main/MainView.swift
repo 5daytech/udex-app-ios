@@ -186,7 +186,7 @@ struct MainView: View {
               
               NavigationView {
                 ExchangeView<LimitInteractor>.makeView()
-                  .navigationBarTitle("Limit order")
+                  .navigationBarTitle(Text("Limit order").font(.custom(Constants.Fonts.bold, size: 24)))
               }
               .navigationViewStyle(StackNavigationViewStyle())
               .tabItem {
@@ -196,7 +196,7 @@ struct MainView: View {
               
               NavigationView {
                 ExchangeView<MarketInteractor>.makeView()
-                  .navigationBarTitle("Swap")
+                  .navigationBarTitle(Text("Swap").font(.custom(Constants.Fonts.bold, size: 24)))
               }
               .navigationViewStyle(StackNavigationViewStyle())
               .tabItem {

@@ -8,6 +8,7 @@ struct EmptyView: View {
     VStack {
       Image("empty")
       Text(text)
+        .font(.custom(Constants.Fonts.regular, size: 18))
     }
   }
 }

@@ -61,7 +61,7 @@ struct SettingsView: View {
             }
         }
       }
-      .navigationBarTitle("Settings")
+      .navigationBarTitle(Text("Settings").font(.custom(Constants.Fonts.bold, size: 24)))
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .sheet(isPresented: $showShareSheet) {

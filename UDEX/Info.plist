@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSFaceIDUsageDescription</key>
-	<string>We use Face ID to unlock wallet.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -36,8 +34,17 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>UDEX need access to camera to scan QR codes.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>We use Face ID to unlock wallet.</string>
 	<key>TEST_MODE</key>
 	<string>$(TEST_MODE)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>sf_pro_display_semibold.otf</string>
+		<string>sf_pro_display_regular.otf</string>
+		<string>sf_pro_display_light.otf</string>
+		<string>sf_pro_display_bold.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

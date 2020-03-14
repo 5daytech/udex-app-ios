@@ -39,11 +39,10 @@ class BaseRelayerAdapter: IRelayerAdapter {
     self.relayerId = relayerId
     self.relayerManager = zrxkit.relayerManager
     self.relayer = relayerManager.availableRelayers[relayerId]
-    
     coinManager.coinsUpdateSubject.subscribe(onNext: {
       self.initPairs(relayer: self.relayerManager.availableRelayers[relayerId], coinManager: coinManager)
     }).disposed(by: disposeBag)
-    
+    self.initPairs(relayer: self.relayerManager.availableRelayers[relayerId], coinManager: coinManager)
     let scheduler = SerialDispatchQueueScheduler(qos: .background)
     _ = Observable<Int>.interval(.microseconds(refreshInterval), scheduler: scheduler)
       .subscribe { _ in
@@ -153,8 +152,12 @@ class BaseRelayerAdapter: IRelayerAdapter {
     sellOrdersSubject.onNext(sellOrders.getPair(baseAsset: selectedPair.baseAsset.assetData, quoteAsset: selectedPair.quoteAsset.assetData).orders.compactMap { SimpleOrder.fromOrder(ratesConverter: self.ratesConverter, orderRecord: $0, side: .SELL) })
   }
   
+  func cancelOrders() -> Observable<EthereumData> {
+    return exchangeInteractor.cancelOrders(orders: myOrders.map { $0.order })
+  }
+  
   func createOrder(createData: CreateOrderData) -> Observable<SignedOrder> {
-    exchangeInteractor.createOrder(feeRecipient: relayer.feeRecipients.first!, createData: createData)
+    return exchangeInteractor.createOrder(feeRecipient: relayer.feeRecipients.first!, createData: createData)
   }
   
   func fill(fillData: FillOrderData) -> Observable<EthereumData> {

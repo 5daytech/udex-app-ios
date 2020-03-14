@@ -14,6 +14,17 @@ struct RestoreWalletView: View {
       MultilineTextField(text: $mnemonicKey)
         .frame(minHeight: 50, maxHeight: 100)
       Button(action: {
+        if let copied = UIPasteboard.general.string {
+          self.mnemonicKey = copied
+        }
+      }) {
+        Spacer()
+        Text("Paste")
+        .font(.system(size: 18, weight: .bold))
+        .padding([.top, .bottom], 16)
+        Spacer()
+      }
+      Button(action: {
         self.viewModel.onRestore(text: self.mnemonicKey)
       }) {
         Spacer()
