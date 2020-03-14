@@ -158,7 +158,9 @@ struct MainView: View {
     VStack {
       if viewModel.isLoggedIn {
         if viewModel.isPinEnabled {
-          PinView(onValidate: {
+          PinView(viewModel: PinViewModel(onSuccess: {
+            self.viewModel.onValidate()
+          }), onValidate: {
             self.viewModel.onValidate()
           })
         } else {

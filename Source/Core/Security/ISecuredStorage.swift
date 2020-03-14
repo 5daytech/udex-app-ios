@@ -10,4 +10,8 @@ protocol ISecuredStorage {
   func savePin(pin: String)
   func pinIsEmpty() -> Bool
   func removePin()
+  
+  func turnOnFaceID()
+  func turnOffFaceID()
+  func isFaceIDOn() -> Bool
 }

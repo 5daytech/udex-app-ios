@@ -99,6 +99,7 @@
 		B57B93E7241A55A60017BB10 /* LockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93E6241A55A60017BB10 /* LockManager.swift */; };
 		B57B93E9241A55B00017BB10 /* ILockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93E8241A55B00017BB10 /* ILockManager.swift */; };
 		B57B93EB241BA7F10017BB10 /* SettingsItemToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93EA241BA7F10017BB10 /* SettingsItemToggleView.swift */; };
+		B57B93ED241BC6040017BB10 /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57B93EC241BC6040017BB10 /* BiometricManager.swift */; };
 		B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */; };
 		B59AE8FD23B09B6900DF03C1 /* EthereumBaseAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */; };
 		B59AE8FF23B0A32200DF03C1 /* ConvertibleError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */; };
@@ -294,6 +295,7 @@
 		B57B93E6241A55A60017BB10 /* LockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockManager.swift; sourceTree = "<group>"; };
 		B57B93E8241A55B00017BB10 /* ILockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ILockManager.swift; sourceTree = "<group>"; };
 		B57B93EA241BA7F10017BB10 /* SettingsItemToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemToggleView.swift; sourceTree = "<group>"; };
+		B57B93EC241BC6040017BB10 /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
 		B59AE8FA23B09B3A00DF03C1 /* IAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FC23B09B6900DF03C1 /* EthereumBaseAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumBaseAdapter.swift; sourceTree = "<group>"; };
 		B59AE8FE23B0A32200DF03C1 /* ConvertibleError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertibleError.swift; sourceTree = "<group>"; };
@@ -744,6 +746,7 @@
 				B57B93E4241A4B990017BB10 /* IPinManager.swift */,
 				B57B93E6241A55A60017BB10 /* LockManager.swift */,
 				B57B93E8241A55B00017BB10 /* ILockManager.swift */,
+				B57B93EC241BC6040017BB10 /* BiometricManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1316,6 +1319,7 @@
 				B5E3ECD3240E560300833F42 /* ExchangeHistoryRow.swift in Sources */,
 				B59AE8FB23B09B3A00DF03C1 /* IAdapter.swift in Sources */,
 				B541F91C23F2661E0076742E /* FeeRatePriority.swift in Sources */,
+				B57B93ED241BC6040017BB10 /* BiometricManager.swift in Sources */,
 				B54C34B823DAF91D00BFABEB /* SecurityCenterView.swift in Sources */,
 				B577872023D6E11B0080F9E9 /* AuthData.swift in Sources */,
 				B59AE92223B0BCAE00DF03C1 /* IAdapterManager.swift in Sources */,

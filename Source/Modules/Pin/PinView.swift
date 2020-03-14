@@ -2,9 +2,9 @@ import SwiftUI
 
 struct PinView: View {
   var title: String = "Passcode"
+  @ObservedObject var viewModel: PinViewModel
   var onValidate: (() -> Void)? = nil
   var onSuccess: (() -> Void)? = nil
-  @ObservedObject var viewModel = PinViewModel()
   
   @State var attemts: Int = 0
   
@@ -36,6 +36,9 @@ struct PinView: View {
           }
         })
       }
+    }
+    .onAppear {
+      self.viewModel.onAppear()
     }
   }
 }

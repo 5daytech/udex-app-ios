@@ -36,17 +36,22 @@ struct SecurityCenterView: View {
               self.viewModel.syncToggles()
             }
           
-          NavigationLink(destination: PinView(title: "Enter old passcode", viewModel: PinViewModel(true))) {
+          NavigationLink(destination: PinView(title: "Enter old passcode", viewModel: PinViewModel(true, onSuccess: nil))) {
             SettingsItemView(icon: "edit_passcode", title: "Edit passcode")
             .padding([.leading], -16)
-            .padding([.trailing], -16)
+            .padding([.trailing], -30)
           }
           .disabled(viewModel.isEditDisabled)
+          
+          SettingsItemToggleView(icon: "fingerprint", title: "Biometric", isToggleOn: $viewModel.isFaceToggleEnabled)
+          .padding([.leading], -16)
+          .padding([.trailing], -16)
+          .disabled(viewModel.isEditDisabled)
         }
-        NavigationLink("", destination: PinView(title: "Enter new passcode", onSuccess: {
+        NavigationLink("", destination: PinView(title: "Enter new passcode", viewModel: PinViewModel(onSuccess: nil), onSuccess: {
           self.viewModel.enablePasscode()
         }), isActive: $viewModel.showPinPage)
-        NavigationLink("", destination: PinView(title: "Enter passcode", onValidate: {
+        NavigationLink("", destination: PinView(title: "Enter passcode", viewModel: PinViewModel(onSuccess: nil), onValidate: {
           self.viewModel.disablePasscode()
         }), isActive: $viewModel.showPinPageForDisable)
       }

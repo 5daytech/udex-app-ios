@@ -5,6 +5,7 @@ class SecuredStorage: ISecuredStorage {
   
   private let AUTH_DATA_KEY = "auth_data_key"
   private let PIN_KEY = "pin_key"
+  private let FACE_ID_KEY = "face_id_key"
   private let APPLICATION_SERVICE = "fridaytech.udex.dev"
   
   private let keychain: Keychain
@@ -46,5 +47,17 @@ class SecuredStorage: ISecuredStorage {
   
   func removePin() {
     try! keychain.remove(PIN_KEY)
+  }
+  
+  func turnOnFaceID() {
+    try! keychain.set("1", key: FACE_ID_KEY)
+  }
+  
+  func turnOffFaceID() {
+    try! keychain.remove(FACE_ID_KEY)
+  }
+  
+  func isFaceIDOn() -> Bool {
+    try! keychain.get(FACE_ID_KEY) == "1"
   }
 }

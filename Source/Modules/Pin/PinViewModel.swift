@@ -12,16 +12,30 @@ class PinViewModel: ObservableObject {
   
   @Published var title: String?
   
-  init(_ isForEdit: Bool) {
+  let onSuccess: (() -> Void)?
+  
+  init(_ isForEdit: Bool, onSuccess: (() -> Void)?) {
     numbers = [String?](repeating: nil, count: 6)
     pinManager = App.instance.pinManager
     oldPinConfirmed = false
+    self.onSuccess = onSuccess
   }
   
-  init() {
+  init(onSuccess: (() -> Void)?) {
     numbers = [String?](repeating: nil, count: 6)
     pinManager = App.instance.pinManager
     oldPinConfirmed = nil
+    self.onSuccess = onSuccess
+  }
+  
+  func onAppear() {
+    if pinManager.isFaceSet && onSuccess != nil {
+      App.instance.biometricManager.validate(onValidate: {
+        self.onSuccess?()
+      }, onFailToValidate: {
+        
+      })
+    }
   }
   
   func inputNumber(_ number: String, _ onValidate: (() -> Void)?, onSuccessPasscode: @escaping () -> Void, onFail: @escaping () -> Void) {

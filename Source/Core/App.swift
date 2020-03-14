@@ -30,6 +30,8 @@ class App {
   let pinManager: IPinManager
   let lockManager: ILockManager
   
+  let biometricManager: IBiometricManager
+  
   var lastExitDate: TimeInterval = 0
   
   
@@ -73,6 +75,8 @@ class App {
     
     pinManager = PinManager(securedStorage: securedStorage)
     lockManager = LockManager(pinManager: pinManager)
+    
+    biometricManager = BiometricManager()
     
     securityCenterViewModel = SecurityCenterViewModel(cleanupManager: cleanupManager, pinManager: pinManager)
   }

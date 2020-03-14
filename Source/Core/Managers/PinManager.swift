@@ -13,6 +13,10 @@ extension PinManager: IPinManager {
     !securedStorage.pinIsEmpty()
   }
   
+  var isFaceSet: Bool {
+    securedStorage.isFaceIDOn()
+  }
+  
   func store(pin: String) {
     securedStorage.savePin(pin: pin)
   }
@@ -23,5 +27,13 @@ extension PinManager: IPinManager {
   
   func clear() {
     securedStorage.removePin()
+  }
+  
+  func turnOnFaceID() {
+    securedStorage.turnOnFaceID()
+  }
+  
+  func turnOffFaceID() {
+    securedStorage.turnOffFaceID()
   }
 }
