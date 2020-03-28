@@ -18,3 +18,5 @@ extension UIImage {
     self.init(ciImage: scaledImage)
   }
 }
+
+

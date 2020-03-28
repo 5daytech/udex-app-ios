@@ -5,6 +5,8 @@ struct SettingsView: View {
   
   @State var showShareSheet = false
   
+  @ObservedObject private var themeManager = App.instance.themeManager
+  
   var body: some View {
     NavigationView {
       VStack {
@@ -14,26 +16,34 @@ struct SettingsView: View {
               .padding([.leading], -16)
               .padding([.trailing], -30)
           }
-          
+
           NavigationLink(destination: CoinManagerView()) {
             SettingsItemView(icon: "coin_manager", title: "Coin Manager")
               .padding([.leading], -16)
               .padding([.trailing], -30)
           }
-          
+
+          SettingsItemView(icon: "coin_manager", title: "Color Mode")
+            .padding([.leading], -16)
+            .padding([.trailing], -30)
+            .onTapGesture {
+              print("NEXT THEME")
+              App.instance.themeManager.nextTheme()
+            }
+
           NavigationLink(destination: AboutView()) {
             SettingsItemView(icon: "about", title: "About UDEX")
               .padding([.leading], -16)
               .padding([.trailing], -30)
           }
-          
+
           SettingsItemView(icon: "share", title: "Tell Friends")
             .padding([.leading], -16)
             .padding([.trailing], -30)
             .onTapGesture {
               self.showShareSheet = true
             }
-          
+
           SettingsItemView(icon: "telegram", title: "Telegram")
             .padding([.leading], -16)
             .padding([.trailing], -30)
@@ -46,7 +56,7 @@ struct SettingsView: View {
                 UIApplication.shared.open(webUrl, options: [:], completionHandler: nil)
               }
             }
-          
+
           SettingsItemView(icon: "telegram_bot", title: "Telegram Bot")
             .padding([.leading], -16)
             .padding([.trailing], -30)
@@ -60,22 +70,18 @@ struct SettingsView: View {
               }
             }
         }
+        .background(Color(themeManager.currentTheme.mainBackground))
+        .background(Color(themeManager.currentTheme.mainBackground))
       }
-      .navigationBarTitle(Text("Settings").font(.custom(Constants.Fonts.bold, size: 24)))
+      .navigationBarTitle(
+        Text("Settings")
+          .font(.custom(Constants.Fonts.bold, size: 24))
+          .foregroundColor(Color(themeManager.currentTheme.mainTextColor))
+      )
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .sheet(isPresented: $showShareSheet) {
       ShareSheet(activityItems: [URL(string: "https://udex.app/share")!])
-    }
-  }
-}
-
-struct SettingsView_Previews: PreviewProvider {
-  static var previews: some View {
-    Group {
-      SettingsView()
-      SettingsView()
-        .environment(\.colorScheme, .dark)
     }
   }
 }

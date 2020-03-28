@@ -20,6 +20,7 @@ class BalanceVC: UIViewController {
   
   private var items = [BalanceViewItem]()
   
+  private var headerView: UIView?
   private var totalFiatLabel: UILabel?
   private var totalLabel: UILabel?
   private var titleLabel: UILabel?
@@ -33,6 +34,18 @@ class BalanceVC: UIViewController {
     viewModel.balancesSubject.asObservable().subscribe(onNext: {
       self.refresh()
     }).disposed(by: disposeBag)
+    applyTheme(App.instance.themeManager.currentTheme)
+    App.instance.themeManager.currentThemeSubject.subscribe(onNext: { (theme) in
+      self.applyTheme(theme)
+    }).disposed(by: disposeBag)
+  }
+  
+  private func applyTheme(_ theme: Theme) {
+    tableView.backgroundColor = theme.mainBackground
+    headerView?.backgroundColor = theme.mainBackground
+    titleLabel?.textColor = theme.mainTextColor
+    totalLabel?.textColor = theme.mainTextColor
+    totalFiatLabel?.textColor = theme.secondaryTextColor
   }
   
   private func setupTableView() {
@@ -122,23 +135,24 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let view = UIView()
-    view.backgroundColor = UIColor(named: "background")
+    let currentTheme = App.instance.themeManager.currentTheme
+    headerView = UIView()
+    headerView?.backgroundColor = currentTheme.mainBackground
     
     titleLabel = UILabel()
     titleLabel?.text = "Wallet"
-    titleLabel?.textColor = UIColor(named: "T1")
+    titleLabel?.textColor = currentTheme.mainTextColor
     titleLabel?.font = UIFont(name: Constants.Fonts.bold, size: 24)
-    view.addSubview(titleLabel!)
+    headerView?.addSubview(titleLabel!)
     titleLabel?.snp.makeConstraints({ (maker) in
       maker.top.leading.equalToSuperview().offset(16)
     })
     
     totalFiatLabel = UILabel()
     totalFiatLabel?.text = viewModel.totalBalance.fiatBalanceStr
-    totalFiatLabel?.textColor = UIColor(named: "T1")
+    totalFiatLabel?.textColor = currentTheme.mainTextColor
     totalFiatLabel?.font = UIFont(name: Constants.Fonts.bold, size: 30)
-    view.addSubview(totalFiatLabel!)
+    headerView?.addSubview(totalFiatLabel!)
     totalFiatLabel?.snp.makeConstraints({ (maker) in
       maker.leading.equalToSuperview().offset(16)
       maker.top.equalTo(titleLabel!.snp.bottom).offset(8)
@@ -146,16 +160,16 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     
     totalLabel = UILabel()
     totalLabel?.text = viewModel.totalBalance.balanceStr
-    totalLabel?.textColor = UIColor(named: "T2")
+    totalLabel?.textColor = currentTheme.secondaryTextColor
     totalLabel?.font = UIFont(name: Constants.Fonts.regular, size: 18)
-    view.addSubview(totalLabel!)
+    headerView?.addSubview(totalLabel!)
     totalLabel?.snp.makeConstraints({ (maker) in
       maker.top.equalTo(totalFiatLabel!.snp.bottom).offset(4)
       maker.leading.equalToSuperview().offset(16)
       maker.bottom.equalToSuperview().offset(-16)
     })
     
-    return view
+    return headerView
   }
   
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

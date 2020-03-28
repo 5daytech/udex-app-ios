@@ -34,6 +34,8 @@ class App {
   
   let biometricManager: IBiometricManager
   
+  let themeManager: ThemeManager
+  
   var lastExitDate: TimeInterval = 0
   
   
@@ -79,6 +81,8 @@ class App {
     lockManager = LockManager(pinManager: pinManager)
     
     biometricManager = BiometricManager()
+    
+    themeManager = ThemeManager()
     
     securityCenterViewModel = SecurityCenterViewModel(cleanupManager: cleanupManager, pinManager: pinManager)
   }

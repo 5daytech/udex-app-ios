@@ -139,6 +139,11 @@
 		B59CBDAD24180845001055C5 /* CoinManagerViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBDAC24180845001055C5 /* CoinManagerViewItem.swift */; };
 		B59CBDAF24190166001055C5 /* AddCoinTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59CBDAE24190166001055C5 /* AddCoinTVC.xib */; };
 		B59CBDB124190264001055C5 /* AddCoinTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59CBDB024190264001055C5 /* AddCoinTVC.swift */; };
+		B5A66D2B241F6AE800455137 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A66D2A241F6AE800455137 /* ThemeManager.swift */; };
+		B5A66D2D241F6B0E00455137 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A66D2C241F6B0E00455137 /* UIColor+Extension.swift */; };
+		B5A66D2F2420A2D000455137 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A66D2E2420A2D000455137 /* MainTabBarController.swift */; };
+		B5A66D312420CE5500455137 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A66D302420CE5500455137 /* SettingsViewController.swift */; };
+		B5A66D332420CFC900455137 /* SettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A66D322420CFC900455137 /* SettingsTVC.swift */; };
 		B5A985BA23F3F019009AEBD8 /* IProcessingDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985B923F3F019009AEBD8 /* IProcessingDurationProvider.swift */; };
 		B5A985BC23F3F05E009AEBD8 /* ETransactionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BB23F3F05E009AEBD8 /* ETransactionType.swift */; };
 		B5A985BE23F3F093009AEBD8 /* ProcessingDurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A985BD23F3F093009AEBD8 /* ProcessingDurationProvider.swift */; };
@@ -342,6 +347,11 @@
 		B59CBDAC24180845001055C5 /* CoinManagerViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManagerViewItem.swift; sourceTree = "<group>"; };
 		B59CBDAE24190166001055C5 /* AddCoinTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCoinTVC.xib; sourceTree = "<group>"; };
 		B59CBDB024190264001055C5 /* AddCoinTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCoinTVC.swift; sourceTree = "<group>"; };
+		B5A66D2A241F6AE800455137 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		B5A66D2C241F6B0E00455137 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		B5A66D2E2420A2D000455137 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		B5A66D302420CE5500455137 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B5A66D322420CFC900455137 /* SettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTVC.swift; sourceTree = "<group>"; };
 		B5A985B923F3F019009AEBD8 /* IProcessingDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IProcessingDurationProvider.swift; sourceTree = "<group>"; };
 		B5A985BB23F3F05E009AEBD8 /* ETransactionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETransactionType.swift; sourceTree = "<group>"; };
 		B5A985BD23F3F093009AEBD8 /* ProcessingDurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingDurationProvider.swift; sourceTree = "<group>"; };
@@ -581,6 +591,7 @@
 				B5E3ECCD24090B1800833F42 /* DateHelper.swift */,
 				B57B93F7241CE80D0017BB10 /* Constants.swift */,
 				B57B93FB241D3BEC0017BB10 /* AddressParser.swift */,
+				B5A66D2C241F6B0E00455137 /* UIColor+Extension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -610,6 +621,7 @@
 			children = (
 				B533EBF523AB6E3E00CD18CC /* MainView.swift */,
 				B53A7D1223C8965D0098A237 /* MainViewModel.swift */,
+				B5A66D2E2420A2D000455137 /* MainTabBarController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -656,6 +668,8 @@
 				B54C34B023DAF10200BFABEB /* SettingsView.swift */,
 				B54C34B223DAF14800BFABEB /* SettingsItemView.swift */,
 				B57B93EA241BA7F10017BB10 /* SettingsItemToggleView.swift */,
+				B5A66D302420CE5500455137 /* SettingsViewController.swift */,
+				B5A66D322420CFC900455137 /* SettingsTVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -775,6 +789,7 @@
 				B57B93E6241A55A60017BB10 /* LockManager.swift */,
 				B57B93E8241A55B00017BB10 /* ILockManager.swift */,
 				B57B93EC241BC6040017BB10 /* BiometricManager.swift */,
+				B5A66D2A241F6AE800455137 /* ThemeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1198,6 +1213,7 @@
 				B5E3ECDB2410E10A00833F42 /* ExchangeRecord.swift in Sources */,
 				B5E3ECD02409330F00833F42 /* TransactionDetails.swift in Sources */,
 				B5E3ECCE24090B1800833F42 /* DateHelper.swift in Sources */,
+				B5A66D332420CFC900455137 /* SettingsTVC.swift in Sources */,
 				B59CBD9C24166916001055C5 /* EmptyView.swift in Sources */,
 				B5E3ECC62406575A00833F42 /* TransactionsLoader.swift in Sources */,
 				B57B93E7241A55A60017BB10 /* LockManager.swift in Sources */,
@@ -1287,6 +1303,7 @@
 				B59CBD9A24166588001055C5 /* Bundle+Extension.swift in Sources */,
 				B59CBD9F24173FA3001055C5 /* CoinManagerView.swift in Sources */,
 				B53A7CE923C594E70098A237 /* CreateOrderData.swift in Sources */,
+				B5A66D312420CE5500455137 /* SettingsViewController.swift in Sources */,
 				B5347E5623CE0D6300A7B85E /* RatesConverter.swift in Sources */,
 				B533EBFD23AC8E3600CD18CC /* BalanceRow.swift in Sources */,
 				B54C34BA23DB014000BFABEB /* SecurityCenterViewModel.swift in Sources */,
@@ -1309,6 +1326,7 @@
 				B52C4A1523B5B865004C1AAE /* ExchangeViewItem.swift in Sources */,
 				B5A985D523FD923F009AEBD8 /* ConvertConfig.swift in Sources */,
 				B50C2F3523B4BB7500CE7FBF /* ExchangeView.swift in Sources */,
+				B5A66D2F2420A2D000455137 /* MainTabBarController.swift in Sources */,
 				B52C4A2423C32246004C1AAE /* LimitOrderViewState.swift in Sources */,
 				B5F8EFE523FFED8B0001001C /* ReceiveViewModel.swift in Sources */,
 				B5A985C823FCF206009AEBD8 /* BottomCard.swift in Sources */,
@@ -1323,6 +1341,7 @@
 				B57B93EB241BA7F10017BB10 /* SettingsItemToggleView.swift in Sources */,
 				B53A7D0523C747210098A237 /* String+Extension.swift in Sources */,
 				B533EBFF23ACC3A400CD18CC /* BalanceViewModel.swift in Sources */,
+				B5A66D2B241F6AE800455137 /* ThemeManager.swift in Sources */,
 				B5A985BC23F3F05E009AEBD8 /* ETransactionType.swift in Sources */,
 				B5DAE29E23AA1A5200D6FBFA /* App.swift in Sources */,
 				B5A985D923FD98D3009AEBD8 /* BigUInt+Extension.swift in Sources */,
@@ -1336,6 +1355,7 @@
 				B5A985BE23F3F093009AEBD8 /* ProcessingDurationProvider.swift in Sources */,
 				B52C4A1A23B5FAB2004C1AAE /* ExchangeInputView.swift in Sources */,
 				B59CBDA124173FC0001055C5 /* CoinManagerViewModel.swift in Sources */,
+				B5A66D2D241F6B0E00455137 /* UIColor+Extension.swift in Sources */,
 				B541F92023F2B0EE0076742E /* SendStateError.swift in Sources */,
 				B54C34CD23DEC79E00BFABEB /* LimitInteractor.swift in Sources */,
 				B5E3ECCC2408E94F00833F42 /* TransactionsRow.swift in Sources */,

@@ -38,6 +38,9 @@
                     <constraint firstItem="aDT-HW-mb5" firstAttribute="centerX" secondItem="jpK-Tr-Rk8" secondAttribute="centerX" id="HtU-QG-VMU"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="addCoinsBtn" destination="aDT-HW-mb5" id="NoC-Zl-9aM"/>
+            </connections>
             <point key="canvasLocation" x="836" y="137"/>
         </tableViewCell>
     </objects>
