@@ -49,7 +49,7 @@ class SettingsTVC: UITableViewCell {
   private func applyTheme(_ theme: Theme) {
     iconView.tintColor = theme.mainColor
     titleLabel.textColor = theme.mainTextColor
-    backgroundColor = theme.mainBackground
+    backgroundColor = theme.secondaryBackground
   }
   
   public func onBind(_ item: SettingsViewController.SettingsItem) {

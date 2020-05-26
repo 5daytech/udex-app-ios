@@ -51,6 +51,17 @@ enum Theme: Int {
     }
   }
   
+  var navigationItemTitleColor: UIColor {
+    switch self {
+    case .light:
+      return UIColor().colorFromHexString("#1E1E24")
+    case .blue:
+      return UIColor().colorFromHexString("#FFFFFF")
+    case .dark:
+      return UIColor().colorFromHexString("#FFFFFF")
+    }
+  }
+  
   var secondaryBackground: UIColor {
     switch self {
     case .dark:
@@ -58,7 +69,7 @@ enum Theme: Int {
     case .blue:
       return UIColor().colorFromHexString("#21222C")
     case .light:
-      return UIColor().colorFromHexString("#FDFDFD")
+      return UIColor().colorFromHexString("#FFFFFF")
     }
   }
   
