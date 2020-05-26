@@ -41,7 +41,7 @@ struct TransactionDetails: View {
         .frame(width: 200)
       }
       Button(action: {
-        UIApplication.shared.open(URL(string: "https://ropsten.etherscan.io/tx/\(self.item.transactionHash)")!)
+        App.instance.openTransactionInfo(self.item.transactionHash)
       }) {
         Spacer()
         Text("FULL INFO")

@@ -44,9 +44,3 @@ class MainTabBarController: UITabBarController {
     return navigation
   }
 }
-
-extension UINavigationController {
-  open override var preferredStatusBarStyle: UIStatusBarStyle {
-    return App.instance.themeManager.currentTheme.statusBarStyle
-  }
-}

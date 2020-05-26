@@ -99,15 +99,13 @@ class ThemeManager: ObservableObject {
   }
   
   func applyTheme(_ theme: Theme) {
-    UserDefaults.standard.set(theme.rawValue, forKey: THEME_KEY)
-    UserDefaults.standard.synchronize()
-    currentTheme = theme
-    currentThemeSubject.onNext(theme)
-    
-    UITabBar.appearance().barStyle = theme.barStyle
-    UITabBar.appearance().backgroundImage = theme.mainBackground.image()
-    
-    UINavigationBar.appearance().tintColor = .red
+//    UserDefaults.standard.set(theme.rawValue, forKey: THEME_KEY)
+//    UserDefaults.standard.synchronize()
+//    currentTheme = theme
+//    currentThemeSubject.onNext(theme)
+//
+//    UITabBar.appearance().barStyle = theme.barStyle
+//    UITabBar.appearance().backgroundImage = theme.mainBackground.image()
   }
   
   func nextTheme() {

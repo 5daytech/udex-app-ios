@@ -25,14 +25,6 @@ class BalanceTVC: UITableViewCell {
   private var onWrapAction: (() -> Void)?
   private var item: BalanceViewItem?
   
-  private func applyTheme(_ theme: Theme) {
-    title.textColor = theme.mainTextColor
-    pricePerToken.textColor = theme.secondaryTextColor
-    amountInCoin.textColor = theme.mainTextColor
-    amountInFiat.textColor = theme.secondaryTextColor
-    contentView.backgroundColor = theme.secondaryBackground
-  }
-  
   func onBind(_ item: BalanceViewItem, onReceive: @escaping (Coin) -> Void, onSend: @escaping (Coin) -> Void, onTransactions: @escaping (Coin) -> Void, onWrap: (() -> Void)?) {
     self.item = item
     onReceiveAction = onReceive
@@ -44,11 +36,6 @@ class BalanceTVC: UITableViewCell {
     pricePerToken.text = "$\(item.balance.pricePerToken.toDisplayFormat()) per \(item.balance.coin.code)"
     amountInCoin.text = "\(item.balance.balance.toDisplayFormat()) \(item.balance.coin.code)"
     amountInFiat.text = "$\(item.balance.fiatBalance.toDisplayFormat(2))"
-    
-    applyTheme(App.instance.themeManager.currentTheme)
-    App.instance.themeManager.currentThemeSubject.subscribe(onNext: { (theme) in
-      self.applyTheme(theme)
-    }).disposed(by: disposeBag)
   }
   
   func setupCell() {

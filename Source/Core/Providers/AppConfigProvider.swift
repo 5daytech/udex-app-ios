@@ -90,6 +90,7 @@ class AppConfigProvider: IAppConfigProvider {
       ]
     } else {
       return [
+        getExchangePair(from: "USDC", to: "DAI"),
         getExchangePair(from: "USDC", to: "WETH"),
         getExchangePair(from: "ZRX", to: "WETH"),
         getExchangePair(from: "BAT", to: "WETH"),
@@ -99,8 +100,7 @@ class AppConfigProvider: IAppConfigProvider {
         getExchangePair(from: "MKR", to: "WETH"),
         getExchangePair(from: "OMG", to: "WETH"),
         getExchangePair(from: "DAI", to: "WETH"),
-        getExchangePair(from: "USDT", to: "WETH"),
-        getExchangePair(from: "USDC", to: "DAI")
+        getExchangePair(from: "USDT", to: "WETH")
       ]
     }
   }
@@ -227,13 +227,13 @@ class AppConfigProvider: IAppConfigProvider {
       return [
         Relayer(
           id: 0,
-          name: "UDEX",
+          name: "RadarRelay",
           availablePairs: exchangePairs,
-          feeRecipients: ["0xA5004C8b2D64AD08A80d33Ad000820d63aa2cCC9".lowercased()],
+          feeRecipients: ["0xa258b39954cef5cb142fd567a46cddb31a670124".lowercased()],
           exchangeAddress: zrxNetwork.exchangeAddress,
           config: RelayerConfig(
-            baseUrl: "https://api.udex.app/sra",
-            suffix: "",
+            baseUrl: "https://api.radarrelay.com/",
+            suffix: "0x/",
             version: "v3")
         )
       ]

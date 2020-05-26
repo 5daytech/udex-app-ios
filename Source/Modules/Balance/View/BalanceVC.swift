@@ -34,10 +34,6 @@ class BalanceVC: UIViewController {
     viewModel.balancesSubject.asObservable().subscribe(onNext: {
       self.refresh()
     }).disposed(by: disposeBag)
-    applyTheme(App.instance.themeManager.currentTheme)
-    App.instance.themeManager.currentThemeSubject.subscribe(onNext: { (theme) in
-      self.applyTheme(theme)
-    }).disposed(by: disposeBag)
   }
   
   private func applyTheme(_ theme: Theme) {
@@ -135,13 +131,12 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-    let currentTheme = App.instance.themeManager.currentTheme
     headerView = UIView()
-    headerView?.backgroundColor = currentTheme.mainBackground
+    headerView?.backgroundColor = UIColor(named: "background")
     
     titleLabel = UILabel()
     titleLabel?.text = "Wallet"
-    titleLabel?.textColor = currentTheme.mainTextColor
+    titleLabel?.textColor = UIColor(named: "T1")
     titleLabel?.font = UIFont(name: Constants.Fonts.bold, size: 24)
     headerView?.addSubview(titleLabel!)
     titleLabel?.snp.makeConstraints({ (maker) in
@@ -150,7 +145,7 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     
     totalFiatLabel = UILabel()
     totalFiatLabel?.text = viewModel.totalBalance.fiatBalanceStr
-    totalFiatLabel?.textColor = currentTheme.mainTextColor
+    totalFiatLabel?.textColor = UIColor(named: "T1")
     totalFiatLabel?.font = UIFont(name: Constants.Fonts.bold, size: 30)
     headerView?.addSubview(totalFiatLabel!)
     totalFiatLabel?.snp.makeConstraints({ (maker) in
@@ -160,7 +155,7 @@ extension BalanceVC: UITableViewDataSource, UITableViewDelegate {
     
     totalLabel = UILabel()
     totalLabel?.text = viewModel.totalBalance.balanceStr
-    totalLabel?.textColor = currentTheme.secondaryTextColor
+    totalLabel?.textColor = UIColor(named: "T2")
     totalLabel?.font = UIFont(name: Constants.Fonts.regular, size: 18)
     headerView?.addSubview(totalLabel!)
     totalLabel?.snp.makeConstraints({ (maker) in

@@ -7,8 +7,6 @@ struct SettingsItemView: View {
   var title: String
   var titleColor = Color("T1")
   
-  @ObservedObject private var themeManager = App.instance.themeManager
-  
   var body: some View {
     HStack {
       Image(icon)
@@ -16,11 +14,11 @@ struct SettingsItemView: View {
         .frame(width: 18, height: 18)
       Text(title)
         .padding(.leading, 16)
-        .foregroundColor(Color(themeManager.currentTheme.mainTextColor))
+        .foregroundColor(titleColor)
         .font(.custom(Constants.Fonts.regular, size: 14))
       Spacer()
     }
     .frame(height: 50)
-    .background(Color(themeManager.currentTheme.secondaryBackground))
+    .background(Color("secondary_background"))
   }
 }

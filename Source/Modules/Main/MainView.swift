@@ -31,8 +31,6 @@ struct MainView: View {
     lockManager: App.instance.lockManager
   )
   
-  @ObservedObject var themeManager = App.instance.themeManager
-  
   private func bottomView() -> AnyView? {
     switch bottomViewState {
     case .NONE:
@@ -217,8 +215,14 @@ struct MainView: View {
                   Image("settings").renderingMode(.template)
                   Text("")
               }
+              
+//              OrdersBookView(viewModel: viewModel.ordersViewModel!)
+//              .tabItem {
+//                  Image("settings").renderingMode(.template)
+//                  Text("")
+//              }
             }
-            .accentColor(Color(themeManager.currentTheme.mainColor))
+            .accentColor(Color("main"))
             .blur(radius: isBlur ? 3 : 0)
             
             bottomView()?

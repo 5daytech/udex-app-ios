@@ -5,8 +5,6 @@ struct SettingsView: View {
   
   @State var showShareSheet = false
   
-  @ObservedObject private var themeManager = App.instance.themeManager
-  
   var body: some View {
     NavigationView {
       VStack {
@@ -23,13 +21,13 @@ struct SettingsView: View {
               .padding([.trailing], -30)
           }
 
-          SettingsItemView(icon: "coin_manager", title: "Color Mode")
-            .padding([.leading], -16)
-            .padding([.trailing], -30)
-            .onTapGesture {
-              print("NEXT THEME")
-              App.instance.themeManager.nextTheme()
-            }
+//          SettingsItemView(icon: "coin_manager", title: "Color Mode")
+//            .padding([.leading], -16)
+//            .padding([.trailing], -30)
+//            .onTapGesture {
+//              print("NEXT THEME")
+//              App.instance.themeManager.nextTheme()
+//            }
 
           NavigationLink(destination: AboutView()) {
             SettingsItemView(icon: "about", title: "About UDEX")
@@ -70,14 +68,14 @@ struct SettingsView: View {
               }
             }
         }
-        .background(Color(themeManager.currentTheme.mainBackground))
-        .background(Color(themeManager.currentTheme.mainBackground))
-      }
+        .background(Color("background"))
+      
       .navigationBarTitle(
         Text("Settings")
           .font(.custom(Constants.Fonts.bold, size: 24))
-          .foregroundColor(Color(themeManager.currentTheme.mainTextColor))
+          .foregroundColor(Color("T1"))
       )
+    }
     }
     .navigationViewStyle(StackNavigationViewStyle())
     .sheet(isPresented: $showShareSheet) {
