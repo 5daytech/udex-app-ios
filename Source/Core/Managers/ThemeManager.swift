@@ -10,7 +10,7 @@ enum Theme: Int {
   var mainColor: UIColor {
     switch self {
     case .blue:
-      return UIColor().colorFromHexString("#3F40FF")
+      return UIColor().colorFromHexString("#56D6FF")
     case .dark:
       return UIColor().colorFromHexString("#FFD600")
     case .light:
@@ -109,6 +109,19 @@ enum Theme: Int {
     case .light:
       return UIColor().colorFromHexString("#EBECED")
     }
+  }
+  
+  var socialsUsername: UIColor {
+    switch self {
+    case .light:
+      return UIColor().colorFromHexString("#B9BCC2")
+    case .blue, .dark:
+      return UIColor().colorFromHexString("#D7D7D7")
+    }
+  }
+  
+  var removeWallet: UIColor {
+    return UIColor().colorFromHexString("#FF8A00")
   }
 }
 

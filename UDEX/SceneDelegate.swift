@@ -8,9 +8,10 @@
 
 import UIKit
 import SwiftUI
+import RxSwift
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-  
+  private let disposeBag = DisposeBag()
   var window: UIWindow?
   
   
@@ -30,6 +31,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
       self.window = window
       window.makeKeyAndVisible()
     }
+    
+    App.instance.themeManager.currentThemeSubject.subscribe(onNext: { (theme) in
+      self.applyTheme(theme)
+    }).disposed(by: disposeBag)
+  }
+  
+  private func applyTheme(_ theme: Theme) {
+    window?.tintColor = theme.mainColor
   }
   
   func sceneDidDisconnect(_ scene: UIScene) {

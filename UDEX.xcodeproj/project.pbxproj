@@ -84,6 +84,7 @@
 		B54F65ED23CF1346008BD76C /* RatesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54F65EC23CF1346008BD76C /* RatesManager.swift */; };
 		B5544799247D3D4400C90C38 /* StatusBarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5544798247D3D4400C90C38 /* StatusBarNavigationController.swift */; };
 		B554479B247EDBE600C90C38 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B554479A247EDBE500C90C38 /* SFProText-Regular.ttf */; };
+		B554479D247EFC4A00C90C38 /* SFProText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B554479C247EFC4900C90C38 /* SFProText-Light.ttf */; };
 		B577871423D5BEDE0080F9E9 /* GuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871323D5BEDE0080F9E9 /* GuestView.swift */; };
 		B577871723D5C6210080F9E9 /* RestoreWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871623D5C6210080F9E9 /* RestoreWalletView.swift */; };
 		B577871923D5C7EF0080F9E9 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */; };
@@ -294,6 +295,7 @@
 		B54F65EC23CF1346008BD76C /* RatesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesManager.swift; sourceTree = "<group>"; };
 		B5544798247D3D4400C90C38 /* StatusBarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarNavigationController.swift; sourceTree = "<group>"; };
 		B554479A247EDBE500C90C38 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
+		B554479C247EFC4900C90C38 /* SFProText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Light.ttf"; sourceTree = "<group>"; };
 		B577871323D5BEDE0080F9E9 /* GuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestView.swift; sourceTree = "<group>"; };
 		B577871623D5C6210080F9E9 /* RestoreWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoreWalletView.swift; sourceTree = "<group>"; };
 		B577871823D5C7EF0080F9E9 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 		B57B93EE241CE60C0017BB10 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B554479C247EFC4900C90C38 /* SFProText-Light.ttf */,
 				B554479A247EDBE500C90C38 /* SFProText-Regular.ttf */,
 				B57B93EF241CE62E0017BB10 /* sf_pro_display_bold.otf */,
 				B57B93F0241CE62E0017BB10 /* sf_pro_display_light.otf */,
@@ -1145,6 +1148,7 @@
 				B5DAE26E23A8E81000D6FBFA /* LaunchScreen.storyboard in Resources */,
 				B554479B247EDBE600C90C38 /* SFProText-Regular.ttf in Resources */,
 				B57B93F3241CE62E0017BB10 /* sf_pro_display_bold.otf in Resources */,
+				B554479D247EFC4A00C90C38 /* SFProText-Light.ttf in Resources */,
 				B57B93F6241CE62E0017BB10 /* sf_pro_display_semibold.otf in Resources */,
 				B5DAE26B23A8E81000D6FBFA /* Preview Assets.xcassets in Resources */,
 				B57B93F4241CE62E0017BB10 /* sf_pro_display_light.otf in Resources */,

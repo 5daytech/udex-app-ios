@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "telegram.png",
+      "filename" : "dollar-sign.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "telegram@2x.png",
+      "filename" : "dollar-sign@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "telegram@3x.png",
+      "filename" : "dollar-sign@3x.png",
       "scale" : "3x"
     }
   ],
