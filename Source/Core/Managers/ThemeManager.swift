@@ -14,7 +14,7 @@ enum Theme: Int {
     case .dark:
       return UIColor().colorFromHexString("#FFD600")
     case .light:
-      return UIColor().colorFromHexString("#2F82FF")
+      return UIColor().colorFromHexString("#304CFF")
     }
   }
   
@@ -90,6 +90,26 @@ enum Theme: Int {
       return .darkContent
     }
   }
+  
+  var arrowIcon: UIColor {
+    switch self {
+    case .light:
+      return UIColor().colorFromHexString("#D8DCE3")
+    case .blue, .dark:
+      return UIColor().colorFromHexString("#4B4E56")
+    }
+  }
+  
+  var navigationBarLine: UIColor {
+    switch self {
+    case .dark:
+      return UIColor().colorFromHexString("#202020")
+    case .blue:
+      return UIColor().colorFromHexString("#30313B")
+    case .light:
+      return UIColor().colorFromHexString("#EBECED")
+    }
+  }
 }
 
 class ThemeManager: ObservableObject {
@@ -110,13 +130,9 @@ class ThemeManager: ObservableObject {
   }
   
   func applyTheme(_ theme: Theme) {
-//    UserDefaults.standard.set(theme.rawValue, forKey: THEME_KEY)
-//    UserDefaults.standard.synchronize()
-//    currentTheme = theme
-//    currentThemeSubject.onNext(theme)
-//
-//    UITabBar.appearance().barStyle = theme.barStyle
-//    UITabBar.appearance().backgroundImage = theme.mainBackground.image()
+    UserDefaults.standard.set(theme.rawValue, forKey: THEME_KEY)
+    currentTheme = theme
+    currentThemeSubject.onNext(theme)
   }
   
   func nextTheme() {

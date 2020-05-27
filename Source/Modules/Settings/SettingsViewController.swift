@@ -4,20 +4,40 @@ import RxSwift
 
 class SettingsViewController: UIViewController {
   struct SettingsItem {
+    let id: Int
     let icon: String
     let title: String
+    let additional: String?
+    
+    init(id: Int, icon: String, title: String, additional: String? = nil) {
+      self.id = id
+      self.icon = icon
+      self.title = title
+      self.additional = additional
+    }
   }
   
   private let disposeBag = DisposeBag()
   var tableView: UITableView?
   
-  let options: [SettingsItem] = [
-    SettingsItem(icon: "security", title: "Security Center"),
-    SettingsItem(icon: "security", title: "Security Center"),
-    SettingsItem(icon: "security", title: "Security Center"),
-    SettingsItem(icon: "security", title: "Security Center"),
-    SettingsItem(icon: "security", title: "Security Center"),
-    SettingsItem(icon: "security", title: "Security Center")
+  let options: [[SettingsItem]] = [
+    [
+      SettingsItem(id: 0, icon: "security", title: "Security Center"),
+      SettingsItem(id: 1, icon: "security", title: "Security Center")
+    ],
+    [
+      SettingsItem(id: 2, icon: "sun", title: "Color Mode", additional: "color_switch")
+    ],
+    [
+      SettingsItem(id: 3, icon: "security", title: "Security Center"),
+      SettingsItem(id: 4, icon: "security", title: "Security Center"),
+      SettingsItem(id: 5, icon: "share", title: "Tell Friends")
+    ],
+    [
+      SettingsItem(id: 6, icon: "security", title: "Security Center"),
+      SettingsItem(id: 7, icon: "security", title: "Security Center"),
+      SettingsItem(id: 8, icon: "security", title: "Security Center")
+    ]
   ]
   
   override func viewDidLoad() {
@@ -43,39 +63,76 @@ class SettingsViewController: UIViewController {
     tableView?.register(SettingsTVC.self, forCellReuseIdentifier: SettingsTVC.reuseID)
     tableView?.delegate = self
     tableView?.dataSource = self
+    tableView?.separatorInset = UIEdgeInsets.zero
   }
   
   private func applyTheme(_ theme: Theme) {
     view.backgroundColor = theme.mainBackground
     tableView?.backgroundColor = theme.mainBackground
+    tableView?.separatorColor = theme.mainBackground
 
     let appearance = UINavigationBarAppearance()
     appearance.configureWithDefaultBackground()
     appearance.backgroundColor = theme.mainBackground
     appearance.titleTextAttributes = [.foregroundColor: theme.navigationItemTitleColor]
     appearance.largeTitleTextAttributes = [.foregroundColor: theme.navigationItemTitleColor]
-    appearance.shadowImage = UIColor().colorFromHexString("#EDEEEF").image()
+    appearance.shadowImage = theme.navigationBarLine.image()
     navigationItem.standardAppearance = appearance
     navigationItem.scrollEdgeAppearance = appearance
     navigationItem.compactAppearance = appearance
   }
+  
+  private func didSelectItem(_ item: SettingsItem) {
+    switch item.id {
+    case 2:
+      App.instance.themeManager.nextTheme()
+    case 5:
+      share()
+    default:
+      break
+    }
+  }
+  
+  private func share() {
+    let items = [URL(string: "https://udex.app/share")!]
+    let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+    present(ac, animated: true)
+  }
 }
 
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func numberOfSections(in tableView: UITableView) -> Int {
     return options.count
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return options[section].count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTVC.reuseID) as? SettingsTVC else {
       fatalError()
     }
-    cell.onBind(options[indexPath.row])
+    cell.onBind(options[indexPath.section][indexPath.item])
     return cell
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 60
+    return 56
+  }
+  
+  func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    return UIView()
+  }
+
+  func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    return 20
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+    let item = options[indexPath.section][indexPath.item]
+    didSelectItem(item)
   }
 }
 

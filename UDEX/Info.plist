@@ -40,6 +40,7 @@
 	<string>$(TEST_MODE)</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SFProText-Regular.ttf</string>
 		<string>sf_pro_display_semibold.otf</string>
 		<string>sf_pro_display_regular.otf</string>
 		<string>sf_pro_display_light.otf</string>

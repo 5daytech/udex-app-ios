@@ -6,5 +6,6 @@ struct Constants {
     static let bold = "SFProDisplay-Bold"
     static let semibold = "SFProDisplay-Semibold"
     static let light = "SFProDisplay-Light"
+    static let text_regular = "SFProText-Regular"
   }
 }
